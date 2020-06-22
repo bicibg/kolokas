@@ -1,0 +1,135 @@
+.recipe-box-container {
+    margin-bottom: 30px;
+    background: #fff;
+    -webkit-box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
+    transition: box-shadow 0.2s ease-in-out;
+    background: #fff;
+    -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.recipe-box-container:hover {
+    -webkit-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.recipe-box-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.recipe-box-img img {
+    max-width: 100%;
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.recipe-box-img:hover .hover-button,.recipe-box-img-list:hover .hover-button
+{
+    opacity: 1;
+    visibility: visible;
+    margin-bottom: 0;
+    top: 50%;
+    left: 50%;
+}
+
+.recipe-box-img img {
+    width: 100%;
+    position: relative;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.recipe-box-meta {
+    display: block;
+    padding: 5px 10px;
+    background: #ff9638;
+    color: #fff;
+}
+
+.recipe-box-meta span {
+    padding: 2px 5px;
+    font-size: 13px;
+}
+.recipe-box-footer {
+    padding: 5px 15px;
+}
+.recipe-box-content {
+    padding: 5px 15px;
+}
+.recipe-box-content h3 {
+    min-height: 71px;
+}
+.recipe-box-content h3,.single-post .recipe-box-content h3,.item-text h3,.main-service h3
+{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    font-family: 'Lora', 'PT Serif', serif;
+    font-style: italic;
+}
+
+.recipe-box-content h3 small,.item-text h3 small {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    font-style: italic;
+    width: 100%
+}
+
+.recipe-box-content h3 small i,.item-text h3 small i {
+    padding-right: 10px;
+}
+
+.avatar img {
+    border-radius: 50%;
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.hover-button {
+    background-color: rgba(255, 150, 56, 0.82);
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 8px;
+    width: 100px;
+    text-align: center;
+    opacity: 0;
+    display: inline-block;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 13px;
+}
+
+.hover-button:hover {
+    background-color: #ff9638;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+.hover-button {
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
