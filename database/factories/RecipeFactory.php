@@ -25,5 +25,6 @@ $factory->define(\App\Recipe::class, function (Faker $faker, $attr = []) {
         'servings' =>  $faker->numberBetween(1, 10) . ' ' . $faker->word,
         'published' => $faker->boolean(70),
         'user_id' => $attr['user_id'] ?? factory(\App\User::class)->create(),
+        'featured' => $faker->boolean(20),
     ];
 });

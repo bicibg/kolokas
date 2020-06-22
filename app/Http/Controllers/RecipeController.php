@@ -11,7 +11,7 @@ class RecipeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     /***
@@ -19,8 +19,9 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::wherePublished(true)->latest()->get();
-        return view('recipes.index', compact('recipes'));
+        $featured = Recipe::wherePublished(true)->whereFeatured(true)->latest()->get();
+        $recipes = Recipe::wherePublished(true)->latest()->paginate(12);
+        return view('recipe.index', compact('recipes', 'featured'));
     }
 
     /***
@@ -30,7 +31,7 @@ class RecipeController extends Controller
     public function myIndex(User $user)
     {
         $recipes = Recipe::whereUserId($user->id)->get();
-        return view('recipes.my-index', compact('recipes'));
+        return view('recipe.my-index', compact('recipes'));
     }
 
     /**
@@ -40,7 +41,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        return view('recipes.create');
+        return view('recipe.create');
     }
 
     /**
@@ -62,7 +63,7 @@ class RecipeController extends Controller
             'servings' => $request->get('servings'),
             'user_id' => auth()->id(),
         ]);
-        return redirect()->to(route('recipes.index'))->with([
+        return redirect()->to(route('recipe.index'))->with([
             'success' => 'Your recipe was submitted successfully. It will be reviewed as soon as possible. We will let you know of the outcome'
         ]);
     }
@@ -75,7 +76,7 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        return view('recipes.show', compact('recipe'));
+        return view('recipe.show', compact('recipe'));
     }
 
     /**

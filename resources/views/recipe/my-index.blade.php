@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container">
-        @include('recipes.partial.recipes')
+        @include('recipe.partial.recipes')
     </div>
 @endsection

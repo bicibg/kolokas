@@ -1,3 +1,122 @@
+/*======== TABLE OF CONTENT ==========
+1.  Global Style
+2.  Recipe Index
+3.  Top Bar
+4.  Nav Bar
+5.  Carousel
+ */
+
+/*=================================*/
+
+/*
+=================================
+       1.  Global Style
+=================================
+*/
+
+main {
+    margin-top: 60px;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+::-moz-selection {
+    color: #fff;
+    text-shadow: none;
+    background: #3498db;
+}
+
+::-webkit-selection {
+    color: #fff;
+    text-shadow: none;
+    background: #3498db;
+}
+
+::selection {
+    color: #fff;
+    text-shadow: none;
+    background: #3498db;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #333;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #666;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: #000000;
+}
+
+
+.avatar img {
+    border-radius: 50%;
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.hover-button {
+    background-color: rgba(255, 150, 56, 0.82);
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 8px;
+    width: 100px;
+    text-align: center;
+    opacity: 0;
+    display: inline-block;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 13px;
+}
+
+.hover-button:hover {
+    background-color: #ff9638;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+.hover-button {
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+/*=================================*/
+
+/*
+=================================
+       2.  Recipe Index
+=================================
+*/
+
 .recipe-box-container {
     margin-bottom: 30px;
     background: #fff;
@@ -92,44 +211,318 @@
     padding-right: 10px;
 }
 
-.avatar img {
-    border-radius: 50%;
-    float: left;
-    width: 25px;
-    height: 25px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
+/*=================================*/
 
-.hover-button {
-    background-color: rgba(255, 150, 56, 0.82);
-    color: #fff;
-    font-weight: 500;
-    font-size: 16px;
-    text-transform: uppercase;
-    visibility: hidden;
-    position: absolute;
+/*
+=================================
+       3.  Top Bar
+=================================
+*/
+.topbar {
+    position: fixed;
     top: 0;
     left: 0;
-    padding: 8px;
-    width: 100px;
-    text-align: center;
-    opacity: 0;
+    z-index: 999;
+    width: 100%;
+    background: #f9f9f9;
+    height: 40px;
+}
+
+.topbar .container {
+    position: relative;
+}
+
+.topbar-right {
+    float: right;
+}
+
+.topbar-left {
+    float: left;
+}
+
+.topbar-nav {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.topbar-nav>li {
+    float: left;
+}
+
+.topbar-nav>li>a {
+    display: block;
+    padding: 8px 12px;
+    background-color: transparent;
+    color: #95a0aa;
+}
+
+.topbar-nav>li>a:hover {
+    background: #ff9638;
+    color: #fff;
+}
+
+.topbar-nav.top-contact-info>li {
+    border-right: solid 1px #eee;
+}
+
+.topbar-nav.top-contact-info>li:first-child {
+    border-left: solid 1px #eee;
+}
+
+.topbar-nav.top-contact-info>li i {
+    font-size: 14px;
     display: inline-block;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    font-size: 13px;
+    vertical-align: middle;
+    margin-right: 4px;
 }
 
-.hover-button:hover {
+.topbar-nav>.active>a,.topbar-nav>.active>a:hover,.topbar-nav>.active>a:focus
+{
+    background: #242636;
+}
+
+.topbar-nav>.disabled>a,.topbar-nav>.disabled>a:hover,.topbar-nav>.disabled>a:focus
+{
+    color: #fff;
+    background: #ff9638;
+}
+
+/*=================================*/
+
+/*
+=================================
+       4.  Nav Bar
+=================================
+*/
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,.1)
+}
+
+.navbar .navbar-brand {
+    font-weight: 700;
+    position: absolute;
+    left: 30px;
+    letter-spacing: 5px
+}
+
+.navbar .navbar-brand i {
+    color: #ff9638
+}
+
+.navbar .navbar-nav .btn-submit-recipe {
+    position: absolute;
+    right: 30px
+}
+
+.navbar .navbar-nav .btn-submit-recipe a {
+    margin-top: 13px;
+    padding: 10px;
+    color: #fff;
+    border-radius: 4px;
+    background-color: #ff9638
+}
+
+.navbar .navbar-nav .btn-submit-recipe a i {
+    margin-right: 5px
+}
+
+.navbar .navbar-nav .btn-submit-recipe a:hover {
+    color: #fff
+}
+
+.navbar .dropdown-item.active,.navbar .dropdown-item:active {
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff9638
+}
+
+.navbar .dropdown-item:focus,.navbar .dropdown-item:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff9638
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-weight: 700;
+    padding: 23px 25px;
+    color: #333
+}
+
+.navbar-light .navbar-nav .active>.nav-link,.navbar-light .navbar-nav .nav-link.active {
+    color: #ff9638;
+    border-bottom: 3px solid #ff9638
+}
+
+.dropdown-menu {
+    margin: 0;
+    border-radius: 4px
+}
+
+@media only screen and (max-width: 992px) {
+    .navbar {
+        padding:10px 0
+    }
+
+    .navbar .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px
+    }
+
+    .navbar .navbar-brand {
+        position: unset;
+        left: unset
+    }
+
+    .navbar .justify-content-center {
+        justify-content: space-between!important
+    }
+
+    .navbar .navbar-nav .btn-submit-recipe {
+        position: unset;
+        right: unset;
+        text-align: center
+    }
+
+    .navbar-light .navbar-nav .active>.nav-link,.navbar-light .navbar-nav .nav-link.active {
+        border-bottom: 1px solid #ff9638
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        padding: 15px 15px
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        padding-top: 61px
+    }
+
+    .navbar {
+        padding: 10px 0
+    }
+
+    .navbar .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px
+    }
+
+    .navbar .navbar-brand {
+        position: unset;
+        left: unset
+    }
+
+    .navbar .justify-content-center {
+        justify-content: space-between !important
+    }
+
+    .navbar .navbar-nav .btn-submit-recipe {
+        position: unset;
+        right: unset;
+        text-align: center
+    }
+
+    .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active {
+        border-bottom: 1px solid #ff9638
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        padding: 15px 15px
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    body {
+        padding-top: 61px
+    }
+
+    .navbar {
+        padding: 10px 0
+    }
+
+    .navbar .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px
+    }
+
+    .navbar .navbar-brand {
+        position: unset;
+        left: unset
+    }
+
+    .navbar .justify-content-center {
+        justify-content: space-between !important
+    }
+
+    .navbar .navbar-nav .btn-submit-recipe {
+        position: unset;
+        right: unset;
+        text-align: center
+    }
+
+    .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active {
+        border-bottom: 1px solid #ff9638
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        padding: 15px 15px
+    }
+}
+
+/*=================================*/
+
+/*
+=================================
+       5. Carousel
+=================================
+*/
+
+.carousel-item img {
+    object-fit: cover;
+    height: 25vw;
+}
+
+.carousel-item .btn {
+    padding: 10px;
+    color: #fff;
+    border-radius: 4px;
     background-color: #ff9638;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+    border: 0
 }
 
-.hover-button {
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
+.carousel-item h1 {
+    text-shadow: 0 1px 12px #555
 }
+
+.carousel-item h1 a {
+    color: #fff
+}
+
+.carousel-item h1 a:hover {
+    text-decoration: none
+}
+
+.carousel-item p {
+    text-shadow: 0 1px 5px #555
+}
+
+@media only screen and (max-width: 768px) {
+    .carousel-item img {
+        width: unset;
+        height: 400px
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .carousel-item img {
+        width: unset;
+        height: 500px
+    }
+}
+
+
+
+/*=================================*/

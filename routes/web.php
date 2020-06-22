@@ -16,8 +16,8 @@ Auth::routes();
 
 Route::get('/create', 'RecipeController@create')->name('recipe.create');
 Route::post('/', 'RecipeController@store')->name('recipe.store');
-Route::get('/{user}', 'RecipeController@myIndex')->name('recipes.my-index');
-Route::get('/', 'RecipeController@index')->name('recipes.index');
-Route::get('/{recipe}', 'RecipeController@show')->name('recipes.show');
+Route::get('/{user}', 'RecipeController@myIndex')->name('recipe.my-index');
+Route::get('/', 'RecipeController@index')->name('recipe.index');
+Route::get('/{recipe}', 'RecipeController@show')->name('recipe.show');
 
 Route::get('/authors/{user}', 'ProfileController@show')->name('authors.show');

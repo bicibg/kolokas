@@ -2,12 +2,10 @@
     <div class="recipe-box-container d-flex flex-column">
         <div class="recipe-box-img">
             <img width="400" height="266"
-                 :src="recipe.images[0].url"
-                 class="attachment-400x400 size-400x400 wp-post-image" alt=""
-                 sizes="(max-width: 400px) 100vw, 400px">
-            <a :href="recipe.url">
-                <div class="hover-button">View Recipe</div>
-            </a>
+                 :src="recipe.images[0].url" :alt="recipe.title">
+                    <a :href="recipe.url">
+                        <div class="hover-button">View Recipe</div>
+                    </a>
         </div>
         <div class="recipe-box-meta">
             <span><i class="fa fa-comments"></i>{{comments}} {{'Comment' | pluralize(comments)}}</span>

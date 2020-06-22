@@ -26,6 +26,7 @@ class Recipe extends Model
         'prep_time',
         'cook_time',
         'servings',
+        'featured',
         'created_by',
         'updated_by',
         'published',
@@ -45,7 +46,7 @@ class Recipe extends Model
      */
     public function getUrlAttribute()
     {
-        return route('recipes.show', $this);
+        return route('recipe.show', $this);
     }
 
     /**

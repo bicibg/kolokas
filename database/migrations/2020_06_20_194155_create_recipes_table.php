@@ -28,6 +28,7 @@ class CreateRecipesTable extends Migration
             $table->unsignedBigInteger('cook_time')->default(0)->nullable();   //minutes
             $table->string('servings')->nullable();       //how many servings
             $table->boolean('published')->default(false);
+            $table->boolean('featured')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -1947,8 +1947,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     recipe: {
@@ -37516,13 +37514,11 @@ var render = function() {
   return _c("div", { staticClass: "recipe-box-container d-flex flex-column" }, [
     _c("div", { staticClass: "recipe-box-img" }, [
       _c("img", {
-        staticClass: "attachment-400x400 size-400x400 wp-post-image",
         attrs: {
           width: "400",
           height: "266",
           src: _vm.recipe.images[0].url,
-          alt: "",
-          sizes: "(max-width: 400px) 100vw, 400px"
+          alt: _vm.recipe.title
         }
       }),
       _vm._v(" "),
