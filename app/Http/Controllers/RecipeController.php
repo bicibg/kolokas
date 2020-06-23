@@ -62,7 +62,7 @@ class RecipeController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Recipe  $recipe
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Recipe $recipe)
     {

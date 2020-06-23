@@ -37580,8 +37580,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "recipe-box-container d-flex flex-column" }, [
-    _c("div", { staticClass: "recipe-box-img" }, [
+  return _c("div", { staticClass: "recipe-container d-flex flex-column" }, [
+    _c("div", { staticClass: "recipe-img" }, [
       _c("img", {
         attrs: {
           width: "400",
@@ -37596,7 +37596,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "recipe-box-meta" }, [
+    _c("div", { staticClass: "recipe-meta" }, [
       _c("span", [
         _c("i", { staticClass: "fa fa-spoon" }),
         _vm._v(
@@ -37618,7 +37618,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "recipe-box-content" }, [
+    _c("div", { staticClass: "recipe-content" }, [
       _c("div", { staticClass: "author-details" }, [
         _c("h3", { staticClass: "title" }, [
           _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(_vm.user.name))]),
@@ -37667,7 +37667,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "recipe-box-buttons" }, [
+    return _c("div", { staticClass: "recipe-buttons" }, [
       _c(
         "a",
         {
@@ -37731,8 +37731,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "recipe-box-container d-flex flex-column" }, [
-    _c("div", { staticClass: "recipe-box-img" }, [
+  return _c("div", { staticClass: "recipe-container d-flex flex-column" }, [
+    _c("div", { staticClass: "recipe-img" }, [
       _c("img", {
         attrs: {
           width: "400",
@@ -37747,7 +37747,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "recipe-box-meta" }, [
+    _c("div", { staticClass: "recipe-meta" }, [
       _c("span", [
         _c("i", { staticClass: "fa fa-comments" }),
         _vm._v(
@@ -37770,7 +37770,7 @@ var render = function() {
       _vm._m(0)
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "recipe-box-content" }, [
+    _c("div", { staticClass: "recipe-content" }, [
       _c("h3", [
         _c("a", { attrs: { href: _vm.recipe.url } }, [
           _vm._v("\n            " + _vm._s(_vm.recipe.title) + "\n        ")
@@ -37786,9 +37786,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      {
-        staticClass: "avatar recipe-box-footer flex-grow-1 d-flex flex-column"
-      },
+      { staticClass: "avatar recipe-footer flex-grow-1 d-flex flex-column" },
       [
         _c("div", { staticClass: "flex-grow-1" }),
         _vm._v(" "),
@@ -37843,7 +37841,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "recipe-box-buttons" }, [
+    return _c("div", { staticClass: "recipe-buttons" }, [
       _c(
         "a",
         {
@@ -50082,7 +50080,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.filter('pluralize', function (word, amount) {
   return amount > 1 || amount === 0 ? "".concat(word, "s") : word;
 });
-Vue.component('recipe-box', __webpack_require__(/*! ./components/RecipeBoxComponent.vue */ "./resources/js/components/RecipeBoxComponent.vue")["default"]);
+Vue.component('recipe', __webpack_require__(/*! ./components/RecipeBoxComponent.vue */ "./resources/js/components/RecipeBoxComponent.vue")["default"]);
 Vue.component('contributor-box', __webpack_require__(/*! ./components/ContributorBoxComponent.vue */ "./resources/js/components/ContributorBoxComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

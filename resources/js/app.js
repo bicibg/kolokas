@@ -19,7 +19,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.filter('pluralize', (word, amount) => (amount > 1 || amount === 0) ? `${word}s` : word)
-Vue.component('recipe-box', require('./components/RecipeBoxComponent.vue').default);
+Vue.component('recipe', require('./components/RecipeBoxComponent.vue').default);
 Vue.component('contributor-box', require('./components/ContributorBoxComponent.vue').default);
 
 /**
