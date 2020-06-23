@@ -34,6 +34,11 @@ class RecipeController extends Controller
         return view('recipe.create');
     }
 
+    public function search()
+    {
+        //$recipes = Recipe::wherePublished(true)->latest()->where('name', 'LIKE', '')->limit(4)->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

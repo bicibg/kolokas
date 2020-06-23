@@ -19825,6 +19825,7 @@ readers do not read off random characters that represent icons */
 6.  Content
 7.  Author details
 8.  Recipe Create
+9.  Search Box
  */
 
 /*=================================*/
@@ -20357,7 +20358,13 @@ img {
 }
 
 .carousel-item p {
+  font-size: 1.2rem;
   text-shadow: 0 1px 5px #555;
+}
+
+.carousel-caption {
+  bottom: unset !important;
+  top: 50px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -20519,4 +20526,69 @@ img {
 }
 
 /*=================================*/
+
+/*
+=================================
+        9. Search Box
+=================================
+*/
+
+.search-box {
+  background-color: #ffffff;
+  position: relative;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 30px;
+  margin-top: -50px;
+  z-index: 100;
+  box-shadow: 0px 5px 55px 3.6px rgba(0, 0, 0, 0.1);
+}
+
+.search-box .button-group {
+  background-color: #f7f7f7;
+  margin: -60px -30px;
+  margin-top: 20px;
+  padding: 15px 30px;
+}
+
+.search-box .action-buttons {
+  text-align: right;
+}
+
+.quick-search .button-group {
+  background-color: #f7f7f7;
+  margin: -25px -40px;
+  margin-top: 20px;
+  padding: 15px 30px;
+}
+
+.quick-search .container {
+  position: relative;
+  z-index: 1;
+  background-color: #fff;
+  padding: 30px 30px 20px;
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.07);
+  transform: translateY(84px);
+}
+
+.quick-search .button-group .action-buttons {
+  float: right;
+  line-height: 12px;
+}
+
+.quick-search .button-group:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+.quick-search .button-group .action-buttons .btn-success {
+  margin-right: 10px;
+}
+
+select.input-lg {
+  height: 46px;
+  line-height: 24px;
+}
 
