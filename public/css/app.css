@@ -19822,6 +19822,8 @@ readers do not read off random characters that represent icons */
 3.  Top Bar
 4.  Nav Bar
 5.  Carousel
+6.  Content
+7.  Author details
  */
 
 /*=================================*/
@@ -19834,6 +19836,10 @@ readers do not read off random characters that represent icons */
 
 main {
   margin-top: 60px;
+}
+
+body {
+  color: #888;
 }
 
 img {
@@ -20354,6 +20360,138 @@ img {
     width: unset;
     height: 500px;
   }
+}
+
+/*=================================*/
+
+/*
+=================================
+       6.  Content
+=================================
+*/
+
+#content,
+#most-rated,
+#latest,
+#top-rated,
+#most-read,
+#latest-news,
+#top_authors {
+  position: relative;
+  width: 100%;
+  padding: 60px 0;
+  background: #f4f4f4;
+}
+
+.heading {
+  display: block;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.heading h2 {
+  position: relative;
+  display: inline;
+  padding: 12px 20px;
+  font-size: 28px;
+  line-height: 32px;
+  font-style: normal;
+  font-weight: 600;
+  font-family: "PT Serif", serif;
+}
+
+.heading.heading-sm h2 {
+  padding: 10px 14px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.heading.bg-white h2::before {
+  background: #fff;
+}
+
+.heading.heading-alt {
+  text-align: left;
+  margin: 0 0 30px;
+}
+
+.heading.heading-alt h3 {
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.item-img-box-list .recipe-box-buttons a {
+  background: #f9f9f9;
+  color: #ccc;
+}
+
+.item-img-box-list .recipe-box-buttons a:hover {
+  background: #898ba2;
+  color: #d9dae9;
+}
+
+.item-text {
+  position: relative;
+  width: 50%;
+  display: table-cell;
+  padding: 15px;
+  vertical-align: top;
+}
+
+.recipe-box-buttons {
+  position: relative;
+  display: table;
+  width: 100%;
+  padding: 0;
+}
+
+.recipe-box-buttons a {
+  display: table-cell;
+  width: 10%;
+  padding: 8px 12px;
+  text-align: center;
+  background: #f9f9f9;
+  font-size: 16px;
+  color: #aaa;
+  overflow: hidden;
+}
+
+.recipe-box-buttons a:hover,
+.recipe-box-buttons a:focus {
+  color: #eee;
+  background: #ccc;
+  overflow: hidden;
+  outline: none;
+}
+
+/*=================================*/
+
+/*
+=================================
+       6. Author details
+=================================
+*/
+
+.author-details {
+  position: relative;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.author-details .title {
+  margin-bottom: 0.5em;
+}
+
+.author-details .contact {
+  font-size: 0.9em;
+  color: #999;
+  line-height: 2;
+}
+
+.author-details .contact i {
+  display: inline-block;
+  width: 20px;
+  margin-right: 5px;
 }
 
 /*=================================*/

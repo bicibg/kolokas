@@ -14,7 +14,7 @@
         @php
             $active = true;
         @endphp
-        @foreach($featured as $recipe)
+        @foreach($carousel as $recipe)
             <div class="carousel-item {{ $active ? "active" : "" }}">
                 <img class="d-block w-100" src="{{ $recipe->images[0]->url }}" alt="{{ $recipe->title }}">
                 <div class="container">

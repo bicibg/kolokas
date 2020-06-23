@@ -1,0 +1,14 @@
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="heading">
+            <h2>Our Top Contributors</h2>
+        </div>
+    </div>
+    @foreach($contributors as $user)
+        <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-items-stretch">
+            <contributor-box :user="{{ $user->toJson() }}"></contributor-box>
+        </div>
+    @endforeach
+</div>
+
+

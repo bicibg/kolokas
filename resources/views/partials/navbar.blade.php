@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="top:40px;">
     <div class="container-fluid justify-content-center">
-        <a class="navbar-brand" href="{{ route('recipe.index') }}"><i class="fa fa-cutlery" aria-hidden="true"></i>  {{ strtoupper(config('app.name', 'Kolokas')) }}</a>
+        <a class="navbar-brand" href="{{ route('home') }}"><i class="fa fa-cutlery" aria-hidden="true"></i>  {{ strtoupper(config('app.name', 'Kolokas')) }}</a>
         <span class="position-absolute" style="left:200px;">
             Authentic recipes of Cyprus
         </span>
@@ -10,7 +10,7 @@
         <div class="navbar-collapse justify-content-center collapse" id="navbarNavDropdown" style="">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('recipe.index') }}">Recipes</a>
+                    <a class="nav-link" href="{{ route('home') }}">Recipes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Events</a>

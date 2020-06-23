@@ -34,6 +34,12 @@
                     </span>
             </div>
         </div>
+        <div class="recipe-box-buttons">
+            <a href="http://themes.ongoingthemes.com/quickrecipe/recipe/spring-cassoulet-with-pistou/?quickrecipe_add_to_favorite=12" title="Add to favorites"><i class="fa fa-heart"></i></a>
+            <a href="#popup-social12" title="Share"><i class="fa fa-share"></i></a>
+            <a href="mailto:?subject=Spring%20Cassoulet%20with%20Pistou&amp;body=Spring%20Cassoulet%20with%20Pistou:http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fspring-cassoulet-with-pistou%2F" title="Send E-mail"><i class="fa fa-envelope"></i></a>
+            <a href="http://themes.ongoingthemes.com/quickrecipe/recipe/spring-cassoulet-with-pistou/#respond" title="Add Comment"><i class="fa fa-comment"></i></a>
+        </div>
     </div>
 </template>
 

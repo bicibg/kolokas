@@ -15,16 +15,6 @@ class RecipeController extends Controller
     }
 
     /***
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function index()
-    {
-        $featured = Recipe::wherePublished(true)->whereFeatured(true)->latest()->get();
-        $recipes = Recipe::wherePublished(true)->latest()->paginate(12);
-        return view('recipe.index', compact('recipes', 'featured'));
-    }
-
-    /***
      * @param  User  $user
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

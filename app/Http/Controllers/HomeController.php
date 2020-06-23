@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Recipe;
+use App\User;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +14,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $featured = Recipe::wherePublished(true)->whereFeatured(true)->latest()->get();
+        $carousel = Recipe::wherePublished(true)->whereFeatured(true)->latest()->limit(5)->get();
+        $topRated = Recipe::wherePublished(true)->get()->random(4);
+        $latest = Recipe::wherePublished(true)->latest()->limit(4)->get();
+        $contributors = User::all()->random(4);
+        return view('home.index', compact('latest', 'featured', 'carousel', 'topRated', 'contributors'));
     }
 }
