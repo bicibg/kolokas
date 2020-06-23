@@ -2,7 +2,7 @@
 
 @section('content')
     @include('home.partial.carousel')
-        @include('home.partial.search')
+    @include('home.partial.search')
     <div class="container pt-5">
         @include('home.partial.topRated')
     </div>

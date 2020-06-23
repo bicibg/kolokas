@@ -34,9 +34,17 @@ class RecipeController extends Controller
         return view('recipe.create');
     }
 
-    public function search()
+    public function index(Request $request)
     {
-        //$recipes = Recipe::wherePublished(true)->latest()->where('name', 'LIKE', '')->limit(4)->get();
+        $recipes = Recipe::wherePublished(true)
+            ->latest();
+
+        if (!empty($request->get('s'))) {
+            $recipes->where('title', 'LIKE', "%{$request->get('s')}%")
+                ->orWhere('description', 'LIKE', "%{$request->get('s')}%");
+        }
+        $recipes = $recipes->get();
+        return view('recipe.index', compact('recipes'));
     }
 
     /**

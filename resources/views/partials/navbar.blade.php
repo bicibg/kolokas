@@ -10,7 +10,7 @@
         <div class="navbar-collapse justify-content-center collapse" id="navbarNavDropdown" style="">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">Recipes</a>
+                    <a class="nav-link" href="{{ route('recipe.index') }}">Recipes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Events</a>

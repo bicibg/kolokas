@@ -1,13 +1,12 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center w-100">
     <div class="col-md-8">
-        <form method="get" class="search-form" action="{{ route('recipe.search') }}">
-            @csrf
+        <form method="get" class="search-form" action="{{ route('recipe.index') }}">
             <div class="search-box">
 
                 <div class="row">
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="form-group">
-                            <select name="recipe-type" id="recipe-type" class="form-control">
+                            <select name="c" id="recipe-type" class="form-control">
                                 <option value="0" selected="selected"> – Choose Category –</option>
                                 <option class="level-0" value="14">Bakery</option>
                                 <option class="level-0" value="18">Budget</option>
@@ -29,7 +28,7 @@
                     </div>
                     <div class="col-md-2 col-sm-3 col-xs-6">
                             <div class="action-buttons">
-                                <button type="submit" class="btn btn-success"><i class="fa fa-search"></i>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>
                                     Search
                                 </button>
                                 <button type="reset" class="btn"><i class="fa fa-times"></i> Clear</button>

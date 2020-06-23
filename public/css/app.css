@@ -13,7 +13,7 @@
   --purple: #9561e2;
   --pink: #f66d9b;
   --red: #e3342f;
-  --orange: #f6993f;
+  --orange: #ff9638;
   --yellow: #ffed4a;
   --green: #38c172;
   --teal: #4dc0b5;
@@ -19947,10 +19947,8 @@ img {
 .recipe-container {
   margin-bottom: 30px;
   background: #fff;
-  box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
   transition: box-shadow 0.2s ease-in-out;
-  background: #fff;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 .recipe-container:hover {
@@ -20363,8 +20361,13 @@ img {
 }
 
 .carousel-caption {
-  bottom: unset !important;
-  top: 50px;
+  bottom: 110px !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 50px !important;
+  height: 50px !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -20534,15 +20537,20 @@ img {
 */
 
 .search-box {
-  background-color: #ffffff;
   position: relative;
-  background-position: center bottom;
-  background-repeat: no-repeat;
   background-size: 100%;
   padding: 30px;
   margin-top: -50px;
   z-index: 100;
-  box-shadow: 0px 5px 55px 3.6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  background: #fff;
+  box-shadow: 0 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.search-box:hover {
+  box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
+  transition: box-shadow 0.2s ease-in-out;
 }
 
 .search-box .button-group {

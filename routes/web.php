@@ -18,7 +18,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/recipes/create', 'RecipeController@create')->name('recipe.create');
 Route::get('/recipes/{recipe}', 'RecipeController@show')->name('recipe.show');
 Route::post('/', 'RecipeController@store')->name('recipe.store');
-Route::get('/recipes', 'RecipeController@search')->name('recipe.search');
+Route::get('/recipes', 'RecipeController@index')->name('recipe.index');
 
 
 Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
