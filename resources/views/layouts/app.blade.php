@@ -23,7 +23,7 @@
 <div id="app">
     @include('partials.topbar')
     @include('partials.navbar')
-    <main class="py-4" style="margin-top: 120px;">
+    <main class="py-2">
         @yield('content')
     </main>
 </div>

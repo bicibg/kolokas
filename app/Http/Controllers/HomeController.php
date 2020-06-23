@@ -14,11 +14,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $featured = Recipe::wherePublished(true)->whereFeatured(true)->latest()->get();
-        $carousel = Recipe::wherePublished(true)->whereFeatured(true)->latest()->limit(5)->get();
+        $featured = Recipe::wherePublished(true)->whereFeatured(true)->get()->random(4);
+        $carousel = Recipe::wherePublished(true)->whereFeatured(true)->get()->random(5);
         $topRated = Recipe::wherePublished(true)->get()->random(4);
         $latest = Recipe::wherePublished(true)->latest()->limit(4)->get();
-        $contributors = User::all()->random(4);
+        $contributors = User::with('profile')->get()->random(4);
         return view('home.index', compact('latest', 'featured', 'carousel', 'topRated', 'contributors'));
     }
 }

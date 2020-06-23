@@ -17,15 +17,12 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Contributors
+                        Authors
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Chefs</a>
                         <a class="dropdown-item" href="#">Restaurants</a>
                     </div>
-                </li>
-                <li class="nav-item btn-submit-recipe">
-                    <a class="nav-link" href="{{ route('recipe.create') }}"><i class="fa fa-upload" aria-hidden="true"></i> Submit Recipe</a>
                 </li>
             </ul>
         </div>

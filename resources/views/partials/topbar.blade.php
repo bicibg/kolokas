@@ -10,13 +10,16 @@
                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                 </ul>
                 <ul class="topbar-nav top-contact-info topbar-right">
+                    <li><a class="login_button font-weight-bold" id="show_login"
+                           href="{{ route('recipe.create') }}"><i
+                                class="fa fa-plus-square"></i> Submit Recipe</a></li>
                     @guest
                         <li><a class="login_button" id="show_login"
                                href="{{ route('login') }}"><i
-                                    class="fa fa-key"></i> Log In</a></li>
+                                    class="fa fa-key"></i> Login</a></li>
                         <li><a class="login_button" id="show_signup"
                                href="{{ route('register') }}"><i
-                                    class="fa fa-lock"></i> Register</a></li>
+                                    class="fa fa-lock"></i> Create Account</a></li>
                     @else
                         <li class="nav-item">
                             <a id="navbarDropdown" class="nav-link" href="#" role="button"

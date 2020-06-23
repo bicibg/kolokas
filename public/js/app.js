@@ -37586,13 +37586,13 @@ var render = function() {
         attrs: {
           width: "400",
           height: "266",
-          src: "https://picsum.photos/500",
+          src: _vm.user.profile.photo,
           alt: _vm.user.title
         }
       }),
       _vm._v(" "),
-      _c("a", { attrs: { href: _vm.user.url } }, [
-        _c("div", { staticClass: "hover-button" }, [_vm._v("View Recipe")])
+      _c("a", { attrs: { href: _vm.user.profile.url } }, [
+        _c("div", { staticClass: "hover-button" }, [_vm._v("View Author")])
       ])
     ]),
     _vm._v(" "),

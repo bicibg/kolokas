@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pt-5" style="max-width:1400px !important;">
+    <div class="container pt-5">
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <h5><i class="fa fa-cutlery" aria-hidden="true"></i> Recipes</h5>

@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/{recipe}', 'RecipeController@show')->name('recipe.show');
-Route::get('/create', 'RecipeController@create')->name('recipe.create');
+Route::get('/recipes/create', 'RecipeController@create')->name('recipe.create');
+Route::get('/recipes/{recipe}', 'RecipeController@show')->name('recipe.show');
 Route::post('/', 'RecipeController@store')->name('recipe.store');
 
-Route::get('/author/{user}', 'ProfileController@show')->name('authors.show');
+Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
 Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 Route::post('/profile/edit', 'ProfileController@edit')->name('profile.update');
 //Route::get('/author/{user}', 'RecipeController@myIndex')->name('recipe.my-index');

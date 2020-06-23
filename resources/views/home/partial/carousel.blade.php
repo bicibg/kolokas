@@ -19,7 +19,7 @@
                 <img class="d-block w-100" src="{{ $recipe->images[0]->url }}" alt="{{ $recipe->title }}">
                 <div class="container">
                     <div class="carousel-caption text-right">
-                        <h1><a href="recipe-detail.html">{{ $recipe->title }}</a></h1>
+                        <h1><a href="{{ $recipe->url }}">{{ $recipe->title }}</a></h1>
                         <p>{{ $recipe->description }}</p>
                         <p><a class="btn btn-lg btn-primary" href="{{ route('recipe.show', $recipe) }}" role="button">Read
                                 more</a></p>

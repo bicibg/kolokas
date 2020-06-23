@@ -6,6 +6,7 @@
 5.  Carousel
 6.  Content
 7.  Author details
+8.  Recipe Create
  */
 
 /*=================================*/
@@ -16,8 +17,18 @@
 =================================
 */
 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 main {
-    margin-top: 60px;
+    margin-top: 120px;
+}
+
+main > .container {
+    max-width: 1400px !important;
 }
 
 body {
@@ -154,8 +165,7 @@ img {
     object-fit: cover;
 }
 
-.recipe-img:hover .hover-button,.recipe-img-list:hover .hover-button
-{
+.recipe-img:hover .hover-button, .recipe-img-list:hover .hover-button {
     opacity: 1;
     visibility: visible;
     margin-bottom: 0;
@@ -183,17 +193,20 @@ img {
     padding: 2px 5px;
     font-size: 13px;
 }
+
 .recipe-footer {
     padding: 5px 15px;
 }
+
 .recipe-content {
     padding: 5px 15px;
 }
+
 .recipe-content h3 {
     min-height: 71px;
 }
-.recipe-content h3,.single-post .recipe-content h3,.item-text h3,.main-service h3
-{
+
+.recipe-content h3, .single-post .recipe-content h3, .item-text h3, .main-service h3 {
     display: block;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -204,7 +217,7 @@ img {
     font-style: italic;
 }
 
-.recipe-content h3 small,.item-text h3 small {
+.recipe-content h3 small, .item-text h3 small {
     display: block;
     margin-top: 10px;
     font-size: 13px;
@@ -212,7 +225,7 @@ img {
     width: 100%
 }
 
-.recipe-content h3 small i,.item-text h3 small i {
+.recipe-content h3 small i, .item-text h3 small i {
     padding-right: 10px;
 }
 
@@ -251,44 +264,42 @@ img {
     list-style-type: none;
 }
 
-.topbar-nav>li {
+.topbar-nav > li {
     float: left;
 }
 
-.topbar-nav>li>a {
+.topbar-nav > li > a {
     display: block;
     padding: 8px 12px;
     background-color: transparent;
     color: #95a0aa;
 }
 
-.topbar-nav>li>a:hover {
+.topbar-nav > li > a:hover {
     background: #ff9638;
     color: #fff;
 }
 
-.topbar-nav.top-contact-info>li {
+.topbar-nav.top-contact-info > li {
     border-right: solid 1px #eee;
 }
 
-.topbar-nav.top-contact-info>li:first-child {
+.topbar-nav.top-contact-info > li:first-child {
     border-left: solid 1px #eee;
 }
 
-.topbar-nav.top-contact-info>li i {
+.topbar-nav.top-contact-info > li i {
     font-size: 14px;
     display: inline-block;
     vertical-align: middle;
     margin-right: 4px;
 }
 
-.topbar-nav>.active>a,.topbar-nav>.active>a:hover,.topbar-nav>.active>a:focus
-{
+.topbar-nav > .active > a, .topbar-nav > .active > a:hover, .topbar-nav > .active > a:focus {
     background: #242636;
 }
 
-.topbar-nav>.disabled>a,.topbar-nav>.disabled>a:hover,.topbar-nav>.disabled>a:focus
-{
+.topbar-nav > .disabled > a, .topbar-nav > .disabled > a:hover, .topbar-nav > .disabled > a:focus {
     color: #fff;
     background: #ff9638;
 }
@@ -304,7 +315,7 @@ img {
     padding-top: 0;
     padding-bottom: 0;
     background-color: #fff;
-    box-shadow: 0 0 15px rgba(0,0,0,.1)
+    box-shadow: 0 0 15px rgba(0, 0, 0, .1)
 }
 
 .navbar .navbar-brand {
@@ -339,13 +350,13 @@ img {
     color: #fff
 }
 
-.navbar .dropdown-item.active,.navbar .dropdown-item:active {
+.navbar .dropdown-item.active, .navbar .dropdown-item:active {
     text-decoration: none;
     color: #fff;
     background-color: #ff9638
 }
 
-.navbar .dropdown-item:focus,.navbar .dropdown-item:hover {
+.navbar .dropdown-item:focus, .navbar .dropdown-item:hover {
     text-decoration: none;
     color: #fff;
     background-color: #ff9638
@@ -353,11 +364,12 @@ img {
 
 .navbar-light .navbar-nav .nav-link {
     font-weight: 700;
+    font-size: 16px;
     padding: 23px 25px;
     color: #333
 }
 
-.navbar-light .navbar-nav .active>.nav-link,.navbar-light .navbar-nav .nav-link.active {
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active {
     color: #ff9638;
     border-bottom: 3px solid #ff9638
 }
@@ -369,7 +381,7 @@ img {
 
 @media only screen and (max-width: 992px) {
     .navbar {
-        padding:10px 0
+        padding: 10px 0
     }
 
     .navbar .container-fluid {
@@ -383,7 +395,7 @@ img {
     }
 
     .navbar .justify-content-center {
-        justify-content: space-between!important
+        justify-content: space-between !important
     }
 
     .navbar .navbar-nav .btn-submit-recipe {
@@ -392,7 +404,7 @@ img {
         text-align: center
     }
 
-    .navbar-light .navbar-nav .active>.nav-link,.navbar-light .navbar-nav .nav-link.active {
+    .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active {
         border-bottom: 1px solid #ff9638
     }
 
@@ -537,8 +549,7 @@ img {
 =================================
 */
 
-#content,#most-rated,#latest,#top-rated,#most-read,#latest-news,#top_authors
-{
+#content, #most-rated, #latest, #top-rated, #most-read, #latest-news, #top_authors {
     position: relative;
     width: 100%;
     padding: 60px 0;
@@ -619,7 +630,7 @@ img {
     overflow: hidden;
 }
 
-.recipe-buttons a:hover,.recipe-buttons a:focus {
+.recipe-buttons a:hover, .recipe-buttons a:focus {
     color: #eee;
     background: #ccc;
     overflow: hidden;
@@ -632,7 +643,7 @@ img {
 
 /*
 =================================
-       6. Author details
+       7. Author details
 =================================
 */
 
@@ -656,6 +667,19 @@ img {
     display: inline-block;
     width: 20px;
     margin-right: 5px;
+}
+
+/*=================================*/
+
+
+/*
+=================================
+       8. Recipe Create
+=================================
+*/
+
+.footnote {
+    font-size: 0.8rem;
 }
 
 /*=================================*/

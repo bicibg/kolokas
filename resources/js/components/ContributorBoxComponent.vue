@@ -2,9 +2,9 @@
     <div class="recipe-container d-flex flex-column">
         <div class="recipe-img">
             <img width="400" height="266"
-                 src="https://picsum.photos/500" :alt="user.title">
-                    <a :href="user.url">
-                        <div class="hover-button">View Recipe</div>
+                 :src="user.profile.photo" :alt="user.title">
+                    <a :href="user.profile.url">
+                        <div class="hover-button">View Author</div>
                     </a>
         </div>
         <div class="recipe-meta">

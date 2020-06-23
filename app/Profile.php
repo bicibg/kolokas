@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Profile extends Model
 {
+    use HasSlug;
     protected $fillable = [
         'name',
         'email',
@@ -28,7 +30,7 @@ class Profile extends Model
      */
     public function getUrlAttribute()
     {
-        return route('authors.show', $this);
+        return route('profile.show', $this);
     }
 
     /**
