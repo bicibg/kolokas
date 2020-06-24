@@ -1,4 +1,4 @@
-<div id="myCarousel" class="carousel slide">
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         @php
             $active = true
