@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             @if($recipes->count())
                 <div class="col-lg-12">
-                    <h5><i class="fa fa-cutlery" aria-hidden="true"></i> Recipes</h5>
+                    <h5 class="text-center"><i class="fa fa-cutlery" aria-hidden="true"></i> Recipes</h5>
                 </div>
             @endif
             @forelse($recipes as $recipe)

@@ -76,9 +76,9 @@ class Recipe extends Model
      *
      * @return CarbonInterval
      */
-    public function getPrepTimeAttribute( $value )
+    public function getPrepTimeAttribute($value)
     {
-        return CarbonInterval::minutes( $value )->cascade();
+        return CarbonInterval::minutes($value)->cascade();
     }
 
     /**
@@ -88,9 +88,9 @@ class Recipe extends Model
      *
      * @return CarbonInterval
      */
-    public function getCookTimeAttribute( $value )
+    public function getCookTimeAttribute($value)
     {
-        return CarbonInterval::minutes( $value )->cascade();
+        return CarbonInterval::minutes($value)->cascade();
     }
 
     /**
@@ -100,9 +100,9 @@ class Recipe extends Model
      */
     public function getTotalTime()
     {
-        $totalTime = clone $this->getAttribute( 'prep_time' );
+        $totalTime = clone $this->getAttribute('prep_time');
 
-        return $totalTime->add( $this->getAttribute( 'cook_time' ) );
+        return $totalTime->add($this->getAttribute('cook_time'));
     }
 
     /**
@@ -118,7 +118,8 @@ class Recipe extends Model
         return ucfirst($value);
     }
 
-    public function images() {
+    public function images()
+    {
         return $this->hasMany('App\RecipeImage');
     }
 }

@@ -4,10 +4,8 @@ namespace App\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
-class NumericList implements CastsAttributes
+class LocalUrl implements CastsAttributes
 {
     /**
      * Cast the given value.
@@ -16,18 +14,11 @@ class NumericList implements CastsAttributes
      * @param  string  $key
      * @param  mixed  $value
      * @param  array  $attributes
-     * @return Collection
+     * @return string
      */
     public function get($model, $key, $value, $attributes)
     {
-        $arr = Str::of($value)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
-        foreach ($arr as $key => $string) {
-            if (empty($string)) {
-                unset ($arr[$key]);
-            }
-        }
-
-        return $arr;
+        return asset($value);
     }
 
     /**

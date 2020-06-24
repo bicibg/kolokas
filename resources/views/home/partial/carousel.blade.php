@@ -1,18 +1,18 @@
 <div id="myCarousel" class="carousel slide">
     <ol class="carousel-indicators">
         @php
-            $active = true;
+            $active = true
         @endphp
         @for($x=0; $x<$featured->count(); $x++)
             <li data-target="#myCarousel" data-slide-to="{{ $x }}" class="{{ $active ? "active" : "" }}"></li>
             @php
-                $active = false;
+                $active = false
             @endphp
         @endfor
     </ol>
     <div class="carousel-inner">
         @php
-            $active = true;
+            $active = true
         @endphp
         @foreach($carousel as $recipe)
             <div class="carousel-item {{ $active ? "active" : "" }}">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             @php
-                $active = false;
+                $active = false
             @endphp
         @endforeach
     </div>

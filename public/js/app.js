@@ -1941,9 +1941,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    user: {
+    profile: {
       type: Object,
       "default": []
     }
@@ -1955,7 +1957,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log(this.user);
+    console.log(this.profile);
     console.log('Component mounted.');
   }
 });
@@ -1971,6 +1973,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -37584,19 +37588,19 @@ var render = function() {
     _c("div", { staticClass: "recipe-img" }, [
       _c("img", {
         attrs: {
-          width: "400",
+          alt: _vm.profile.name,
+          src: _vm.profile.photo,
           height: "266",
-          src: _vm.user.profile.photo,
-          alt: _vm.user.title
+          width: "400"
         }
       }),
       _vm._v(" "),
-      _c("a", { attrs: { href: _vm.user.profile.url } }, [
+      _c("a", { attrs: { href: _vm.profile.url } }, [
         _c("div", { staticClass: "hover-button" }, [_vm._v("View Author")])
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "recipe-meta" }, [
+    _c("div", { staticClass: "recipe-meta text-center" }, [
       _c("span", [
         _c("i", { staticClass: "fa fa-spoon" }),
         _vm._v(
@@ -37621,48 +37625,38 @@ var render = function() {
     _c("div", { staticClass: "recipe-content" }, [
       _c("div", { staticClass: "author-details" }, [
         _c("h3", { staticClass: "title" }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(_vm.user.name))]),
+          _c("a", { attrs: { href: _vm.profile.url } }, [
+            _vm._v(_vm._s(_vm.profile.name))
+          ]),
           _vm._v(" "),
-          _c("small", [_vm._v("Girne")])
+          _c("small", [_vm._v(_vm._s(_vm.profile.city))])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "contact" }, [
           _c("i", { staticClass: "fa fa-envelope-o" }),
-          _c("a", { attrs: { href: "mailto:" + _vm.user.email } }, [
-            _vm._v(_vm._s(_vm.user.email))
+          _c("a", { attrs: { href: "mailto:" + _vm.profile.email } }, [
+            _vm._v(_vm._s(_vm.profile.email))
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0),
+        _c("div", { staticClass: "contact" }, [
+          _c("i", { staticClass: "fa fa-globe" }),
+          _c("a", { attrs: { href: _vm.profile.website } }, [
+            _vm._v(_vm._s(_vm.profile.website))
+          ])
+        ]),
         _vm._v(" "),
-        _vm._m(1)
+        _c("div", { staticClass: "contact" }, [
+          _c("i", { staticClass: "fa fa-mobile" }),
+          _vm._v(_vm._s(_vm.profile.telephone) + "\n            ")
+        ])
       ])
     ]),
     _vm._v(" "),
-    _vm._m(2)
+    _vm._m(0)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "contact" }, [
-      _c("i", { staticClass: "fa fa-globe" }),
-      _c("a", { attrs: { href: "http://www.example.com" } }, [
-        _vm._v("http://www.example.com")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "contact" }, [
-      _c("i", { staticClass: "fa fa-mobile" }),
-      _vm._v("0090 533 860 8693")
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -37672,7 +37666,7 @@ var staticRenderFns = [
         "a",
         {
           staticClass: "link-facebook",
-          attrs: { target: "_blank", title: "# on Facebook", href: "#" }
+          attrs: { href: "#", target: "_blank", title: "# on Facebook" }
         },
         [_c("i", { staticClass: "fa fa-facebook" })]
       ),
@@ -37682,9 +37676,9 @@ var staticRenderFns = [
         {
           staticClass: "link-twitter",
           attrs: {
+            href: "http://www.twitter.com/#",
             target: "_blank",
-            title: "@# on Twitter",
-            href: "http://www.twitter.com/#"
+            title: "@# on Twitter"
           }
         },
         [_c("i", { staticClass: "fa fa-twitter" })]
@@ -37694,7 +37688,7 @@ var staticRenderFns = [
         "a",
         {
           staticClass: "link-linkedin",
-          attrs: { target: "_blank", title: "# on Linkedin", href: "#" }
+          attrs: { href: "#", target: "_blank", title: "# on Linkedin" }
         },
         [_c("i", { staticClass: "fa fa-linkedin" })]
       ),
@@ -37703,7 +37697,7 @@ var staticRenderFns = [
         "a",
         {
           staticClass: "link-pinterest",
-          attrs: { target: "_blank", title: "# on Pinterest", href: "#" }
+          attrs: { href: "#", target: "_blank", title: "# on Pinterest" }
         },
         [_c("i", { staticClass: "fa fa-pinterest-p" })]
       )
@@ -37735,10 +37729,10 @@ var render = function() {
     _c("div", { staticClass: "recipe-img" }, [
       _c("img", {
         attrs: {
-          width: "400",
-          height: "266",
+          alt: _vm.recipe.title,
           src: _vm.recipe.images[0].url,
-          alt: _vm.recipe.title
+          height: "266",
+          width: "400"
         }
       }),
       _vm._v(" "),
@@ -37747,7 +37741,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "recipe-meta" }, [
+    _c("div", { staticClass: "recipe-meta text-center" }, [
       _c("span", [
         _c("i", { staticClass: "fa fa-comments" }),
         _vm._v(
@@ -37765,9 +37759,7 @@ var render = function() {
             " " +
             _vm._s(_vm._f("pluralize")("View", _vm.views))
         )
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "recipe-content" }, [
@@ -37796,23 +37788,23 @@ var render = function() {
               staticClass: "avatar avatar-25 photo",
               attrs: {
                 alt: "",
+                height: "25",
                 src:
                   "http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=25&d=mm&r=g",
                 srcset:
                   "http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=50&d=mm&r=g" +
                   " 2x",
-                height: "25",
                 width: "25"
               }
             }),
-            _vm._v(" By "),
+            _vm._v(" By\n                "),
             _c(
               "a",
               {
                 attrs: {
-                  href: _vm.recipe.author.url,
-                  title: "Posts by admin",
-                  rel: "author"
+                  href: _vm.recipe.author.profile.url,
+                  rel: "author",
+                  title: "Posts by admin"
                 }
               },
               [_vm._v(_vm._s(_vm.recipe.author.name))]
@@ -37824,19 +37816,10 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(1)
+    _vm._m(0)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [
-      _c("i", { staticClass: "fa fa-folder" }),
-      _vm._v(" None")
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

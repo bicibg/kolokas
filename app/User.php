@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -39,9 +40,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['name'];
+
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
     public function profile()
     {
@@ -51,6 +54,11 @@ class User extends Authenticatable
     public function getNameAttribute()
     {
         return $this->profile->name ?? $this->email;
+    }
+
+    public function recipes()
+    {
+        return $this->hasMany(Recipe::class);
     }
 
 }

@@ -113,24 +113,28 @@
                             </div>
                         </div>
                         <div class="form-row mb-2 mt-5">
-                            <div class="offset-md-2 col-md-10 border-top border-darker">
+                            <div class="offset-md-2 col-md-10 border-top">
                                 <div class="muted">
-                                    <p><span class="rd_tg_bold">NOTE:</span> Photos may be used in print publications or on
+                                    <p><span class="rd_tg_bold">NOTE:</span> Photos may be used in print publications or
+                                        on
                                         the
                                         website. Please submit a high resolution jpg image at 300dpi. Uploaded files are
                                         limited to
                                         a max file size of 15 mb.</p>
 
-                                    <p>By submitting material for publication, you grant {{ env('APP_CLEAN_URL') }} unrestricted use of the
+                                    <p>By submitting material for publication, you grant {{ env('APP_CLEAN_URL') }}
+                                        unrestricted use of the
                                         material,
-                                        including your name, hometown and state. We reserve the right to modify, reproduce
+                                        including your name, hometown and state. We reserve the right to modify,
+                                        reproduce
                                         and
                                         distribute the material in any medium and in any manner. We may contact you via
                                         phone, email
                                         or mail regarding your submission.</p>
                                     <p>
                                         <input type="checkbox" class="form-check-input" id="agreement" name="agreement">
-                                        <label class="form-check-label" for="agreement"> &nbsp; I agree to the above and confirm this recipe is original to me.</label>
+                                        <label class="form-check-label" for="agreement"> &nbsp; I agree to the above and
+                                            confirm this recipe is original to me.</label>
                                     </p>
                                 </div>
                                 <button class="btn btn-success" type="submit">Submit for review</button>

@@ -4,9 +4,9 @@
             <h2>Top Authors</h2>
         </div>
     </div>
-    @foreach($contributors as $user)
+    @foreach($contributors as $profile)
         <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-items-stretch">
-            <contributor-box :user="{{ $user->toJson() }}"></contributor-box>
+            <contributor-box :profile="{{ $profile->toJson() }}"></contributor-box>
         </div>
     @endforeach
 </div>

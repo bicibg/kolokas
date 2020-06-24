@@ -2,13 +2,16 @@
 
 namespace App;
 
+use App\Casts\LocalUrl;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Profile extends Model
 {
     use HasSlug;
+
     protected $fillable = [
         'name',
         'email',
@@ -21,6 +24,10 @@ class Profile extends Model
         'pinterest',
         'photo',
         'info',
+    ];
+
+    protected $casts = [
+        'photo' => LocalUrl::class,
     ];
 
     protected $appends = ['url'];
@@ -51,5 +58,13 @@ class Profile extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

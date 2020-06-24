@@ -27,12 +27,12 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-3 col-xs-6">
-                            <div class="action-buttons">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>
-                                    Search
-                                </button>
-                                <button type="reset" class="btn"><i class="fa fa-times"></i> Clear</button>
-                            </div>
+                        <div class="action-buttons">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>
+                                Search
+                            </button>
+                            <button type="reset" class="btn"><i class="fa fa-times"></i> Clear</button>
+                        </div>
                     </div>
                 </div>
 

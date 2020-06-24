@@ -1,12 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Log;
+
 /**
  * Generates random image; temporary fix for current issue.
  * @link https://github.com/fzaninotto/Faker/issues/1884
  *
- * @param string $path
- * @param int $width
- * @param int $height
+ * @param  string  $path
+ * @param  int  $width
+ * @param  int  $height
  * @return string|bool
  */
 function saveRandomImage(string $path, int $width = 640, int $height = 480)
@@ -24,7 +26,7 @@ function saveRandomImage(string $path, int $width = 640, int $height = 480)
     imagedestroy($im);
 
     if (!$isGenerated) {
-        \Illuminate\Support\Facades\Log::error("Unable to create random image for recipe {$path}");
+        Log::error("Unable to create random image for recipe {$path}");
     }
     return $isGenerated ? $path : false;
 }

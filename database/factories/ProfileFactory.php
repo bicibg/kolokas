@@ -18,6 +18,8 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Profile::class, function (Faker $faker) {
     $email = $faker->unique()->safeEmail;
+    $files = \Illuminate\Support\Facades\Storage::files('public/images/profiles');
+    $randomFile = \Illuminate\Support\Str::replaceFirst('public/', 'storage/', $files[rand(0, count($files) - 1)]);
     return [
         'user_id' => factory(User::class)->create(['email' => $email]),
         'name' => $faker->name,
@@ -29,7 +31,7 @@ $factory->define(\App\Profile::class, function (Faker $faker) {
         'instagram' => $faker->url,
         'twitter' => $faker->url,
         'pinterest' => $faker->url,
-        'photo' => $faker->imageUrl,
+        'photo' => $randomFile,
         'info' => $faker->paragraph,
     ];
 });

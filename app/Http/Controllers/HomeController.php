@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use App\Recipe;
-use App\User;
+use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
 {
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
@@ -18,7 +19,7 @@ class HomeController extends Controller
         $carousel = Recipe::wherePublished(true)->whereFeatured(true)->get()->random(5);
         $topRated = Recipe::wherePublished(true)->get()->random(4);
         $latest = Recipe::wherePublished(true)->latest()->limit(4)->get();
-        $contributors = User::with('profile')->get()->random(4);
+        $contributors = Profile::all()->random(4);
         return view('home.index', compact('latest', 'featured', 'carousel', 'topRated', 'contributors'));
     }
 }
