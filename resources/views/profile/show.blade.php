@@ -13,7 +13,7 @@
                     @forelse($recipes as $recipe)
                         <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-items-stretch p-2">
 
-                                    <recipe-box :cipe="{{ $recipe->toJson() }}"></recipe-box>
+                            @livewire('recipe-box', ['recipe'=>$recipe])
 
                         </div>
                     @empty

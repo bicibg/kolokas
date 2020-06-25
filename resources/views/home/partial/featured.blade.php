@@ -6,7 +6,7 @@
     </div>
     @foreach($featured as $recipe)
         <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-items-stretch">
-            <recipe-box :recipe="{{ $recipe->toJson() }}"></recipe-box>
+            @livewire('recipe-box', ['recipe'=>$recipe])
         </div>
     @endforeach
 </div>

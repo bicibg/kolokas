@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         factory(\App\Profile::class)->create([
             'email' => $user->email,
             'name' => 'Bugra Ergin',
+            'user_id' => $user->id,
         ]);
         factory(\App\Profile::class, 10)->create();
     }

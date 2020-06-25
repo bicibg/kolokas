@@ -16,12 +16,16 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(\App\Profile::class, function (Faker $faker) {
+$factory->define(/**
+ * @param  Faker  $faker
+ * @param  array  $attr
+ * @return array
+ */ \App\Profile::class, function (Faker $faker, $attr = []) {
     $email = $faker->unique()->safeEmail;
     $files = \Illuminate\Support\Facades\Storage::files('public/images/profiles');
     $randomFile = \Illuminate\Support\Str::replaceFirst('public/', 'storage/', $files[rand(0, count($files) - 1)]);
     return [
-        'user_id' => factory(User::class)->create(['email' => $email]),
+        'user_id' => $attr['user_id'] ?? factory(User::class)->create(['email' => $email]),
         'name' => $faker->name,
         'email' => $email,
         'website' => $faker->url,
