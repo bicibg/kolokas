@@ -11,7 +11,7 @@
             @endif
             @forelse($recipes as $recipe)
                 <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-items-stretch">
-                    <recipe :recipe="{{ $recipe->toJson() }}"></recipe>
+                    <recipe-box :cipe="{{ $recipe->toJson() }}"></recipe-box>
                 </div>
             @empty
                 No results found with this search, please try something else.

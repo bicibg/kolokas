@@ -14,7 +14,7 @@
         <div class="recipe-content">
             <h3><a :href="recipe.url">
                 {{recipe.title}}
-            </a> <small>
+            </a> <small class="text-break">
                 {{recipe.description}}
             </small></h3>
         </div>
@@ -58,10 +58,6 @@
                 'comments': Math.floor(Math.random() * 50),
                 'views': Math.floor(Math.random() * 200),
             }
-        },
-        mounted() {
-            console.log(this.recipe);
-            console.log('Component mounted.')
         },
     }
 </script>

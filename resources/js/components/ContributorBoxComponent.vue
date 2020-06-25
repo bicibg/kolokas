@@ -47,9 +47,5 @@
                 'recipes': Math.floor(Math.random() * 10),
             }
         },
-        mounted() {
-            console.log(this.profile);
-            console.log('Component mounted.')
-        },
     }
 </script>

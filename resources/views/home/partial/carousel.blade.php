@@ -1,4 +1,4 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide">
     <ol class="carousel-indicators">
         @php
             $active = true
@@ -21,8 +21,11 @@
                     <div class="carousel-caption text-right">
                         <h1><a href="{{ $recipe->url }}">{{ $recipe->title }}</a></h1>
                         <p>{{ $recipe->description }}</p>
-                        <p><a class="btn btn-lg btn-primary" href="{{ route('recipe.show', $recipe) }}" role="button">Read
-                                more</a></p>
+                        <p>
+                            <base-button :hrefProp="'{{ route('recipe.show', $recipe) }}'">
+                                Read more
+                            </base-button>
+                        </p>
                     </div>
                 </div>
             </div>

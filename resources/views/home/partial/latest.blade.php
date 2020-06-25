@@ -6,7 +6,7 @@
     </div>
     @foreach($latest as $recipe)
         <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-items-stretch">
-            <recipe :recipe="{{ $recipe->toJson() }}"></recipe>
+            <recipe-box :recipe="{{ $recipe->toJson() }}"></recipe-box>
         </div>
     @endforeach
 </div>

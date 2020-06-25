@@ -1,5 +1,5 @@
 <div class="row justify-content-center w-100">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <form method="get" class="search-form" action="{{ route('recipe.index') }}">
             <div class="search-box">
 
@@ -23,15 +23,20 @@
                     </div>
                     <div class="col-md-6 col-sm-3 col-xs-6">
                         <div class="form-group">
-                            <input class="form-control" placeholder="Search by Keyword" value="" name="s">
+                            <div class="input-group mb-3 has-clear">
+                                <input type="text" class="form-control" placeholder="Search by Keyword" value="" name="s" aria-describedby="clear">
+                                <div class="input-group-append form-control-clear form-control-feedback hidden">
+                                    <span class="input-group-text clear" id="clear">Clear</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="action-buttons w-100 text-center">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>
+                            <base-button :roleProp="'submit'" :hrefProp="''">
+                                <i class="fa fa-search"></i>
                                 Search
-                            </button>
-                            <button type="reset" class="btn"><i class="fa fa-times"></i> Clear</button>
+                            </base-button>
                         </div>
                     </div>
                 </div>

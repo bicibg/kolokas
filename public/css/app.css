@@ -19899,6 +19899,37 @@ img {
   background-color: #000000;
 }
 
+.btn-base {
+  padding: 10px;
+  color: #fff;
+  border-radius: 4px;
+  background-color: #ff9638;
+  border: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.input-group-text {
+  background: transparent;
+  border: 0;
+}
+
+.input-group > .form-control:not(:last-child) {
+  border-radius: 4px;
+}
+
+::-ms-clear {
+  display: none;
+}
+
+.form-control-clear {
+  z-index: 10;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 .avatar img {
   border-radius: 50%;
   float: left;
@@ -20021,13 +20052,18 @@ img {
   font-weight: 500;
   font-family: "Lora", "PT Serif", serif;
   font-style: italic;
+  word-wrap: break-word;
+}
+
+.card {
+  max-width: 100%;
 }
 
 .recipe-content h3 small,
 .item-text h3 small {
   display: block;
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 15px;
   font-style: italic;
   width: 100%;
 }
@@ -20143,27 +20179,6 @@ img {
   color: #ff9638;
 }
 
-.navbar .navbar-nav .btn-submit-recipe {
-  position: absolute;
-  right: 30px;
-}
-
-.navbar .navbar-nav .btn-submit-recipe a {
-  margin-top: 13px;
-  padding: 10px;
-  color: #fff;
-  border-radius: 4px;
-  background-color: #ff9638;
-}
-
-.navbar .navbar-nav .btn-submit-recipe a i {
-  margin-right: 5px;
-}
-
-.navbar .navbar-nav .btn-submit-recipe a:hover {
-  color: #fff;
-}
-
 .navbar .dropdown-item.active,
 .navbar .dropdown-item:active {
   text-decoration: none;
@@ -20219,12 +20234,6 @@ img {
     justify-content: space-between !important;
   }
 
-  .navbar .navbar-nav .btn-submit-recipe {
-    position: unset;
-    right: unset;
-    text-align: center;
-  }
-
   .navbar-light .navbar-nav .active > .nav-link,
   .navbar-light .navbar-nav .nav-link.active {
     border-bottom: 1px solid #ff9638;
@@ -20260,12 +20269,6 @@ img {
 
   .navbar .justify-content-center {
     justify-content: space-between !important;
-  }
-
-  .navbar .navbar-nav .btn-submit-recipe {
-    position: unset;
-    right: unset;
-    text-align: center;
   }
 
   .navbar-light .navbar-nav .active > .nav-link,
@@ -20305,12 +20308,6 @@ img {
     justify-content: space-between !important;
   }
 
-  .navbar .navbar-nav .btn-submit-recipe {
-    position: unset;
-    right: unset;
-    text-align: center;
-  }
-
   .navbar-light .navbar-nav .active > .nav-link,
   .navbar-light .navbar-nav .nav-link.active {
     border-bottom: 1px solid #ff9638;
@@ -20333,14 +20330,6 @@ img {
   -o-object-fit: cover;
      object-fit: cover;
   height: 25vw;
-}
-
-.carousel-item .btn {
-  padding: 10px;
-  color: #fff;
-  border-radius: 4px;
-  background-color: #ff9638;
-  border: 0;
 }
 
 .carousel-item h1 {

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container pt-5">
         <div class="row justify-content-center">
-            <div class="col-md-9 justify-content-center">
+            <div class="col-md-8 justify-content-center">
                 <div class="row">
                     @if($recipes->count())
                         <div class="col-lg-12">
@@ -13,7 +13,7 @@
                     @forelse($recipes as $recipe)
                         <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-items-stretch p-2">
 
-                                    <recipe :recipe="{{ $recipe->toJson() }}"></recipe>
+                                    <recipe-box :cipe="{{ $recipe->toJson() }}"></recipe-box>
 
                         </div>
                     @empty
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3 justify-content-center border-left p-2">
+            <div class="col-md-4 justify-content-center border-left p-2">
                 <div class="row">
                     <div class="col-lg-11">
                         <h5 class="text-center"><i class="fa fa-user" aria-hidden="true"></i> Author</h5>

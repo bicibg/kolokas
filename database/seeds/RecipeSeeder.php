@@ -23,6 +23,5 @@ class RecipeSeeder extends Seeder
                 ]);
             }
         }
-        echo $count;
     }
 }

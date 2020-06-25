@@ -19,8 +19,9 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.filter('pluralize', (word, amount) => (amount > 1 || amount === 0) ? `${word}s` : word)
-Vue.component('recipe', require('./components/RecipeBoxComponent.vue').default);
+Vue.component('recipe-box', require('./components/RecipeBoxComponent.vue').default);
 Vue.component('contributor-box', require('./components/ContributorBoxComponent.vue').default);
+Vue.component('base-button', require('./components/BaseButtonComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -31,3 +32,5 @@ Vue.component('contributor-box', require('./components/ContributorBoxComponent.v
 const app = new Vue({
     el: '#app',
 });
+
+require('./custom')

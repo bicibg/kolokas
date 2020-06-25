@@ -16,7 +16,7 @@ $factory->define(\App\Recipe::class, function (Faker $faker, $attr = []) {
     }
     return [
         'title' => $faker->sentence(3),
-        'description' => $faker->paragraph(3),
+        'description' => $faker->paragraph(5),
         'ingredients' => $ingredients,
         'instructions' => $instructions,
         'notes' => $faker->paragraph(3),
