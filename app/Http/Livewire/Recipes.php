@@ -12,9 +12,12 @@ class Recipes extends Component
     public function render()
     {
         $searchTerm = '%' . $this->searchTerm . '%';
-        return view('livewire.recipes', [
-            'recipes' => Recipe::wherePublished(true)->where('title', 'LIKE', $searchTerm)
-                ->orWhere('description', 'LIKE', $searchTerm)->latest()->get(),
-        ]);
+        $recipes = Recipe::wherePublished(true)->where('title', 'LIKE', $searchTerm)
+            ->orWhere('description', 'LIKE', $searchTerm)->latest()->get();
+        return view('livewire.recipes', ['recipes' => $recipes]);
+    }
+
+    public function clearSearch() {
+        $this->searchTerm = '';
     }
 }

@@ -2,7 +2,6 @@
     <div class="col-md-12">
         <form method="get" class="search-form" action="{{ route('recipe.index') }}">
             <div class="search-box">
-
                 <div class="row">
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="form-group">
