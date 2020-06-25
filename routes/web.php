@@ -18,7 +18,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/recipes/create', 'RecipeController@create')->name('recipe.create');
 Route::get('/recipes/{recipe}', 'RecipeController@show')->name('recipe.show');
 Route::post('/', 'RecipeController@store')->name('recipe.store');
-Route::get('/recipes', 'RecipeController@index')->name('recipe.index');
+//Route::get('/recipes', 'RecipeController@index')->name('recipe.index');
+Route::livewire('/recipes', 'recipes')->name('recipe.index');
 
 
 Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
