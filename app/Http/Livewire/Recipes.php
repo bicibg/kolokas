@@ -7,17 +7,19 @@ use Livewire\Component;
 
 class Recipes extends Component
 {
-    public $searchTerm = '';
+    protected $listeners = ['searchTerm' => 'filterResults'];
+    public $recipes = [];
+    public function filterResults($searchTerm) {
+        $this->recipes = Recipe::wherePublished(true)->where('title', 'LIKE', $searchTerm)
+            ->orWhere('description', 'LIKE', $searchTerm)->latest()->get();
+    }
+
+    public function mount() {
+        $this->recipes = Recipe::wherePublished(true)->latest()->get();
+    }
 
     public function render()
     {
-        $searchTerm = '%' . $this->searchTerm . '%';
-        $recipes = Recipe::wherePublished(true)->where('title', 'LIKE', $searchTerm)
-            ->orWhere('description', 'LIKE', $searchTerm)->latest()->get();
-        return view('livewire.recipes', ['recipes' => $recipes]);
-    }
-
-    public function clearSearch() {
-        $this->searchTerm = '';
+        return view('livewire.recipes');
     }
 }

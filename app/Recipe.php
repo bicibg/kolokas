@@ -37,7 +37,7 @@ class Recipe extends Model
         'instructions' => NumericList::class
     ];
 
-    protected $with = ['author', 'images'];
+    protected $with = ['author', 'image'];
 
     protected $appends = ['url'];
 
@@ -118,8 +118,8 @@ class Recipe extends Model
         return ucfirst($value);
     }
 
-    public function images()
+    public function image()
     {
-        return $this->hasMany('App\RecipeImage');
+        return $this->hasOne('App\RecipeImage');
     }
 }

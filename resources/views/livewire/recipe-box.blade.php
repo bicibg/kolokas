@@ -1,6 +1,6 @@
 <div class="recipe-container d-flex flex-column">
     <div class="recipe-img">
-        <img alt="{{ $recipe->title }}" src="{{ $recipe->images[0]->url }}"
+        <img alt="{{ $recipe->title }}" src="{{ $recipe->image->url }}"
              height="266" width="400">
         <a href="{{ $recipe->url }}">
             <div class="hover-button">View Recipe</div>
