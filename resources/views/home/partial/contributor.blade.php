@@ -7,7 +7,7 @@
 
     @foreach($contributors as $profile)
         <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-content-center">
-            <contributor-box :profile="{{ $profile->toJson() }}"></contributor-box>
+            @livewire('author-box', ['profile' => $profile])
         </div>
     @endforeach
 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Profile;
 use App\Recipe;
 use Illuminate\Contracts\Support\Renderable;
@@ -29,6 +30,8 @@ class HomeController extends Controller
         $contributors = Profile::all();
         $contributors = $contributors->random(min(4, $contributors->count()));
 
-        return view('home.index', compact('latest', 'featured', 'carousel', 'topRated', 'contributors'));
+        $categories = Category::all();
+
+        return view('home.index', compact('latest', 'featured', 'carousel', 'topRated', 'contributors', 'categories'));
     }
 }

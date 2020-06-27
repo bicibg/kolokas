@@ -122,4 +122,9 @@ class Recipe extends Model
     {
         return $this->hasOne('App\RecipeImage');
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\Category');
+    }
 }

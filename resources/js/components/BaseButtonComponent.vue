@@ -1,20 +1,19 @@
 <template>
-    <a :class="['btn btn-lg btn-primary btn-base', classProp.length ? ' ' + classProp : '']" :href="hrefProp" :role="roleProp">
+    <a v-if="href !== undefined && href !== '#' && href.length" :href="href" :class="['btn btn-lg btn-primary btn-base']">
         <slot></slot>
     </a>
+    <button v-else :class="['btn btn-lg btn-primary btn-base']" :type="role">
+        <slot></slot>
+    </button>
 </template>
 <script>
     export default {
         props: {
-            hrefProp: {
+            href: {
                 type: String,
                 default: '#'
             },
-            classProp: {
-                type: String,
-                default: ''
-            },
-            roleProp: {
+            role: {
                 type: String,
                 default: 'button'
             }

@@ -6,24 +6,23 @@
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="form-group">
                             <select name="c" id="recipe-type" class="form-control">
-                                <option value="0" selected="selected"> – Choose Category –</option>
-                                <option class="level-0" value="14">Bakery</option>
-                                <option class="level-0" value="18">Budget</option>
-                                <option class="level-0" value="20">Cheese</option>
-                                <option class="level-0" value="21">Chicken</option>
-                                <option class="level-0" value="25">Condiment</option>
-                                <option class="level-0" value="27">Cookie</option>
-                                <option class="level-0" value="42">Gluten-Free</option>
-                                <option class="level-0" value="59">Pizzas</option>
-                                <option class="level-0" value="60">Potatos</option>
-                                <option class="level-0" value="62">Rolls</option>
+                                <option value="0" @if(empty(request()->get('s'))) selected="selected" @endif> – Choose
+                                    Category –
+                                </option>
+                                @foreach($categories as $category)
+                                    <option class="level-0" value="{{ $category->id }}"
+                                            @if(request()->get('c') == $category->id) selected="selected" @endif>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-3 col-xs-6">
                         <div class="form-group">
                             <div class="input-group mb-3 has-clear">
-                                <input type="text" class="form-control" placeholder="Search by Keyword" value="" name="s" aria-describedby="clear">
+                                <input type="text" class="form-control" placeholder="Search by Keyword"
+                                       value="{{ request()->get('s') }}" name="s" aria-describedby="clear">
                                 <div class="input-group-append form-control-clear form-control-feedback hidden">
                                     <span class="input-group-text clear" id="clear">Clear</span>
                                 </div>
@@ -32,7 +31,7 @@
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="action-buttons w-100 text-center">
-                            <base-button :roleProp="'submit'" :hrefProp="''">
+                            <base-button role="submit">
                                 <i class="fa fa-search"></i>
                                 Search
                             </base-button>

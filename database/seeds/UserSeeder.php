@@ -20,6 +20,6 @@ class UserSeeder extends Seeder
             'name' => 'Bugra Ergin',
             'user_id' => $user->id,
         ]);
-        factory(\App\Profile::class, 10)->create();
+        factory(\App\Profile::class, 30)->create();
     }
 }

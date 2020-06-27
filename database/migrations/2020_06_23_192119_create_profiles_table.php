@@ -26,7 +26,6 @@ class CreateProfilesTable extends Migration
             $table->string('instagram')->nullable();
             $table->string('pinterest')->nullable();
             $table->string('twitter')->nullable();
-            $table->string('photo')->nullable();
             $table->text('info')->nullable();
             $table->timestamps();
         });

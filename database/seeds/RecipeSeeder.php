@@ -11,16 +11,19 @@ class RecipeSeeder extends Seeder
      */
     public function run()
     {
-        $count = 0;
-        foreach (\App\User::all() as $user) {
+        $users = \App\User::all();
+        foreach ($users as $user) {
             $recipes = factory(\App\Recipe::class, random_int(1, 10))->create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
             ]);
-            $count += $recipes->count();
-            foreach($recipes as $recipe) {
+
+            foreach ($recipes as $recipe) {
                 factory(\App\RecipeImage::class)->create([
                     'recipe_id' => $recipe->id
                 ]);
+                foreach (\App\Category::all()->random(rand(1,4)) as $category) {
+                    $recipe->categories()->attach($category);
+                }
             }
         }
     }

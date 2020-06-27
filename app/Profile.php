@@ -22,12 +22,7 @@ class Profile extends Model
         'instagram',
         'twitter',
         'pinterest',
-        'photo',
         'info',
-    ];
-
-    protected $casts = [
-        'photo' => LocalUrl::class,
     ];
 
     protected $appends = ['url'];

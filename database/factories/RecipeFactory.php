@@ -23,7 +23,7 @@ $factory->define(\App\Recipe::class, function (Faker $faker, $attr = []) {
         'prep_time' => $faker->randomFloat(1, 0, 1) * 10,
         'cook_time' => ($faker->randomFloat(1, 0, 2) * 10) + 5,
         'servings' =>  $faker->numberBetween(1, 10) . ' ' . $faker->word,
-        'published' => $faker->boolean(70),
+        'published' => $faker->boolean(80),
         'user_id' => $attr['user_id'] ?? factory(\App\User::class)->create(),
         'featured' => $faker->boolean(20),
     ];

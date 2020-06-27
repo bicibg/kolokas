@@ -22,7 +22,7 @@
                         <h1><a href="{{ $recipe->url }}">{{ $recipe->title }}</a></h1>
                         <p>{{ $recipe->description }}</p>
                         <p>
-                            <base-button :hrefProp="'{{ route('recipe.show', $recipe) }}'">
+                            <base-button :href="'{{ route('recipe.show', $recipe) }}'">
                                 Read more
                             </base-button>
                         </p>

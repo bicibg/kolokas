@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Requests\RecipeRequest;
 use App\Recipe;
 use App\User;
@@ -10,6 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class RecipeController extends Controller
@@ -45,11 +47,19 @@ class RecipeController extends Controller
             ->latest();
 
         if (!empty($request->get('s'))) {
-            $recipes->where('title', 'LIKE', "%{$request->get('s')}%")
-                ->orWhere('description', 'LIKE', "%{$request->get('s')}%");
+            $searchTerm = Str::lower($request->get('s'));
+            $recipes->where('title', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
         }
-        $recipes = $recipes->get();
-        return view('recipe.index', compact('recipes'));
+        if ($request->get('c')) {
+            $recipes->whereHas('categories', function($q) use ($request) {
+                return $q->whereCategoryId($request->get('c'));
+            });
+        }
+        $count = $recipes->count();
+        $recipes = $recipes->paginate(16);
+        $categories = Category::all();
+        return view('recipe.index', compact('recipes', 'count', 'categories'));
     }
 
     /**

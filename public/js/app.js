@@ -1913,81 +1913,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    hrefProp: {
+    href: {
       type: String,
       "default": '#'
     },
-    classProp: {
-      type: String,
-      "default": ''
-    },
-    roleProp: {
+    role: {
       type: String,
       "default": 'button'
     }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ContributorBoxComponent.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ContributorBoxComponent.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    profile: {
-      type: Object,
-      "default": []
-    }
-  },
-  data: function data() {
-    return {
-      'comments': Math.floor(Math.random() * 50),
-      'recipes': Math.floor(Math.random() * 10)
-    };
   }
 });
 
@@ -37536,161 +37474,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "a",
-    {
-      class: [
-        "btn btn-lg btn-primary btn-base",
-        _vm.classProp.length ? " " + _vm.classProp : ""
-      ],
-      attrs: { href: _vm.hrefProp, role: _vm.roleProp }
-    },
-    [_vm._t("default")],
-    2
-  )
+  return _vm.href !== undefined && _vm.href !== "#" && _vm.href.length
+    ? _c(
+        "a",
+        {
+          class: ["btn btn-lg btn-primary btn-base"],
+          attrs: { href: _vm.href }
+        },
+        [_vm._t("default")],
+        2
+      )
+    : _c(
+        "button",
+        {
+          class: ["btn btn-lg btn-primary btn-base"],
+          attrs: { type: _vm.role }
+        },
+        [_vm._t("default")],
+        2
+      )
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ContributorBoxComponent.vue?vue&type=template&id=b308ee5c&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ContributorBoxComponent.vue?vue&type=template&id=b308ee5c& ***!
-  \**************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "recipe-container d-flex flex-column" }, [
-    _c("div", { staticClass: "recipe-img" }, [
-      _c("img", {
-        attrs: {
-          alt: _vm.profile.name,
-          src: _vm.profile.photo,
-          height: "266",
-          width: "400"
-        }
-      }),
-      _vm._v(" "),
-      _c("a", { attrs: { href: _vm.profile.url } }, [
-        _c("div", { staticClass: "hover-button" }, [_vm._v("View Author")])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "recipe-meta text-center" }, [
-      _c("span", [
-        _c("i", { staticClass: "fa fa-spoon" }),
-        _vm._v(
-          " " +
-            _vm._s(_vm.recipes) +
-            " " +
-            _vm._s(_vm._f("pluralize")("Recipe", _vm.recipes))
-        )
-      ]),
-      _vm._v(" "),
-      _c("span", [
-        _c("i", { staticClass: "fa fa-comment-o" }),
-        _vm._v(
-          " " +
-            _vm._s(_vm.comments) +
-            " " +
-            _vm._s(_vm._f("pluralize")("Comment", _vm.comments))
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "recipe-content" }, [
-      _c("div", { staticClass: "author-details" }, [
-        _c("h3", { staticClass: "title" }, [
-          _c("a", { attrs: { href: _vm.profile.url } }, [
-            _vm._v(_vm._s(_vm.profile.name))
-          ]),
-          _vm._v(" "),
-          _c("small", [_vm._v(_vm._s(_vm.profile.city))])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "contact" }, [
-          _c("i", { staticClass: "fa fa-envelope-o" }),
-          _c("a", { attrs: { href: "mailto:" + _vm.profile.email } }, [
-            _vm._v(_vm._s(_vm.profile.email))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "contact" }, [
-          _c("i", { staticClass: "fa fa-globe" }),
-          _c("a", { attrs: { href: _vm.profile.website } }, [
-            _vm._v(_vm._s(_vm.profile.website))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "contact" }, [
-          _c("i", { staticClass: "fa fa-mobile" }),
-          _vm._v(_vm._s(_vm.profile.telephone) + "\n            ")
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _vm._m(0)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "recipe-buttons" }, [
-      _c(
-        "a",
-        {
-          staticClass: "link-facebook",
-          attrs: { href: "#", target: "_blank", title: "# on Facebook" }
-        },
-        [_c("i", { staticClass: "fa fa-facebook" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "link-twitter",
-          attrs: {
-            href: "http://www.twitter.com/#",
-            target: "_blank",
-            title: "@# on Twitter"
-          }
-        },
-        [_c("i", { staticClass: "fa fa-twitter" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "link-linkedin",
-          attrs: { href: "#", target: "_blank", title: "# on Linkedin" }
-        },
-        [_c("i", { staticClass: "fa fa-linkedin" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "link-pinterest",
-          attrs: { href: "#", target: "_blank", title: "# on Pinterest" }
-        },
-        [_c("i", { staticClass: "fa fa-pinterest-p" })]
-      )
-    ])
-  }
-]
 render._withStripped = true
 
 
@@ -49888,7 +49692,6 @@ Vue.filter('pluralize', function (word, amount) {
   return amount > 1 || amount === 0 ? "".concat(word, "s") : word;
 }); //Vue.component('recipe-box', require('./components/RecipeBoxComponent.vue').default);
 
-Vue.component('contributor-box', __webpack_require__(/*! ./components/ContributorBoxComponent.vue */ "./resources/js/components/ContributorBoxComponent.vue")["default"]);
 Vue.component('base-button', __webpack_require__(/*! ./components/BaseButtonComponent.vue */ "./resources/js/components/BaseButtonComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50013,75 +49816,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseButtonComponent_vue_vue_type_template_id_0bdef882___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseButtonComponent_vue_vue_type_template_id_0bdef882___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/ContributorBoxComponent.vue":
-/*!*************************************************************!*\
-  !*** ./resources/js/components/ContributorBoxComponent.vue ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ContributorBoxComponent_vue_vue_type_template_id_b308ee5c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ContributorBoxComponent.vue?vue&type=template&id=b308ee5c& */ "./resources/js/components/ContributorBoxComponent.vue?vue&type=template&id=b308ee5c&");
-/* harmony import */ var _ContributorBoxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContributorBoxComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ContributorBoxComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ContributorBoxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ContributorBoxComponent_vue_vue_type_template_id_b308ee5c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ContributorBoxComponent_vue_vue_type_template_id_b308ee5c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ContributorBoxComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/ContributorBoxComponent.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/ContributorBoxComponent.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContributorBoxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ContributorBoxComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ContributorBoxComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContributorBoxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/ContributorBoxComponent.vue?vue&type=template&id=b308ee5c&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/ContributorBoxComponent.vue?vue&type=template&id=b308ee5c& ***!
-  \********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ContributorBoxComponent_vue_vue_type_template_id_b308ee5c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ContributorBoxComponent.vue?vue&type=template&id=b308ee5c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ContributorBoxComponent.vue?vue&type=template&id=b308ee5c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ContributorBoxComponent_vue_vue_type_template_id_b308ee5c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ContributorBoxComponent_vue_vue_type_template_id_b308ee5c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

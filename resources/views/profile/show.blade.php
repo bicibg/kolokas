@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-lg-11">
                         <h5 class="text-center"><i class="fa fa-user" aria-hidden="true"></i> Author</h5>
-                        <contributor-box :profile="{{ $profile->toJson() }}"></contributor-box>
+                        @livewire('author-box', ['profile' => $profile])
                     </div>
                 </div>
             </div>
