@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class NumericList implements CastsAttributes
+class SplitList implements CastsAttributes
 {
     /**
      * Cast the given value.

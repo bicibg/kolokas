@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Casts\NumericList;
+use App\Casts\SplitList;
 use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,8 +33,8 @@ class Recipe extends Model
     ];
 
     protected $casts = [
-        'ingredients' => NumericList::class,
-        'instructions' => NumericList::class
+        'ingredients' => SplitList::class,
+        'instructions' => SplitList::class,
     ];
 
     protected $with = ['author', 'image'];
