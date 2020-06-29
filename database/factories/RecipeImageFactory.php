@@ -6,11 +6,9 @@ use Faker\Generator as Faker;
 
 
 $factory->define(\App\RecipeImage::class, function (Faker $faker, $attr = []) {
-    $files = \Illuminate\Support\Facades\Storage::files('public/images/recipes');
-    $randomFile = \Illuminate\Support\Str::replaceFirst('public/', 'storage/', $files[rand(0, count($files) - 1)]);
     return [
         'main' => true,
         'recipe_id' => $attr['recipe_id'] ?? factory(\App\Recipe::class)->create(),
-        'url' => $randomFile
+        'url' => $faker->imageUrl(640, 480, 'food', true),
     ];
 });

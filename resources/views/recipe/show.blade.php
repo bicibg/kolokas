@@ -7,24 +7,17 @@
                 <div id="single-content" class="inner-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <div id="slider-recipe" class="carousel slide" data-ride="carousel">
+                            <div class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="recipe active">
-                                        <img width="614" height="409"
-                                             src="{{ $recipe->image->url }}"
-                                             alt="{{ $recipe->title }}">
+                                        @include('recipe.partial.carousel')
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="recipe-meta w-100 mb-5">
                             <div class="recipe-buttons no-print">
-                                <a href="javascript:void(0);" title="Add to favorites" wire:click="favourite">
-                                    <i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i>
-                                    <span class="d-inline-block">
-                                        {{ $recipe->favourites->count() }} {{ \Illuminate\Support\Str::plural('like', $recipe->favourites->count()) }}
-                                    </span>
-                                </a>
+                                @livewire('favourite', ['recipe' => $recipe])
                                 <a href="javascript:void(0);"
                                    title="Add Comment">
                                     <i class="fa fa-comment"></i>

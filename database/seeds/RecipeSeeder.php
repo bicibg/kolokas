@@ -18,9 +18,12 @@ class RecipeSeeder extends Seeder
             ]);
 
             foreach ($recipes as $recipe) {
-                factory(\App\RecipeImage::class)->create([
-                    'recipe_id' => $recipe->id
-                ]);
+                for ($x=0; $x < random_int(1, 5); $x++){
+                    factory(\App\RecipeImage::class)->create([
+                        'main' => $x === 0,
+                        'recipe_id' => $recipe->id
+                    ]);
+                }
                 foreach (\App\Category::all()->random(rand(1,4)) as $category) {
                     $recipe->categories()->attach($category);
                 }

@@ -16,7 +16,7 @@
         @endphp
         @foreach($carousel as $recipe)
             <div class="carousel-item {{ $active ? "active" : "" }}">
-                <img class="d-block w-100" src="{{ $recipe->image->url }}" alt="{{ $recipe->title }}">
+                <img class="d-block w-100" src="{{ $recipe->mainImage->url }}" alt="{{ $recipe->title }}">
                 <div class="container">
                     <div class="carousel-caption text-right">
                         <h1><a href="{{ $recipe->url }}">{{ $recipe->title }}</a></h1>

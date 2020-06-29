@@ -16,7 +16,7 @@
                 @endforeach
             </ul>
         @endif
-        <form method="POST" action="{{ route('recipe.store') }}">
+        <form method="POST" action="{{ route('recipe.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="justify-content-center form-row">
                 <div class="col-md-8">
@@ -33,7 +33,17 @@
                                     descriptive</small>
                             </div>
                         </div>
-
+                        <div class="form-row mb-2">
+                            <div class="col-md-2">
+                                <label class="col-form-label" for="images">Photos:</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="file" class="bg-none border-0 form-control" name="images[]" multiple placeholder="Photos" id="images"/>
+                                <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                    You can upload more than one
+                                </small>
+                            </div>
+                        </div>
                         <div class="form-row mb-2">
                             <div class="col-md-2">
                                 <label class="col-form-label" for="description">Short description:</label>

@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
@@ -52,7 +53,7 @@ class RecipeController extends Controller
                 ->orWhere('description', 'LIKE', "%{$searchTerm}%");
         }
         if ($request->get('c')) {
-            $recipes->whereHas('categories', function($q) use ($request) {
+            $recipes->whereHas('categories', function ($q) use ($request) {
                 return $q->whereCategoryId($request->get('c'));
             });
         }
@@ -70,17 +71,40 @@ class RecipeController extends Controller
      */
     public function store(RecipeRequest $request)
     {
-        Recipe::create([
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'ingredients' => $request->get('ingredients'),
-            'instructions' => $request->get('instructions'),
-            'notes' => $request->get('notes'),
-            'prep_time' => $request->get('prep_time'),
-            'cook_time' => $request->get('cook_time'),
-            'servings' => $request->get('servings'),
-            'user_id' => auth()->id(),
-        ]);
+        if ($request->hasFile('images')) {
+            DB::transaction(function () use ($request) {
+                $allowedfileExtension = ['jpg', 'png'];
+                $files = $request->file('images');
+                $recipe = Recipe::create([
+                    'title' => $request->get('title'),
+                    'description' => $request->get('description'),
+                    'ingredients' => $request->get('ingredients'),
+                    'instructions' => $request->get('instructions'),
+                    'notes' => $request->get('notes'),
+                    'prep_time' => $request->get('prep_time'),
+                    'cook_time' => $request->get('cook_time'),
+                    'servings' => $request->get('servings'),
+                    'user_id' => auth()->id(),
+                ]);
+
+                $main = true;
+                foreach ($files as $file) {
+                    $filename = $recipe->id . '_' . $file->getClientOriginalName();
+                    $extension = $file->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtension);
+                    if ($check) {
+                        if ($file->store(storage_path('images/recipes'))) {
+                            $recipe->images()->create([
+                                'url' => $filename,
+                                'main' => $main
+                            ]);
+                        }
+                        $main = false;
+                    }
+                }
+            });
+        }
+
         return redirect()->to(route('recipe.index'))->with([
             'success' => 'Your recipe was submitted successfully. It will be reviewed as soon as possible. We will let you know of the outcome'
         ]);
@@ -94,8 +118,9 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        $othersYouMaylike = Recipe::with('categories')->whereHas('categories', function ($query) use($recipe) {
-            $query->whereIn('category_recipe.category_id', $recipe->categories()->pluck('category_recipe.category_id')); // use whereIn
+        $othersYouMaylike = Recipe::with('categories')->whereHas('categories', function ($query) use ($recipe) {
+            $query->whereIn('category_recipe.category_id',
+                $recipe->categories()->pluck('category_recipe.category_id')); // use whereIn
         })->limit(4)->get();
         return view('recipe.show', compact('recipe', 'othersYouMaylike'));
     }

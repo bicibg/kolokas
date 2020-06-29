@@ -39,9 +39,9 @@ class Recipe extends Model
         'instructions' => SplitList::class,
     ];
 
-    protected $with = ['author', 'image'];
+    protected $with = ['author', 'images'];
 
-    protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount'];
+    protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount', 'mainImage'];
 
     /**
      * @return string
@@ -120,9 +120,14 @@ class Recipe extends Model
         return ucfirst($value);
     }
 
-    public function image()
+    public function images()
     {
-        return $this->hasOne('App\RecipeImage');
+        return $this->hasMany('App\RecipeImage');
+    }
+
+    public function getMainImageAttribute()
+    {
+        return $this->hasOne('App\RecipeImage')->where('main', true)->first();
     }
 
     public function categories()

@@ -1925,6 +1925,10 @@ __webpack_require__.r(__webpack_exports__);
     role: {
       type: String,
       "default": 'button'
+    },
+    className: {
+      type: String,
+      "default": ''
     }
   }
 });
@@ -38219,7 +38223,7 @@ var render = function() {
     ? _c(
         "a",
         {
-          class: ["btn btn-lg btn-primary btn-base"],
+          class: ["btn btn-lg btn-primary btn-base", _vm.className],
           attrs: { href: _vm.href }
         },
         [_vm._t("default")],
@@ -38228,7 +38232,7 @@ var render = function() {
     : _c(
         "button",
         {
-          class: ["btn btn-lg btn-primary btn-base"],
+          class: ["btn btn-lg btn-primary btn-base", _vm.className],
           attrs: { type: _vm.role }
         },
         [_vm._t("default")],

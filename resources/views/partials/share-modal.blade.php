@@ -46,7 +46,7 @@
                                href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ $recipe->url }}&amp;title={{ $recipe->title }}"
                                target="_blank"><i class="fa fa-linkedin"></i></a></li>
                         <li><a class="pinterest"
-                               href="https://pinterest.com/pin/create/button/?url={{ $recipe->url }}&amp;media={{ $recipe->image->url }}&amp;description={{ $recipe->title }}"
+                               href="https://pinterest.com/pin/create/button/?url={{ $recipe->url }}&amp;media={{ $recipe->mainImage->url }}&amp;description={{ $recipe->title }}"
                                target="_blank">
                                 <i class="fa fa-pinterest"></i>
                             </a>

@@ -44,6 +44,7 @@ class RecipeRequest extends FormRequest
             'prep_time' => 'integer',
             'cook_time' => 'integer',
             'servings' => 'max:64',
+            'images' => 'required',
         ];
     }
 }
