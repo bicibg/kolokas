@@ -10938,6 +10938,7 @@ a.text-dark:focus {
 7.  Author details
 8.  Recipe Create
 9.  Search Box
+10. Print
  */
 
 /*=================================*/
@@ -11077,6 +11078,10 @@ img {
 
 .hover-button {
   transition: 0.5s;
+}
+
+.red {
+  color: #e3342f;
 }
 
 /*=================================*/

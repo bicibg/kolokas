@@ -61,4 +61,10 @@ class User extends Authenticatable
         return $this->hasMany(Recipe::class);
     }
 
+    public function favouriteRecipes()
+    {
+        return $this->belongsToMany(Recipe::class, 'recipe_favourites', 'user_id', 'recipe_id');
+    }
+
+
 }

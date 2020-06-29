@@ -21,4 +21,14 @@ class RecipeBox extends Component
     {
         $this->recipe = $recipe;
     }
+
+    public function favourite()
+    {
+        if ($this->recipe->isFavourited()) {
+            $this->recipe->unfavourite();
+        } else {
+            $this->recipe->favourite();
+        }
+        $this->recipe = $this->recipe->fresh();
+    }
 }

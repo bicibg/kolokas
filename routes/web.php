@@ -20,8 +20,10 @@ Route::get('/recipes/{recipe}', 'RecipeController@show')->name('recipe.show');
 Route::post('/', 'RecipeController@store')->name('recipe.store');
 Route::get('/recipes', 'RecipeController@index')->name('recipe.index');
 
-
 Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
 Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 Route::post('/profile/edit', 'ProfileController@edit')->name('profile.update');
+
+Route::get('/favourite-recipes', 'UsersController@favourites')->name('favourites');
+
 //Route::get('/author/{user}', 'RecipeController@myIndex')->name('recipe.my-index');

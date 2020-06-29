@@ -11,7 +11,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Recipe extends Model
 {
-    use SoftDeletes, HasSlug;
+    use SoftDeletes, HasSlug, Favouritable;
 
     /**
      * @var array
@@ -39,7 +39,7 @@ class Recipe extends Model
 
     protected $with = ['author', 'image'];
 
-    protected $appends = ['url'];
+    protected $appends = ['favouritesCount', 'isFavourited', 'url'];
 
     /**
      * @return string

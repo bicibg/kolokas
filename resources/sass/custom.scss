@@ -8,6 +8,7 @@
 7.  Author details
 8.  Recipe Create
 9.  Search Box
+10. Print
  */
 
 /*=================================*/
@@ -155,6 +156,10 @@ img {
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
+}
+
+.red {
+    color: $red;
 }
 
 /*=================================*/

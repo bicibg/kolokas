@@ -13,6 +13,7 @@
         @endphp
         <span><i class="fa fa-comments"></i> {{ $comments }} {{ \Illuminate\Support\Str::plural('comment', $comments) }}</span>
         <span><i class="fa fa-eye"></i> {{ $views }} {{ \Illuminate\Support\Str::plural('view', $views) }}</span>
+        <span><i class="fa fa-heart"></i> {{ $recipe->favourites->count() }} {{ \Illuminate\Support\Str::plural('like', $recipe->favourites->count()) }}</span>
     </div>
     <div class="recipe-content">
         <h3>
@@ -40,24 +41,24 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <span class="user-ratings pull-right">
-                        <i class="fa fa-star fa-xs"></i>
-                        <i class="fa fa-star fa-xs"></i>
-                        <i class="far fa-star fa-xs"></i>
-                        <i class="far fa-star fa-xs"></i>
-                        <i class="far fa-star fa-xs"></i>
-                    </span>
+{{--                    <span class="user-ratings pull-right">--}}
+{{--                        <i class="fa fa-star fa-xs"></i>--}}
+{{--                        <i class="fa fa-star fa-xs"></i>--}}
+{{--                        <i class="far fa-star fa-xs"></i>--}}
+{{--                        <i class="far fa-star fa-xs"></i>--}}
+{{--                        <i class="far fa-star fa-xs"></i>--}}
+{{--                    </span>--}}
                 </div>
             </div>
         </div>
     </div>
     <div class="recipe-buttons">
-        <a href="#"
-           title="Add to favorites"><i class="fa fa-heart"></i></a>
-        <a href="#" title="Share"><i class="fa fa-share"></i></a>
-        <a href="#"
+        <a href="javascript:void(0);"
+           title="Add to favorites" wire:click="favourite"><i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i></a>
+        <a href="javascript:void(0);" title="Share"><i class="fa fa-share"></i></a>
+        <a href="javascript:void(0);"
            title="Send E-mail"><i class="fa fa-envelope"></i></a>
-        <a href="#"
+        <a href="javascript:void(0);"
            title="Add Comment"><i class="fa fa-comment"></i></a>
     </div>
 </div>
