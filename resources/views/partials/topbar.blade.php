@@ -1,4 +1,4 @@
-<div class="topbar">
+<div class="topbar no-print">
     <div class="container">
         <div class="row">
             <div class="col-md-12">

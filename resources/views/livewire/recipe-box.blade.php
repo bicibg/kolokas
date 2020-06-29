@@ -20,7 +20,7 @@
                 {{ $recipe->title }}
             </a>
             <small class="text-break">
-                {{ $recipe->description }}
+                {{ \Illuminate\Support\Str::limit($recipe->description, 150, $end='...') }}
             </small></h3>
     </div>
     <div class="avatar recipe-footer flex-grow-1 d-flex flex-column">

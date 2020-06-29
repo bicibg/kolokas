@@ -11141,7 +11141,7 @@ img {
 }
 
 .recipe-footer {
-  padding: 5px 15px;
+  padding: 0 15px;
 }
 
 .recipe-content {
@@ -11158,7 +11158,7 @@ img {
 .main-service h3 {
   display: block;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 20px;
   line-height: 24px;
   font-weight: 500;
@@ -11825,8 +11825,8 @@ select.input-lg {
 
 .single-post .recipe-meta {
   background-color: #f7f7f7;
-  padding: 20px;
-  min-height: 85px;
+  padding: 10px 20px;
+  min-height: 40px;
   margin-bottom: 30px;
   position: relative;
   background: #fff;
@@ -12162,5 +12162,40 @@ select.input-lg {
   font-style: italic;
   font-size: 1.65em;
   color: #555;
+}
+
+/*=================================*/
+
+/*
+=================================
+       10.  Print
+=================================
+*/
+
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+
+  #slider-recipe .carousel-inner .recipe img {
+    height: 30vh !important;
+    max-height: 300px !important;
+  }
+
+  .instructions ol > li {
+    position: relative;
+    padding: 5px 10px;
+    line-height: 18px;
+    margin-bottom: 0 !important;
+  }
+
+  ul.ingredient-check li {
+    margin-bottom: 2px !important;
+  }
+
+  main > .container {
+    padding-top: 0 !important;
+  }
 }
 

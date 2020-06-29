@@ -9,14 +9,15 @@
                         <div class="col-md-12">
                             <div id="slider-recipe" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
-                                    <div class="recipe active"><img width="614" height="409"
-                                                                    src="{{ $recipe->image->url }}"
-                                                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                    alt="{{ $recipe->title }}"></div>
+                                    <div class="recipe active">
+                                        <img width="614" height="409"
+                                             src="{{ $recipe->image->url }}"
+                                             alt="{{ $recipe->title }}">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 recipe-meta">
+                        <div class="col-md-8 recipe-meta">
                             <ul class="print-only">
 
                                 <li>Prep Time<strong>
@@ -29,7 +30,7 @@
                                         For {{ $recipe->servings }} </strong></li>
                             </ul>
                         </div>
-                        <div class="col-md-6 recipe-meta text-center pt-4">
+                        <div class="col-md-4 recipe-meta text-center pt-4 no-print">
                             <div class="button-box">
                                 <div class="printfriendly"><a href="#" style="outline:none;" rel="nofollow"
                                                               onclick="window.print(); return false;" class="noslimstat"
@@ -49,7 +50,7 @@
 
                         <div>
                             <h3 class="section-title">Recipe Description</h3>
-                            <div class="pf-content">
+                            <div>
                                 <p>
                                     {{ $recipe->description }}
                                 </p>
@@ -62,7 +63,7 @@
                                         <ul class="ingredient-check">
                                             @foreach($recipe->ingredients as $ingredient)
                                                 <li>
-                                                    <span>
+                                                    <span class="no-print">
                                                         <input type="checkbox" value="">
                                                     </span>
                                                     {{ $ingredient }}
@@ -87,7 +88,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="recipe-footer">
+                            <div class="recipe-footer no-print">
                                 <a href="#popup-social17" class="share">
                                     <i class="fa fa-share"></i> Share </a>
                             </div>
@@ -101,36 +102,36 @@
                                             <ul class="social-icons">
                                                 <li>
                                                     <a class="twitter"
-                                                       href="https://twitter.com/intent/tweet?text=Pea%20And%20Halloumi%20Fritters&amp;url=http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fpea-mint-and-haloumi-fritters-with-tomato%2F&amp;via=Crunchify"
+                                                       href="https://twitter.com/intent/tweet?text={{ urlencode($recipe->title) }}&amp;url={{ $recipe->url }}"
                                                        target="_blank"><i class="fa fa-twitter"></i></a></li>
                                                 <li><a class="facebook"
-                                                       href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fpea-mint-and-haloumi-fritters-with-tomato%2F"
+                                                       href="https://www.facebook.com/sharer/sharer.php?u={{ $recipe->url }}"
                                                        target="_blank"><i class="fa fa-facebook"></i></a></li>
                                                 <li><a class="whatsapp" href="" target="_blank"><i
                                                             class="fa fa-whatsapp"></i></a></li>
                                                 <li><a class="google-plus"
-                                                       href="https://plus.google.com/share?url=http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fpea-mint-and-haloumi-fritters-with-tomato%2F"
+                                                       href="https://plus.google.com/share?url={{ $recipe->url }}"
                                                        target="_blank"><i class="fa fa-google-plus"></i></a></li>
                                                 <li><a class="tumblr"
-                                                       href="http://www.tumblr.com/share/link?url=http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fpea-mint-and-haloumi-fritters-with-tomato%2F"
+                                                       href="http://www.tumblr.com/share/link?url={{ $recipe->url }}"
                                                        target="_blank"><i class="fa fa-tumblr"></i></a></li>
                                                 <li><a class="reddit"
-                                                       href="http://www.reddit.com/submit?url=http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fpea-mint-and-haloumi-fritters-with-tomato%2F"
+                                                       href="http://www.reddit.com/submit?url={{ $recipe->url }}"
                                                        target="_blank"><i class="fa fa-reddit"></i></a></li>
                                                 <li><a class="stumbleupon"
-                                                       href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fpea-mint-and-haloumi-fritters-with-tomato%2F"
+                                                       href="http://www.stumbleupon.com/submit?url={{ $recipe->url }}"
                                                        target="_blank"><i class="fa fa-stumbleupon"></i></a></li>
                                                 <li><a class="digg"
-                                                       href="http://digg.com/submit?url=http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fpea-mint-and-haloumi-fritters-with-tomato%2F"
+                                                       href="http://digg.com/submit?url={{ $recipe->url }}"
                                                        target="_blank"><i class="fa fa-digg"></i></a></li>
                                                 <li><a class="linkedin"
-                                                       href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fpea-mint-and-haloumi-fritters-with-tomato%2F&amp;title=Pea%20And%20Halloumi%20Fritters"
+                                                       href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ $recipe->url }}&amp;title={{ $recipe->title }}"
                                                        target="_blank"><i class="fa fa-linkedin"></i></a></li>
                                                 <li><a class="delicious"
-                                                       href="http://del.icio.us/post?url=http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fpea-mint-and-haloumi-fritters-with-tomato%2F"
+                                                       href="http://del.icio.us/post?url={{ $recipe->url }}"
                                                        target="_blank"><i class="fa fa-delicious"></i></a></li>
                                                 <li><a class="pinterest"
-                                                       href="https://pinterest.com/pin/create/button/?url=http%3A%2F%2Fthemes.ongoingthemes.com%2Fquickrecipe%2Frecipe%2Fpea-mint-and-haloumi-fritters-with-tomato%2F&amp;media=http://themes.ongoingthemes.com/quickrecipe/wp-content/uploads/2016/05/img01-1.jpg&amp;description=Pea%20And%20Halloumi%20Fritters"
+                                                       href="https://pinterest.com/pin/create/button/?url={{ $recipe->url }}&amp;media={{ $recipe->image->url }}&amp;description={{ $recipe->title }}"
                                                        target="_blank">
                                                         <i class="fa fa-pinterest"></i>
                                                     </a>
@@ -141,82 +142,22 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="no-print">
+                <div>
+                    <div>
+                        <h3 class="section-title">You may also like</h3>
+                        <div class="row">
+
+                            @foreach($othersYouMaylike as $recipe)
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    @livewire('recipe-box', ['recipe'=>$recipe])
+                                </div>
+                            @endforeach
+                        </div>
                         {{--
-                                     <h3 class="section-title">You may also like</h3>
-                                     <div class="row">
-                                         <div class="col-md-4 col-sm-6 col-xs-12">
-                                             <div class="recipe-container">
-                                                 <div class="recipe-img-box">
-                                                     <img width="400" height="266" src="http://themes.ongoingthemes.com/quickrecipe/wp-content/uploads/2016/05/img01.jpg" class="attachment-400x400 size-400x400 wp-post-image" alt="" srcset="http://themes.ongoingthemes.com/quickrecipe/wp-content/uploads/2016/05/img01.jpg 614w, http://themes.ongoingthemes.com/quickrecipe/wp-content/uploads/2016/05/img01-300x200.jpg 300w" sizes="(max-width: 400px) 100vw, 400px">                                <a href="http://themes.ongoingthemes.com/quickrecipe/recipe/asian-chicken-corn-and-noodle-soup/"><div class="hover-button">View Recipe</div></a>
-                                                 </div>
-                                                 <div class="recipe-meta-box">
-                                                     <span><i class="fa fa-clock-o"></i> 10 mins</span>
-                                                     <span><i class="fa fa-user"></i> 8 People</span>
-                                                     <span><i class="fa fa-spoon"></i> 4 Yield</span>
-                                                 </div>
-                                                 <div class="recipe-content-box">
-                                                     <h3><a href="http://themes.ongoingthemes.com/quickrecipe/recipe/asian-chicken-corn-and-noodle-soup/">Asian Chicken And Noodle Soup</a> <small>Dinners</small></h3>
-                                                     <div class="avatar">
-                                                         <div class="clearfix">
-                                                             <div class="pull-left">
-                                                                 <img alt="" src="http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=25&amp;d=mm&amp;r=g" srcset="http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=50&amp;d=mm&amp;r=g 2x" class="avatar avatar-25 photo" height="25" width="25">                                            By  <a href="http://themes.ongoingthemes.com/quickrecipe/author/admin/" title="Posts by admin" rel="author">admin</a>                                        </div>
-                                                             <span class="user-ratings pull-right">
-                                                     <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i>                                         </span>
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                         <!-- break -->
-                                         <div class="col-md-4 col-sm-6 col-xs-12">
-                                             <div class="recipe-container">
-                                                 <div class="recipe-img-box">
-                                                     <img width="400" height="266" src="http://themes.ongoingthemes.com/quickrecipe/wp-content/uploads/2016/06/img22.jpg" class="attachment-400x400 size-400x400 wp-post-image" alt="" srcset="http://themes.ongoingthemes.com/quickrecipe/wp-content/uploads/2016/06/img22.jpg 614w, http://themes.ongoingthemes.com/quickrecipe/wp-content/uploads/2016/06/img22-300x200.jpg 300w" sizes="(max-width: 400px) 100vw, 400px">                                <a href="http://themes.ongoingthemes.com/quickrecipe/recipe/gluten-free-lasagne-with-veal-and-eggplant/"><div class="hover-button">View Recipe</div></a>
-                                                 </div>
-                                                 <div class="recipe-meta-box">
-                                                     <span><i class="fa fa-clock-o"></i> 40 mins</span>
-                                                     <span><i class="fa fa-user"></i> 8 People</span>
-                                                     <span><i class="fa fa-spoon"></i> 4 Yield</span>
-                                                 </div>
-                                                 <div class="recipe-content-box">
-                                                     <h3><a href="http://themes.ongoingthemes.com/quickrecipe/recipe/gluten-free-lasagne-with-veal-and-eggplant/">Gluten-free Lasagne with Veal and Eggplant</a> <small>Dinners</small></h3>
-                                                     <div class="avatar">
-                                                         <div class="clearfix">
-                                                             <div class="pull-left">
-                                                                 <img alt="" src="http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=25&amp;d=mm&amp;r=g" srcset="http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=50&amp;d=mm&amp;r=g 2x" class="avatar avatar-25 photo" height="25" width="25">                                            By  <a href="http://themes.ongoingthemes.com/quickrecipe/author/admin/" title="Posts by admin" rel="author">admin</a>                                        </div>
-                                                             <span class="user-ratings pull-right">
-                                                                                             </span>
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                         <!-- break -->
-                                         <div class="col-md-4 col-sm-6 col-xs-12">
-                                             <div class="recipe-container">
-                                                 <div class="recipe-img-box">
-                                                     <img width="400" height="266" src="http://themes.ongoingthemes.com/quickrecipe/wp-content/uploads/2016/06/img21.jpg" class="attachment-400x400 size-400x400 wp-post-image" alt="" srcset="http://themes.ongoingthemes.com/quickrecipe/wp-content/uploads/2016/06/img21.jpg 614w, http://themes.ongoingthemes.com/quickrecipe/wp-content/uploads/2016/06/img21-300x200.jpg 300w" sizes="(max-width: 400px) 100vw, 400px">                                <a href="http://themes.ongoingthemes.com/quickrecipe/recipe/bbq-meaty-pizzas/"><div class="hover-button">View Recipe</div></a>
-                                                 </div>
-                                                 <div class="recipe-meta-box">
-                                                     <span><i class="fa fa-clock-o"></i> 10 mins</span>
-                                                     <span><i class="fa fa-user"></i> 8 People</span>
-                                                     <span><i class="fa fa-spoon"></i> 4 Yield</span>
-                                                 </div>
-                                                 <div class="recipe-content-box">
-                                                     <h3><a href="http://themes.ongoingthemes.com/quickrecipe/recipe/bbq-meaty-pizzas/">BBQ Meaty Pizzas for pizza lover’s</a> <small>Snacks</small></h3>
-                                                     <div class="avatar">
-                                                         <div class="clearfix">
-                                                             <div class="pull-left">
-                                                                 <img alt="" src="http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=25&amp;d=mm&amp;r=g" srcset="http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=50&amp;d=mm&amp;r=g 2x" class="avatar avatar-25 photo" height="25" width="25">                                            By  <a href="http://themes.ongoingthemes.com/quickrecipe/author/admin/" title="Posts by admin" rel="author">admin</a>                                        </div>
-                                                             <span class="user-ratings pull-right">
-                                                                                             </span>
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                         <!-- break -->
-                                     </div>
                                      <div class="navigation post-navigation clearfix">
                                          <div class="alignleft post-nav-links prev-link-wrapper">
 
