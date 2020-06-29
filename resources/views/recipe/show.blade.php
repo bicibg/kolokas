@@ -152,7 +152,7 @@
                         <div class="row">
 
                             @foreach($othersYouMaylike as $recipe)
-                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="col-md-3 col-sm-6 col-xs-12">
                                     @livewire('recipe-box', ['recipe'=>$recipe])
                                 </div>
                             @endforeach

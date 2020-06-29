@@ -1,7 +1,7 @@
-<div class="recipe-container d-flex flex-column">
+<div class="recipe-container d-flex flex-column w-100">
     <div class="recipe-content">
         <div class="author-details">
-            <h3 class="title">
+            <h3 class="title text-center">
                 <a href="{{ $profile->url }}">{{ $profile->name }}</a> <small>{{ $profile->city }}</small>
             </h3>
         </div>
@@ -19,11 +19,11 @@
     <div class="recipe-content">
         <div class="author-details">
             <div class="contact">
-                <i class="fa fa-envelope-o"></i><a href="mailto:{{ $profile->email }}">{{ $profile->email }}</a></div>
+                <i class="fa fa-envelope-o"></i> <a href="mailto:{{ $profile->email }}">{{ $profile->email }}</a></div>
             <div class="contact">
-                <i class="fa fa-globe"></i><a href="{{ $profile->website }}">{{ $profile->website }}</a></div>
+                <i class="fa fa-globe"></i> <a href="{{ $profile->website }}">{{ $profile->website }}</a></div>
             <div class="contact">
-                <i class="fa fa-mobile"></i>{{ $profile->telephone}}
+                <i class="fa fa-mobile"></i> <a href="{{ $profile->telephone}}">{{ $profile->telephone}}</a>
             </div>
         </div>
     </div>

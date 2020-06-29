@@ -1,4 +1,4 @@
-<div class="recipe-container d-flex flex-column">
+<div class="recipe-container d-flex flex-column w-100">
     <div class="recipe-img">
         <img alt="{{ $recipe->title }}" src="{{ $recipe->image->url }}"
              height="266" width="400">
