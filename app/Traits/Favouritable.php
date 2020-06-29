@@ -1,9 +1,10 @@
 <?php
 
 
-namespace App;
+namespace App\Traits;
 
 
+use App\Favourite;
 use Illuminate\Database\Eloquent\Model;
 
 /**

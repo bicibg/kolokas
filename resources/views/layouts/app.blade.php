@@ -28,6 +28,7 @@
     @include('partials.navbar')
     <main class="py-2">
         @yield('content')
+        <flash message="{{ session('flash') }}"></flash>
     </main>
 </div>
 @livewireScripts

@@ -24,6 +24,11 @@ class RecipeBox extends Component
 
     public function favourite()
     {
+        if (!auth()->check()) {
+            //display warning
+            $this->emit('flash-error', 'You you need to be logged in for this action.');
+            return;
+        }
         if ($this->recipe->isFavourited()) {
             $this->recipe->unfavourite();
         } else {

@@ -17,7 +17,37 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8 recipe-meta">
+                        <div class="recipe-meta w-100 mb-5">
+                            <div class="recipe-buttons no-print">
+                                <a href="javascript:void(0);" title="Add to favorites" wire:click="favourite">
+                                    <i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i>
+                                    <span class="d-inline-block">
+                                        {{ $recipe->favourites->count() }} {{ \Illuminate\Support\Str::plural('like', $recipe->favourites->count()) }}
+                                    </span>
+                                </a>
+                                <a href="javascript:void(0);"
+                                   title="Add Comment">
+                                    <i class="fa fa-comment"></i>
+                                    <span class="d-inline-block">
+                                        {{ 0 }} {{ \Illuminate\Support\Str::plural('comment', 0) }}
+                                    </span>
+                                </a>
+                                <a data-toggle="modal"  href="javascript:void(0);" data-target="#popup-social-{{ $recipe->slug }}" title="Share">
+                                    <i class="fa fa-share"></i>
+                                    <span class="d-inline-block">
+                                        Share
+                                    </span>
+                                </a>
+                                <a href="javascript:void(0);"
+                                   rel="nofollow"
+                                   onclick="window.print(); return false;"
+                                   title="Printer Friendly, PDF &amp; Email">
+                                    <i class="fa fa-print"></i>
+                                    <span class="d-inline-block">
+                                        Print / PDF
+                                    </span>
+                                </a>
+                            </div>
                             <ul class="print-only">
 
                                 <li>Prep Time<strong>
@@ -29,23 +59,25 @@
                                 <li>Serving<strong>
                                         For {{ $recipe->servings }} </strong></li>
                             </ul>
+
                         </div>
-                        <div class="col-md-4 recipe-meta text-center pt-4 no-print">
-                            <div class="button-box">
-                                <div class="printfriendly"><a href="#" style="outline:none;" rel="nofollow"
-                                                              onclick="window.print(); return false;" class="noslimstat"
-                                                              title="Printer Friendly, PDF &amp; Email"><i
-                                            class="fa fa-print"></i> Print</a></div>
-                                <a href="mailto:?subject={{ urlencode($recipe->title) }}&amp;body={{ urlencode($recipe->description) }}: {{ $recipe->url }}"
-                                   class="email"><i class="fa fa-envelope"></i> E-mail</a>
-                                <form method="post" class="favorite_user_post" action="#">
-                                    <button type="submit" name="quickrecipe_add_to_favorite" value="17"
-                                            class="btn-success">
-                                        <i class="fa fa-heart"></i> Favorite
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+
+
+                        {{--                            --}}
+                        {{--                            <div class="button-box">--}}
+                        {{--                                <div class="printfriendly"><a href="#" style="outline:none;" rel="nofollow"--}}
+                        {{--                                                              onclick="window.print(); return false;" class="noslimstat"--}}
+                        {{--                                                              title="Printer Friendly, PDF &amp; Email"><i--}}
+                        {{--                                            class="fa fa-print"></i> Print</a></div>--}}
+                        {{--                                <a href="mailto:?subject={{ urlencode($recipe->title) }}&amp;body={{ urlencode($recipe->description) }}: {{ $recipe->url }}"--}}
+                        {{--                                   class="email"><i class="fa fa-envelope"></i> E-mail</a>--}}
+                        {{--                                <form method="post" class="favorite_user_post" action="#">--}}
+                        {{--                                    <button type="submit" name="quickrecipe_add_to_favorite" value="17"--}}
+                        {{--                                            class="btn-success">--}}
+                        {{--                                        <i class="fa fa-heart"></i> Favorite--}}
+                        {{--                                    </button>--}}
+                        {{--                                </form>--}}
+                        {{--                            </div>--}}
                         <div class="clearfix"></div>
 
                         <div>
@@ -88,59 +120,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="recipe-footer no-print">
-                                <a href="#popup-social17" class="share">
-                                    <i class="fa fa-share"></i> Share </a>
-                            </div>
-                            <div id="popup-social17" class="overlay">
-                                <div class="popup">
-                                    <h2>Share this recipe</h2>
-                                    <a class="close-popup" href="#">×</a>
-                                    <div class="content">
-                                        <p>Pea And Halloumi Fritters</p>
-                                        <div class="social-content">
-                                            <ul class="social-icons">
-                                                <li>
-                                                    <a class="twitter"
-                                                       href="https://twitter.com/intent/tweet?text={{ urlencode($recipe->title) }}&amp;url={{ $recipe->url }}"
-                                                       target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a class="facebook"
-                                                       href="https://www.facebook.com/sharer/sharer.php?u={{ $recipe->url }}"
-                                                       target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a class="whatsapp" href="" target="_blank"><i
-                                                            class="fa fa-whatsapp"></i></a></li>
-                                                <li><a class="google-plus"
-                                                       href="https://plus.google.com/share?url={{ $recipe->url }}"
-                                                       target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                                                <li><a class="tumblr"
-                                                       href="http://www.tumblr.com/share/link?url={{ $recipe->url }}"
-                                                       target="_blank"><i class="fa fa-tumblr"></i></a></li>
-                                                <li><a class="reddit"
-                                                       href="http://www.reddit.com/submit?url={{ $recipe->url }}"
-                                                       target="_blank"><i class="fa fa-reddit"></i></a></li>
-                                                <li><a class="stumbleupon"
-                                                       href="http://www.stumbleupon.com/submit?url={{ $recipe->url }}"
-                                                       target="_blank"><i class="fa fa-stumbleupon"></i></a></li>
-                                                <li><a class="digg"
-                                                       href="http://digg.com/submit?url={{ $recipe->url }}"
-                                                       target="_blank"><i class="fa fa-digg"></i></a></li>
-                                                <li><a class="linkedin"
-                                                       href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ $recipe->url }}&amp;title={{ $recipe->title }}"
-                                                       target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                                                <li><a class="delicious"
-                                                       href="http://del.icio.us/post?url={{ $recipe->url }}"
-                                                       target="_blank"><i class="fa fa-delicious"></i></a></li>
-                                                <li><a class="pinterest"
-                                                       href="https://pinterest.com/pin/create/button/?url={{ $recipe->url }}&amp;media={{ $recipe->image->url }}&amp;description={{ $recipe->title }}"
-                                                       target="_blank">
-                                                        <i class="fa fa-pinterest"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @include('partials.share-modal')
                         </div>
                     </div>
                 </div>

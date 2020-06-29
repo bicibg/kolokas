@@ -22,8 +22,11 @@ class HomeController extends Controller
         $carousel = Recipe::wherePublished(true)->whereFeatured(true)->get();
         $carousel = $carousel->random(min(5, $carousel->count()));
 
-        $topRated = Recipe::wherePublished(true)->get();
-        $topRated = $topRated->random(min(4, $topRated->count()));
+        $mostFavourited = Recipe::wherePublished(true)->get();
+        $mostFavourited = $mostFavourited->sortByDesc('favouritesCount')->take(4)->values()->all();
+
+        $mostVisited = Recipe::wherePublished(true)->get();
+        $mostVisited = $mostVisited->sortByDesc('visitedCount')->take(4)->values()->all();
 
         $latest = Recipe::wherePublished(true)->latest()->limit(4)->get();
 
@@ -32,6 +35,6 @@ class HomeController extends Controller
 
         $categories = Category::all();
 
-        return view('home.index', compact('latest', 'featured', 'carousel', 'topRated', 'contributors', 'categories'));
+        return view('home.index', compact('latest', 'featured', 'carousel', 'mostFavourited', 'mostVisited', 'contributors', 'categories'));
     }
 }

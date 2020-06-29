@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Casts\SplitList;
+use App\Traits\Favouritable;
+use App\Traits\Visitable;
 use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +13,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Recipe extends Model
 {
-    use SoftDeletes, HasSlug, Favouritable;
+    use SoftDeletes, HasSlug, Favouritable, Visitable;
 
     /**
      * @var array
@@ -39,7 +41,7 @@ class Recipe extends Model
 
     protected $with = ['author', 'image'];
 
-    protected $appends = ['favouritesCount', 'isFavourited', 'url'];
+    protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount'];
 
     /**
      * @return string

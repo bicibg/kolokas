@@ -6,7 +6,10 @@
         @include('home.partial.search')
     </div>
     <div class="container pt-5">
-        @include('home.partial.topRated')
+        @include('home.partial.mostFavourited')
+    </div>
+    <div class="container pt-5">
+        @include('home.partial.mostVisited')
     </div>
     <div class="container pt-5">
         @include('home.partial.featured')

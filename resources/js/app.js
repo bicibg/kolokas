@@ -21,12 +21,24 @@ window.Vue = require('vue');
 Vue.filter('pluralize', (word, amount) => (amount > 1 || amount === 0) ? `${word}s` : word)
 //Vue.component('recipe-box', require('./components/RecipeBoxComponent.vue').default);
 Vue.component('base-button', require('./components/BaseButtonComponent.vue').default);
+Vue.component('flash', require('./components/Flash.vue').default);
+window.events = new Vue();
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+window.flash = function (message, type = 'success') {
+    window.events.$emit('flash', {message, type});
+};
+window.livewire.on('flash-success', message => {
+    flash(message, 'success');
+})
+
+window.livewire.on('flash-warning', message => {
+    flash(message, 'warning');
+})
+
+window.livewire.on('flash-error', message => {
+    flash(message, 'error');
+})
+
 
 const app = new Vue({
     el: '#app',

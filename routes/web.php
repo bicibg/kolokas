@@ -14,16 +14,26 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+Route::name('recipe.')->group(function () {
+    Route::get('/recipes/create', 'RecipeController@create')->name('create');
+    Route::post('/', 'RecipeController@store')->name('store');
+    Route::get('/recipes', 'RecipeController@index')->name('index');
+
+    Route::middleware(\App\Http\Middleware\RecordVisits::class)->group(function () {
+        Route::get('/recipes/{recipe}', 'RecipeController@show')->name('show');
+    });
+
+});
+
+
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/recipes/create', 'RecipeController@create')->name('recipe.create');
-Route::get('/recipes/{recipe}', 'RecipeController@show')->name('recipe.show');
-Route::post('/', 'RecipeController@store')->name('recipe.store');
-Route::get('/recipes', 'RecipeController@index')->name('recipe.index');
+
 
 Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
 Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 Route::post('/profile/edit', 'ProfileController@edit')->name('profile.update');
 
 Route::get('/favourite-recipes', 'UsersController@favourites')->name('favourites');
+
 
 //Route::get('/author/{user}', 'RecipeController@myIndex')->name('recipe.my-index');

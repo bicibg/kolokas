@@ -9,6 +9,7 @@
 8.  Recipe Create
 9.  Search Box
 10. Print
+11. Popup
  */
 
 /*=================================*/
@@ -160,6 +161,15 @@ img {
 
 .red {
     color: $red;
+}
+
+.level {
+    display: flex;
+    align-items: center;
+}
+
+.flex {
+    flex: 1;
 }
 
 /*=================================*/
@@ -636,13 +646,6 @@ img {
     overflow: hidden;
 }
 
-.recipe-buttons a:hover, .recipe-buttons a:focus {
-    color: #eee;
-    background: #ccc;
-    overflow: hidden;
-    outline: none;
-}
-
 
 /*=================================*/
 
@@ -889,33 +892,31 @@ select.input-lg {
         background-color: #f7f7f7;
         padding: 10px 20px;
         min-height: 40px;
-        margin-bottom: 30px;
         position: relative;
-        background: #fff;
         color: unset;
         -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
         -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     }
 
-    .recipe-meta .button-box {
-        display: inline-flex;
-    }
-
     .recipe-meta ul {
         padding: 0;
-        float: left;
-        display: block;
+        position: relative;
+        display: table;
+        width: 100%;
     }
 
     .recipe-meta ul li {
-        display: inline;
-        float: left;
         margin-right: 21px;
-        padding-right: 21px;
         border-right: 1px solid #d8d8d8;
-        font-family: 'Lora', 'PT Serif', serif;
+        font-family: "Lora", "PT Serif", serif;
         font-style: italic;
+        display: table-cell;
+        width: 10%;
+        padding: 8px 12px;
+        text-align: center;
+        font-size: 16px;
+        overflow: hidden;
     }
 
     .recipe-meta ul li:last-child {
@@ -927,7 +928,8 @@ select.input-lg {
         display: block;
     }
 
-    .recipe-meta a, .recipe-meta button, .recipe-footer a, .recipe-footer button {
+
+    .recipe-footer a, .recipe-footer button {
         margin-left: 5px;
         border: 0;
         background-color: #808080;
@@ -970,8 +972,12 @@ select.input-lg {
         background-color: #ff9638;
     }
 
-    .recipe-meta button {
-        background-color: #C6713F;
+    .recipe-buttons a {
+        background: none;
+    }
+
+    .recipe-buttons a:hover {
+        background: #ccc;
     }
 
     a.print:hover {
@@ -1098,148 +1104,6 @@ select.input-lg {
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     }
 
-    .social-icons {
-        list-style: none;
-        padding: 10px 0;
-        margin: 0 auto;
-        display: inline-block;
-    }
-
-    .social-icons li {
-        display: inline-block;
-        margin: 0 !important;
-        padding: 0 3px;
-    }
-
-    .social-icons li.last {
-        margin-right: 0;
-    }
-
-    .social-icons a {
-        display: inline-block;
-        background: #555;
-        width: 36px;
-        height: 36px;
-        text-align: center;
-        padding-top: 8px;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -ms-border-radius: 50%;
-        -o-border-radius: 50%;
-        border-radius: 50%;
-        -moz-background-clip: padding;
-        -webkit-background-clip: padding-box;
-        background-clip: padding-box;
-        font-size: 16px;
-        float: left;
-    }
-
-    .social-icons a:hover {
-        background: #333;
-    }
-
-    .social-icons a:hover .fa {
-        color: #fff;
-    }
-
-    .social-icons a .fa {
-        color: #222;
-    }
-
-    .social-icons a .fa:before {
-        font-size: 18px;
-        text-align: center;
-        padding: 0;
-    }
-
-    .overlay {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.7);
-        transition: opacity 500ms;
-        visibility: hidden;
-        opacity: 0;
-        z-index: 1070 !important;
-    }
-
-    .overlay:target {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .popup {
-        margin: 170px auto;
-        background: #fff;
-        width: 35%;
-        position: relative;
-        transition: all 5s ease-in-out;
-        z-index: 1080 !important;
-    }
-
-    .popup h2 {
-        font-family: 'PT Serif', sans-serif;
-        color: #ff9638;
-        font-size: 18px;
-        text-align: center;
-        border-bottom: 1px solid #eee;
-        padding: 20px;
-        line-height: 20px;
-        font-style: normal;
-        font-weight: 600;
-        background: #f7f7f7;
-        margin-bottom: 10px;
-    }
-
-    .popup .close-popup {
-        position: absolute;
-        top: 15px;
-        right: 30px;
-        transition: all 200ms;
-        font-size: 30px;
-        font-weight: bold;
-        text-decoration: none;
-        color: #aaa;
-    }
-
-    .popup .close-popup:hover {
-        color: #333;
-    }
-
-    .popup .content {
-        max-height: 40%;
-        overflow: auto;
-        padding: 5px;
-    }
-
-    .popup .content p, .popup .content div {
-        text-align: center;
-    }
-
-    .popup .content p {
-        font-style: italic;
-        font-size: 18px;
-        font-family: Lora, 'PT Serif', sans-serif;
-    }
-
-    .popup .social-icons a {
-        background: #ddd;
-    }
-
-    .popup .social-icons a:hover {
-        background: #ff9638;
-    }
-
-    .popup .social-icons a:hover .fa {
-        color: #fff;
-    }
-
-    .popup .social-icons a .fa {
-        color: #fff;
-    }
-
     .section-title {
         line-height: 28px;
         margin-bottom: 20px;
@@ -1281,5 +1145,80 @@ select.input-lg {
 
     main > .container {
         padding-top: 0 !important;
+    }
+}
+
+/*=================================*/
+
+/*
+=================================
+       11. Popup
+=================================
+*/
+
+.popup {
+
+    .modal-content {
+        background-color: #f7f7f7;
+    }
+
+    .social-icons a .fa:before, h2 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    h2 {
+        color: #ff9638;
+        line-height: 20px;
+    }
+
+    .social-icons a {
+        text-align: center;
+        background: #ddd;
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        padding-top: 8px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        font-size: 16px;
+        float: left;
+    }
+
+    .social-icons a:hover {
+        background: #ff9638;
+    }
+
+    .social-icons a:hover .fa {
+        color: #fff;
+    }
+
+    .social-icons {
+        list-style: none;
+        padding: 10px 0;
+    }
+
+    .social-icons li {
+        display: inline-block;
+        margin: 0 !important;
+        padding: 0 3px;
+    }
+
+    .social-icons li.last {
+        margin-right: 0;
+    }
+
+    .social-icons a .fa {
+        color: #222;
+    }
+
+    .social-icons a .fa:before {
+        padding: 0;
     }
 }
