@@ -44,7 +44,21 @@ class RecipeRequest extends FormRequest
             'prep_time' => 'integer',
             'cook_time' => 'integer',
             'servings' => 'max:64',
-            'images' => 'required',
+            'main_image' => 'required',
+            'agreement' => 'accepted'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'A title is required',
+            'title.unique'  => 'Looks like you already have a recipe with this title',
+            'prep_time' => 'An estimated preparation time is required',
+            'cook_time' => 'An estimated cooking time is required',
+            'servings' => 'We need to know the serving size for your recipe',
+            'main_image' => 'A good quality photo of your creation is crucial and necessary',
+            'agreement' => 'You must accept our Terms and Conditions before you can submit this recipe'
         ];
     }
 }

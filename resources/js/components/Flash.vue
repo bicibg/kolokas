@@ -1,6 +1,7 @@
 <template>
     <div :class="['alert alert-flash fade show', alertType]" role="alert" v-show="show">
         <strong v-text="alertPrefix"></strong> {{ body }}
+        <a class="btn btn-inline" v-on:click="hide()">X</a>
     </div>
 </template>
 
@@ -21,6 +22,7 @@
                 body: this.message,
                 show: false,
                 internal_type: this.type,
+                timeout: null,
             }
         },
         created() {
@@ -42,13 +44,17 @@
             flash(message) {
                 this.body = message;
                 this.show = true;
-                this.hide();
+                this.timeout = setTimeout(() => {
+                    this.hide();
+                }, 10000)
             },
             hide() {
-                setTimeout(() => {
-                    this.show = false;
-                }, 5000)
+                this.show = false;
+                if (this.timeout) {
+                    clearTimeout(this.timeout);
+                }
             },
+
         },
         computed: {
             alertType: function () {
@@ -84,5 +90,6 @@
         position: fixed;
         right: 25px;
         bottom: 25px;
+        z-index: 1000;
     }
 </style>

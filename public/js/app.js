@@ -1950,6 +1950,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     message: {
@@ -1965,7 +1966,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       body: this.message,
       show: false,
-      internal_type: this.type
+      internal_type: this.type,
+      timeout: null
     };
   },
   created: function created() {
@@ -1987,16 +1989,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     flash: function flash(message) {
-      this.body = message;
-      this.show = true;
-      this.hide();
-    },
-    hide: function hide() {
       var _this2 = this;
 
-      setTimeout(function () {
-        _this2.show = false;
-      }, 5000);
+      this.body = message;
+      this.show = true;
+      this.timeout = setTimeout(function () {
+        _this2.hide();
+      }, 10000);
+    },
+    hide: function hide() {
+      this.show = false;
+
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      }
     }
   },
   computed: {
@@ -6473,7 +6479,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.alert-flash {\n    position: fixed;\n    right: 25px;\n    bottom: 25px;\n}\n", ""]);
+exports.push([module.i, "\n.alert-flash {\n    position: fixed;\n    right: 25px;\n    bottom: 25px;\n    z-index: 1000;\n}\n", ""]);
 
 // exports
 
@@ -38272,7 +38278,19 @@ var render = function() {
     },
     [
       _c("strong", { domProps: { textContent: _vm._s(_vm.alertPrefix) } }),
-      _vm._v(" " + _vm._s(_vm.body) + "\n")
+      _vm._v(" " + _vm._s(_vm.body) + "\n    "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-inline",
+          on: {
+            click: function($event) {
+              return _vm.hide()
+            }
+          }
+        },
+        [_vm._v("X")]
+      )
     ]
   )
 }
@@ -50472,8 +50490,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.filter('pluralize', function (word, amount) {
   return amount > 1 || amount === 0 ? "".concat(word, "s") : word;
-}); //Vue.component('recipe-box', require('./components/RecipeBoxComponent.vue').default);
-
+});
 Vue.component('base-button', __webpack_require__(/*! ./components/BaseButtonComponent.vue */ "./resources/js/components/BaseButtonComponent.vue")["default"]);
 Vue.component('flash', __webpack_require__(/*! ./components/Flash.vue */ "./resources/js/components/Flash.vue")["default"]);
 window.events = new Vue();

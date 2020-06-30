@@ -35,10 +35,21 @@
                         </div>
                         <div class="form-row mb-2">
                             <div class="col-md-2">
-                                <label class="col-form-label" for="images">Photos:</label>
+                                <label class="col-form-label" for="main_image">Main Photo:</label>
                             </div>
                             <div class="col-md-10">
-                                <input type="file" class="bg-none border-0 form-control" name="images[]" multiple placeholder="Photos" id="images"/>
+                                <input type="file" class="bg-none border-0 form-control" name="main_image" id="main_image"/>
+                                <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                    This will be the main image for your recipe
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="col-md-2">
+                                <label class="col-form-label" for="images">Additional Photos:</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="file" class="bg-none border-0 form-control" name="images[]" multiple id="images"/>
                                 <small id="titleHelp" class="footnote form-text text-muted font-italic">
                                     You can upload more than one
                                 </small>

@@ -19,7 +19,6 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.filter('pluralize', (word, amount) => (amount > 1 || amount === 0) ? `${word}s` : word)
-//Vue.component('recipe-box', require('./components/RecipeBoxComponent.vue').default);
 Vue.component('base-button', require('./components/BaseButtonComponent.vue').default);
 Vue.component('flash', require('./components/Flash.vue').default);
 window.events = new Vue();

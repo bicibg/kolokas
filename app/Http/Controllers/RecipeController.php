@@ -71,10 +71,11 @@ class RecipeController extends Controller
      */
     public function store(RecipeRequest $request)
     {
-        if ($request->hasFile('images')) {
+        if ($request->hasFile('main_image')) {
             DB::transaction(function () use ($request) {
                 $allowedfileExtension = ['jpg', 'png'];
-                $files = $request->file('images');
+                $photos = $request->file('images');
+                $mainPhoto = $request->file('main_image');
                 $recipe = Recipe::create([
                     'title' => $request->get('title'),
                     'description' => $request->get('description'),
@@ -87,26 +88,38 @@ class RecipeController extends Controller
                     'user_id' => auth()->id(),
                 ]);
 
-                $main = true;
-                foreach ($files as $file) {
-                    $filename = $recipe->id . '_' . $file->getClientOriginalName();
+                //main photo
+                $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
+                $extension = $mainPhoto->getClientOriginalExtension();
+                $check = in_array($extension, $allowedfileExtension);
+                if ($check) {
+                    if ($mainPhoto->store(storage_path('images/recipes'))) {
+                        $recipe->images()->create([
+                            'url' => $filename,
+                            'main' => true
+                        ]);
+                    }
+                }
+
+                // other photos
+                foreach ($photos as $file) {
+                    $filename = $recipe->id . '_' . $file->getClientOriginalName() . '_' . uniqid();
                     $extension = $file->getClientOriginalExtension();
                     $check = in_array($extension, $allowedfileExtension);
                     if ($check) {
                         if ($file->store(storage_path('images/recipes'))) {
                             $recipe->images()->create([
                                 'url' => $filename,
-                                'main' => $main
+                                'main' => false
                             ]);
                         }
-                        $main = false;
                     }
                 }
             });
         }
 
         return redirect()->to(route('recipe.index'))->with([
-            'success' => 'Your recipe was submitted successfully. It will be reviewed as soon as possible. We will let you know of the outcome'
+            'flash' => 'Your recipe was submitted successfully. It will be reviewed as soon as possible. We will let you know of the outcome'
         ]);
     }
 
