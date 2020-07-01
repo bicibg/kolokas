@@ -4,8 +4,9 @@
 namespace App\Traits;
 
 
-use App\Favourite;
+use App\Models\Favourite;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * Trait Favouritable
@@ -36,6 +37,16 @@ trait Favouritable
     }
 
     /**
+     * A reply can be favourited.
+     *
+     * @return MorphMany
+     */
+    public function favourites()
+    {
+        return $this->morphMany(Favourite::class, 'favourited');
+    }
+
+    /**
      * @return Model
      */
     public function unfavourite()
@@ -43,16 +54,6 @@ trait Favouritable
         $attributes = ['user_id' => auth()->id()];
 
         $this->favourites()->where($attributes)->get()->each->delete();
-    }
-
-    /**
-     * A reply can be favourited.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function favourites()
-    {
-        return $this->morphMany(Favourite::class, 'favourited');
     }
 
     /**

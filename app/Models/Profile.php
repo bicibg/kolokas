@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Casts\LocalUrl;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Sluggable\HasSlug;
@@ -23,6 +22,8 @@ class Profile extends Model
         'twitter',
         'pinterest',
         'info',
+        'is_pro',
+        'is_restaurant',
     ];
 
     protected $appends = ['url'];

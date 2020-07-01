@@ -1,8 +1,10 @@
 <template>
-    <a v-if="href !== undefined && href !== '#' && href.length" :href="href" :class="['btn btn-lg btn-primary btn-base', className]">
+    <a :class="['btn btn-lg btn-primary btn-base', className]"
+       :href="href"
+       v-if="href !== undefined && href !== '#' && href.length">
         <slot></slot>
     </a>
-    <button v-else :class="['btn btn-lg btn-primary btn-base', className]" :type="role">
+    <button :class="['btn btn-lg btn-primary btn-base', className]" :type="role" v-else>
         <slot></slot>
     </button>
 </template>

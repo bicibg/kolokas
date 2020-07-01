@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Casts\SplitList;
 use App\Traits\Favouritable;
@@ -112,7 +112,7 @@ class Recipe extends Model
      */
     public function author()
     {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
     public function getFormattedIngredientsAttribute($value)
@@ -122,16 +122,16 @@ class Recipe extends Model
 
     public function images()
     {
-        return $this->hasMany('App\RecipeImage');
+        return $this->hasMany('App\Models\RecipeImage');
     }
 
     public function getMainImageAttribute()
     {
-        return $this->hasOne('App\RecipeImage')->where('main', true)->first();
+        return $this->hasOne('App\Models\RecipeImage')->where('main', true)->first();
     }
 
     public function categories()
     {
-        return $this->belongsToMany('App\Category');
+        return $this->belongsToMany('App\Models\Category');
     }
 }

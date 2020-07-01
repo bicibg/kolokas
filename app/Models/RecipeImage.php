@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Casts\LocalUrl;
 use Illuminate\Database\Eloquent\Model;

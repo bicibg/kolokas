@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Profile;
+use App\Models\Category;
+use App\Models\Profile;
 use App\Recipe;
 use Illuminate\Contracts\Support\Renderable;
 

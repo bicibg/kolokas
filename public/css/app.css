@@ -10940,6 +10940,7 @@ a.text-dark:focus {
 9.  Search Box
 10. Print
 11. Popup
+12. Kolokas Form
  */
 
 /*=================================*/
@@ -11216,10 +11217,10 @@ img {
 */
 
 .topbar {
+  z-index: 1050;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
   width: 100%;
   background: #f9f9f9;
   height: 40px;
@@ -11287,6 +11288,25 @@ img {
   background: #ff9638;
 }
 
+.topbar-nav .dropdown-item.active,
+.topbar-nav .dropdown-item:active {
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff9638;
+}
+
+.topbar-nav .dropdown-item:focus,
+.topbar-nav .dropdown-item:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff9638;
+}
+
+.topbar-nav .dropdown-menu {
+  margin: 0;
+  border-radius: 4px;
+}
+
 /*=================================*/
 
 /*
@@ -11313,6 +11333,19 @@ img {
   color: #ff9638;
 }
 
+.navbar-light .navbar-nav .nav-link {
+  font-weight: 700;
+  font-size: 16px;
+  padding: 23px 25px;
+  color: #333;
+}
+
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.active {
+  color: #ff9638;
+  border-bottom: 3px solid #ff9638;
+}
+
 .navbar .dropdown-item.active,
 .navbar .dropdown-item:active {
   text-decoration: none;
@@ -11327,20 +11360,7 @@ img {
   background-color: #ff9638;
 }
 
-.navbar-light .navbar-nav .nav-link {
-  font-weight: 700;
-  font-size: 16px;
-  padding: 23px 25px;
-  color: #333;
-}
-
-.navbar-light .navbar-nav .active > .nav-link,
-.navbar-light .navbar-nav .nav-link.active {
-  color: #ff9638;
-  border-bottom: 3px solid #ff9638;
-}
-
-.dropdown-menu {
+.navbar .dropdown-menu {
   margin: 0;
   border-radius: 4px;
 }
@@ -11645,7 +11665,7 @@ img {
 */
 
 .footnote {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 /*=================================*/
@@ -12057,4 +12077,323 @@ select.input-lg {
        12.
 =================================
 */
+
+.kolokas-form .header h2 {
+  font-family: "PT Serif", serif;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.kolokas-form .content p,
+.kolokas-form .header p,
+.kolokas-form .content text,
+.kolokas-form .content .input-lg,
+.form-horizontal .form-group-lg .form-control {
+  font-family: "Lora", "PT Serif", serif;
+}
+
+.kolokas-form .content .input-lg,
+.form-horizontal .form-group-lg .form-control {
+  font-size: 16px;
+}
+
+.kolokas-form label {
+  font-weight: 700;
+  color: #ff9638;
+  text-transform: uppercase;
+  font-family: "Lora", "PT Serif", serif;
+}
+
+.kolokas-form .description {
+  font-size: 13px;
+  font-size: 1.3rem;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 3px;
+}
+
+.kolokas-form .upload {
+  position: relative;
+}
+
+.kolokas-form .upload a {
+  position: absolute;
+  height: 100%;
+  line-height: 36px;
+  width: auto;
+  right: 0;
+  top: 0;
+  border: none;
+  background: #EFEFEF;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.kolokas-form .upload a:hover {
+  background: #eee;
+}
+
+#kolokas-form #wp-description-editor-container,
+#kolokas-form fieldset.content table {
+  padding: 0;
+  margin: 0;
+  border: 1px solid #e0e0e0;
+}
+
+.add-more {
+  background: #ff9638 !important;
+  font-weight: 600 !important;
+  float: right;
+  border-radius: 3px;
+  padding: 7px 20px;
+  font-size: 13px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.kolokas-form .error {
+  font-weight: 600;
+  font-family: "Open Sans", "Raleway", sans-serif;
+  font-size: 0.9em;
+  color: red;
+  letter-spacing: 0.5px;
+  display: block;
+  text-transform: uppercase;
+}
+
+#ingredients,
+#method_steps {
+  margin-top: 10px;
+}
+
+div.upload {
+  background-color: #fcfcfc;
+  border: 1px solid #dfe5e7;
+  height: 44px;
+  display: inline-block;
+  height: 44px;
+  line-height: 44px;
+  position: relative;
+  width: 100%;
+}
+
+div.upload:hover {
+  opacity: 0.95;
+}
+
+div.upload input[type=file] {
+  display: input-block;
+  width: 100%;
+  height: 30px;
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+}
+
+div.upload .button {
+  margin: 0px 2px;
+  float: right;
+  height: 30px;
+}
+
+.uploadButton,
+.deleteButton {
+  background-color: #ff9638;
+  border: none;
+  color: #FFF;
+  cursor: pointer;
+  display: inline-block;
+  width: auto;
+  padding: 0 20px;
+  box-sizing: content-box;
+  font-family: "Open Sans", "Raleway", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.uploadButton {
+  float: right;
+  margin-right: -1px;
+  margin-top: -1px;
+}
+
+.deleteButton {
+  float: right;
+  line-height: 30px;
+}
+
+.filename {
+  font-size: 16px;
+  font-family: "Lora", "PT Serif", serif;
+  font-style: italic;
+  -webkit-user-select: none;
+  text-overflow: ellipsis;
+  display: block;
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  float: left;
+  text-align: right;
+  cursor: default;
+  height: 44px;
+  line-height: 44px;
+  padding: 0 10px;
+  color: #818a91;
+  max-width: 80%;
+  text-align: left;
+}
+
+.upload + .uploadButton {
+  height: 38px;
+}
+
+table {
+  border-spacing: 0;
+  width: 100%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background: #f9f9f9;
+  border-collapse: separate;
+}
+
+table td,
+table th {
+  text-align: center;
+  padding: 5px;
+}
+
+table td p:last-child,
+table th p:last-child {
+  margin-bottom: 0;
+}
+
+table thead th {
+  background: #ff9638;
+  border-bottom: 2px solid #DD8435;
+  color: #fff;
+  text-transform: uppercase;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+table thead th:first-child {
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+table thead th:last-child {
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+  border-right: 0;
+}
+
+table tbody {
+  background: #fff;
+}
+
+table tbody th {
+  background: #fff;
+}
+
+table tbody h2 {
+  font-size: 1em;
+  letter-spacing: normal;
+  font-weight: normal;
+}
+
+table tbody h2 a {
+  font-weight: normal;
+}
+
+table tbody h4 {
+  letter-spacing: normal;
+  font-weight: 500;
+  font-style: italic;
+  color: #848484;
+}
+
+table tbody tr:last-child td:first-child {
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+table tbody tr:last-child td:last-child {
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+table tfoot th,
+table tfoot td {
+  border-right: 1px solid #f39643;
+}
+
+table tfoot tr {
+  background: #ff9638;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+}
+
+table tfoot tr a {
+  color: #fff;
+}
+
+table tfoot tr a:hover {
+  color: #fff;
+}
+
+table td.small {
+  font-size: 13px;
+  color: #999;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  overflow-y: auto;
+  height: 100%;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.kolokas-form .btn-success,
+.kolokas-form .btn-warning {
+  display: inline-block;
+  padding: 0.382em 1.387em;
+  line-height: 1.618em;
+  box-sizing: border-box;
+  white-space: nowrap;
+  margin-bottom: 5px;
+}
+
+.kolokas-form table td,
+.kolokas-form table th {
+  padding: 0.857em 1.387em;
+  text-align: left;
+  vertical-align: top;
+}
 

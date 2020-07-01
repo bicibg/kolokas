@@ -8,7 +8,7 @@
     </div>
     <div class="recipe-meta text-center">
         @php
-            $comments = rand(0, 100);
+            $comments = rand(0, 100)
         @endphp
         <span><i class="fa fa-comments"></i> {{ $comments }} {{ \Illuminate\Support\Str::plural('comment', $comments) }}</span>
         <span><i class="fa fa-eye"></i> {{ $recipe->visitsCount }} {{ \Illuminate\Support\Str::plural('view', $recipe->visitsCount) }}</span>
@@ -39,24 +39,25 @@
                            title="Posts by admin"> {{ $recipe->author->name }}</a>
                     </div>
                 </div>
-{{--                <div class="col-md-4">--}}
-{{--                    <span class="user-ratings pull-right">--}}
-{{--                        <i class="fa fa-star fa-xs"></i>--}}
-{{--                        <i class="fa fa-star fa-xs"></i>--}}
-{{--                        <i class="far fa-star fa-xs"></i>--}}
-{{--                        <i class="far fa-star fa-xs"></i>--}}
-{{--                        <i class="far fa-star fa-xs"></i>--}}
-{{--                    </span>--}}
-{{--                </div>--}}
+                {{--                <div class="col-md-4">--}}
+                {{--                    <span class="user-ratings pull-right">--}}
+                {{--                        <i class="fa fa-star fa-xs"></i>--}}
+                {{--                        <i class="fa fa-star fa-xs"></i>--}}
+                {{--                        <i class="far fa-star fa-xs"></i>--}}
+                {{--                        <i class="far fa-star fa-xs"></i>--}}
+                {{--                        <i class="far fa-star fa-xs"></i>--}}
+                {{--                    </span>--}}
+                {{--                </div>--}}
             </div>
         </div>
     </div>
     <div class="recipe-buttons">
         <a href="javascript:void(0);"
-           title="Add to favorites" wire:click="favourite"><i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i></a>
+           title="Add to favorites"
+           wire:click="favourite"><i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i></a>
         <a href="javascript:void(0);"
            title="Add Comment"><i class="fa fa-comment"></i></a>
-        <a data-toggle="modal"  href="javascript:void(0);" data-target="#popup-social-{{ $recipe->slug }}" title="Share">
+        <a data-toggle="modal" href="javascript:void(0);" data-target="#popup-social-{{ $recipe->slug }}" title="Share">
             <i class="fa fa-share"></i>
         </a>
     </div>

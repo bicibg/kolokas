@@ -27,6 +27,8 @@ class CreateProfilesTable extends Migration
             $table->string('pinterest')->nullable();
             $table->string('twitter')->nullable();
             $table->text('info')->nullable();
+            $table->boolean('is_pro')->default(false);
+            $table->boolean('is_restaurant')->default(false);
             $table->timestamps();
         });
     }

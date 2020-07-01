@@ -11,7 +11,7 @@ class RecipeSeeder extends Seeder
      */
     public function run()
     {
-        $users = \App\User::all();
+        $users = \App\Models\User::all();
         foreach ($users as $user) {
             $recipes = factory(\App\Recipe::class, random_int(1, 10))->create([
                 'user_id' => $user->id,
@@ -24,7 +24,7 @@ class RecipeSeeder extends Seeder
                         'recipe_id' => $recipe->id
                     ]);
                 }
-                foreach (\App\Category::all()->random(rand(1,4)) as $category) {
+                foreach (\App\Models\Category::all()->random(rand(1,4)) as $category) {
                     $recipe->categories()->attach($category);
                 }
             }

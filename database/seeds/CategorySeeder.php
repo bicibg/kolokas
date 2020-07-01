@@ -47,7 +47,7 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $cat) {
-            \App\Category::create([
+            \App\Models\Category::create([
                 'name' => $cat
             ]);
         }

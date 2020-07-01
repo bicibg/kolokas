@@ -1,7 +1,9 @@
 <div id="recipeCarousel" class="carousel slide">
     <ol class="carousel-indicators">
         @foreach($recipe->images as $image)
-            <li data-target="#recipeCarousel" data-slide-to="{{ $loop->index }}" class="{{ $image->main ? "active" : "" }}"></li>
+            <li data-target="#recipeCarousel"
+                data-slide-to="{{ $loop->index }}"
+                class="{{ $image->main ? "active" : "" }}"></li>
         @endforeach
     </ol>
     <div class="carousel-inner">

@@ -4,7 +4,8 @@
 namespace App\Traits;
 
 
-use App\Visit;
+use App\Models\Visit;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * Trait Visitable
@@ -26,7 +27,15 @@ trait Visitable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return bool
+     */
+    public function isVisited()
+    {
+        return !!$this->visits->where('session_id', request()->getSession()->getId())->count();
+    }
+
+    /**
+     * @return MorphMany
      */
     public function visits()
     {
@@ -47,13 +56,5 @@ trait Visitable
     public function getIsVisitedAttribute()
     {
         return $this->isVisited();
-    }
-
-    /**
-     * @return bool
-     */
-    public function isVisited()
-    {
-        return !!$this->visits->where('session_id', request()->getSession()->getId())->count();
     }
 }

@@ -25,7 +25,10 @@
                                         {{ 0 }} {{ \Illuminate\Support\Str::plural('comment', 0) }}
                                     </span>
                                 </a>
-                                <a data-toggle="modal"  href="javascript:void(0);" data-target="#popup-social-{{ $recipe->slug }}" title="Share">
+                                <a data-toggle="modal"
+                                   href="javascript:void(0);"
+                                   data-target="#popup-social-{{ $recipe->slug }}"
+                                   title="Share">
                                     <i class="fa fa-share"></i>
                                     <span class="d-inline-block">
                                         Share

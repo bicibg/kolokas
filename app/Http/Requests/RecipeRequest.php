@@ -53,7 +53,7 @@ class RecipeRequest extends FormRequest
     {
         return [
             'title.required' => 'A title is required',
-            'title.unique'  => 'Looks like you already have a recipe with this title',
+            'title.unique' => 'Looks like you already have a recipe with this title',
             'prep_time' => 'An estimated preparation time is required',
             'cook_time' => 'An estimated cooking time is required',
             'servings' => 'We need to know the serving size for your recipe',

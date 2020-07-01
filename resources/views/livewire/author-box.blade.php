@@ -9,7 +9,7 @@
     <div class="recipe-meta text-center">
         @php
             $comments = rand(0, 50);
-            $recipes = rand(1, 10);
+            $recipes = rand(1, 10)
         @endphp
         <span><i
                 class="fa fa-spoon"></i> {{ $recipes }} {{ \Illuminate\Support\Str::plural('recipe', $recipes) }}</span>

@@ -11,15 +11,15 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = factory(\App\User::class)->create([
+        $user = factory(\App\Models\User::class)->create([
             'email' => 'bugraergin@gmail.com',
             'password' => bcrypt('123456789'),
         ]);
-        factory(\App\Profile::class)->create([
+        factory(\App\Models\Profile::class)->create([
             'email' => $user->email,
             'name' => 'Bugra Ergin',
             'user_id' => $user->id,
         ]);
-        factory(\App\Profile::class, 30)->create();
+        factory(\App\Models\Profile::class, 30)->create();
     }
 }

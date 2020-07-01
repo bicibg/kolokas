@@ -31,7 +31,8 @@ function saveRandomImage(string $path, int $width = 640, int $height = 480)
     return $isGenerated ? $path : false;
 }
 
-function randKey($length = 10) {
+function randKey($length = 10)
+{
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';

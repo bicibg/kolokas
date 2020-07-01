@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Profile;
+use App\Models\Profile;
 use Livewire\Component;
 
 class AuthorBox extends Component

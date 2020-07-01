@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\RecordVisits;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,9 @@ Route::name('recipe.')->group(function () {
     Route::post('/', 'RecipeController@store')->name('store');
     Route::get('/recipes', 'RecipeController@index')->name('index');
 
-    Route::middleware(\App\Http\Middleware\RecordVisits::class)->group(function () {
+    Route::middleware(RecordVisits::class)->group(function () {
         Route::get('/recipes/{recipe}', 'RecipeController@show')->name('show');
     });
-
 });
 
 
