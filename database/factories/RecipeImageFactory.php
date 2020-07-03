@@ -5,10 +5,10 @@
 use Faker\Generator as Faker;
 
 
-$factory->define(\App\RecipeImage::class, function (Faker $faker, $attr = []) {
+$factory->define(\App\Models\RecipeImage::class, function (Faker $faker, $attr = []) {
     return [
         'main' => true,
-        'recipe_id' => $attr['recipe_id'] ?? factory(\App\Recipe::class)->create(),
+        'recipe_id' => $attr['recipe_id'] ?? factory(\App\Models\Recipe::class)->create(),
         'url' => $faker->imageUrl(640, 480, 'food', true),
     ];
 });

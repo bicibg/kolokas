@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Http\Requests\RecipeRequest;
-use App\Recipe;
+use App\Models\Category;
+use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
@@ -73,9 +74,6 @@ class RecipeController extends Controller
     {
         if ($request->hasFile('main_image')) {
             DB::transaction(function () use ($request) {
-                $allowedfileExtension = ['jpg', 'png'];
-                $photos = $request->file('images');
-                $mainPhoto = $request->file('main_image');
                 $recipe = Recipe::create([
                     'title' => $request->get('title'),
                     'description' => $request->get('description'),
@@ -88,30 +86,41 @@ class RecipeController extends Controller
                     'user_id' => auth()->id(),
                 ]);
 
+                foreach($request->get('categories') as $category){
+                    $recipe->categories()->attach($category);
+                }
+
+                $allowedfileExtension = ['jpg', 'png'];
+                $mainPhoto = $request->file('main_image');
                 //main photo
                 $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
                 $extension = $mainPhoto->getClientOriginalExtension();
                 $check = in_array($extension, $allowedfileExtension);
                 if ($check) {
-                    if ($mainPhoto->store(storage_path('images/recipes'))) {
+                    $filename .= '.' . $extension;
+                    if (Storage::putFileAs('public/images/recipes/', $mainPhoto, $filename)) {
                         $recipe->images()->create([
-                            'url' => $filename,
-                            'main' => true
+                            'url' => 'images/recipes/' . $filename,
+                            'main' => 1
                         ]);
                     }
                 }
 
                 // other photos
-                foreach ($photos as $file) {
-                    $filename = $recipe->id . '_' . $file->getClientOriginalName() . '_' . uniqid();
-                    $extension = $file->getClientOriginalExtension();
-                    $check = in_array($extension, $allowedfileExtension);
-                    if ($check) {
-                        if ($file->store(storage_path('images/recipes'))) {
-                            $recipe->images()->create([
-                                'url' => $filename,
-                                'main' => false
-                            ]);
+                if ($request->hasFile('images')) {
+                    $photos = $request->file('images');
+                    foreach ($photos as $file) {
+                        $filename = $recipe->id . '_' . $file->getClientOriginalName() . '_' . uniqid();
+                        $extension = $file->getClientOriginalExtension();
+                        $check = in_array($extension, $allowedfileExtension);
+                        if ($check) {
+                            $filename .= '.' . $extension;
+                            if (Storage::putFileAs('public/images/recipes/', $file, $filename)) {
+                                $recipe->images()->create([
+                                    'url' => 'images/recipes/' . $filename,
+                                    'main' => 0
+                                ]);
+                            }
                         }
                     }
                 }

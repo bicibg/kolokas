@@ -11,10 +11,10 @@
             $comments = rand(0, 50);
             $recipes = rand(1, 10)
         @endphp
-        <span><i
-                class="fa fa-spoon"></i> {{ $recipes }} {{ \Illuminate\Support\Str::plural('recipe', $recipes) }}</span>
-        <span><i
-                class="fa fa-comment-o"></i> {{ $comments }} {{ \Illuminate\Support\Str::plural('comment', $comments) }}</span>
+        <span>
+            <i class="fa fa-spoon"></i>
+            {{ $recipes }} {{ \Illuminate\Support\Str::plural('recipe', $recipes) }}
+        </span>
     </div>
     <div class="recipe-content">
         <div class="author-details">

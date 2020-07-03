@@ -1,11 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="top:40px;">
     <div class="container-fluid justify-content-center">
-        <a class="navbar-brand" href="{{ route('home') }}"><i class="fa fa-cutlery"
-                                                              aria-hidden="true"></i> {{ strtoupper(config('app.name', 'Kolokas')) }}
+        <a class="navbar-brand h-100" href="{{ route('home') }}" style="height:120%">
+{{--            <i class="fa fa-cutlery" aria-hidden="true"></i>--}}
+{{--            {{ strtoupper(config('app.name', 'Kolokas')) }}--}}
+            <img src="{{ asset('storage/images/generic/logo.png') }}" class="h-100">
         </a>
-        <span class="position-absolute" style="left:200px;">
-            Authentic recipes of Cyprus
-        </span>
+{{--        <span class="position-absolute" style="left:200px;">--}}
+{{--            {{ __('nav.Authentic recipes of Cyprus') }}--}}
+{{--        </span>--}}
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

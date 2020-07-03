@@ -35,5 +35,5 @@ Route::post('/profile/edit', 'ProfileController@edit')->name('profile.update');
 
 Route::get('/favourite-recipes', 'UsersController@favourites')->name('favourites');
 
-
+Route::get('/{locale}', 'LocalizationController@switchLang')->name('locale');
 //Route::get('/author/{user}', 'RecipeController@myIndex')->name('recipe.my-index');

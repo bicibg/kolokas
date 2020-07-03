@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Recipe::class, function (Faker $faker, $attr = []) {
+$factory->define(\App\Models\Recipe::class, function (Faker $faker, $attr = []) {
     $ingredients = '';
     for ($x = 0; $x < $faker->numberBetween(5, 20); $x++) {
         $ingredients .= $faker->sentence($faker->numberBetween(1, 3)) . "\r\n";

@@ -15,7 +15,7 @@ class CreateRecipeImagesTable extends Migration
     {
         Schema::create('recipe_images', function (Blueprint $table) {
             $table->id();
-            $table->boolean('main')->default(true);
+            $table->boolean('main')->default(false);
             $table->foreignId('recipe_id');
             $table->string('url');
             $table->timestamps();

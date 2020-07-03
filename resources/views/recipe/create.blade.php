@@ -44,7 +44,7 @@
                                     <label class="col-form-label" for="main_image">Main Photo:</label>
                                 </div>
                                 <div class="col-md-10">
-                                    <input type="file" class="bg-none border-0 form-control" name="main_image"
+                                    <input type="file" class="bg-none border-0 form-control" name="main_image" value="{{ old('main_image') }}"
                                            id="main_image"/>
                                     <small id="titleHelp" class="footnote form-text text-muted font-italic">
                                         This will be the main image for your recipe
@@ -75,7 +75,23 @@
                                         description about this recipe</small>
                                 </div>
                             </div>
-
+                            <div class="form-row mb-2">
+                                <div class="col-md-2">
+                                    <label class="col-form-label" for="categories">Categories:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <select class="categories-picker"
+                                            multiple
+                                            name="categories[]"
+                                            id="categories">
+                                        @foreach(\App\Models\Category::all() as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <small id="descriptionHelp" class="footnote form-text text-muted font-italic">You
+                                        can select multiple categories.</small>
+                                </div>
+                            </div>
                             <div class="form-row mb-2">
                                 <div class="col-md-2">
                                     <label class="col-form-label" for="prepTime">Prep Time:</label>
@@ -113,8 +129,7 @@
                                 <div class="col-md-10">
                                     <textarea name="ingredients" id="ingredients" cols="30" rows="10"
                                               class="form-control"
-                                              placeholder="Enter one ingredient per line.">{{ old('ingredients') }}
-                                    </textarea>
+                                              placeholder="Enter one ingredient per line.">{{ old('ingredients') }}</textarea>
                                 </div>
                             </div>
                             <div class="form-row mb-2">
@@ -124,8 +139,7 @@
                                 <div class="col-md-10">
                                     <textarea name="instructions" id="instructions" cols="30" rows="10"
                                               class="form-control"
-                                              placeholder="Add all of the cooking instructions, one per line.">{{ old('instructions') }}
-                                    </textarea>
+                                              placeholder="Add all of the cooking instructions, one per line.">{{ old('instructions') }}</textarea>
                                 </div>
                             </div>
                             <div class="form-row mb-2">
@@ -164,7 +178,7 @@
                                             phone, email
                                             or mail regarding your submission.</p>
                                         <p>
-                                            <input type="checkbox" class="form-check-input" id="agreement"
+                                            <input type="checkbox" class="form-check-input" id="agreement" @if(old('agreement')) checked="checked" @endif
                                                    name="agreement">
                                             <label class="form-check-label" for="agreement"> &nbsp; I agree to the above
                                                 and

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Recipe;
+use App\Models\Recipe;
 use Livewire\Component;
 
 class Favourite extends Component

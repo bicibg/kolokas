@@ -10,9 +10,27 @@
                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                 </ul>
                 <ul class="topbar-nav top-contact-info topbar-right">
-                    <li><a class="login_button font-weight-bold" id="show_login"
-                           href="{{ route('recipe.create') }}"><i
-                                class="fa fa-plus-square"></i> Submit Recipe</a></li>
+                    <li>
+                        <a class="login_button font-weight-bold" id="show_login" href="{{ route('recipe.create') }}">
+                            <i class="fa fa-plus-square"></i> Submit Recipe
+                        </a>
+                    </li>
+                    <li>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <i class="fas fa-globe"></i>
+                            {{ config()->get('app.languages')[app()->getLocale()] }}
+                            <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @foreach(config()->get('app.languages') as $key => $lang)
+                                @if ($key !== app()->getLocale())
+                                    <a class="dropdown-item" href="{{ route('locale', $key) }}">{{ $lang }}</a>
+                                @endif
+                            @endforeach
+                        </div>
+                    </li>
                     @guest
                         <li><a class="login_button" id="show_login"
                                href="{{ route('login') }}"><i

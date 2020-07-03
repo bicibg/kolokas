@@ -18,7 +18,7 @@ class LocalUrl implements CastsAttributes
      */
     public function get($model, $key, $value, $attributes)
     {
-        return asset($value);
+        return asset('storage/' . $value);
     }
 
     /**

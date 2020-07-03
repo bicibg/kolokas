@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RecipeImage extends Model
 {
-    protected $fillable = ['url'];
+    protected $fillable = ['url', 'main'];
 
     protected $casts = [
         'url' => LocalUrl::class

@@ -132,6 +132,6 @@ class Recipe extends Model
 
     public function categories()
     {
-        return $this->belongsToMany('App\Models\Category');
+        return $this->belongsToMany('App\Models\Category')->withTimestamps();;
     }
 }

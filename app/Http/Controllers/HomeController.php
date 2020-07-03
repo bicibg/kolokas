@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Profile;
-use App\Recipe;
+use App\Models\Recipe;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
