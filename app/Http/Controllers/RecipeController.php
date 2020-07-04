@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RecipeRequest;
+use App\Http\Requests\RecipeCreateRequest;
+use App\Http\Requests\RecipeUpdateRequest;
 use App\Models\Category;
 use App\Models\Recipe;
 use App\Models\User;
@@ -67,10 +68,10 @@ class RecipeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  RecipeCreateRequest  $request
      * @return RedirectResponse
      */
-    public function store(RecipeRequest $request)
+    public function store(RecipeCreateRequest $request)
     {
         if ($request->hasFile('main_image')) {
             DB::transaction(function () use ($request) {
@@ -86,7 +87,7 @@ class RecipeController extends Controller
                     'user_id' => auth()->id(),
                 ]);
 
-                foreach($request->get('categories') as $category){
+                foreach ($request->get('categories') as $category) {
                     $recipe->categories()->attach($category);
                 }
 
@@ -147,27 +148,38 @@ class RecipeController extends Controller
         return view('recipe.show', compact('recipe', 'youMayAlsoLike'));
     }
 
+    public function myRecipes()
+    {
+        $recipes = auth()->user()->recipes();
+        $published = $recipes->wherePublished(false)->get();
+
+        $pending = $recipes->wherePublished(false)->get();
+        return view('recipe.my-index', compact('published', 'pending'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  Recipe  $recipe
-     * @return Response
+     * @return void|Response
      */
     public function edit(Recipe $recipe)
     {
-        //
+        if (!$recipe->author->is(auth()->user())) {
+            abort(403, 'You are not allowed to edit someone else\'s recipe');
+        }
+        return view('recipe.edit', compact('recipe'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
+     * @param  RecipeUpdateRequest  $request
      * @param  Recipe  $recipe
-     * @return Response
+     * @return void
      */
-    public function update(Request $request, Recipe $recipe)
+    public function update(RecipeUpdateRequest $request, Recipe $recipe)
     {
-        //
     }
 
     /**

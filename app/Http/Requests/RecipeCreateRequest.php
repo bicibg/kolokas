@@ -11,7 +11,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class RecipeRequest extends FormRequest
+class RecipeCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -37,7 +37,9 @@ class RecipeRequest extends FormRequest
                     $query->where('user_id', auth()->user()->id);
                 })
             ],
-            'main_image' => 'required',
+            'main_image' => 'required|image|mimes:jpeg,jpg,png',
+            'images' => 'array|max:5',
+            'images.*' => 'image|mimes:png,jpeg,jpg|max:8000',
             'description' => 'max:2000',
             'categories' => 'required',
             'ingredients' => 'required',

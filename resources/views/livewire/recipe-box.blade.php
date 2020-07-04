@@ -2,9 +2,21 @@
     <div class="recipe-img">
         <img alt="{{ $recipe->title }}" src="{{ $recipe->mainImage->url }}"
              height="266" width="400">
-        <a href="{{ $recipe->url }}">
-            <div class="hover-button">View Recipe</div>
-        </a>
+
+
+        @if ($recipe->author->is(auth()->user()))
+            <a href="{{ route('recipe.edit', $recipe) }}">
+                <div class="hover-button hover-button-first">Edit Recipe</div>
+            </a>
+        <div class="clearfix"></div>
+            <a href="{{ $recipe->url }}">
+                <div class="hover-button hover-button-second">View Recipe</div>
+            </a>
+        @else
+            <a href="{{ $recipe->url }}">
+                <div class="hover-button">View Recipe</div>
+            </a>
+        @endif
     </div>
     <div class="recipe-meta text-center">
         <span><i class="fa fa-heart"></i> {{ $recipe->favourites->count() }} {{ \Illuminate\Support\Str::plural('like', $recipe->favourites->count()) }}</span>

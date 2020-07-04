@@ -11472,6 +11472,12 @@ img {
   vertical-align: middle;
 }
 
+.fa-cutlery,
+.fa-clock {
+  color: #ff9638;
+  margin-right: 2px;
+}
+
 ::-moz-selection {
   color: #fff;
   text-shadow: none;
@@ -11511,6 +11517,37 @@ img {
   background-color: #000000;
 }
 
+.image-checkbox {
+  cursor: pointer;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 4px solid transparent;
+  margin-bottom: 0;
+  outline: 0;
+}
+
+.image-checkbox input[type=checkbox] {
+  display: none;
+}
+
+.image-checkbox-checked {
+  border-color: #ff9638;
+}
+
+.image-checkbox .fa {
+  position: absolute;
+  color: #ff9638;
+  background-color: #fff;
+  padding: 10px;
+  top: 0;
+  right: 0;
+}
+
+.image-checkbox-checked .fa {
+  display: block !important;
+}
+
 .btn-base {
   padding: 10px;
   color: #fff;
@@ -11520,7 +11557,7 @@ img {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .input-group-text {
@@ -11555,11 +11592,9 @@ img {
   background-color: rgba(255, 150, 56, 0.82);
   color: #fff;
   font-weight: 500;
-  font-size: 16px;
   text-transform: uppercase;
   visibility: hidden;
   position: absolute;
-  top: 50%;
   left: 50%;
   padding: 8px;
   width: 100px;
@@ -11568,15 +11603,19 @@ img {
   display: inline-block;
   transform: translate(-50%, -50%);
   font-size: 13px;
+  transition: 0.5s;
+  top: 50%;
+  bottom: unset;
+}
+
+.hover-button-second {
+  top: unset;
+  bottom: 50% !important;
 }
 
 .hover-button:hover {
   background-color: #ff9638;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
-}
-
-.hover-button {
-  transition: 0.5s;
 }
 
 .red {
@@ -11632,13 +11671,29 @@ img {
      object-fit: cover;
 }
 
+.recipe-img:hover .hover-button:not(.hover-button-first, .hover-button-second),
+.recipe-img-list:hover .hover-button:not(.hover-button-first, .hover-button-second) {
+  top: 50%;
+}
+
 .recipe-img:hover .hover-button,
 .recipe-img-list:hover .hover-button {
   opacity: 1;
   visibility: visible;
   margin-bottom: 0;
-  top: 50%;
   left: 50%;
+}
+
+.recipe-img:hover .hover-button-first,
+.recipe-img-list:hover .hover-button-first {
+  top: 30% !important;
+  bottom: unset;
+}
+
+.recipe-img:hover .hover-button-second,
+.recipe-img-list:hover .hover-button-second {
+  top: unset;
+  bottom: 30% !important;
 }
 
 .recipe-img img {
@@ -12585,6 +12640,10 @@ select.input-lg {
        13. Kolokas Form
 =================================
 */
+
+.kolokas-form img {
+  height: 100px;
+}
 
 .kolokas-form .header h2 {
   font-family: "PT Serif", serif;
