@@ -11434,9 +11434,10 @@ select.selectpicker {
 7.  Author details
 8.  Recipe Create
 9.  Search Box
-10. Print
-11. Popup
-12. Kolokas Form
+10. Recipe Page
+11. Print
+12. Popup
+13. Kolokas Form
  */
 
 /*=================================*/
@@ -11859,6 +11860,8 @@ img {
 .navbar .dropdown-menu {
   margin: 0;
   border-radius: 4px;
+  max-height: 50vh;
+  overflow-y: auto;
 }
 
 @media only screen and (max-width: 992px) {
@@ -12244,7 +12247,7 @@ select.input-lg {
 
 /*
 =================================
-       9. Recipe Page
+       10. Recipe Page
 =================================
 */
 
@@ -12253,9 +12256,10 @@ select.input-lg {
   /* Print Button */
 }
 
-.single-post .ingredients-list {
+.single-post .ingredients-list,
+.single-post .instructions {
   background: #F9F9F9;
-  padding: 30px;
+  padding: 30px 5px;
   border-top: 1px solid #ff9638;
 }
 
@@ -12356,6 +12360,10 @@ select.input-lg {
   content: counter(li-counter);
   counter-increment: li-counter;
   cursor: default;
+}
+
+.single-post .custom-control-label {
+  line-height: 23px;
 }
 
 .single-post .author-data {
@@ -12470,7 +12478,7 @@ select.input-lg {
 
 /*
 =================================
-       10.  Print
+       11.  Print
 =================================
 */
 
@@ -12505,7 +12513,7 @@ select.input-lg {
 
 /*
 =================================
-       11. Popup
+       12. Popup
 =================================
 */
 
@@ -12574,7 +12582,7 @@ select.input-lg {
 
 /*
 =================================
-       12.
+       13. Kolokas Form
 =================================
 */
 

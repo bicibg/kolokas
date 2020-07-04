@@ -80,7 +80,7 @@
                                     <label class="col-form-label" for="categories">Categories:</label>
                                 </div>
                                 <div class="col-md-10">
-                                    <select class="categories-picker"
+                                    <select class="categories-picker form-control"
                                             multiple
                                             name="categories[]"
                                             id="categories">

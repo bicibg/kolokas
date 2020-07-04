@@ -140,11 +140,11 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        $othersYouMaylike = Recipe::with('categories')->whereHas('categories', function ($query) use ($recipe) {
+        $youMayAlsoLike = Recipe::with('categories')->whereHas('categories', function ($query) use ($recipe) {
             $query->whereIn('category_recipe.category_id',
                 $recipe->categories()->pluck('category_recipe.category_id')); // use whereIn
         })->limit(4)->get();
-        return view('recipe.show', compact('recipe', 'othersYouMaylike'));
+        return view('recipe.show', compact('recipe', 'youMayAlsoLike'));
     }
 
     /**
