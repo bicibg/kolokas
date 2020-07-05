@@ -115,11 +115,6 @@ class Recipe extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
-    public function getFormattedIngredientsAttribute($value)
-    {
-        return ucfirst($value);
-    }
-
     public function images()
     {
         return $this->hasMany('App\Models\RecipeImage');

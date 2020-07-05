@@ -65,6 +65,26 @@ class RecipeController extends Controller
         return view('recipe.index', compact('recipes', 'count', 'categories'));
     }
 
+    public function favourites(Request $request)
+    {
+        $recipes = auth()->user()->favourites();
+
+        if (!empty($request->get('s'))) {
+            $searchTerm = Str::lower($request->get('s'));
+            $recipes->where('title', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+        }
+        if ($request->get('c')) {
+            $recipes->whereHas('categories', function ($q) use ($request) {
+                return $q->whereCategoryId($request->get('c'));
+            });
+        }
+        $count = $recipes->count();
+        $recipes = $recipes->paginate(16);
+        $categories = Category::all();
+        return view('recipe.fav-index', compact('recipes', 'count', 'categories'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -73,60 +93,58 @@ class RecipeController extends Controller
      */
     public function store(RecipeCreateRequest $request)
     {
-        if ($request->hasFile('main_image')) {
-            DB::transaction(function () use ($request) {
-                $recipe = Recipe::create([
-                    'title' => $request->get('title'),
-                    'description' => $request->get('description'),
-                    'ingredients' => $request->get('ingredients'),
-                    'instructions' => $request->get('instructions'),
-                    'notes' => $request->get('notes'),
-                    'prep_time' => $request->get('prep_time'),
-                    'cook_time' => $request->get('cook_time'),
-                    'servings' => $request->get('servings'),
-                    'user_id' => auth()->id(),
-                ]);
+        DB::transaction(function () use ($request) {
+            $recipe = Recipe::create([
+                'title' => $request->get('title'),
+                'description' => $request->get('description'),
+                'ingredients' => $request->get('ingredients'),
+                'instructions' => $request->get('instructions'),
+                'notes' => $request->get('notes'),
+                'prep_time' => $request->get('prep_time'),
+                'cook_time' => $request->get('cook_time'),
+                'servings' => $request->get('servings'),
+                'user_id' => auth()->id(),
+            ]);
 
-                foreach ($request->get('categories') as $category) {
-                    $recipe->categories()->attach($category);
+            foreach ($request->get('categories') as $category) {
+                $recipe->categories()->attach($category);
+            }
+
+            $allowedfileExtension = ['jpg', 'png'];
+            $mainPhoto = $request->file('main_image');
+            //main photo
+            $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
+            $extension = $mainPhoto->getClientOriginalExtension();
+            $check = in_array($extension, $allowedfileExtension);
+            if ($check) {
+                $filename .= '.' . $extension;
+                if (Storage::putFileAs('public/images/recipes/', $mainPhoto, $filename)) {
+                    $recipe->images()->create([
+                        'url' => 'images/recipes/' . $filename,
+                        'main' => 1
+                    ]);
                 }
+            }
 
-                $allowedfileExtension = ['jpg', 'png'];
-                $mainPhoto = $request->file('main_image');
-                //main photo
-                $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
-                $extension = $mainPhoto->getClientOriginalExtension();
-                $check = in_array($extension, $allowedfileExtension);
-                if ($check) {
-                    $filename .= '.' . $extension;
-                    if (Storage::putFileAs('public/images/recipes/', $mainPhoto, $filename)) {
-                        $recipe->images()->create([
-                            'url' => 'images/recipes/' . $filename,
-                            'main' => 1
-                        ]);
-                    }
-                }
-
-                // other photos
-                if ($request->hasFile('images')) {
-                    $photos = $request->file('images');
-                    foreach ($photos as $file) {
-                        $filename = $recipe->id . '_' . $file->getClientOriginalName() . '_' . uniqid();
-                        $extension = $file->getClientOriginalExtension();
-                        $check = in_array($extension, $allowedfileExtension);
-                        if ($check) {
-                            $filename .= '.' . $extension;
-                            if (Storage::putFileAs('public/images/recipes/', $file, $filename)) {
-                                $recipe->images()->create([
-                                    'url' => 'images/recipes/' . $filename,
-                                    'main' => 0
-                                ]);
-                            }
+            // other photos
+            if ($request->hasFile('images')) {
+                $photos = $request->file('images');
+                foreach ($photos as $file) {
+                    $filename = $recipe->id . '_' . $file->getClientOriginalName() . '_' . uniqid();
+                    $extension = $file->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtension);
+                    if ($check) {
+                        $filename .= '.' . $extension;
+                        if (Storage::putFileAs('public/images/recipes/', $file, $filename)) {
+                            $recipe->images()->create([
+                                'url' => 'images/recipes/' . $filename,
+                                'main' => 0
+                            ]);
                         }
                     }
                 }
-            });
-        }
+            }
+        });
 
         return redirect()->to(route('recipe.index'))->with([
             'flash' => 'Your recipe was submitted successfully. It will be reviewed as soon as possible. We will let you know of the outcome'
@@ -176,10 +194,87 @@ class RecipeController extends Controller
      *
      * @param  RecipeUpdateRequest  $request
      * @param  Recipe  $recipe
-     * @return void
+     * @return RedirectResponse
      */
     public function update(RecipeUpdateRequest $request, Recipe $recipe)
     {
+        if (!$recipe->author->is(auth()->user())) {
+            abort(403, 'You are not allowed to edit someone else\'s recipe');
+        }
+        DB::transaction(function () use ($request, $recipe) {
+            $data = [
+                'description' => $request->get('description'),
+                'ingredients' => $request->get('ingredients'),
+                'instructions' => $request->get('instructions'),
+                'notes' => $request->get('instructions'),
+                'prep_time' => $request->get('prep_time'),
+                'cook_time' => $request->get('cook_time'),
+                'servings' => $request->get('servings'),
+            ];
+            try {
+                $recipe->update($data);
+
+                $recipe->categories()->detach();
+                foreach ($request->get('categories') as $category) {
+                    $recipe->categories()->attach($category);
+                }
+
+                $allowedfileExtension = ['jpg', 'png'];
+
+                if ($request->hasFile('main_image')) {
+                    $mainPhoto = $request->file('main_image');
+                    //main photo
+                    $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
+                    $extension = $mainPhoto->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtension);
+                    if ($check) {
+                        $filename .= '.' . $extension;
+                        $oldImage = $recipe->images()->whereMain(true)->first();
+                        if (Storage::putFileAs('public/images/recipes/', $mainPhoto, $filename)) {
+                            if (file_exists($oldImage->getAttributes()['url'])) {
+                                Storage::delete($oldImage->getAttributes()['url']);
+                            }
+                            $recipe->images()->whereMain(true)->update([
+                                'url' => 'images/recipes/' . $filename,
+                            ]);
+                        }
+                    }
+                }
+
+                $existing = $recipe->images()->whereMain(false)->pluck('id')->toArray();
+                $toBeDeleted = $recipe->images()->find(array_diff($existing, $request->get('existing_images', [])));
+                // other photos
+                foreach($toBeDeleted as $delete) {
+                    Storage::delete($delete->url);
+                    $delete->delete();
+                }
+
+                if ($request->hasFile('images')) {
+                    $photos = $request->file('images');
+                    foreach ($photos as $file) {
+                        $filename = $recipe->id . '_' . $file->getClientOriginalName() . '_' . uniqid();
+                        $extension = $file->getClientOriginalExtension();
+                        $check = in_array($extension, $allowedfileExtension);
+                        if ($check) {
+                            $filename .= '.' . $extension;
+                            if (Storage::putFileAs('public/images/recipes/', $file, $filename)) {
+                                $recipe->images()->create([
+                                    'url' => 'images/recipes/' . $filename,
+                                    'main' => 0
+                                ]);
+                            }
+                        }
+                    }
+                }
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollBack();
+            }
+        });
+
+        return redirect()->to(route('recipe.edit', $recipe->fresh()))->with([
+            'flash' => 'Your recipe has been updated.'
+        ]);
     }
 
     /**

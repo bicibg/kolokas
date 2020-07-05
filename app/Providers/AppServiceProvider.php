@@ -28,7 +28,8 @@ class AppServiceProvider extends ServiceProvider
             $max = intval($parameters[0]);
             $other_field = $parameters[1];
             $data = $validator->getData();
-            return count($data[$other_field]) + count($value) <= $max;
+            $existingForm = isset($data[$other_field]) ? $data[$other_field] : [];
+            return count($existingForm) + count($value) <= $max;
         }, 'You can have maximum of 5 additional images. Make sure to deselect old ones if you want to replace them.');
     }
 }

@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container pt-5">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-12">
+                <h3 class="section-title">My Recipes</h3>
+            </div>
+        </div>
         @if (!$published->count() && !$pending->count())
             You don't have any recipes yet.
             <a href="{{ route('recipe.create') }}">Create one now.</a>

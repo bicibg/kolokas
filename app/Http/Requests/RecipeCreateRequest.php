@@ -58,6 +58,7 @@ class RecipeCreateRequest extends FormRequest
             'title.required' => 'A title is required',
             'title.unique' => 'Looks like you already have a recipe with this title',
             'main_image' => 'A good quality photo of your creation is crucial and necessary',
+            'images' => 'You can upload maximum of 5 images',
             'categories' => 'A recipe requires at least one category',
             'prep_time' => 'An estimated preparation time is required',
             'cook_time' => 'An estimated cooking time is required',

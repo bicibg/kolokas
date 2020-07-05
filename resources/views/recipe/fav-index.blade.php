@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container pt-5">
-        @include('home.partial.search')
+        @include('home.partial.search', ['action' => route('recipe.favourites')])
         <div class="row justify-content-center text-center">
             <div class="col-md-12">
-                <h3 class="section-title">Recipes</h3>
+                <h3 class="section-title">Favourite Recipes</h3>
             </div>
         </div>
         <div class="row justify-content-center">

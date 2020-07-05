@@ -1,6 +1,6 @@
 <div class="row justify-content-center w-100">
     <div class="col-md-12">
-        <form method="get" class="search-form" action="{{ route('recipe.index') }}">
+        <form method="get" class="search-form" action="{{ $action ?? route('recipe.index') }}">
             <div class="search-box">
                 <div class="row">
                     <div class="col-md-3 col-sm-3 col-xs-6">

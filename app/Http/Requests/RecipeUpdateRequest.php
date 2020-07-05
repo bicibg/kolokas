@@ -33,7 +33,7 @@ class RecipeUpdateRequest extends FormRequest
             'main_image' => 'image|mimes:jpeg,jpg,png',
             'existing_images' => 'array|max:5',
             'existing_images.*' => 'integer',
-            'images' => 'array|total_images_with_existing:5,existing_images|max:5',
+            'images' => 'bail|array|max:5|total_images_with_existing:5,existing_images',
             'images.*' => 'image|mimes:png,jpeg,jpg|max:8000',
             'description' => 'max:2000',
             'categories' => 'required',

@@ -20,6 +20,9 @@ class LocalUrl implements CastsAttributes
     {
         //todo: activate this commented out return value instead
         //return asset('storage/' . $value);
+        if (file_exists('storage/' . $value)) {
+            return asset('storage/' . $value);
+        }
         return $value;
     }
 

@@ -6,8 +6,8 @@
             <div class="col-xs-12 col-md-8">
                 <div class="header text-left">
                     <h2>Edit your recipe</h2>
-                    <p>Enter all relevant information as described under or next to each field. Mandatory fields are
-                        marked with *. Recipes that do not comply with Kolokas.com standards may be rejected.</p>
+                    <p>Make sure to have all relevant information as described under or next to each field. Mandatory fields are
+                        marked with *. Recipes that do not comply with Kolokas.com standards may be removed.</p>
                     <hr>
                 </div>
                 @if(session()->has('message'))
@@ -70,7 +70,8 @@
                                 <div class="col-md-10">
                                     <div class="row">
                                         @foreach($recipe->images as $image)
-                                            <div class="col-md-3">
+                                            @if ($image->main) @continue @endif
+                                            <div class="col-md-2 text-center">
                                                 <label class="image-checkbox">
                                                     <img class="img-thumbnail img-responsive" src="{{ $image->url }}">
                                                     <input name="existing_images[]"
@@ -222,7 +223,7 @@
                                         </p>
                                     </div>
                                     <base-button :role="'submit'">
-                                        {{ __('Submit for review') }}
+                                        {{ __('Update') }}
                                     </base-button>
                                 </div>
                             </div>
