@@ -20,7 +20,7 @@ class RecipeCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -33,6 +33,7 @@ class RecipeCreateRequest extends FormRequest
         return [
             'title' => [
                 'required',
+                'regex:/[^A-Za-zÀ-ȕ0-9 ]+/g',
                 Rule::unique('recipes', 'title')->where(function ($query) {
                     $query->where('user_id', auth()->user()->id);
                 })
@@ -57,6 +58,7 @@ class RecipeCreateRequest extends FormRequest
         return [
             'title.required' => 'A title is required',
             'title.unique' => 'Looks like you already have a recipe with this title',
+            '*.regex' => 'You can only have text and numbers in :attribute field',
             'main_image' => 'A good quality photo of your creation is crucial and necessary',
             'images' => 'You can upload maximum of 5 images',
             'categories' => 'A recipe requires at least one category',

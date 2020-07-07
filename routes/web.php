@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 
 Route::name('recipe.')->group(function () {
@@ -40,4 +41,4 @@ Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::get('/{locale}', 'LocalizationController@switchLang')->name('locale');
-//Route::get('/author/{user}', 'RecipeController@myIndex')->name('recipe.my-index');
+Route::post('password-update', 'ChangePasswordController@store')->name('password.new');
