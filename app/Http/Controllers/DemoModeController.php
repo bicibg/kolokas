@@ -11,12 +11,15 @@ class DemoModeController extends Controller
         return view('demo.index');
     }
 
-    public function enable(Request $request)
+    public function enable()
     {
-        if (!empty(\request()->get('demo-key')) && \request()->get('demo-key') === env('DEMO_KEY')) {
-            return redirect('/demo-activate/' . $request->get('demo-key'));
+        if (!empty(\request()->get('demo-key')) && \request()->get('demo-key') === config('demo.demo_key')) {
+            return redirect(route('home'))
+                ->with(['flash' => 'You have successfully enabled demo mode on Kolokas.com.'])
+                ->withCookie(cookie('demo-activated', \request()->get('demo-key'), 24 * 60));;
         } else {
-            return redirect(route('demo.index'))->with(['flash-error' => 'Demo access key you entered is incorrect. Better check back when Kolokas.com is live.']);
+            return redirect(route('demo.index'))
+                ->with(['flash-error' => 'Demo access key you entered is incorrect. Better check back when Kolokas.com is live.']);
         }
     }
 }
