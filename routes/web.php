@@ -18,9 +18,8 @@ Auth::routes();
 
 Route::get('/demo', 'DemoModeController@index')->name('demo.index');
 Route::post('/demo-enable', 'DemoModeController@enable')->name('demo.enable');
-Route::post('/demo-activate')->name('demo.activate');
 
-Route::demoAccess('/demo-activate');
+Route::demoAccess('/demo-activate/'. env('DEMO_KEY'));
 
 Route::group(['middleware' => 'demoMode'], function () {
     Route::name('recipe.')->group(function () {
