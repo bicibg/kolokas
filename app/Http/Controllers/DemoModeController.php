@@ -15,11 +15,11 @@ class DemoModeController extends Controller
     {
         if (!empty(request()->get('demo-key')) && request()->get('demo-key') === config('demo.demo_key')) {
             return redirect(route('home'))
-                ->with(['flash' => 'You have successfully enabled demo mode on Kolokas.com.'])
+                ->with(['flash' => __('messages.demo.enabled')])
                 ->withCookie(cookie('demo-activated', request()->get('demo-key'), 24 * 60));
         } else {
             return redirect(route('demo.index'))
-                ->with(['flash-error' => 'Demo access key you entered is incorrect. Better check back when Kolokas.com is live.']);
+                ->with(['flash-error' => __('messages.demo.unsuccessful')]);
         }
     }
 }

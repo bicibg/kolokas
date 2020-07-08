@@ -28,6 +28,9 @@
     @include('partials.navbar')
     <main class="py-2">
         <flash message="{{ session('flash') }}"></flash>
+        <flash message="{{ session('flash-error') }}" type="error"></flash>
+        <flash message="{{ session('flash-warning') }}" type="warning"></flash>
+
         @yield('content')
     </main>
 </div>

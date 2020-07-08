@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <form method="post" action="{{ route('password.new') }}">
+                <form method="POST" action="{{ route('password.new') }}">
                     @csrf
                     <div class="justify-content-center form-row">
                         <div class="col-xs-12 col-md-8">
@@ -48,9 +48,9 @@
                                             password</small>
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
-                                        <label for="new_confirm_password">Repeat Password *</label>
-                                        <input class="form-control input-lg" name="new_confirm_password" type="password"
-                                               id="new_confirm_password">
+                                        <label for="new_password_confirmation">Repeat Password *</label>
+                                        <input class="form-control input-lg" name="new_password_confirmation" type="password"
+                                               id="new_password_confirmation">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">Repeat
                                             your new password</small>
                                     </div>

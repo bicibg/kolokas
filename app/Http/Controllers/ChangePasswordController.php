@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Rules\MatchOldPassword;
-use App\User;
-use Illuminate\Contracts\Support\Renderable;
+use App\Http\Requests\PasswordChangeRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordController extends Controller
@@ -24,28 +21,13 @@ class ChangePasswordController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return Renderable
-     */
-    public function index()
-    {
-        return view('changePassword');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
+     * @param  PasswordChangeRequest  $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(PasswordChangeRequest $request)
     {
-        $request->validate([
-            'current_password' => ['required', new MatchOldPassword],
-            'new_password' => ['required'],
-            'new_confirm_password' => ['same:new_password'],
-        ]);
-
         \App\Models\User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
 
-        return redirect()->back()->with(['flash' => 'Your password has been updated.']);
+        return redirect()->back()->with(['flash' => __('messages.password.updated')]);
     }
 }

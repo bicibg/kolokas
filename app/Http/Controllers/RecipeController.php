@@ -148,7 +148,7 @@ class RecipeController extends Controller
         });
 
         return redirect()->to(route('my.index'))->with([
-            'flash' => 'Your recipe was submitted successfully. It will be reviewed as soon as possible. We will let you know of the outcome'
+            'flash' => __('messages.recipe.submitted')
         ]);
     }
 
@@ -180,12 +180,12 @@ class RecipeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Recipe  $recipe
-     * @return void|Response
+     * @return Application|Factory|View|RedirectResponse
      */
     public function edit(Recipe $recipe)
     {
         if (!$recipe->author->is(auth()->user())) {
-            abort(403, 'You are not allowed to edit someone else\'s recipe');
+            return redirect()->back()->with(['flash-error' => __('messages.recipe.edit_not_authorized')]);
         }
         return view('recipe.edit', compact('recipe'));
     }
@@ -200,7 +200,7 @@ class RecipeController extends Controller
     public function update(RecipeUpdateRequest $request, Recipe $recipe)
     {
         if (!$recipe->author->is(auth()->user())) {
-            abort(403, 'You are not allowed to edit someone else\'s recipe');
+            return redirect(route('home'))->with(['flash-error' => __('messages.recipe.edit_not_authorized')]);
         }
         DB::transaction(function () use ($request, $recipe) {
             $data = [
@@ -274,7 +274,7 @@ class RecipeController extends Controller
         });
 
         return redirect()->to(route('recipe.edit', $recipe->fresh()))->with([
-            'flash' => 'Your recipe has been updated.'
+            'flash' => __('messages.recipe.updated')
         ]);
     }
 

@@ -130,9 +130,7 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'new_password.required' => 'A new password is required to change your existing password.',
     ],
 
     /*
