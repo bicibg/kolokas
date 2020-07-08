@@ -74,10 +74,10 @@
                     </div>
                 </li>
                 @guest
-                    <li class="nav-item d-md-none"><a class="login_button" id="show_login"
+                    <li class="nav-item d-md-none"><a class="nav-link login_button" id="show_login"
                                                       href="{{ route('login') }}"><i
                                 class="fa fa-key"></i> Login</a></li>
-                    <li class="nav-item d-md-none"><a class="login_button" id="show_signup"
+                    <li class="nav-item d-md-none"><a class="nav-link login_button" id="show_signup"
                                                       href="{{ route('register') }}"><i
                                 class="fa fa-lock"></i> Create Account</a></li>
                 @else
