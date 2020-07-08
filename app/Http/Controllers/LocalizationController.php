@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
@@ -12,7 +13,7 @@ class LocalizationController extends Controller
     /**
      * @param  Request  $request
      * @param  String  $lang
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function switchLang(Request $request, $lang)
     {

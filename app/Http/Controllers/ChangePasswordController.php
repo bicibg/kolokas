@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
-use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordController extends Controller
 {
@@ -22,7 +24,7 @@ class ChangePasswordController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
@@ -32,7 +34,7 @@ class ChangePasswordController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -42,7 +44,7 @@ class ChangePasswordController extends Controller
             'new_confirm_password' => ['same:new_password'],
         ]);
 
-        \App\Models\User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+        \App\Models\User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
 
         return redirect()->back()->with(['flash' => 'Your password has been updated.']);
     }

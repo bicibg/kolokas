@@ -7,6 +7,7 @@ use App\Http\Requests\RecipeUpdateRequest;
 use App\Models\Category;
 use App\Models\Recipe;
 use App\Models\User;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -146,7 +147,7 @@ class RecipeController extends Controller
             }
         });
 
-        return redirect()->to(route('recipe.index'))->with([
+        return redirect()->to(route('my.index'))->with([
             'flash' => 'Your recipe was submitted successfully. It will be reviewed as soon as possible. We will let you know of the outcome'
         ]);
     }
@@ -244,7 +245,7 @@ class RecipeController extends Controller
                 $existing = $recipe->images()->whereMain(false)->pluck('id')->toArray();
                 $toBeDeleted = $recipe->images()->find(array_diff($existing, $request->get('existing_images', [])));
                 // other photos
-                foreach($toBeDeleted as $delete) {
+                foreach ($toBeDeleted as $delete) {
                     Storage::delete($delete->url);
                     $delete->delete();
                 }
@@ -267,7 +268,7 @@ class RecipeController extends Controller
                     }
                 }
                 DB::commit();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 DB::rollBack();
             }
         });

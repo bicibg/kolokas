@@ -72,7 +72,9 @@
                                         @foreach($recipe->ingredients as $key => $ingredient)
                                             <li>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input no-print" id="ingredient_{{ $key }}">
+                                                    <input type="checkbox"
+                                                           class="custom-control-input no-print"
+                                                           id="ingredient_{{ $key }}">
                                                     <label class="custom-control-label" for="ingredient_{{ $key }}">
                                                         {{ $ingredient }}
                                                     </label>

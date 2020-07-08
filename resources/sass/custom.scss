@@ -102,6 +102,7 @@ img {
   margin-bottom: 0;
   outline: 0;
 }
+
 .image-checkbox input[type="checkbox"] {
   display: none;
 }
@@ -109,6 +110,7 @@ img {
 .image-checkbox-checked {
   border-color: $orange;
 }
+
 .image-checkbox .fa {
   position: absolute;
   color: $orange;
@@ -117,6 +119,7 @@ img {
   top: 0;
   right: 0;
 }
+
 .image-checkbox-checked .fa {
   display: block !important;
 }
@@ -251,7 +254,7 @@ img {
   object-fit: cover;
 }
 
-.recipe-img:hover, .recipe-img-list:hover{
+.recipe-img:hover, .recipe-img-list:hover {
   .hover-button:not(.hover-button-first, .hover-button-second) {
     top: 50%;
   }
@@ -1210,6 +1213,7 @@ select.input-lg {
 .kolokas-form img {
   height: 100px;
 }
+
 .kolokas-form .header h2 {
   font-family: 'PT Serif', serif;
   font-style: normal;

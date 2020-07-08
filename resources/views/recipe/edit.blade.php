@@ -6,7 +6,8 @@
             <div class="col-xs-12 col-md-8">
                 <div class="header text-left">
                     <h2>Edit your recipe</h2>
-                    <p>Make sure to have all relevant information as described under or next to each field. Mandatory fields are
+                    <p>Make sure to have all relevant information as described under or next to each field. Mandatory
+                        fields are
                         marked with *. Recipes that do not comply with Kolokas.com standards may be removed.</p>
                     <hr>
                 </div>

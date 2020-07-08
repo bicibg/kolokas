@@ -37,20 +37,27 @@
                 @csrf
                 <div class="row justify-content-center">
                     <div class="col-md-7 col-sm-12 text-center border-bottom">
-                        <h3 class="section-title">Kolokas.com is currently accessible by invite only for testing purposes. If you don't have an access key, check back later when we are live.</h3>
+                        <h3 class="section-title">Kolokas.com is currently accessible by invite only for testing
+                            purposes. If you don't have an access key, check back later when we are live.</h3>
                     </div>
 
                     <div class="col-md-7 col-sm-12 text-center mt-2 mb-2">
-                        <h5 class="section-title">If you don't have an access key but would like to help testing Kolokas.com before it goes live, you can contact me on
+                        <h5 class="section-title">If you don't have an access key but would like to help testing
+                            Kolokas.com before it goes live, you can contact me on
                             <a href="mailto:bugraergin@gmail.com" target="_blank">bugraergin@gmail.com</a></h5>
                     </div>
-                    
+
                     <div class="col-md-6 col-sm-12">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="key"><i class="fa fa-key"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Demo access key" aria-label="Demo access key" aria-describedby="key" name="demo-key">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Demo access key"
+                                   aria-label="Demo access key"
+                                   aria-describedby="key"
+                                   name="demo-key">
                         </div>
                     </div>
                     <div class="col-md-12">

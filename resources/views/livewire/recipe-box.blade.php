@@ -8,7 +8,7 @@
             <a href="{{ route('recipe.edit', $recipe) }}">
                 <div class="hover-button hover-button-first">Edit Recipe</div>
             </a>
-        <div class="clearfix"></div>
+            <div class="clearfix"></div>
             <a href="{{ $recipe->url }}">
                 <div class="hover-button hover-button-second">View Recipe</div>
             </a>

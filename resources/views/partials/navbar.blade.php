@@ -25,8 +25,9 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('recipe.index') }}">All Recipes</a>
                         <div class="dropdown-divider"></div>
-                    @foreach(\App\Models\Category::all() as $category)
-                            <a class="dropdown-item" href="{{ route('recipe.index') . '?c=' . $category->id }}">{{ $category->name }}</a>
+                        @foreach(\App\Models\Category::all() as $category)
+                            <a class="dropdown-item"
+                               href="{{ route('recipe.index') . '?c=' . $category->id }}">{{ $category->name }}</a>
                         @endforeach
                     </div>
                 </li>

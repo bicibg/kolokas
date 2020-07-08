@@ -33,7 +33,7 @@ class RecipeCreateRequest extends FormRequest
         return [
             'title' => [
                 'required',
-                'regex:/[^A-Za-zÀ-ȕ0-9 ]+/g',
+                'regex:/[^A-Za-zÀ-ȕ0-9 ]+/i',
                 Rule::unique('recipes', 'title')->where(function ($query) {
                     $query->where('user_id', auth()->user()->id);
                 })
