@@ -11424,29 +11424,11 @@ select.selectpicker {
   float: none;
 }
 
-/*======== TABLE OF CONTENT ==========
-1.  Global Style
-2.  Recipe Index
-3.  Top Bar
-4.  Nav Bar
-5.  Carousel
-6.  Content
-7.  Author details
-8.  Recipe Create
-9.  Search Box
-10. Recipe Page
-11. Print
-12. Popup
-13. Kolokas Form
- */
+/*======== TABLE OF CONTENT ========== 1. Global Style 2. Recipe Index 3. Top Bar 4. Nav Bar 5. Carousel 6. Content 7. Author details 8. Recipe Create 9. Search Box 10. Recipe Page 11. Print 12. Popup 13. Kolokas Form */
 
 /*=================================*/
 
-/*
-=================================
-       1.  Global Style
-=================================
-*/
+/* ================================= 1. Global Style ================================= */
 
 * {
   padding: 0;
@@ -11454,15 +11436,18 @@ select.selectpicker {
   box-sizing: border-box;
 }
 
-main {
-  margin-top: 120px;
-}
-
 main > .container {
   max-width: 1400px !important;
 }
 
+html {
+  height: 100%;
+  padding-top: 70px;
+}
+
 body {
+  height: 100%;
+  padding-top: 70px;
   color: #888;
 }
 
@@ -11484,12 +11469,8 @@ img {
   background: #3498db;
 }
 
-::-webkit-selection {
-  color: #fff;
-  text-shadow: none;
-  background: #3498db;
-}
-
+::-moz-selection,
+::-webkit-selection,
 ::selection {
   color: #fff;
   text-shadow: none;
@@ -11514,7 +11495,7 @@ img {
 }
 
 ::-webkit-scrollbar-corner {
-  background-color: #000000;
+  background-color: #000;
 }
 
 .image-checkbox {
@@ -11631,7 +11612,10 @@ img {
   flex: 1;
 }
 
-.bg-none,
+.bg-none {
+  background: none;
+}
+
 .bg-none:hover,
 .bg-none:focus {
   background: none;
@@ -11646,11 +11630,7 @@ img {
 
 /*=================================*/
 
-/*
-=================================
-       2.  Recipe Index
-=================================
-*/
+/* ================================= 2. Recipe Index ================================= */
 
 .recipe-container {
   margin-bottom: 30px;
@@ -11678,7 +11658,10 @@ img {
      object-fit: cover;
 }
 
-.recipe-img:hover .hover-button:not(.hover-button-first, .hover-button-second),
+.recipe-img:hover .hover-button:not(.hover-button-first, .hover-button-second) {
+  top: 50%;
+}
+
 .recipe-img-list:hover .hover-button:not(.hover-button-first, .hover-button-second) {
   top: 50%;
 }
@@ -11732,9 +11715,17 @@ img {
 
 .recipe-content h3 {
   min-height: 71px;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  font-family: "Lora", "PT Serif", serif;
+  font-style: italic;
+  word-wrap: break-word;
 }
 
-.recipe-content h3,
 .single-post .recipe-content h3,
 .item-text h3,
 .main-service h3 {
@@ -11769,11 +11760,17 @@ img {
 
 /*=================================*/
 
-/*
-=================================
-       3.  Top Bar
-=================================
-*/
+/* ================================= 3. Top Bar ================================= */
+
+.fixed-top #first {
+  transition: padding 0.2s ease;
+}
+
+.affix #first {
+  padding-top: 0.2em !important;
+  padding-bottom: 0.2em !important;
+  transition: padding 0.2s linear;
+}
 
 .topbar {
   z-index: 1050;
@@ -11785,26 +11782,11 @@ img {
   height: 40px;
 }
 
-.topbar .container {
-  position: relative;
-}
-
-.topbar-right {
-  float: right;
-}
-
-.topbar-left {
-  float: left;
-}
-
 .topbar-nav {
   margin: 0;
   padding: 0;
   list-style-type: none;
-}
-
-.topbar-nav > li {
-  float: left;
+  display: flex;
 }
 
 .topbar-nav > li > a {
@@ -11834,13 +11816,20 @@ img {
   margin-right: 4px;
 }
 
-.topbar-nav > .active > a,
+.topbar-nav > .active > a {
+  background: #242636;
+}
+
 .topbar-nav > .active > a:hover,
 .topbar-nav > .active > a:focus {
   background: #242636;
 }
 
-.topbar-nav > .disabled > a,
+.topbar-nav > .disabled > a {
+  color: #fff;
+  background: #ff9638;
+}
+
 .topbar-nav > .disabled > a:hover,
 .topbar-nav > .disabled > a:focus {
   color: #fff;
@@ -11848,12 +11837,7 @@ img {
 }
 
 .topbar-nav .dropdown-item.active,
-.topbar-nav .dropdown-item:active {
-  text-decoration: none;
-  color: #fff;
-  background-color: #ff9638;
-}
-
+.topbar-nav .dropdown-item:active,
 .topbar-nav .dropdown-item:focus,
 .topbar-nav .dropdown-item:hover {
   text-decoration: none;
@@ -11868,11 +11852,7 @@ img {
 
 /*=================================*/
 
-/*
-=================================
-       4.  Nav Bar
-=================================
-*/
+/* ================================= 4. Nav Bar ================================= */
 
 .navbar {
   padding-top: 0;
@@ -11896,7 +11876,6 @@ img {
   font-weight: 700;
   font-size: 16px;
   padding: 23px 25px;
-  color: #333;
 }
 
 .navbar-light .navbar-nav .active > .nav-link,
@@ -11906,12 +11885,7 @@ img {
 }
 
 .navbar .dropdown-item.active,
-.navbar .dropdown-item:active {
-  text-decoration: none;
-  color: #fff;
-  background-color: #ff9638;
-}
-
+.navbar .dropdown-item:active,
 .navbar .dropdown-item:focus,
 .navbar .dropdown-item:hover {
   text-decoration: none;
@@ -11927,8 +11901,13 @@ img {
 }
 
 @media only screen and (max-width: 992px) {
+  body {
+    padding-top: 0;
+  }
+
   .navbar {
     padding: 10px 0;
+    top: 0 !important;
   }
 
   .navbar .container-fluid,
@@ -11949,21 +11928,20 @@ img {
     justify-content: space-between !important;
   }
 
-  .navbar-light .navbar-nav .active > .nav-link,
-  .navbar-light .navbar-nav .nav-link.active {
+  .navbar-light .navbar-nav .active > .nav-link {
     border-bottom: 1px solid #ff9638;
   }
 
   .navbar-light .navbar-nav .nav-link {
     padding: 15px 15px;
+  }
+
+  .navbar-light .navbar-nav .nav-link.active {
+    border-bottom: 1px solid #ff9638;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  body {
-    padding-top: 61px;
-  }
-
   .navbar {
     padding: 10px 0;
   }
@@ -11986,21 +11964,20 @@ img {
     justify-content: space-between !important;
   }
 
-  .navbar-light .navbar-nav .active > .nav-link,
-  .navbar-light .navbar-nav .nav-link.active {
+  .navbar-light .navbar-nav .active > .nav-link {
     border-bottom: 1px solid #ff9638;
   }
 
   .navbar-light .navbar-nav .nav-link {
     padding: 15px 15px;
+  }
+
+  .navbar-light .navbar-nav .nav-link.active {
+    border-bottom: 1px solid #ff9638;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  body {
-    padding-top: 61px;
-  }
-
   .navbar {
     padding: 10px 0;
   }
@@ -12023,23 +12000,22 @@ img {
     justify-content: space-between !important;
   }
 
-  .navbar-light .navbar-nav .active > .nav-link,
-  .navbar-light .navbar-nav .nav-link.active {
+  .navbar-light .navbar-nav .active > .nav-link {
     border-bottom: 1px solid #ff9638;
   }
 
   .navbar-light .navbar-nav .nav-link {
     padding: 15px 15px;
+  }
+
+  .navbar-light .navbar-nav .nav-link.active {
+    border-bottom: 1px solid #ff9638;
   }
 }
 
 /*=================================*/
 
-/*
-=================================
-       5. Carousel
-=================================
-*/
+/* ================================= 5. Carousel ================================= */
 
 .carousel-item img {
   -o-object-fit: cover;
@@ -12095,11 +12071,7 @@ img {
 
 /*=================================*/
 
-/*
-=================================
-       6.  Content
-=================================
-*/
+/* ================================= 6. Content ================================= */
 
 #content,
 #most-rated,
@@ -12189,11 +12161,7 @@ img {
 
 /*=================================*/
 
-/*
-=================================
-       7. Author details
-=================================
-*/
+/* ================================= 7. Author details ================================= */
 
 .author-details {
   position: relative;
@@ -12219,11 +12187,7 @@ img {
 
 /*=================================*/
 
-/*
-=================================
-       8. Recipe Create
-=================================
-*/
+/* ================================= 8. Recipe Create ================================= */
 
 .footnote {
   font-size: 0.9rem;
@@ -12235,11 +12199,7 @@ img {
 
 /*=================================*/
 
-/*
-=================================
-        9. Search Box
-=================================
-*/
+/* ================================= 9. Search Box ================================= */
 
 .search-box {
   position: relative;
@@ -12307,11 +12267,7 @@ select.input-lg {
 
 /*=================================*/
 
-/*
-=================================
-       10. Recipe Page
-=================================
-*/
+/* ================================= 10. Recipe Page ================================= */
 
 .single-post {
   margin-bottom: 20px;
@@ -12320,7 +12276,7 @@ select.input-lg {
 
 .single-post .ingredients-list,
 .single-post .instructions {
-  background: #F9F9F9;
+  background: #f9f9f9;
   padding: 30px 5px;
   border-top: 1px solid #ff9638;
 }
@@ -12357,7 +12313,7 @@ select.input-lg {
 }
 
 .single-post ul.ingredient-check li.active span {
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   background: #ff9638;
 }
 
@@ -12369,7 +12325,7 @@ select.input-lg {
   width: 18px;
   height: 18px;
   background: #fff;
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   margin-right: 18px;
   display: inline-block;
   vertical-align: bottom;
@@ -12470,6 +12426,13 @@ select.input-lg {
   display: block;
 }
 
+.single-post .recipe-footer {
+  display: table;
+  width: 100%;
+  border-bottom: 1px solid #ebebeb;
+  padding-bottom: 20px;
+}
+
 .single-post .recipe-footer a,
 .single-post .recipe-footer button {
   margin-left: 5px;
@@ -12484,13 +12447,6 @@ select.input-lg {
   float: right;
   margin-top: 1px;
   transition: all 200ms ease-in-out;
-}
-
-.single-post .recipe-footer {
-  display: table;
-  width: 100%;
-  border-bottom: 1px solid #ebebeb;
-  padding-bottom: 20px;
 }
 
 .single-post a.print {
@@ -12538,14 +12494,13 @@ select.input-lg {
 
 /*=================================*/
 
-/*
-=================================
-       11.  Print
-=================================
-*/
+/* ================================= 11. Print ================================= */
 
 @media print {
-  .no-print,
+  .no-print {
+    display: none !important;
+  }
+
   .no-print * {
     display: none !important;
   }
@@ -12565,33 +12520,31 @@ select.input-lg {
   ul.ingredient-check li {
     margin-bottom: 2px !important;
   }
-
-  main > .container {
-    padding-top: 0 !important;
-  }
 }
 
 /*=================================*/
 
-/*
-=================================
-       12. Popup
-=================================
-*/
+/* ================================= 12. Popup ================================= */
 
 .popup .modal-content {
   background-color: #f7f7f7;
 }
 
-.popup .social-icons a .fa:before,
-.popup h2 {
+.popup .social-icons a .fa:before {
   font-size: 18px;
   text-align: center;
 }
 
 .popup h2 {
+  font-size: 18px;
+  text-align: center;
   color: #ff9638;
   line-height: 20px;
+}
+
+.popup .social-icons {
+  list-style: none;
+  padding: 10px 0;
 }
 
 .popup .social-icons a {
@@ -12617,11 +12570,6 @@ select.input-lg {
   color: #fff;
 }
 
-.popup .social-icons {
-  list-style: none;
-  padding: 10px 0;
-}
-
 .popup .social-icons li {
   display: inline-block;
   margin: 0 !important;
@@ -12642,11 +12590,7 @@ select.input-lg {
 
 /*=================================*/
 
-/*
-=================================
-       13. Kolokas Form
-=================================
-*/
+/* ================================= 13. Kolokas Form ================================= */
 
 .kolokas-form img {
   height: 100px;
@@ -12659,9 +12603,15 @@ select.input-lg {
 }
 
 .kolokas-form .content p,
-.kolokas-form .header p,
+.kolokas-form .header p {
+  font-family: "Lora", "PT Serif", serif;
+}
+
 .kolokas-form .content text,
-.kolokas-form .content .input-lg,
+.kolokas-form .content .input-lg {
+  font-family: "Lora", "PT Serif", serif;
+}
+
 .form-horizontal .form-group-lg .form-control {
   font-family: "Lora", "PT Serif", serif;
 }
@@ -12697,7 +12647,7 @@ select.input-lg {
   right: 0;
   top: 0;
   border: none;
-  background: #EFEFEF;
+  background: #efefef;
   padding: 5px 10px;
   text-transform: uppercase;
   font-size: 12px;
@@ -12778,7 +12728,7 @@ div.upload .button {
 .deleteButton {
   background-color: #ff9638;
   border: none;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
   display: inline-block;
   width: auto;
@@ -12850,19 +12800,14 @@ table th p:last-child {
 
 table thead th {
   background: #ff9638;
-  border-bottom: 2px solid #DD8435;
+  border-bottom: 2px solid #dd8435;
   color: #fff;
   text-transform: uppercase;
   vertical-align: middle;
   font-weight: bold;
 }
 
-table thead th:first-child {
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
-
+table thead th:first-child,
 table thead th:last-child {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
@@ -12899,20 +12844,15 @@ table tbody h4 {
   color: #848484;
 }
 
-table tbody tr:last-child td:first-child {
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
+table tbody tr:last-child td {
+  border-bottom: 0;
 }
 
+table tbody tr:last-child td:first-child,
 table tbody tr:last-child td:last-child {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-}
-
-table tbody tr:last-child td {
-  border-bottom: 0;
 }
 
 table tfoot th,

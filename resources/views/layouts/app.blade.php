@@ -24,8 +24,10 @@
 </head>
 <body>
 <div id="app">
-    @include('partials.topbar')
-    @include('partials.navbar')
+    <div class="fixed-top" data-toggle="affix">
+        @include('partials.topbar')
+        @include('partials.navbar')
+    </div>
     <main class="py-2">
         <flash message="{{ session('flash') }}"></flash>
         <flash message="{{ session('flash-error') }}" type="error"></flash>

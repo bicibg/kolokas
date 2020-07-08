@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PasswordChangeRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,7 +27,7 @@ class ChangePasswordController extends Controller
      */
     public function store(PasswordChangeRequest $request)
     {
-        \App\Models\User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+        User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
 
         return redirect()->back()->with(['flash' => __('messages.password.updated')]);
     }

@@ -1,21 +1,23 @@
-<div class="topbar no-print">
+<nav class="topbar no-print navbar-light bg-light navbar-expand d-none d-md-block" id="first">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <ul class="topbar-nav topbar-left hidden-xs">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <ul class="nav navbar-nav topbar-nav float-left">
+                    <li class="nav-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li class="nav-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li class="nav-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="nav-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                    <li class="nav-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
                 </ul>
-                <ul class="topbar-nav top-contact-info topbar-right">
-                    <li>
-                        <a class="login_button font-weight-bold" id="show_login" href="{{ route('recipe.create') }}">
+                <ul class="topbar-nav float-right">
+                    <li class="nav-item">
+                        <a class="login_button font-weight-bold"
+                           id="show_login"
+                           href="{{ route('recipe.create') }}">
                             <i class="fa fa-plus-square"></i> Submit Recipe
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <i class="fas fa-globe"></i>
@@ -32,11 +34,11 @@
                         </div>
                     </li>
                     @guest
-                        <li><a class="login_button" id="show_login"
-                               href="{{ route('login') }}"><i
+                        <li class="nav-item"><a class="login_button" id="show_login"
+                                                href="{{ route('login') }}"><i
                                     class="fa fa-key"></i> Login</a></li>
-                        <li><a class="login_button" id="show_signup"
-                               href="{{ route('register') }}"><i
+                        <li class="nav-item"><a class="login_button" id="show_signup"
+                                                href="{{ route('register') }}"><i
                                     class="fa fa-lock"></i> Create Account</a></li>
                     @else
                         <li class="nav-item dropdown">
@@ -66,4 +68,4 @@
             </div>
         </div>
     </div>
-</div>
+</nav>

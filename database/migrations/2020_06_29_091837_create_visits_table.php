@@ -24,7 +24,6 @@ class CreateVisitsTable extends Migration
             $table->timestamps();
 
             $table->unique(['session_id', 'visited_id', 'visited_type']);
-
         });
     }
 

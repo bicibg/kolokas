@@ -1,26 +1,6 @@
-/*======== TABLE OF CONTENT ==========
-1.  Global Style
-2.  Recipe Index
-3.  Top Bar
-4.  Nav Bar
-5.  Carousel
-6.  Content
-7.  Author details
-8.  Recipe Create
-9.  Search Box
-10. Recipe Page
-11. Print
-12. Popup
-13. Kolokas Form
- */
-
+/*======== TABLE OF CONTENT ========== 1. Global Style 2. Recipe Index 3. Top Bar 4. Nav Bar 5. Carousel 6. Content 7. Author details 8. Recipe Create 9. Search Box 10. Recipe Page 11. Print 12. Popup 13. Kolokas Form */
 /*=================================*/
-
-/*
-=================================
-       1.  Global Style
-=================================
-*/
+/* ================================= 1. Global Style ================================= */
 
 * {
   padding: 0;
@@ -28,15 +8,18 @@
   box-sizing: border-box;
 }
 
-main {
-  margin-top: 120px;
-}
-
 main > .container {
   max-width: 1400px !important;
 }
 
+html {
+  height: 100%;
+  padding-top: 70px;
+}
+
 body {
+  height: 100%;
+  padding-top: 70px;
   color: #888;
 }
 
@@ -51,19 +34,7 @@ img {
   margin-right: 2px;
 }
 
-::-moz-selection {
-  color: #fff;
-  text-shadow: none;
-  background: #3498db;
-}
-
-::-webkit-selection {
-  color: #fff;
-  text-shadow: none;
-  background: #3498db;
-}
-
-::selection {
+::-moz-selection, ::-webkit-selection, ::selection {
   color: #fff;
   text-shadow: none;
   background: #3498db;
@@ -90,7 +61,7 @@ img {
 }
 
 ::-webkit-scrollbar-corner {
-  background-color: #000000;
+  background-color: #000;
 }
 
 .image-checkbox {
@@ -101,10 +72,10 @@ img {
   border: 4px solid transparent;
   margin-bottom: 0;
   outline: 0;
-}
 
-.image-checkbox input[type="checkbox"] {
-  display: none;
+  input[type="checkbox"] {
+    display: none;
+  }
 }
 
 .image-checkbox-checked {
@@ -128,8 +99,8 @@ img {
   padding: 10px;
   color: #fff;
   border-radius: 4px;
-  background-color: #ff9638;
-  border: 0
+  background-color: $orange;
+  border: 0;
 }
 
 .hidden {
@@ -142,7 +113,7 @@ img {
 }
 
 .input-group > .form-control:not(:last-child) {
-  border-radius: 4px
+  border-radius: 4px;
 }
 
 ::-ms-clear {
@@ -195,7 +166,7 @@ img {
 }
 
 .hover-button:hover {
-  background-color: #ff9638;
+  background-color: $orange;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -212,8 +183,12 @@ img {
   flex: 1;
 }
 
-.bg-none, .bg-none:hover, .bg-none:focus {
+.bg-none {
   background: none;
+
+  &:hover, &:focus {
+    background: none;
+  }
 }
 
 .alert-flash {
@@ -223,14 +198,8 @@ img {
   z-index: 1000;
 }
 
-
 /*=================================*/
-
-/*
-=================================
-       2.  Recipe Index
-=================================
-*/
+/* ================================= 2. Recipe Index ================================= */
 
 .recipe-container {
   margin-bottom: 30px;
@@ -238,50 +207,52 @@ img {
   -webkit-box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
   box-shadow: 0 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
-  transition: box-shadow 0.2s ease-in-out;;
-}
-
-.recipe-container:hover {
-  -webkit-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
-  box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
   transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    -webkit-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
+    transition: box-shadow 0.2s ease-in-out;
+  }
 }
 
 .recipe-img {
   position: relative;
   overflow: hidden;
-}
 
-.recipe-img img {
-  max-width: 100%;
-  width: 100%;
-  height: 30vh;
-  min-height: 50%;
-  object-fit: cover;
-}
+  img {
+    max-width: 100%;
+    width: 100%;
+    height: 30vh;
+    min-height: 50%;
+    object-fit: cover;
+  }
 
-.recipe-img:hover, .recipe-img-list:hover {
-  .hover-button:not(.hover-button-first, .hover-button-second) {
+  &:hover .hover-button:not(.hover-button-first, .hover-button-second) {
     top: 50%;
   }
+}
 
-  .hover-button {
-    opacity: 1;
-    visibility: visible;
-    margin-bottom: 0;
-    left: 50%;
-  }
+.recipe-img-list:hover .hover-button:not(.hover-button-first, .hover-button-second) {
+  top: 50%;
+}
 
-  .hover-button-first {
-    top: 30% !important;
-    bottom: unset;
-  }
+.recipe-img:hover .hover-button, .recipe-img-list:hover .hover-button {
+  opacity: 1;
+  visibility: visible;
+  margin-bottom: 0;
+  left: 50%;
+}
 
-  .hover-button-second {
-    top: unset;
-    bottom: 30% !important;
-  }
+.recipe-img:hover .hover-button-first, .recipe-img-list:hover .hover-button-first {
+  top: 30% !important;
+  bottom: unset;
+}
+
+.recipe-img:hover .hover-button-second, .recipe-img-list:hover .hover-button-second {
+  top: unset;
+  bottom: 30% !important;
 }
 
 .recipe-img img {
@@ -296,13 +267,13 @@ img {
 .recipe-meta {
   display: block;
   padding: 5px 10px;
-  background: #ff9638;
+  background: $orange;
   color: #fff;
-}
 
-.recipe-meta span {
-  padding: 2px 5px;
-  font-size: 13px;
+  span {
+    padding: 2px 5px;
+    font-size: 13px;
+  }
 }
 
 .recipe-footer {
@@ -311,13 +282,22 @@ img {
 
 .recipe-content {
   padding: 5px 15px;
+
+  h3 {
+    min-height: 71px;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    font-family: 'Lora', 'PT Serif', serif;
+    font-style: italic;
+    word-wrap: break-word;
+  }
 }
 
-.recipe-content h3 {
-  min-height: 71px;
-}
-
-.recipe-content h3, .single-post .recipe-content h3, .item-text h3, .main-service h3 {
+.single-post .recipe-content h3, .item-text h3, .main-service h3 {
   display: block;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -333,16 +313,12 @@ img {
   max-width: 100%;
 }
 
-.recipe-content {
-
-}
-
 .recipe-content h3 small, .item-text h3 small {
   display: block;
   margin-top: 10px;
   font-size: 15px;
   font-style: italic;
-  width: 100%
+  width: 100%;
 }
 
 .recipe-content h3 small i, .item-text h3 small i {
@@ -350,12 +326,24 @@ img {
 }
 
 /*=================================*/
+/* ================================= 3. Top Bar ================================= */
 
-/*
-=================================
-       3.  Top Bar
-=================================
-*/
+.fixed-top #first {
+  -webkit-transition: padding 0.2s ease;
+  -moz-transition: padding 0.2s ease;
+  -o-transition: padding 0.2s ease;
+  transition: padding 0.2s ease;
+}
+
+.affix #first {
+  padding-top: 0.2em !important;
+  padding-bottom: 0.2em !important;
+  -webkit-transition: padding 0.2s linear;
+  -moz-transition: padding 0.2s linear;
+  -o-transition: padding 0.2s linear;
+  transition: padding 0.2s linear;
+}
+
 .topbar {
   z-index: 1050;
   position: fixed;
@@ -366,258 +354,258 @@ img {
   height: 40px;
 }
 
-.topbar .container {
-  position: relative;
-}
-
-.topbar-right {
-  float: right;
-}
-
-.topbar-left {
-  float: left;
-}
-
 .topbar-nav {
   margin: 0;
   padding: 0;
   list-style-type: none;
-}
+  display: flex;
 
-.topbar-nav > li {
-  float: left;
-}
+  > li > a {
+    display: block;
+    padding: 8px 12px;
+    background-color: transparent;
+    color: #95a0aa;
 
-.topbar-nav > li > a {
-  display: block;
-  padding: 8px 12px;
-  background-color: transparent;
-  color: #95a0aa;
-}
+    &:hover {
+      background: $orange;
+      color: #fff;
+    }
+  }
 
-.topbar-nav > li > a:hover {
-  background: #ff9638;
-  color: #fff;
-}
+  &.top-contact-info > li {
+    border-right: solid 1px #eee;
 
-.topbar-nav.top-contact-info > li {
-  border-right: solid 1px #eee;
-}
+    &:first-child {
+      border-left: solid 1px #eee;
+    }
 
-.topbar-nav.top-contact-info > li:first-child {
-  border-left: solid 1px #eee;
-}
+    i {
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+  }
 
-.topbar-nav.top-contact-info > li i {
-  font-size: 14px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 4px;
-}
+  > {
+    .active > a {
+      background: #242636;
 
-.topbar-nav > .active > a, .topbar-nav > .active > a:hover, .topbar-nav > .active > a:focus {
-  background: #242636;
-}
+      &:hover, &:focus {
+        background: #242636;
+      }
+    }
 
-.topbar-nav > .disabled > a, .topbar-nav > .disabled > a:hover, .topbar-nav > .disabled > a:focus {
-  color: #fff;
-  background: #ff9638;
-}
+    .disabled > a {
+      color: #fff;
+      background: $orange;
 
-.topbar-nav .dropdown-item.active, .topbar-nav .dropdown-item:active {
-  text-decoration: none;
-  color: #fff;
-  background-color: #ff9638
-}
+      &:hover, &:focus {
+        color: #fff;
+        background: $orange;
+      }
+    }
+  }
 
-.topbar-nav .dropdown-item:focus, .topbar-nav .dropdown-item:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: #ff9638
-}
+  .dropdown-item {
+    &.active, &:active, &:focus, &:hover {
+      text-decoration: none;
+      color: #fff;
+      background-color: $orange;
+    }
+  }
 
-.topbar-nav .dropdown-menu {
-  margin: 0;
-  border-radius: 4px
+  .dropdown-menu {
+    margin: 0;
+    border-radius: 4px;
+  }
 }
 
 /*=================================*/
+/* ================================= 4. Nav Bar ================================= */
 
-/*
-=================================
-       4.  Nav Bar
-=================================
-*/
 .navbar {
   padding-top: 0;
   padding-bottom: 0;
   background-color: #fff;
-  box-shadow: 0 0 15px rgba(0, 0, 0, .1)
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+  .navbar-brand {
+    font-weight: 700;
+    position: absolute;
+    left: 30px;
+    letter-spacing: 5px;
+
+    i {
+      color: $orange;
+    }
+  }
 }
 
-.navbar .navbar-brand {
-  font-weight: 700;
-  position: absolute;
-  left: 30px;
-  letter-spacing: 5px
+.navbar-light .navbar-nav {
+  .nav-link {
+    font-weight: 700;
+    font-size: 16px;
+    padding: 23px 25px;
+  }
+
+  .active > .nav-link, .nav-link.active {
+    color: $orange;
+    border-bottom: 3px solid $orange;
+  }
 }
 
-.navbar .navbar-brand i {
-  color: #ff9638
-}
+.navbar {
+  .dropdown-item {
+    &.active, &:active, &:focus, &:hover {
+      text-decoration: none;
+      color: #fff;
+      background-color: $orange;
+    }
+  }
 
-.navbar-light .navbar-nav .nav-link {
-  font-weight: 700;
-  font-size: 16px;
-  padding: 23px 25px;
-  color: #333
-}
-
-.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active {
-  color: #ff9638;
-  border-bottom: 3px solid #ff9638
-}
-
-.navbar .dropdown-item.active, .navbar .dropdown-item:active {
-  text-decoration: none;
-  color: #fff;
-  background-color: #ff9638
-}
-
-.navbar .dropdown-item:focus, .navbar .dropdown-item:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: #ff9638
-}
-
-.navbar .dropdown-menu {
-  margin: 0;
-  border-radius: 4px;
-  max-height: 50vh;
-  overflow-y: auto;
+  .dropdown-menu {
+    margin: 0;
+    border-radius: 4px;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
 }
 
 @media only screen and (max-width: 992px) {
+  body {
+    padding-top: 0;
+  }
   .navbar {
-    padding: 10px 0
+    padding: 10px 0;
+    top: 0 !important;
+
+    .container-fluid {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .navbar-brand {
+      position: unset;
+      left: unset;
+    }
+
+    .justify-content-center {
+      justify-content: space-between !important;
+    }
   }
 
-  .navbar .container-fluid {
-    padding-right: 15px;
-    padding-left: 15px
-  }
+  .navbar-light .navbar-nav {
+    .active > .nav-link {
+      border-bottom: 1px solid $orange;
+    }
 
-  .navbar .navbar-brand {
-    position: unset;
-    left: unset
-  }
+    .nav-link {
+      &.active {
+        border-bottom: 1px solid $orange;
+      }
 
-  .navbar .justify-content-center {
-    justify-content: space-between !important
-  }
-
-  .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active {
-    border-bottom: 1px solid #ff9638
-  }
-
-  .navbar-light .navbar-nav .nav-link {
-    padding: 15px 15px
+      padding: 15px 15px;
+    }
   }
 }
 
 @media only screen and (max-width: 768px) {
-  body {
-    padding-top: 61px
-  }
 
   .navbar {
-    padding: 10px 0
+    padding: 10px 0;
+
+    .container-fluid {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .navbar-brand {
+      position: unset;
+      left: unset;
+    }
+
+    .justify-content-center {
+      justify-content: space-between !important;
+    }
   }
 
-  .navbar .container-fluid {
-    padding-right: 15px;
-    padding-left: 15px
-  }
+  .navbar-light .navbar-nav {
+    .active > .nav-link {
+      border-bottom: 1px solid $orange;
+    }
 
-  .navbar .navbar-brand {
-    position: unset;
-    left: unset
-  }
+    .nav-link {
+      &.active {
+        border-bottom: 1px solid $orange;
+      }
 
-  .navbar .justify-content-center {
-    justify-content: space-between !important
-  }
-
-  .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active {
-    border-bottom: 1px solid #ff9638
-  }
-
-  .navbar-light .navbar-nav .nav-link {
-    padding: 15px 15px
+      padding: 15px 15px;
+    }
   }
 }
 
 @media only screen and (max-width: 480px) {
-  body {
-    padding-top: 61px
-  }
 
   .navbar {
-    padding: 10px 0
+    padding: 10px 0;
+
+    .container-fluid {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .navbar-brand {
+      position: unset;
+      left: unset;
+    }
+
+    .justify-content-center {
+      justify-content: space-between !important;
+    }
   }
 
-  .navbar .container-fluid {
-    padding-right: 15px;
-    padding-left: 15px
-  }
+  .navbar-light .navbar-nav {
+    .active > .nav-link {
+      border-bottom: 1px solid $orange;
+    }
 
-  .navbar .navbar-brand {
-    position: unset;
-    left: unset
-  }
+    .nav-link {
+      &.active {
+        border-bottom: 1px solid $orange;
+      }
 
-  .navbar .justify-content-center {
-    justify-content: space-between !important
-  }
-
-  .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active {
-    border-bottom: 1px solid #ff9638
-  }
-
-  .navbar-light .navbar-nav .nav-link {
-    padding: 15px 15px
+      padding: 15px 15px;
+    }
   }
 }
 
 /*=================================*/
+/* ================================= 5. Carousel ================================= */
 
-/*
-=================================
-       5. Carousel
-=================================
-*/
+.carousel-item {
+  img {
+    -o-object-fit: cover;
+    object-fit: cover;
+    height: 30vw;
+  }
 
-.carousel-item img {
-  -o-object-fit: cover;
-  object-fit: cover;
-  height: 30vw;
-}
+  h1 {
+    text-shadow: 0 1px 12px #555;
 
-.carousel-item h1 {
-  text-shadow: 0 1px 12px #555
-}
+    a {
+      color: #fff;
 
-.carousel-item h1 a {
-  color: #fff
-}
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 
-.carousel-item h1 a:hover {
-  text-decoration: none
-}
-
-.carousel-item p {
-  font-size: 1.2rem;
-  text-shadow: 0 1px 5px #555
+  p {
+    font-size: 1.2rem;
+    text-shadow: 0 1px 5px #555;
+  }
 }
 
 .carousel-caption {
@@ -637,25 +625,19 @@ img {
 @media only screen and (max-width: 768px) {
   .carousel-item img {
     width: unset;
-    height: 400px
+    height: 400px;
   }
 }
 
 @media only screen and (max-width: 480px) {
   .carousel-item img {
     width: unset;
-    height: 500px
+    height: 500px;
   }
 }
 
 /*=================================*/
-
-
-/*
-=================================
-       6.  Content
-=================================
-*/
+/* ================================= 6. Content ================================= */
 
 #content, #most-rated, #latest, #top-rated, #most-read, #latest-news, #top_authors {
   position: relative;
@@ -664,52 +646,51 @@ img {
   background: #f4f4f4;
 }
 
-
 .heading {
   display: block;
   text-align: center;
   margin-bottom: 60px;
-}
 
-.heading h2 {
-  position: relative;
-  display: inline;
-  padding: 12px 20px;
-  font-size: 28px;
-  line-height: 32px;
-  font-style: normal;
-  font-weight: 600;
-  font-family: 'PT Serif', serif;
-}
+  h2 {
+    position: relative;
+    display: inline;
+    padding: 12px 20px;
+    font-size: 28px;
+    line-height: 32px;
+    font-style: normal;
+    font-weight: 600;
+    font-family: 'PT Serif', serif;
+  }
 
-.heading.heading-sm h2 {
-  padding: 10px 14px;
-  font-size: 18px;
-  line-height: 24px;
-}
+  &.heading-sm h2 {
+    padding: 10px 14px;
+    font-size: 18px;
+    line-height: 24px;
+  }
 
-.heading.bg-white h2::before {
-  background: #fff;
-}
+  &.bg-white h2::before {
+    background: #fff;
+  }
 
-.heading.heading-alt {
-  text-align: left;
-  margin: 0 0 30px;
-}
+  &.heading-alt {
+    text-align: left;
+    margin: 0 0 30px;
 
-.heading.heading-alt h3 {
-  font-size: 26px;
-  line-height: 30px;
+    h3 {
+      font-size: 26px;
+      line-height: 30px;
+    }
+  }
 }
 
 .item-img-box-list .recipe-buttons a {
   background: #f9f9f9;
   color: #ccc;
-}
 
-.item-img-box-list .recipe-buttons a:hover {
-  background: #898ba2;
-  color: #d9dae9;
+  &:hover {
+    background: #898ba2;
+    color: #d9dae9;
+  }
 }
 
 .item-text {
@@ -725,59 +706,46 @@ img {
   display: table;
   width: 100%;
   padding: 0;
-}
 
-.recipe-buttons a {
-  display: table-cell;
-  width: 10%;
-  padding: 8px 12px;
-  text-align: center;
-  background: #f9f9f9;
-  font-size: 16px;
-  color: #aaa;
-  overflow: hidden;
+  a {
+    display: table-cell;
+    width: 10%;
+    padding: 8px 12px;
+    text-align: center;
+    background: #f9f9f9;
+    font-size: 16px;
+    color: #aaa;
+    overflow: hidden;
+  }
 }
-
 
 /*=================================*/
-
-
-/*
-=================================
-       7. Author details
-=================================
-*/
+/* ================================= 7. Author details ================================= */
 
 .author-details {
   position: relative;
   background-color: #fff;
   margin-bottom: 10px;
-}
 
-.author-details .title {
-  margin-bottom: 0.5em;
-}
+  .title {
+    margin-bottom: 0.5em;
+  }
 
-.author-details .contact {
-  font-size: 0.9em;
-  color: #999;
-  line-height: 2;
-}
+  .contact {
+    font-size: 0.9em;
+    color: #999;
+    line-height: 2;
 
-.author-details .contact i {
-  display: inline-block;
-  width: 20px;
-  margin-right: 5px;
+    i {
+      display: inline-block;
+      width: 20px;
+      margin-right: 5px;
+    }
+  }
 }
 
 /*=================================*/
-
-
-/*
-=================================
-       8. Recipe Create
-=================================
-*/
+/* ================================= 8. Recipe Create ================================= */
 
 .footnote {
   font-size: 0.9rem;
@@ -788,12 +756,8 @@ img {
 }
 
 /*=================================*/
+/* ================================= 9. Search Box ================================= */
 
-/*
-=================================
-        9. Search Box
-=================================
-*/
 .search-box {
   position: relative;
   background-size: 100%;
@@ -806,56 +770,60 @@ img {
   -moz-box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
   box-shadow: 0 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
   transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    -webkit-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  .button-group {
+    background-color: #f7f7f7;
+    margin: -60px -30px;
+    margin-top: 20px;
+    padding: 15px 30px;
+  }
+
+  .action-buttons {
+    text-align: right;
+  }
 }
 
-.search-box:hover {
-  -webkit-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
-  box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
-  transition: box-shadow 0.2s ease-in-out;
-}
+.quick-search {
+  .button-group {
+    background-color: #f7f7f7;
+    margin: -25px -40px;
+    margin-top: 20px;
+    padding: 15px 30px;
+  }
 
-.search-box .button-group {
-  background-color: #f7f7f7;
-  margin: -60px -30px;
-  margin-top: 20px;
-  padding: 15px 30px;
-}
+  .container {
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    padding: 30px 30px 20px;
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.07);
+    -webkit-transform: translateY(84px);
+    transform: translateY(84px);
+  }
 
-.search-box .action-buttons {
-  text-align: right;
-}
+  .button-group {
+    .action-buttons {
+      float: right;
+      line-height: 12px;
+    }
 
-.quick-search .button-group {
-  background-color: #f7f7f7;
-  margin: -25px -40px;
-  margin-top: 20px;
-  padding: 15px 30px;
-}
+    &:after {
+      display: table;
+      content: '';
+      clear: both;
+    }
 
-.quick-search .container {
-  position: relative;
-  z-index: 1;
-  background-color: #fff;
-  padding: 30px 30px 20px;
-  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, .07);
-  -webkit-transform: translateY(84px);
-  transform: translateY(84px);
-}
-
-.quick-search .button-group .action-buttons {
-  float: right;
-  line-height: 12px;
-}
-
-.quick-search .button-group:after {
-  display: table;
-  content: '';
-  clear: both;
-}
-
-.quick-search .button-group .action-buttons .btn-success {
-  margin-right: 10px
+    .action-buttons .btn-success {
+      margin-right: 10px;
+    }
+  }
 }
 
 select.input-lg {
@@ -864,85 +832,81 @@ select.input-lg {
 }
 
 /*=================================*/
-
-
-/*
-=================================
-       10. Recipe Page
-=================================
-*/
+/* ================================= 10. Recipe Page ================================= */
 
 .single-post {
   margin-bottom: 20px;
 
+  /* Print Button */
+
   .ingredients-list, .instructions {
-    background: #F9F9F9;
+    background: #f9f9f9;
     padding: 30px 5px;
-    border-top: 1px solid #ff9638;
+    border-top: 1px solid $orange;
   }
 
   .ingredients-list ul.ingredient-check li {
     display: block;
     margin-right: 0;
-  }
 
-  .ingredients-list ul.ingredient-check li:last-child {
-    margin-bottom: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   ul.ingredient-check {
     margin-left: -30px;
-  }
 
-  ul.ingredient-check li {
-    display: inline-block;
-    color: #898989;
-    font-size: 14px;
-    line-height: 18px;
-    margin-right: 25px;
-    cursor: pointer;
-    font-weight: normal;
-    border: 1px solid transparent;
-    padding: 0px 0px 0 0;
-    margin-bottom: 20px;
-  }
+    li {
+      display: inline-block;
+      color: #898989;
+      font-size: 14px;
+      line-height: 18px;
+      margin-right: 25px;
+      cursor: pointer;
+      font-weight: normal;
+      border: 1px solid transparent;
+      padding: 0px 0px 0 0;
+      margin-bottom: 20px;
 
-  ul.ingredient-check li.active {
-    color: #ff9638;
-    text-decoration: line-through;
-  }
+      &.active {
+        color: $orange;
+        text-decoration: line-through;
 
-  ul.ingredient-check li.active span {
-    border: 1px solid #E2E2E2;
-    background: #ff9638;
-  }
+        span {
+          border: 1px solid #e2e2e2;
+          background: $orange;
 
-  ul.ingredient-check li.active span:before {
-    color: #fff;
-  }
+          &:before {
+            color: #fff;
+          }
+        }
+      }
 
-  ul.ingredient-check li span {
-    width: 18px;
-    height: 18px;
-    background: #fff;
-    border: 1px solid #E2E2E2;
-    margin-right: 18px;
-    display: inline-block;
-    vertical-align: bottom;
-  }
+      span {
+        width: 18px;
+        height: 18px;
+        background: #fff;
+        border: 1px solid #e2e2e2;
+        margin-right: 18px;
+        display: inline-block;
+        vertical-align: bottom;
 
-  ul.ingredient-check li span:before {
-    content: '\f14a';
-    font-family: 'FontAwesome';
-    font-size: 23px;
-    color: transparent;
-    position: relative;
-    top: -1px;
-    right: 2px;
-  }
+        &:before {
+          content: '\f14a';
+          font-family: 'FontAwesome';
+          font-size: 23px;
+          color: transparent;
+          position: relative;
+          top: -1px;
+          right: 2px;
+        }
 
-  ul.ingredient-check li span input[type='checkbox'] {
-    display: none;
+        input[type='checkbox'] {
+          display: none;
+        }
+      }
+    }
   }
 
   .instructions ol {
@@ -950,34 +914,34 @@ select.input-lg {
     margin: 15px 0 0 34px;
     padding: 0;
     counter-reset: li-counter;
-  }
 
-  .instructions ol > li {
-    position: relative;
-    margin-bottom: 15px;
-    padding: 8px 14px;
-    line-height: 24px;
-  }
+    > li {
+      position: relative;
+      margin-bottom: 15px;
+      padding: 8px 14px;
+      line-height: 24px;
 
-  .instructions ol > li:last-child {
-    margin-bottom: 35px;
-  }
+      &:last-child {
+        margin-bottom: 35px;
+      }
 
-  .instructions ol > li:before {
-    position: absolute;
-    top: 3px;
-    left: -34px;
-    width: 34px;
-    height: 34px;
-    text-align: center;
-    line-height: 32px;
-    color: #999;
-    font-weight: 700;
-    font-size: 16px;
-    background-color: #f4f4f4;
-    content: counter(li-counter);
-    counter-increment: li-counter;
-    cursor: default;
+      &:before {
+        position: absolute;
+        top: 3px;
+        left: -34px;
+        width: 34px;
+        height: 34px;
+        text-align: center;
+        line-height: 32px;
+        color: #999;
+        font-weight: 700;
+        font-size: 16px;
+        background-color: #f4f4f4;
+        content: counter(li-counter);
+        counter-increment: li-counter;
+        cursor: default;
+      }
+    }
   }
 
   .custom-control-label {
@@ -997,97 +961,99 @@ select.input-lg {
     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  }
 
-  .recipe-meta ul {
-    padding: 0;
-    position: relative;
-    display: table;
-    width: 100%;
-  }
+    ul {
+      padding: 0;
+      position: relative;
+      display: table;
+      width: 100%;
 
-  .recipe-meta ul li {
-    margin-right: 21px;
-    border-right: 1px solid #d8d8d8;
-    font-family: "Lora", "PT Serif", serif;
-    font-style: italic;
-    display: table-cell;
-    width: 10%;
-    padding: 8px 12px;
-    text-align: center;
-    font-size: 16px;
-    overflow: hidden;
-  }
+      li {
+        margin-right: 21px;
+        border-right: 1px solid #d8d8d8;
+        font-family: "Lora", "PT Serif", serif;
+        font-style: italic;
+        display: table-cell;
+        width: 10%;
+        padding: 8px 12px;
+        text-align: center;
+        font-size: 16px;
+        overflow: hidden;
 
-  .recipe-meta ul li:last-child {
-    border: none;
-    margin-right: 0px;
-  }
+        &:last-child {
+          border: none;
+          margin-right: 0px;
+        }
 
-  .recipe-meta ul li strong {
-    display: block;
-  }
-
-
-  .recipe-footer a, .recipe-footer button {
-    margin-left: 5px;
-    border: 0;
-    background-color: #808080;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 5px 10px;
-    display: inline-block;
-    float: right;
-    margin-top: 1px;
-    -webkit-transition: all 200ms ease-in-out;
-    -moz-transition: all 200ms ease-in-out;
-    -o-transition: all 200ms ease-in-out;
-    -ms-transition: all 200ms ease-in-out;
-    transition: all 200ms ease-in-out;
+        strong {
+          display: block;
+        }
+      }
+    }
   }
 
   .recipe-footer {
+    a, button {
+      margin-left: 5px;
+      border: 0;
+      background-color: #808080;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      display: inline-block;
+      float: right;
+      margin-top: 1px;
+      -webkit-transition: all 200ms ease-in-out;
+      -moz-transition: all 200ms ease-in-out;
+      -o-transition: all 200ms ease-in-out;
+      -ms-transition: all 200ms ease-in-out;
+      transition: all 200ms ease-in-out;
+    }
+
     display: table;
     width: 100%;
     border-bottom: 1px solid #ebebeb;
     padding-bottom: 20px;
   }
 
-  /* Print Button */
-  a.print {
-    background-color: #808080;
-  }
+  a {
+    &.print {
+      background-color: #808080;
+    }
 
-  a.email {
-    background-color: #ff9638;
-  }
+    &.email {
+      background-color: $orange;
+    }
 
-  a.share {
-    background-color: #ff7838;
-  }
+    &.share {
+      background-color: #ff7838;
+    }
 
-  a.allergen {
-    background-color: #ff9638;
+    &.allergen {
+      background-color: $orange;
+    }
   }
 
   .recipe-buttons a {
     background: none;
+
+    &:hover {
+      background: #ccc;
+      text-decoration: none;
+    }
   }
 
-  .recipe-buttons a:hover {
-    background: #ccc;
-    text-decoration: none;
-  }
+  a.print {
+    &:hover {
+      background-color: #555;
+    }
 
-  a.print:hover {
-    background-color: #555;
-  }
-
-  a.print i {
-    font-size: 14px;
-    margin-right: 2px;
+    i {
+      font-size: 14px;
+      margin-right: 2px;
+    }
   }
 
   .section-title {
@@ -1101,16 +1067,14 @@ select.input-lg {
 }
 
 /*=================================*/
-
-/*
-=================================
-       11.  Print
-=================================
-*/
-
+/* ================================= 11. Print ================================= */
 @media print {
-  .no-print, .no-print * {
+  .no-print {
     display: none !important;
+
+    * {
+      display: none !important;
+    }
   }
 
   #slider-recipe .carousel-inner .recipe img {
@@ -1128,106 +1092,105 @@ select.input-lg {
   ul.ingredient-check li {
     margin-bottom: 2px !important;
   }
-
-  main > .container {
-    padding-top: 0 !important;
-  }
 }
 
 /*=================================*/
-
-/*
-=================================
-       12. Popup
-=================================
-*/
+/* ================================= 12. Popup ================================= */
 
 .popup {
-
   .modal-content {
     background-color: #f7f7f7;
   }
 
-  .social-icons a .fa:before, h2 {
+  .social-icons a .fa:before {
     font-size: 18px;
     text-align: center;
   }
 
   h2 {
-    color: #ff9638;
+    font-size: 18px;
+    text-align: center;
+    color: $orange;
     line-height: 20px;
   }
 
-  .social-icons a {
-    text-align: center;
-    background: #ddd;
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    padding-top: 8px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    font-size: 16px;
-    float: left;
-  }
-
-  .social-icons a:hover {
-    background: #ff9638;
-  }
-
-  .social-icons a:hover .fa {
-    color: #fff;
-  }
-
   .social-icons {
+    a {
+      text-align: center;
+      background: #ddd;
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      padding-top: 8px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      font-size: 16px;
+      float: left;
+
+      &:hover {
+        background: $orange;
+
+        .fa {
+          color: #fff;
+        }
+      }
+    }
+
     list-style: none;
     padding: 10px 0;
-  }
 
-  .social-icons li {
-    display: inline-block;
-    margin: 0 !important;
-    padding: 0 3px;
-  }
+    li {
+      display: inline-block;
+      margin: 0 !important;
+      padding: 0 3px;
 
-  .social-icons li.last {
-    margin-right: 0;
-  }
+      &.last {
+        margin-right: 0;
+      }
+    }
 
-  .social-icons a .fa {
-    color: #222;
-  }
+    a .fa {
+      color: #222;
 
-  .social-icons a .fa:before {
-    padding: 0;
+      &:before {
+        padding: 0;
+      }
+    }
   }
 }
 
 /*=================================*/
+/* ================================= 13. Kolokas Form ================================= */
 
-/*
-=================================
-       13. Kolokas Form
-=================================
-*/
+.kolokas-form {
+  img {
+    height: 100px;
+  }
 
-.kolokas-form img {
-  height: 100px;
+  .header h2 {
+    font-family: 'PT Serif', serif;
+    font-style: normal;
+    font-weight: 800;
+  }
+
+  .content p, .header p {
+    font-family: 'Lora', 'PT Serif', serif;
+  }
+
+  .content {
+    text, .input-lg {
+      font-family: 'Lora', 'PT Serif', serif;
+    }
+  }
 }
 
-.kolokas-form .header h2 {
-  font-family: 'PT Serif', serif;
-  font-style: normal;
-  font-weight: 800;
-}
-
-.kolokas-form .content p, .kolokas-form .header p, .kolokas-form .content text, .kolokas-form .content .input-lg, .form-horizontal .form-group-lg .form-control {
+.form-horizontal .form-group-lg .form-control {
   font-family: 'Lora', 'PT Serif', serif;
 }
 
@@ -1235,51 +1198,54 @@ select.input-lg {
   font-size: 16px;
 }
 
-.kolokas-form label {
-  font-weight: 700;
-  color: #ff9638;
-  text-transform: uppercase;
-  font-family: 'Lora', 'PT Serif', serif;
+.kolokas-form {
+  label {
+    font-weight: 700;
+    color: $orange;
+    text-transform: uppercase;
+    font-family: 'Lora', 'PT Serif', serif;
+  }
+
+  .description {
+    font-size: 13px;
+    font-size: 1.3rem;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 3px;
+  }
+
+  .upload {
+    position: relative;
+
+    a {
+      position: absolute;
+      height: 100%;
+      line-height: 36px;
+      width: auto;
+      right: 0;
+      top: 0;
+      border: none;
+      background: #efefef;
+      padding: 5px 10px;
+      text-transform: uppercase;
+      font-size: 12px;
+
+      &:hover {
+        background: #eee;
+      }
+    }
+  }
 }
 
-.kolokas-form .description {
-  font-size: 13px;
-  font-size: 1.3rem;
-  color: rgba(0, 0, 0, 0.5);
-  margin-top: 3px;
-}
-
-.kolokas-form .upload {
-  position: relative;
-}
-
-.kolokas-form .upload a {
-  position: absolute;
-  height: 100%;
-  line-height: 36px;
-  width: auto;
-  right: 0;
-  top: 0;
-  border: none;
-  background: #EFEFEF;
-  padding: 5px 10px;
-  text-transform: uppercase;
-  font-size: 12px;
-}
-
-.kolokas-form .upload a:hover {
-  background: #eee;
-}
-
-
-#kolokas-form #wp-description-editor-container, #kolokas-form fieldset.content table {
-  padding: 0;
-  margin: 0;
-  border: 1px solid #e0e0e0;
+#kolokas-form {
+  #wp-description-editor-container, fieldset.content table {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #e0e0e0;
+  }
 }
 
 .add-more {
-  background: #ff9638 !important;
+  background: $orange !important;
   font-weight: 600 !important;
   float: right;
   border-radius: 3px;
@@ -1315,32 +1281,32 @@ div.upload {
   line-height: 44px;
   position: relative;
   width: 100%;
-}
 
-div.upload:hover {
-  opacity: 0.95;
-}
+  &:hover {
+    opacity: 0.95;
+  }
 
-div.upload input[type="file"] {
-  display: input-block;
-  width: 100%;
-  height: 30px;
-  opacity: 0;
-  cursor: pointer;
-  position: absolute;
-  left: 0;
-}
+  input[type="file"] {
+    display: input-block;
+    width: 100%;
+    height: 30px;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+  }
 
-div.upload .button {
-  margin: 0px 2px;
-  float: right;
-  height: 30px;
+  .button {
+    margin: 0px 2px;
+    float: right;
+    height: 30px;
+  }
 }
 
 .uploadButton, .deleteButton {
-  background-color: #ff9638;
+  background-color: $orange;
   border: none;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
   display: inline-block;
   width: auto;
@@ -1397,105 +1363,97 @@ table {
   background-clip: padding-box;
   background: #f9f9f9;
   border-collapse: separate;
-}
 
-table td, table th {
-  text-align: center;
-  padding: 5px;
-}
+  td, th {
+    text-align: center;
+    padding: 5px;
+  }
 
-table td p:last-child, table th p:last-child {
-  margin-bottom: 0;
-}
+  td p:last-child, th p:last-child {
+    margin-bottom: 0;
+  }
 
-table thead th {
-  background: #ff9638;
-  border-bottom: 2px solid #DD8435;
-  color: #fff;
-  text-transform: uppercase;
-  vertical-align: middle;
-  font-weight: bold;
-}
+  thead th {
+    background: $orange;
+    border-bottom: 2px solid #dd8435;
+    color: #fff;
+    text-transform: uppercase;
+    vertical-align: middle;
+    font-weight: bold;
 
-table thead th:first-child {
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
+    &:first-child, &:last-child {
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+  }
 
-table thead th:last-child {
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
+  tr {
+    th:last-child, td:last-child {
+      border-right: 0;
+    }
+  }
 
-table tr th:last-child, table tr td:last-child {
-  border-right: 0;
-}
+  tbody {
+    background: #fff;
 
-table tbody {
-  background: #fff;
-}
+    th {
+      background: #fff;
+    }
 
-table tbody th {
-  background: #fff;
-}
+    h2 {
+      font-size: 1em;
+      letter-spacing: normal;
+      font-weight: normal;
 
-table tbody h2 {
-  font-size: 1em;
-  letter-spacing: normal;
-  font-weight: normal;
-}
+      a {
+        font-weight: normal;
+      }
+    }
 
-table tbody h2 a {
-  font-weight: normal;
-}
+    h4 {
+      letter-spacing: normal;
+      font-weight: 500;
+      font-style: italic;
+      color: #848484;
+    }
 
-table tbody h4 {
-  letter-spacing: normal;
-  font-weight: 500;
-  font-style: italic;
-  color: #848484;
-}
+    tr:last-child td {
+      &:first-child, &:last-child {
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+      }
 
-table tbody tr:last-child td:first-child {
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
+      border-bottom: 0;
+    }
+  }
 
-table tbody tr:last-child td:last-child {
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
+  tfoot {
+    th, td {
+      border-right: 1px solid #f39643;
+    }
 
-table tbody tr:last-child td {
-  border-bottom: 0;
-}
+    tr {
+      background: $orange;
+      color: #fff;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+      font-weight: bold;
 
-table tfoot th, table tfoot td {
-  border-right: 1px solid #f39643;
-}
+      a {
+        color: #fff;
 
-table tfoot tr {
-  background: #ff9638;
-  color: #fff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
-  font-weight: bold;
-}
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
 
-table tfoot tr a {
-  color: #fff;
-}
-
-table tfoot tr a:hover {
-  color: #fff;
-}
-
-table td.small {
-  font-size: 13px;
-  color: #999;
+  td.small {
+    font-size: 13px;
+    color: #999;
+  }
 }
 
 .table-scroll {
@@ -1504,28 +1462,33 @@ table td.small {
   height: 100%;
 }
 
-table tbody tr:nth-child(odd) {
-  background-color: #fff;
+table tbody tr {
+  &:nth-child(odd) {
+    background-color: #fff;
+  }
+
+  &:nth-child(even) {
+    background-color: #f8f8f8;
+  }
 }
 
-table tbody tr:nth-child(even) {
-  background-color: #f8f8f8;
-}
+.kolokas-form {
+  .btn-success, .btn-warning {
+    display: inline-block;
+    padding: 0.382em 1.387em;
+    line-height: 1.618em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    white-space: nowrap;
+    margin-bottom: 5px;
+  }
 
-.kolokas-form .btn-success, .kolokas-form .btn-warning {
-  display: inline-block;
-  padding: .382em 1.387em;
-  line-height: 1.618em;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  white-space: nowrap;
-  margin-bottom: 5px;
+  table {
+    td, th {
+      padding: 0.857em 1.387em;
+      text-align: left;
+      vertical-align: top;
+    }
+  }
 }
-
-.kolokas-form table td, .kolokas-form table th {
-  padding: .857em 1.387em;
-  text-align: left;
-  vertical-align: top;
-}
-

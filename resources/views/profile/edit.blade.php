@@ -49,7 +49,9 @@
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
                                         <label for="new_password_confirmation">Repeat Password *</label>
-                                        <input class="form-control input-lg" name="new_password_confirmation" type="password"
+                                        <input class="form-control input-lg"
+                                               name="new_password_confirmation"
+                                               type="password"
                                                id="new_password_confirmation">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">Repeat
                                             your new password</small>

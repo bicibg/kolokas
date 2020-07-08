@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Recipe;
+use App\Models\RecipeImage;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class RecipeSeeder extends Seeder
@@ -11,20 +15,20 @@ class RecipeSeeder extends Seeder
      */
     public function run()
     {
-        $users = \App\Models\User::all();
+        $users = User::all();
         foreach ($users as $user) {
-            $recipes = factory(\App\Models\Recipe::class, random_int(1, 10))->create([
+            $recipes = factory(Recipe::class, random_int(1, 10))->create([
                 'user_id' => $user->id,
             ]);
 
             foreach ($recipes as $recipe) {
-                for ($x=0; $x < random_int(1, 5); $x++){
-                    factory(\App\Models\RecipeImage::class)->create([
+                for ($x = 0; $x < random_int(1, 5); $x++) {
+                    factory(RecipeImage::class)->create([
                         'main' => $x === 0,
                         'recipe_id' => $recipe->id
                     ]);
                 }
-                foreach (\App\Models\Category::all()->random(rand(1,4)) as $category) {
+                foreach (Category::all()->random(rand(1, 4)) as $category) {
                     $recipe->categories()->attach($category);
                 }
             }

@@ -1,9 +1,11 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Factory $factory */
 
+use App\Models\Profile;
 use App\Models\User;
 use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factory;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,7 @@ $factory->define(/**
  * @param  Faker  $faker
  * @param  array  $attr
  * @return array
- */ \App\Models\Profile::class, function (Faker $faker, $attr = []) {
+ */ Profile::class, function (Faker $faker, $attr = []) {
     $email = $faker->unique()->safeEmail;
     return [
         'user_id' => $attr['user_id'] ?? factory(User::class)->create(['email' => $email]),

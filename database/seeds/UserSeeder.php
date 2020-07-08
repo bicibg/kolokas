@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -11,15 +13,15 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = factory(\App\Models\User::class)->create([
+        $user = factory(User::class)->create([
             'email' => 'bugraergin@gmail.com',
             'password' => bcrypt('123456789'),
         ]);
-        factory(\App\Models\Profile::class)->create([
+        factory(Profile::class)->create([
             'email' => $user->email,
             'name' => 'Bugra Ergin',
             'user_id' => $user->id,
         ]);
-        factory(\App\Models\Profile::class, 30)->create();
+        factory(Profile::class, 30)->create();
     }
 }

@@ -53343,6 +53343,30 @@ $(".image-checkbox").on("click", function (e) {
   $checkbox.prop("checked", !$checkbox.prop("checked"));
   e.preventDefault();
 });
+$(document).ready(function () {
+  var toggleAffix = function toggleAffix(affixElement, scrollElement, wrapper) {
+    var height = affixElement.outerHeight(); //    top = wrapper.offset().top;
+
+    if (scrollElement.scrollTop() >= 80) {
+      wrapper.height(height);
+      affixElement.addClass("affix");
+    } else {
+      affixElement.removeClass("affix");
+      wrapper.height('auto');
+    }
+  };
+
+  $('[data-toggle="affix"]').each(function () {
+    var ele = $(this),
+        wrapper = $('<div></div>');
+    ele.before(wrapper);
+    $(window).on('scroll resize', function () {
+      toggleAffix(ele, $(this), wrapper);
+    }); // init
+
+    toggleAffix(ele, $(window), wrapper);
+  });
+});
 
 /***/ }),
 

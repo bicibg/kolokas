@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -47,7 +48,7 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $cat) {
-            \App\Models\Category::create([
+            Category::create([
                 'name' => $cat
             ]);
         }
