@@ -28,10 +28,8 @@
         <flash message="{{ session('flash-error') }}" type="error"></flash>
 
         <div class="container text-center">
-            <a class="navbar-brand h-100" href="{{ route('home') }}" style="height:120%">
-                <i class="fa fa-cutlery" aria-hidden="true"></i>
-                {{ strtoupper(config('app.name', 'Kolokas')) }}
-                {{--            <img src="{{ asset('storage/images/generic/logo.png') }}" class="h-100">--}}
+            <a class="navbar-brand" href="{{ route('home') }}">
+                @include('partials.svg.logo')
             </a>
             <form action="{{ route('demo.enable') }}" method="POST">
                 @csrf
