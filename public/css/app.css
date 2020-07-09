@@ -11442,7 +11442,7 @@ main > .container {
 
 html {
   height: 100%;
-  padding-top: 70px;
+  padding-top: 50px;
 }
 
 body {
@@ -11861,15 +11861,12 @@ img {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.navbar .navbar-brand {
-  font-weight: 700;
-  position: absolute;
-  left: 30px;
-  letter-spacing: 5px;
+.navbar-brand {
+  width: 35vw;
 }
 
-.navbar .navbar-brand i {
-  color: #ff9638;
+.navbar-brand svg {
+  max-width: 35vw;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -11919,11 +11916,6 @@ img {
     padding-left: 15px;
   }
 
-  .navbar .navbar-brand {
-    position: unset;
-    left: unset;
-  }
-
   .navbar .justify-content-center {
     justify-content: space-between !important;
   }
@@ -11955,11 +11947,6 @@ img {
     padding-left: 15px;
   }
 
-  .navbar .navbar-brand {
-    position: unset;
-    left: unset;
-  }
-
   .navbar .justify-content-center {
     justify-content: space-between !important;
   }
@@ -11989,11 +11976,6 @@ img {
   .navbar .container-xl {
     padding-right: 15px;
     padding-left: 15px;
-  }
-
-  .navbar .navbar-brand {
-    position: unset;
-    left: unset;
   }
 
   .navbar .justify-content-center {

@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="top:40px;" id="second">
     <div class="container-fluid justify-content-center">
-        <a class="navbar-brand h-100" href="{{ route('home') }}" style="height:120%">
-            <i class="fa fa-cutlery" aria-hidden="true"></i>
-            {{ strtoupper(config('app.name', 'Kolokas')) }}
-            {{--            <img src="{{ asset('storage/images/generic/logo.png') }}" class="h-100">--}}
+        <a class="navbar-brand" href="{{ route('home') }}">
+{{--            <i class="fa fa-cutlery" aria-hidden="true"></i>--}}
+{{--            {{ strtoupper(config('app.name', 'Kolokas')) }}--}}
+
+                        @include('partials.svg.logo')
         </a>
         {{--        <span class="position-absolute" style="left:200px;">--}}
         {{--            {{ __('nav.Authentic recipes of Cyprus') }}--}}

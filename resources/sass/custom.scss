@@ -14,7 +14,7 @@ main > .container {
 
 html {
   height: 100%;
-  padding-top: 70px;
+  padding-top: 50px;
 }
 
 body {
@@ -429,17 +429,14 @@ img {
   padding-bottom: 0;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
 
-  .navbar-brand {
-    font-weight: 700;
-    position: absolute;
-    left: 30px;
-    letter-spacing: 5px;
+.navbar-brand {
+  width: 35vw;
+}
 
-    i {
-      color: $orange;
-    }
-  }
+.navbar-brand svg {
+  max-width: 35vw;
 }
 
 .navbar-light .navbar-nav {
@@ -485,11 +482,6 @@ img {
       padding-left: 15px;
     }
 
-    .navbar-brand {
-      position: unset;
-      left: unset;
-    }
-
     .justify-content-center {
       justify-content: space-between !important;
     }
@@ -520,11 +512,6 @@ img {
       padding-left: 15px;
     }
 
-    .navbar-brand {
-      position: unset;
-      left: unset;
-    }
-
     .justify-content-center {
       justify-content: space-between !important;
     }
@@ -553,11 +540,6 @@ img {
     .container-fluid {
       padding-right: 15px;
       padding-left: 15px;
-    }
-
-    .navbar-brand {
-      position: unset;
-      left: unset;
     }
 
     .justify-content-center {
