@@ -2024,14 +2024,14 @@ __webpack_require__.r(__webpack_exports__);
     alertPrefix: function alertPrefix() {
       switch (this.internal_type) {
         case 'warning':
-          return 'Warning!';
+          return this.__('messages.flash.warning') + '!';
 
         case 'error':
-          return 'Ooops!';
+          return this.__('messages.flash.error') + '!';
 
         case 'success':
         default:
-          return 'Success!';
+          return this.__('messages.flash.success') + '!';
       }
     }
   }
@@ -53148,9 +53148,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.filter('pluralize', function (word, amount) {
-  return amount > 1 || amount === 0 ? "".concat(word, "s") : word;
-});
+Vue.mixin(__webpack_require__(/*! ./trans */ "./resources/js/trans.js"));
 Vue.component('base-button', __webpack_require__(/*! ./components/BaseButtonComponent.vue */ "./resources/js/components/BaseButtonComponent.vue")["default"]);
 Vue.component('flash', __webpack_require__(/*! ./components/Flash.vue */ "./resources/js/components/Flash.vue")["default"]);
 window.events = new Vue();
@@ -53416,6 +53414,49 @@ $(document).ready(function () {
     toggleAffix(ele, $(window), wrapper);
   });
 });
+
+/***/ }),
+
+/***/ "./resources/js/trans.js":
+/*!*******************************!*\
+  !*** ./resources/js/trans.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  methods: {
+    /**
+     * Translate the given key.
+     */
+    __: function __(key, replace) {
+      var translation,
+          translationNotFound = true;
+
+      try {
+        translation = key.split('.').reduce(function (t, i) {
+          return t[i] || null;
+        }, window._translations[window._locale].php);
+
+        if (translation) {
+          translationNotFound = false;
+        }
+      } catch (e) {
+        translation = key;
+      }
+
+      if (translationNotFound) {
+        translation = window._translations[window._locale]['json'][key] ? window._translations[window._locale]['json'][key] : key;
+      }
+
+      _.forEach(replace, function (value, key) {
+        translation = translation.replace(':' + key, value);
+      });
+
+      return translation;
+    }
+  }
+};
 
 /***/ }),
 

@@ -3,25 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 
 class LocalizationController extends Controller
 {
     /**
-     * @param  Request  $request
-     * @param  String  $lang
+     * @param $lang
      * @return RedirectResponse
      */
-    public function switchLang(Request $request, $lang)
+    public function switchLang($lang)
     {
-        if (Arr::exists(Config::get('app.languages'), $lang)) {
-            Session::put('locale', $request->getPreferredLanguage(\config('languages', [])));
-            app()->setLocale(Session::get('locale'));
+        if (!Arr::exists(Config::get('app.languages'), $lang)) {
+            abort(400);
         }
 
+        Session::put('kolokas.locale', $lang);
+        App::setLocale($lang);
         return redirect()->back();
     }
 }

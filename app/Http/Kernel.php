@@ -7,6 +7,7 @@ use App\Http\Middleware\CheckForDemoMode;
 use App\Http\Middleware\CheckForMaintenanceMode;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\Localization;
+use App\Http\Middleware\LocalizationMiddleware;
 use App\Http\Middleware\RecordVisits;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;

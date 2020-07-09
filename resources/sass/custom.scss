@@ -432,11 +432,25 @@ img {
 }
 
 .navbar-brand {
-  width: 35vw;
+  width: 20vw;
+  margin-left: 20px;
+  left: 0;
+  margin-right: 20px;
+
+  svg {
+    max-width: 35vw;
+  }
 }
 
-.navbar-brand svg {
-  max-width: 35vw;
+.navbar-brand-demo {
+  width: 70vw;
+  margin-left: 0;
+  left: unset;
+  margin-right: 0;
+
+  svg {
+    max-width: 70vw;
+  }
 }
 
 .navbar-light .navbar-nav {
@@ -473,6 +487,7 @@ img {
   body {
     padding-top: 0;
   }
+
   .navbar {
     padding: 10px 0;
     top: 0 !important;

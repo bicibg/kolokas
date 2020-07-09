@@ -5,8 +5,10 @@ return [
         'enabled' => 'You have successfully enabled demo mode on Kolokas.com.',
         'unsuccessful' => 'Demo access key you entered is incorrect. Better check back when Kolokas.com is live.'
     ],
-    'password' => [
-        'updated' => 'Your password has been successfully changed.'
+    'flash' => [
+        'success' => 'Success',
+        'warning' => 'Warning',
+        'error' => 'Oops',
     ],
     'recipe' => [
         'submitted' => 'Your recipe was submitted successfully. It will be reviewed as soon as possible. We will let you know of the outcome.',

@@ -1,13 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="top:40px;" id="second">
-    <div class="container-fluid justify-content-center">
-        <a class="navbar-brand" href="{{ route('home') }}">
-            @include('partials.svg.logo')
+    <div class="container-fluid justify-content-end">
+        <a class="navbar-brand position-absolute" href="{{ route('home') }}">
+            @include('partials.svg.logo_' . app()->getLocale())
         </a>
         {{--        <span class="position-absolute" style="left:200px;">--}}
         {{--            {{ __('nav.Authentic recipes of Cyprus') }}--}}
         {{--        </span>--}}
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler collapsed navbar-toggler-right"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse justify-content-center collapse" id="navbarNavDropdown" style="">

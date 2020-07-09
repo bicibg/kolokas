@@ -19,6 +19,7 @@ Auth::routes();
 Route::get('/demo', 'DemoModeController@index')->name('demo.index');
 Route::post('/demo-enable', 'DemoModeController@enable')->name('demo.enable');
 Route::get('/demo-activate', 'DemoModeController@activate')->name('demo.activate');
+Route::get('/{locale}', 'LocalizationController@switchLang')->name('locale');
 
 Route::name('recipe.')->group(function () {
     Route::get('/recipes/create', 'RecipeController@create')->name('create');
@@ -43,5 +44,4 @@ Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show')
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/{locale}', 'LocalizationController@switchLang')->name('locale');
 Route::post('password-update', 'ChangePasswordController@store')->name('password.new');

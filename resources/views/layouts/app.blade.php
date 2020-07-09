@@ -36,6 +36,10 @@
         @yield('content')
     </main>
 </div>
+<script>
+    window._locale = '{{ app()->getLocale() }}';
+    window._translations = {!! cache('translations') !!};
+</script>
 @livewireScripts
 </body>
 </html>

@@ -19,30 +19,48 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet">
+
     @livewireStyles
 </head>
 <body>
 <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent shadow-none fixed-top mt-3" id="second">
+        <div class="container-fluid justify-content-end">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <i class="fas fa-globe"></i>
+                {{ config()->get('app.languages')[app()->getLocale()] }}
+                <span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                @foreach(config()->get('app.languages') as $key => $lang)
+                    @if ($key !== app()->getLocale())
+                        <a class="dropdown-item" href="{{ route('locale', $key) }}">{{ $lang }}</a>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+    </nav>
+
     <main class="py-2">
         <flash message="{{ session('flash') }}"></flash>
         <flash message="{{ session('flash-error') }}" type="error"></flash>
+        <flash message="{{ session('flash-warning') }}" type="warning"></flash>
 
         <div class="container text-center">
-            <a class="navbar-brand" href="{{ route('home') }}">
-                @include('partials.svg.logo')
+            <a class="navbar-brand navbar-brand-demo mb-5 mt-5 " href="{{ route('home') }}">
+                @include('partials.svg.logo_' . app()->getLocale())
             </a>
             <form action="{{ route('demo.enable') }}" method="POST">
                 @csrf
                 <div class="row justify-content-center">
                     <div class="col-md-7 col-sm-12 text-center border-bottom">
-                        <h3 class="section-title">Kolokas.com is currently accessible by invite only for testing
-                            purposes. If you don't have an access key, check back later when we are live.</h3>
+                        <h3 class="section-title">{{ __('demo.no_access') }}</h3>
                     </div>
 
                     <div class="col-md-7 col-sm-12 text-center mt-2 mb-2">
-                        <h5 class="section-title">If you don't have an access key but would like to help testing
-                            Kolokas.com before it goes live, you can contact me on
-                            <a href="mailto:bugraergin@gmail.com" target="_blank">bugraergin@gmail.com</a></h5>
+                        <h5 class="section-title">{!! __('demo.contact') !!}</h5>
                     </div>
 
                     <div class="col-md-6 col-sm-12">
@@ -52,15 +70,15 @@
                             </div>
                             <input type="text"
                                    class="form-control"
-                                   placeholder="Demo access key"
-                                   aria-label="Demo access key"
+                                   placeholder="{{ __('demo.access_key') }}"
+                                   aria-label="{{ __('demo.access_key') }}"
                                    aria-describedby="key"
                                    name="demo-key">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <base-button :role="'submit'">
-                            Let me in
+                            {{ __('demo.letmein') }}
                         </base-button>
                     </div>
                 </div>
@@ -68,6 +86,11 @@
         </div>
     </main>
 </div>
+<script>
+    window._locale = '{{ app()->getLocale() }}';
+    window._translations = {!! cache('translations') !!};
+</script>
 @livewireScripts
 </body>
 </html>
+

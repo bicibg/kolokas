@@ -72,12 +72,12 @@
             alertPrefix: function () {
                 switch (this.internal_type) {
                     case 'warning':
-                        return 'Warning!';
+                        return this.__('messages.flash.warning') + '!';
                     case 'error':
-                        return 'Ooops!';
+                        return this.__('messages.flash.error') + '!';
                     case 'success':
                     default:
-                        return 'Success!';
+                        return this.__('messages.flash.success') + '!';
 
                 }
             },

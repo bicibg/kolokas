@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use app;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 
@@ -20,11 +19,17 @@ class Localization
      */
     public function handle($request, Closure $next)
     {
-        if (Session::has('locale') && Arr::exists(Config::get('app.languages'), Session::get('locale'))) {
-            app()->setLocale(Session::get('locale'));
+        if (
+            Session::has('kolokas.locale') &&
+            Config::get('app.languages')[Session::get('kolokas.locale')]
+        ) {
+            $locale = Session::get('kolokas.locale');
+        } elseif ($request->server('HTTP_ACCEPT_LANGUAGE')) {
+            $locale = explode('-', $request->server('HTTP_ACCEPT_LANGUAGE'))[0];
         } else {
-            app()->setLocale(Config::get('app.fallback_locale'));
+            $locale = Config::get('app.fallback_locale');
         }
+        app()->setLocale($locale);
         return $next($request);
     }
 }

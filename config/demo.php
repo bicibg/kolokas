@@ -5,7 +5,8 @@ return [
     'demo_route_names' => [
         'demo.index',
         'demo.enable',
-        'demo.activate'
+        'demo.activate',
+        'locale',
     ],
     'demo_key' => env('DEMO_KEY', null)
 ];
