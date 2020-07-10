@@ -424,6 +424,10 @@ img {
 /*=================================*/
 /* ================================= 4. Nav Bar ================================= */
 
+
+nav {
+  width: 100vw;
+}
 .navbar {
   padding-top: 0;
   padding-bottom: 0;
@@ -433,9 +437,9 @@ img {
 
 .navbar-brand {
   width: 20vw;
-  margin-left: 20px;
   left: 0;
-  margin-right: 20px;
+  top: 0;
+  margin: 1px 20px;
 
   svg {
     max-width: 35vw;
@@ -444,9 +448,8 @@ img {
 
 .navbar-brand-demo {
   width: 70vw;
-  margin-left: 0;
   left: unset;
-  margin-right: 0;
+  margin: 1px;
 
   svg {
     max-width: 70vw;
@@ -487,10 +490,8 @@ img {
   body {
     padding-top: 0;
   }
-
   .navbar {
-    padding: 10px 0;
-    top: 0 !important;
+    padding: 13px 0;
 
     .container-fluid {
       padding-right: 15px;
@@ -520,7 +521,7 @@ img {
 @media only screen and (max-width: 768px) {
 
   .navbar {
-    padding: 10px 0;
+    padding: 13px 0;
 
     .container-fluid {
       padding-right: 15px;
@@ -550,7 +551,8 @@ img {
 @media only screen and (max-width: 480px) {
 
   .navbar {
-    padding: 10px 0;
+    padding: 13px 0;
+    top: 0 !important;
 
     .container-fluid {
       padding-right: 15px;
@@ -584,12 +586,12 @@ img {
   img {
     -o-object-fit: cover;
     object-fit: cover;
-    height: 30vw;
+    height: 50vh;
   }
 
   h1 {
     text-shadow: 0 1px 12px #555;
-
+    font-size: 5vw;
     a {
       color: #fff;
 
@@ -600,13 +602,9 @@ img {
   }
 
   p {
-    font-size: 1.2rem;
+    font-size: 3vw;
     text-shadow: 0 1px 5px #555;
   }
-}
-
-.carousel-caption {
-  bottom: 10vw !important;
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
@@ -622,14 +620,12 @@ img {
 @media only screen and (max-width: 768px) {
   .carousel-item img {
     width: unset;
-    height: 400px;
   }
 }
 
 @media only screen and (max-width: 480px) {
   .carousel-item img {
     width: unset;
-    height: 500px;
   }
 }
 

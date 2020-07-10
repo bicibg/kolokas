@@ -28,7 +28,7 @@
         @include('partials.topbar')
         @include('partials.navbar')
     </div>
-    <main class="py-2">
+    <main class="py-2 mt-xs-5 pt-xs-2">
         <flash message="{{ session('flash') }}"></flash>
         <flash message="{{ session('flash-error') }}" type="error"></flash>
         <flash message="{{ session('flash-warning') }}" type="warning"></flash>
