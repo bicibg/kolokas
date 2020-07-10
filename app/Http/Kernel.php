@@ -7,7 +7,6 @@ use App\Http\Middleware\CheckForDemoMode;
 use App\Http\Middleware\CheckForMaintenanceMode;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\Localization;
-use App\Http\Middleware\LocalizationMiddleware;
 use App\Http\Middleware\RecordVisits;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;
@@ -64,7 +63,6 @@ class Kernel extends HttpKernel
             VerifyCsrfToken::class,
             SubstituteBindings::class,
             RecordVisits::class,
-            Localization::class,
         ],
 
         'api' => [
@@ -91,5 +89,6 @@ class Kernel extends HttpKernel
         'signed' => ValidateSignature::class,
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
+        'localized' => Localization::class,
     ];
 }

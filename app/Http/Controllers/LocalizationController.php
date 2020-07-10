@@ -19,9 +19,11 @@ class LocalizationController extends Controller
         if (!Arr::exists(Config::get('app.languages'), $lang)) {
             abort(400);
         }
-
         Session::put('kolokas.locale', $lang);
-        App::setLocale($lang);
-        return redirect()->back();
+        if (auth()->check()) {
+            auth()->user()->locale = $lang;
+            auth()->user()->save();
+        }
+        return redirect(route('recipe.index'));
     }
 }

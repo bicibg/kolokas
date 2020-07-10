@@ -23,18 +23,20 @@ class CheckForDemoMode
         $route = Route::getRoutes()->match($request);
         $currentroute = $route->getName();
 
+        $response = $next($request);
+
         if (config('demo.demo_enabled') && !Cookie::get('demo-activated')) {
             if (in_array($currentroute, config('demo.demo_route_names'))) {
-                return $next($request);
+                return $response;
             }
             return redirect(RouteServiceProvider::DEMO);
         } elseif (config('demo.demo_enabled') && Cookie::has('demo-activated')) {
             if (in_array($currentroute, config('demo.demo_route_names'))) {
                 return redirect(RouteServiceProvider::HOME);
             }
-            return $next($request);
+            return $response;
         } else {
-            return $next($request);
+            return $response;
         }
     }
 }
