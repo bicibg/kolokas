@@ -1,6 +1,4 @@
-/*======== TABLE OF CONTENT ========== 1. Global Style 2. Recipe Index 3. Top Bar 4. Nav Bar 5. Carousel 6. Content 7. Author details 8. Recipe Create 9. Search Box 10. Recipe Page 11. Print 12. Popup 13. Kolokas Form */
-/*=================================*/
-/* ================================= 1. Global Style ================================= */
+@import 'variables';
 
 * {
   padding: 0;
@@ -14,12 +12,10 @@ main > .container {
 
 html {
   height: 100%;
-  padding-top: 50px;
 }
 
 body {
   height: 100%;
-  padding-top: 70px;
   color: #888;
 }
 
@@ -433,13 +429,15 @@ nav {
   padding-bottom: 0;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+  .container {
+    max-width: 1400px !important;
+  }
 }
 
 .navbar-brand {
-  width: 20vw;
   left: 0;
   top: 0;
-  margin: 1px 20px;
 
   svg {
     max-width: 35vw;
@@ -486,98 +484,8 @@ nav {
   }
 }
 
-@media only screen and (max-width: 992px) {
-  body {
-    padding-top: 0;
-  }
-  .navbar {
-    padding: 13px 0;
 
-    .container-fluid {
-      padding-right: 15px;
-      padding-left: 15px;
-    }
 
-    .justify-content-center {
-      justify-content: space-between !important;
-    }
-  }
-
-  .navbar-light .navbar-nav {
-    .active > .nav-link {
-      border-bottom: 1px solid $orange;
-    }
-
-    .nav-link {
-      &.active {
-        border-bottom: 1px solid $orange;
-      }
-
-      padding: 15px 15px;
-    }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-
-  .navbar {
-    padding: 13px 0;
-
-    .container-fluid {
-      padding-right: 15px;
-      padding-left: 15px;
-    }
-
-    .justify-content-center {
-      justify-content: space-between !important;
-    }
-  }
-
-  .navbar-light .navbar-nav {
-    .active > .nav-link {
-      border-bottom: 1px solid $orange;
-    }
-
-    .nav-link {
-      &.active {
-        border-bottom: 1px solid $orange;
-      }
-
-      padding: 15px 15px;
-    }
-  }
-}
-
-@media only screen and (max-width: 480px) {
-
-  .navbar {
-    padding: 13px 0;
-    top: 0 !important;
-
-    .container-fluid {
-      padding-right: 15px;
-      padding-left: 15px;
-    }
-
-    .justify-content-center {
-      justify-content: space-between !important;
-    }
-  }
-
-  .navbar-light .navbar-nav {
-    .active > .nav-link {
-      border-bottom: 1px solid $orange;
-    }
-
-    .nav-link {
-      &.active {
-        border-bottom: 1px solid $orange;
-      }
-
-      padding: 15px 15px;
-    }
-  }
-}
 
 /*=================================*/
 /* ================================= 5. Carousel ================================= */
@@ -615,18 +523,6 @@ nav {
 .carousel-indicators {
   bottom: unset;
   top: 10px;
-}
-
-@media only screen and (max-width: 768px) {
-  .carousel-item img {
-    width: unset;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .carousel-item img {
-    width: unset;
-  }
 }
 
 /*=================================*/
@@ -1056,34 +952,6 @@ select.input-lg {
     font-style: italic;
     font-size: 1.65em;
     color: #555;
-  }
-}
-
-/*=================================*/
-/* ================================= 11. Print ================================= */
-@media print {
-  .no-print {
-    display: none !important;
-
-    * {
-      display: none !important;
-    }
-  }
-
-  #slider-recipe .carousel-inner .recipe img {
-    height: 30vh !important;
-    max-height: 300px !important;
-  }
-
-  .instructions ol > li {
-    position: relative;
-    padding: 5px 10px;
-    line-height: 18px;
-    margin-bottom: 0 !important;
-  }
-
-  ul.ingredient-check li {
-    margin-bottom: 2px !important;
   }
 }
 

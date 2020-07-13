@@ -53482,15 +53482,75 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/sass/styles-480px.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/styles-480px.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/styles-768px.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/styles-768px.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/styles-992px.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/styles-992px.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/styles-print.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/styles-print.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/styles.scss":
+/*!************************************!*\
+  !*** ./resources/sass/styles.scss ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!***********************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/fontawesome.scss ***!
-  \***********************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/styles.scss ./resources/sass/styles-print.scss ./resources/sass/styles-480px.scss ./resources/sass/styles-768px.scss ./resources/sass/styles-992px.scss ./resources/sass/fontawesome.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/bugra/projects/Kolokas/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/styles.scss */"./resources/sass/styles.scss");
+__webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/styles-print.scss */"./resources/sass/styles-print.scss");
+__webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/styles-480px.scss */"./resources/sass/styles-480px.scss");
+__webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/styles-768px.scss */"./resources/sass/styles-768px.scss");
+__webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/styles-992px.scss */"./resources/sass/styles-992px.scss");
 module.exports = __webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/fontawesome.scss */"./resources/sass/fontawesome.scss");
 
 

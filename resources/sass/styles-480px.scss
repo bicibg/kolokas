@@ -1,0 +1,26 @@
+@import 'variables';
+
+@media only screen and (max-width: 480px) {
+
+  .navbar {
+    top: 0 !important;
+  }
+
+  .navbar-light .navbar-nav {
+    .active > .nav-link {
+      border-bottom: 1px solid $orange;
+    }
+
+    .nav-link {
+      &.active {
+        border-bottom: 1px solid $orange;
+      }
+
+      padding: 15px 15px;
+    }
+  }
+
+  .carousel-item img {
+    width: unset;
+  }
+}

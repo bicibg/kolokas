@@ -17,16 +17,23 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-print.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-480px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-768px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-992px.css') }}" rel="stylesheet">
+
+    <link href="{{ mix('css/fontawesome.css') }}" rel="stylesheet">
 
     @livewireStyles
 </head>
 <body>
 <div id="app">
     <div class="fixed-top" data-toggle="affix">
-        @include('partials.topbar')
-        @include('partials.navbar')
+    @include('partials.topbar')
+
+    @include('partials.navbar')
     </div>
     <main class="py-2 mt-xs-5 pt-xs-2">
         <flash message="{{ session('flash') }}"></flash>

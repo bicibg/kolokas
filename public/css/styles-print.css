@@ -1,0 +1,26 @@
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .no-print * {
+    display: none !important;
+  }
+
+  #slider-recipe .carousel-inner .recipe img {
+    height: 30vh !important;
+    max-height: 300px !important;
+  }
+
+  .instructions ol > li {
+    position: relative;
+    padding: 5px 10px;
+    line-height: 18px;
+    margin-bottom: 0 !important;
+  }
+
+  ul.ingredient-check li {
+    margin-bottom: 2px !important;
+  }
+}
+

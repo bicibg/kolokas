@@ -1,6 +1,6 @@
 <nav class="topbar no-print navbar-light bg-light navbar-expand d-none d-md-block" id="first">
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="row w-100">
             <div class="col-md-12">
                 <ul class="nav navbar-nav topbar-nav float-left">
                     <li class="nav-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
