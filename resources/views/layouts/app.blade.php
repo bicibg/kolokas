@@ -31,8 +31,10 @@
 </head>
 <body>
 <div id="app">
-    @include('partials.topbar')
-    @include('partials.navbar')
+    <div class="sticky-top kolokas-nav">
+        @include('partials.topbar')
+        @include('partials.navbar')
+    </div>
     <main class="py-2 mt-xs-5 pt-xs-2">
         <flash message="{{ session('flash') }}"></flash>
         <flash message="{{ session('flash-error') }}" type="error"></flash>

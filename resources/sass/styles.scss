@@ -324,14 +324,12 @@ img {
 /*=================================*/
 /* ================================= 3. Top Bar ================================= */
 
-.fixed-top #first {
+.kolokas-nav nav:first-child {
   -webkit-transition: padding 0.2s ease;
   -moz-transition: padding 0.2s ease;
   -o-transition: padding 0.2s ease;
   transition: padding 0.2s ease;
-}
 
-.affix #first {
   padding-top: 0.2em !important;
   padding-bottom: 0.2em !important;
   -webkit-transition: padding 0.2s linear;
@@ -339,91 +337,72 @@ img {
   -o-transition: padding 0.2s linear;
   transition: padding 0.2s linear;
 }
-
 .topbar {
-  z-index: 1020;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #f9f9f9;
-  height: 40px;
-}
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
 
-.topbar-nav {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-
-  > li > a {
-    display: block;
-    padding: 8px 12px;
-    background-color: transparent;
-    color: #95a0aa;
-
-    &:hover {
-      background: $orange;
-      color: #fff;
-    }
+  .collapse {
+    height: 40px;
   }
 
-  &.top-contact-info > li {
-    border-right: solid 1px #eee;
+  .navbar-nav {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
 
-    &:first-child {
-      border-left: solid 1px #eee;
-    }
+    > li > a {
+      display: block;
+      padding: 8px 12px;
+      background-color: transparent;
+      color: #95a0aa;
 
-    i {
-      font-size: 14px;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 4px;
-    }
-  }
-
-  > {
-    .active > a {
-      background: #242636;
-
-      &:hover, &:focus {
-        background: #242636;
+      &:hover {
+        background: $orange;
+        color: #fff;
       }
     }
 
-    .disabled > a {
-      color: #fff;
-      background: $orange;
+    > {
+      .active > a {
+        background: #242636;
 
-      &:hover, &:focus {
+        &:hover, &:focus {
+          background: #242636;
+        }
+      }
+
+      .disabled > a {
         color: #fff;
         background: $orange;
+
+        &:hover, &:focus {
+          color: #fff;
+          background: $orange;
+        }
       }
     }
-  }
 
-  .dropdown-item {
-    &.active, &:active, &:focus, &:hover {
-      text-decoration: none;
-      color: #fff;
-      background-color: $orange;
+    .dropdown-item {
+      &.active, &:active, &:focus, &:hover {
+        text-decoration: none;
+        color: #fff;
+        background-color: $orange;
+      }
     }
-  }
 
-  .dropdown-menu {
-    margin: 0;
-    border-radius: 4px;
+    .dropdown-menu {
+      margin: 0;
+      border-radius: 4px;
+    }
   }
 }
 
 /*=================================*/
 /* ================================= 4. Nav Bar ================================= */
 
-.navbar {
+.navbar.navbar-main {
   padding-top: 0;
   padding-bottom: 0;
-  background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
   .dropdown-item {
@@ -459,7 +438,7 @@ img {
   }
 }
 
-.navbar-light .navbar-nav {
+.navbar-nav {
   .nav-link {
     font-weight: 700;
     font-size: 16px;
@@ -476,6 +455,15 @@ img {
 /*=================================*/
 /* ================================= 5. Carousel ================================= */
 
+.carousel-caption {
+/*  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 4%, rgba(0,0,0,0.2) 32%, rgba(169,169,169,1) 100%); !* FF3.6+ *!
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(4%,rgba(0,0,0,0.1)), color-stop(32%,rgba(0,0,0,0.2)), color-stop(100%,rgba(169,169,169,1))); !* Chrome,Safari4+ *!
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.2) 32%,rgba(169,169,169,1) 100%); !* Chrome10+,Safari5.1+ *!
+  background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.2) 32%,rgba(169,169,169,1) 100%); !* Opera 11.10+ *!
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.2) 32%,rgba(169,169,169,1) 100%); !* IE10+ *!
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.2) 32%,rgba(169,169,169,1) 100%); !* W3C *!
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); !* IE6-9 *!*/
+}
 .carousel-item {
   img {
     -o-object-fit: cover;
@@ -485,7 +473,7 @@ img {
 
   h1 {
     text-shadow: 0 1px 12px #555;
-    font-size: 5vw;
+    font-size: calc(90% + 1vw + 1vh);
 
     a {
       color: #fff;
@@ -495,11 +483,11 @@ img {
       }
     }
   }
-
   p {
-    font-size: 3vw;
     text-shadow: 0 1px 5px #555;
+    font-size: calc(2% + 1vw + 1vh);
   }
+
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {

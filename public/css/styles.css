@@ -330,90 +330,70 @@ img {
 
 /* ================================= 3. Top Bar ================================= */
 
-.fixed-top #first {
+.kolokas-nav nav:first-child {
   transition: padding 0.2s ease;
-}
-
-.affix #first {
   padding-top: 0.2em !important;
   padding-bottom: 0.2em !important;
   transition: padding 0.2s linear;
 }
 
 .topbar {
-  z-index: 1020;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #f9f9f9;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.topbar .collapse {
   height: 40px;
 }
 
-.topbar-nav {
+.topbar .navbar-nav {
   margin: 0;
   padding: 0;
   list-style-type: none;
   display: flex;
 }
 
-.topbar-nav > li > a {
+.topbar .navbar-nav > li > a {
   display: block;
   padding: 8px 12px;
   background-color: transparent;
   color: #95a0aa;
 }
 
-.topbar-nav > li > a:hover {
+.topbar .navbar-nav > li > a:hover {
   background: #ff9638;
   color: #fff;
 }
 
-.topbar-nav.top-contact-info > li {
-  border-right: solid 1px #eee;
-}
-
-.topbar-nav.top-contact-info > li:first-child {
-  border-left: solid 1px #eee;
-}
-
-.topbar-nav.top-contact-info > li i {
-  font-size: 14px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 4px;
-}
-
-.topbar-nav > .active > a {
+.topbar .navbar-nav > .active > a {
   background: #242636;
 }
 
-.topbar-nav > .active > a:hover,
-.topbar-nav > .active > a:focus {
+.topbar .navbar-nav > .active > a:hover,
+.topbar .navbar-nav > .active > a:focus {
   background: #242636;
 }
 
-.topbar-nav > .disabled > a {
+.topbar .navbar-nav > .disabled > a {
   color: #fff;
   background: #ff9638;
 }
 
-.topbar-nav > .disabled > a:hover,
-.topbar-nav > .disabled > a:focus {
+.topbar .navbar-nav > .disabled > a:hover,
+.topbar .navbar-nav > .disabled > a:focus {
   color: #fff;
   background: #ff9638;
 }
 
-.topbar-nav .dropdown-item.active,
-.topbar-nav .dropdown-item:active,
-.topbar-nav .dropdown-item:focus,
-.topbar-nav .dropdown-item:hover {
+.topbar .navbar-nav .dropdown-item.active,
+.topbar .navbar-nav .dropdown-item:active,
+.topbar .navbar-nav .dropdown-item:focus,
+.topbar .navbar-nav .dropdown-item:hover {
   text-decoration: none;
   color: #fff;
   background-color: #ff9638;
 }
 
-.topbar-nav .dropdown-menu {
+.topbar .navbar-nav .dropdown-menu {
   margin: 0;
   border-radius: 4px;
 }
@@ -422,23 +402,22 @@ img {
 
 /* ================================= 4. Nav Bar ================================= */
 
-.navbar {
+.navbar.navbar-main {
   padding-top: 0;
   padding-bottom: 0;
-  background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.navbar .dropdown-item.active,
-.navbar .dropdown-item:active,
-.navbar .dropdown-item:focus,
-.navbar .dropdown-item:hover {
+.navbar.navbar-main .dropdown-item.active,
+.navbar.navbar-main .dropdown-item:active,
+.navbar.navbar-main .dropdown-item:focus,
+.navbar.navbar-main .dropdown-item:hover {
   text-decoration: none;
   color: #fff;
   background-color: #ff9638;
 }
 
-.navbar .dropdown-menu {
+.navbar.navbar-main .dropdown-menu {
   margin: 0;
   border-radius: 4px;
   max-height: 50vh;
@@ -464,14 +443,14 @@ img {
   max-width: 70vw;
 }
 
-.navbar-light .navbar-nav .nav-link {
+.navbar-nav .nav-link {
   font-weight: 700;
   font-size: 16px;
   padding: 23px 25px;
 }
 
-.navbar-light .navbar-nav .active > .nav-link,
-.navbar-light .navbar-nav .nav-link.active {
+.navbar-nav .active > .nav-link,
+.navbar-nav .nav-link.active {
   color: #ff9638;
   border-bottom: 3px solid #ff9638;
 }
@@ -479,6 +458,16 @@ img {
 /*=================================*/
 
 /* ================================= 5. Carousel ================================= */
+
+.carousel-caption {
+  /*  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 4%, rgba(0,0,0,0.2) 32%, rgba(169,169,169,1) 100%); !* FF3.6+ *!
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(4%,rgba(0,0,0,0.1)), color-stop(32%,rgba(0,0,0,0.2)), color-stop(100%,rgba(169,169,169,1))); !* Chrome,Safari4+ *!
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.2) 32%,rgba(169,169,169,1) 100%); !* Chrome10+,Safari5.1+ *!
+    background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.2) 32%,rgba(169,169,169,1) 100%); !* Opera 11.10+ *!
+    background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.2) 32%,rgba(169,169,169,1) 100%); !* IE10+ *!
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.2) 32%,rgba(169,169,169,1) 100%); !* W3C *!
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); !* IE6-9 *!*/
+}
 
 .carousel-item img {
   -o-object-fit: cover;
@@ -488,7 +477,7 @@ img {
 
 .carousel-item h1 {
   text-shadow: 0 1px 12px #555;
-  font-size: 5vw;
+  font-size: calc(90% + 1vw + 1vh);
 }
 
 .carousel-item h1 a {
@@ -500,8 +489,8 @@ img {
 }
 
 .carousel-item p {
-  font-size: 3vw;
   text-shadow: 0 1px 5px #555;
+  font-size: calc(2% + 1vw + 1vh);
 }
 
 .carousel-control-prev-icon,

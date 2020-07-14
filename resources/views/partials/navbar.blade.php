@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-2" style="top:40px;">
+<nav class="navbar navbar-main bg-white navbar-expand-lg navbar-light py-2">
     <a class="navbar-brand d-block h-100 position-absolute mx-5" href="#">
         @include('partials.svg.logo_' . app()->getLocale())
     </a>
