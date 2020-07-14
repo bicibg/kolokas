@@ -1,14 +1,7 @@
 @media only screen and (max-width: 768px) {
-  .navbar-light .navbar-nav .active > .nav-link {
-    border-bottom: 1px solid #ff9638;
-  }
-
-  .navbar-light .navbar-nav .nav-link {
-    padding: 15px 15px;
-  }
-
-  .navbar-light .navbar-nav .nav-link.active {
-    border-bottom: 1px solid #ff9638;
+  .navbar-brand {
+    margin-left: 0 !important;
+    position: relative !important;
   }
 
   .carousel-item img {

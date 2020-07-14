@@ -23,6 +23,7 @@
     <link href="{{ mix('css/styles-480px.css') }}" rel="stylesheet">
     <link href="{{ mix('css/styles-768px.css') }}" rel="stylesheet">
     <link href="{{ mix('css/styles-992px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-1200px.css') }}" rel="stylesheet">
 
     <link href="{{ mix('css/fontawesome.css') }}" rel="stylesheet">
 
@@ -30,11 +31,8 @@
 </head>
 <body>
 <div id="app">
-    <div class="fixed-top" data-toggle="affix">
     @include('partials.topbar')
-
     @include('partials.navbar')
-    </div>
     <main class="py-2 mt-xs-5 pt-xs-2">
         <flash message="{{ session('flash') }}"></flash>
         <flash message="{{ session('flash-error') }}" type="error"></flash>

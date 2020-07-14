@@ -341,7 +341,7 @@ img {
 }
 
 .topbar {
-  z-index: 1050;
+  z-index: 1020;
   position: fixed;
   top: 0;
   left: 0;
@@ -420,25 +420,30 @@ img {
 /*=================================*/
 /* ================================= 4. Nav Bar ================================= */
 
-
-nav {
-  width: 100vw;
-}
 .navbar {
   padding-top: 0;
   padding-bottom: 0;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
-  .container {
-    max-width: 1400px !important;
+  .dropdown-item {
+    &.active, &:active, &:focus, &:hover {
+      text-decoration: none;
+      color: #fff;
+      background-color: $orange;
+    }
+  }
+
+  .dropdown-menu {
+    margin: 0;
+    border-radius: 4px;
+    max-height: 50vh;
+    overflow-y: auto;
   }
 }
-
 .navbar-brand {
   left: 0;
   top: 0;
-
   svg {
     max-width: 35vw;
   }
@@ -465,27 +470,8 @@ nav {
     color: $orange;
     border-bottom: 3px solid $orange;
   }
+
 }
-
-.navbar {
-  .dropdown-item {
-    &.active, &:active, &:focus, &:hover {
-      text-decoration: none;
-      color: #fff;
-      background-color: $orange;
-    }
-  }
-
-  .dropdown-menu {
-    margin: 0;
-    border-radius: 4px;
-    max-height: 50vh;
-    overflow-y: auto;
-  }
-}
-
-
-
 
 /*=================================*/
 /* ================================= 5. Carousel ================================= */
@@ -500,6 +486,7 @@ nav {
   h1 {
     text-shadow: 0 1px 12px #555;
     font-size: 5vw;
+
     a {
       color: #fff;
 

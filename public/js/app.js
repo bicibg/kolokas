@@ -53390,30 +53390,6 @@ $(".image-checkbox").on("click", function (e) {
   $checkbox.prop("checked", !$checkbox.prop("checked"));
   e.preventDefault();
 });
-$(document).ready(function () {
-  var toggleAffix = function toggleAffix(affixElement, scrollElement, wrapper) {
-    var height = affixElement.outerHeight(); //    top = wrapper.offset().top;
-
-    if (scrollElement.scrollTop() >= 80) {
-      wrapper.height(height);
-      affixElement.addClass("affix");
-    } else {
-      affixElement.removeClass("affix");
-      wrapper.height('auto');
-    }
-  };
-
-  $('[data-toggle="affix"]').each(function () {
-    var ele = $(this),
-        wrapper = $('<div></div>');
-    ele.before(wrapper);
-    $(window).on('scroll resize', function () {
-      toggleAffix(ele, $(this), wrapper);
-    }); // init
-
-    toggleAffix(ele, $(window), wrapper);
-  });
-});
 
 /***/ }),
 
@@ -53482,6 +53458,17 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/sass/styles-1200px.scss":
+/*!*******************************************!*\
+  !*** ./resources/sass/styles-1200px.scss ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/styles-480px.scss":
 /*!******************************************!*\
   !*** ./resources/sass/styles-480px.scss ***!
@@ -53538,9 +53525,9 @@ module.exports = {
 /***/ }),
 
 /***/ 0:
-/*!************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/styles.scss ./resources/sass/styles-print.scss ./resources/sass/styles-480px.scss ./resources/sass/styles-768px.scss ./resources/sass/styles-992px.scss ./resources/sass/fontawesome.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/styles.scss ./resources/sass/styles-print.scss ./resources/sass/styles-480px.scss ./resources/sass/styles-768px.scss ./resources/sass/styles-992px.scss ./resources/sass/styles-1200px.scss ./resources/sass/fontawesome.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -53551,6 +53538,7 @@ __webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/styles-print
 __webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/styles-480px.scss */"./resources/sass/styles-480px.scss");
 __webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/styles-768px.scss */"./resources/sass/styles-768px.scss");
 __webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/styles-992px.scss */"./resources/sass/styles-992px.scss");
+__webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/styles-1200px.scss */"./resources/sass/styles-1200px.scss");
 module.exports = __webpack_require__(/*! /home/bugra/projects/Kolokas/resources/sass/fontawesome.scss */"./resources/sass/fontawesome.scss");
 
 

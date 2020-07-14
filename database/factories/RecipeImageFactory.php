@@ -12,6 +12,6 @@ $factory->define(RecipeImage::class, function (Faker $faker, $attr = []) {
     return [
         'main' => true,
         'recipe_id' => $attr['recipe_id'] ?? factory(Recipe::class)->create(),
-        'url' => $faker->imageUrl(640, 480, 'food', true),
+        'url' => imageUrl(640, 480)//$faker->imageUrl(640, 480, 'food', true),
     ];
 });

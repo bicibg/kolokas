@@ -341,7 +341,7 @@ img {
 }
 
 .topbar {
-  z-index: 1050;
+  z-index: 1020;
   position: fixed;
   top: 0;
   left: 0;
@@ -422,10 +422,6 @@ img {
 
 /* ================================= 4. Nav Bar ================================= */
 
-nav {
-  width: 100vw;
-}
-
 .navbar {
   padding-top: 0;
   padding-bottom: 0;
@@ -433,8 +429,20 @@ nav {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.navbar .container {
-  max-width: 1400px !important;
+.navbar .dropdown-item.active,
+.navbar .dropdown-item:active,
+.navbar .dropdown-item:focus,
+.navbar .dropdown-item:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff9638;
+}
+
+.navbar .dropdown-menu {
+  margin: 0;
+  border-radius: 4px;
+  max-height: 50vh;
+  overflow-y: auto;
 }
 
 .navbar-brand {
@@ -466,22 +474,6 @@ nav {
 .navbar-light .navbar-nav .nav-link.active {
   color: #ff9638;
   border-bottom: 3px solid #ff9638;
-}
-
-.navbar .dropdown-item.active,
-.navbar .dropdown-item:active,
-.navbar .dropdown-item:focus,
-.navbar .dropdown-item:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: #ff9638;
-}
-
-.navbar .dropdown-menu {
-  margin: 0;
-  border-radius: 4px;
-  max-height: 50vh;
-  overflow-y: auto;
 }
 
 /*=================================*/

@@ -41,3 +41,13 @@ function randKey($length = 10)
     }
     return $randomString;
 }
+
+function imageUrl($width = 640, $height = 480)
+{
+    $baseUrl = "https://loremflickr.com";
+    $url = "/{$width}/{$height}/food";
+
+    $url .= '?' . random_int(10000, 99999);
+
+    return $baseUrl . $url;
+}
