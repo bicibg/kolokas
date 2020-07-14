@@ -27,18 +27,21 @@ window.events = new Vue();
 window.flash = function (message, type = 'success') {
     window.events.$emit('flash', {message, type});
 };
-window.livewire.on('flash-success', message => {
-    flash(message, 'success');
-})
 
-window.livewire.on('flash-warning', message => {
-    flash(message, 'warning');
-})
+if (window.livewire) {
+    window.livewire.on('flash-success', message => {
+        flash(message, 'success');
+    })
 
-window.livewire.on('flash-error', message => {
-    flash(message, 'error');
-})
+    window.livewire.on('flash-warning', message => {
+        flash(message, 'warning');
+    })
 
+    window.livewire.on('flash-error', message => {
+        flash(message, 'error');
+    })
+
+}
 
 const app = new Vue({
     el: '#app',

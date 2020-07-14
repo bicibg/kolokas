@@ -53161,15 +53161,18 @@ window.flash = function (message) {
   });
 };
 
-window.livewire.on('flash-success', function (message) {
-  flash(message, 'success');
-});
-window.livewire.on('flash-warning', function (message) {
-  flash(message, 'warning');
-});
-window.livewire.on('flash-error', function (message) {
-  flash(message, 'error');
-});
+if (window.livewire) {
+  window.livewire.on('flash-success', function (message) {
+    flash(message, 'success');
+  });
+  window.livewire.on('flash-warning', function (message) {
+    flash(message, 'warning');
+  });
+  window.livewire.on('flash-error', function (message) {
+    flash(message, 'error');
+  });
+}
+
 var app = new Vue({
   el: '#app'
 });
