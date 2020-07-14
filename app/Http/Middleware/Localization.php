@@ -20,7 +20,7 @@ class Localization
      */
     public function handle($request, Closure $next)
     {
-        /*if (auth()->check() && auth()->user()->locale) {
+        if (auth()->check() && auth()->user()->locale) {
             $locale = auth()->user()->locale;
         } elseif (
             Session::has('kolokas.locale') &&
@@ -35,9 +35,8 @@ class Localization
 
         if (!Arr::exists(Config::get('app.languages'), $locale)) {
             $locale = Config::get('app.fallback_locale');
-        }*/
+        }
 
-        $locale = 'tr';
         if (auth()->check()) {
             auth()->user()->locale = $locale;
             auth()->user()->save();

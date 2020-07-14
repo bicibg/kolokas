@@ -1,19 +1,10 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
-    'failed' => 'Bu giriş bilgileri kayıtlarımızla eşleşmiyor.',
-    'throttle' => 'Çok fazla giriş denemesi yapıldı. Lütfen birkaç saniye içinde tekrar deneyin.',
-
+    'fail' => 'Bu kimlik bilgileri kayıtlarımızla eşleşmiyor.',
+    'throttle' => 'Çok fazla giriş denemesi yapildi. Lütfen birkaç saniye içinde tekrar deneyin.',
+    'create_account' => 'Hesap Oluştur',
+    'login' => 'Oturum aç',
+    'logout' => 'Çıkış yap',
+    'log_in_as' => ':name olarak giriş yapıldı',
 ];
