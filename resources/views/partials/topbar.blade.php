@@ -1,4 +1,4 @@
-<nav class="navbar topbar navbar-expand navbar-light bg-light no-print d-none d-md-block p-0">
+<nav class="navbar topbar navbar-expand navbar-light bg-light no-print d-none d-md-block py-0 px-4">
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav m-0 p-0">
             <li class="nav-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
