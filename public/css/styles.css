@@ -334,7 +334,6 @@ img {
   transition: padding 0.2s ease;
   padding-top: 0.2em !important;
   padding-bottom: 0.2em !important;
-  transition: padding 0.2s linear;
 }
 
 .topbar {
