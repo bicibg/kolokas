@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="heading">
-            <h2>Editor's Choice</h2>
+            <h2>{{ __('home.editors_choice') }}</h2>
         </div>
     </div>
     @foreach($featured as $recipe)

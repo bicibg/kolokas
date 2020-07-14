@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'like' => 'Like|Likes',
+    'like' => 'like|likes',
+    'view' => 'view|views',
     'coming_soon' => 'Coming soon'
 ];

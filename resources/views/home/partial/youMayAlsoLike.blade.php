@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="heading">
-            <h2>You may also like</h2>
+            <h2>{{ __('home.you_may_also_like') }}</h2>
         </div>
     </div>
     @foreach($youMayAlsoLike as $recipe)

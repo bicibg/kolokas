@@ -25,7 +25,7 @@
                         <p>
                             {{ \Illuminate\Support\Str::limit($recipe->description, 250, $end='...') }}
                         </p>
-                        <a href="" class="btn-link">Read more</a>
+                        <a href="" class="btn-link">{{ __('carousel.read_more') }}</a>
                     </div>
                 </div>
             </div>
@@ -38,11 +38,11 @@
 
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">{{ __('carousel.previous') }}</span>
         </a>
         <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">{{ __('carousel.next') }}</span>
         </a>
     @endif
 </div>

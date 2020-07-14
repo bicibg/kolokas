@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="heading">
-            <h2>Recently Added Recipes</h2>
+            <h2>{{ __('home.recently_added') }}</h2>
         </div>
     </div>
     @foreach($latest as $recipe)

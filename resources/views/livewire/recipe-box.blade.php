@@ -6,21 +6,21 @@
 
         @if ($recipe->author->is(auth()->user()))
             <a href="{{ route('recipe.edit', $recipe) }}">
-                <div class="hover-button hover-button-first">Edit Recipe</div>
+                <div class="hover-button hover-button-first">{{ __('recipe.edit') }}</div>
             </a>
             <div class="clearfix"></div>
             <a href="{{ $recipe->url }}">
-                <div class="hover-button hover-button-second">View Recipe</div>
+                <div class="hover-button hover-button-second">{{ __('recipe.view') }}</div>
             </a>
         @else
             <a href="{{ $recipe->url }}">
-                <div class="hover-button">View Recipe</div>
+                <div class="hover-button">{{ __('recipe.view') }}</div>
             </a>
         @endif
     </div>
     <div class="recipe-meta text-center">
-        <span><i class="fa fa-heart"></i> {{ $recipe->favourites->count() }} {{ \Illuminate\Support\Str::plural('like', $recipe->favourites->count()) }}</span>
-        <span><i class="fa fa-eye"></i> {{ $recipe->visitsCount }} {{ \Illuminate\Support\Str::plural('view', $recipe->visitsCount) }}</span>
+        <span><i class="fa fa-heart"></i> {{ $recipe->favourites->count() }} {{ trans_choice('general.like', $recipe->favourites->count() ) }}</span>
+        <span><i class="fa fa-eye"></i> {{ $recipe->visitsCount }}  {{ trans_choice('general.view', $recipe->visitsCount ) }}</span>
     </div>
     <div class="recipe-content">
         <h3>

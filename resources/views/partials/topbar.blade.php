@@ -12,34 +12,47 @@
                 <a class="login_button font-weight-bold"
                    id="show_login"
                    href="{{ route('recipe.create') }}">
-                    <i class="fa fa-plus-square"></i> Submit Recipe
+                    <i class="fa fa-plus-square"></i> {{ __('nav.submit_recipe') }}
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="dropdown-toggle"
+                   href="#"
+                   id="navbarDropdown"
+                   role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false">
                     <i class="fas fa-globe"></i>
                     {{ config()->get('app.languages')[app()->getLocale()] }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     @foreach(config()->get('app.languages') as $key => $lang)
                         @if ($key !== app()->getLocale())
-                            <a class="dropdown-item disabled" href="{{ route('locale', $key) }}">{{ $lang }} <small>({{ __('general.coming_soon') }})</small></a>
+                            <a class="dropdown-item disabled" href="{{ route('locale', $key) }}">{{ $lang }}
+                                <small>({{ __('general.coming_soon') }})</small></a>
                         @endif
                     @endforeach
                 </div>
             </li>
             @guest
-                <li class="nav-item"><a class="login_button" id="show_login"
-                                        href="{{ route('login') }}"><i
-                            class="fa fa-key"></i> Login</a></li>
-                <li class="nav-item"><a class="login_button" id="show_signup"
-                                        href="{{ route('register') }}"><i
-                            class="fa fa-lock"></i> Create Account</a></li>
+                <li class="nav-item">
+                    <a class="login_button" id="show_login" href="{{ route('login') }}">
+                        <i class="fa fa-key"></i>
+                        {{ __('auth.login') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="login_button" id="show_signup" href="{{ route('register') }}">
+                        <i class="fa fa-lock"></i>
+                        {{ __('auth.create_account') }}
+                    </a>
+                </li>
             @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        Logged in as {{ Auth::user()->name }} <span class="caret"></span>
+                        {{ __('auth.logged_in_as', ['name' => Auth::user()->name]) }} <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -50,7 +63,7 @@
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            {{ __('auth.logout') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                               style="display: none;">

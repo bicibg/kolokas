@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="heading">
-            <h2>Most Favourited Recipes</h2>
+            <h2>{{ __('home.most_favourited') }}</h2>
         </div>
     </div>
     @foreach($mostFavourited as $recipe)

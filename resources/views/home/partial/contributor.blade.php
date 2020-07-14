@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="heading">
-            <h2>Top Authors</h2>
+            <h2>{{ __('home.top_authors') }}</h2>
         </div>
     </div>
 

@@ -8,12 +8,11 @@
     </div>
     <div class="recipe-meta text-center">
         @php
-            $comments = rand(0, 50);
             $recipes = rand(1, 10)
         @endphp
         <span>
             <i class="fa fa-spoon"></i>
-            {{ $recipes }} {{ \Illuminate\Support\Str::plural('recipe', $recipes) }}
+            {{ $profile->user->recipes->count() }} {{ trans_choice('recipe.recipe', $profile->user->recipes->count()) }}
         </span>
     </div>
     <div class="recipe-content">
