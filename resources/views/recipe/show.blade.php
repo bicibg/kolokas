@@ -59,7 +59,7 @@
 
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row w-100">
+                        <div class="row recipe-details">
                             <div class="col-md-12">
                                 <p>
                                     {{ $recipe->description }}

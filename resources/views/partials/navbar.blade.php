@@ -1,5 +1,5 @@
 <nav class="navbar navbar-main bg-white navbar-expand-lg navbar-light py-2">
-    <a class="navbar-brand d-block h-100 position-absolute mx-5" href="#">
+    <a class="navbar-brand d-block h-100 position-absolute mx-5" href="{{ route('home') }}">
         @include('partials.svg.logo_' . app()->getLocale())
     </a>
     <button class="navbar-toggler ml-auto"

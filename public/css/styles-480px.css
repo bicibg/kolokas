@@ -6,5 +6,9 @@
   .carousel-item img {
     width: unset;
   }
+
+  .recipe-details {
+    padding: 0 20px;
+  }
 }
 

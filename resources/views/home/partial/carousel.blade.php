@@ -19,16 +19,14 @@
         @foreach($carousel as $recipe)
             <div class="carousel-item {{ $active ? "active" : "" }}">
                 <img class="d-block w-100" src="{{ $recipe->mainImage->url }}" alt="{{ $recipe->title }}">
-                <div class="carousel-caption text-right">
-                    <h1><a href="{{ $recipe->url }}">{{ $recipe->title }}</a></h1>
-                    <p>
-                        {{ \Illuminate\Support\Str::limit($recipe->description, 250, $end='...') }}
-                    </p>
-                    <p>
-                        <base-button :href="'{{ route('recipe.show', $recipe) }}'">
-                            Read more
-                        </base-button>
-                    </p>
+                <div class="container">
+                    <div class="carousel-caption text-right">
+                        <h1><a href="{{ $recipe->url }}">{{ $recipe->title }}</a></h1>
+                        <p>
+                            {{ \Illuminate\Support\Str::limit($recipe->description, 250, $end='...') }}
+                        </p>
+                        <a href="" class="btn-link">Read more</a>
+                    </div>
                 </div>
             </div>
             @php
@@ -37,6 +35,7 @@
         @endforeach
     </div>
     @if ($carousel->count() > 1)
+
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>

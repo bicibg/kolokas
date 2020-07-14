@@ -408,6 +408,10 @@ img {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
+.navbar.navbar-main .nav-item {
+  margin: 0 25px;
+}
+
 .navbar.navbar-main .dropdown-item.active,
 .navbar.navbar-main .dropdown-item:active,
 .navbar.navbar-main .dropdown-item:focus,
@@ -469,28 +473,27 @@ img {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); !* IE6-9 *!*/
 }
 
+.carousel-item .btn-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: calc(1% + 0.8vw + 0.8vh);
+}
+
 .carousel-item img {
   -o-object-fit: cover;
   object-fit: cover;
-  height: 50vh;
+  height: 40vh;
 }
 
 .carousel-item h1 {
   text-shadow: 0 1px 12px #555;
-  font-size: calc(90% + 1vw + 1vh);
-}
-
-.carousel-item h1 a {
-  color: #fff;
-}
-
-.carousel-item h1 a:hover {
-  text-decoration: none;
+  font-size: calc(60% + 1vw + 1vh);
 }
 
 .carousel-item p {
   text-shadow: 0 1px 5px #555;
   font-size: calc(2% + 1vw + 1vh);
+  line-height: 1.3em;
 }
 
 .carousel-control-prev-icon,
@@ -514,7 +517,7 @@ img {
 #top-rated,
 #most-read,
 #latest-news,
-#top_authors {
+#top-authors {
   position: relative;
   width: 100%;
   padding: 60px 0;
@@ -640,7 +643,6 @@ img {
   position: relative;
   background-size: 100%;
   padding: 30px;
-  margin-top: -50px;
   z-index: 100;
   margin-bottom: 30px;
   background: #fff;
@@ -723,10 +725,6 @@ select.input-lg {
 
 .single-post .ingredients-list ul.ingredient-check li:last-child {
   margin-bottom: 0;
-}
-
-.single-post ul.ingredient-check {
-  margin-left: -30px;
 }
 
 .single-post ul.ingredient-check li {
@@ -1315,4 +1313,6 @@ table tbody tr:nth-child(even) {
   text-align: left;
   vertical-align: top;
 }
+
+/* ================================= Search Form ================================= */
 

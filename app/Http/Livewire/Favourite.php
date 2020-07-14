@@ -23,7 +23,7 @@ class Favourite extends Component
             <a href="javascript:void(0);" title="Add to favorites" wire:click="favourite">
                 <i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i>
                 <span class="d-inline-block">
-                    {{ $recipe->favourites->count() }} {{ __('general.like', $recipe->favourites->count()) }}
+                    {{ $recipe->favourites->count() }} {{ trans_choice('general.like', $recipe->favourites->count()) }}
                 </span>
             </a>
         blade;

@@ -1,10 +1,10 @@
 <div class="row justify-content-center w-100">
     <div class="col-md-12">
         <form method="get" class="search-form" action="{{ $action ?? route('recipe.index') }}">
-            <div class="search-box">
+            <div class="search-box inner-form">
                 <div class="row">
                     <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="form-group">
+                        <div class="form-group input-field first-wrap">
                             <select name="c" id="recipe-type" class="form-control">
                                 <option value="0" @if(empty(request()->get('s'))) selected="selected" @endif> – Choose
                                     Category –
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-3 col-xs-6">
-                        <div class="form-group">
+                        <div class="form-group input-field second-wrap">
                             <div class="input-group mb-3 has-clear">
                                 <input type="text" class="form-control" placeholder="Search by Keyword"
                                        value="{{ request()->get('s') }}" name="s" aria-describedby="clear">
