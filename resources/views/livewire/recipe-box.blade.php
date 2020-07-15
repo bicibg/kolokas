@@ -42,9 +42,7 @@
                              height="25"
                              src="http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=25&amp;d=mm&amp;r=g"
                              width="25">
-                        By
-                        <a href="{{ $recipe->author->profile->url }}" rel="author"
-                           title="Posts by admin"> {{ $recipe->author->name }}</a>
+                        <a href="{{ $recipe->author->profile->url }}" rel="author">{{ $recipe->author->name }}</a>
                     </div>
                 </div>
                 {{--                <div class="col-md-4">--}}
@@ -61,7 +59,7 @@
     </div>
     <div class="recipe-buttons">
         <a href="javascript:void(0);"
-           title="Add to favorites"
+           title="{{ __('general.add_to_favourites') }}"
            wire:click="favourite"><i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i></a>
         <a data-toggle="modal" href="javascript:void(0);" data-target="#popup-social-{{ $recipe->slug }}" title="Share">
             <i class="fa fa-share"></i>

@@ -32,16 +32,16 @@
                                    title="Printer Friendly, PDF &amp; Email">
                                     <i class="fa fa-print"></i>
                                     <span class="d-inline-block">
-                                        Print / PDF
+                                        {{ __('general.print') }}
                                     </span>
                                 </a>
                                 <a data-toggle="modal"
                                    href="javascript:void(0);"
                                    data-target="#popup-social-{{ $recipe->slug }}"
-                                   title="Share">
+                                   title="{{ __('recipe.share') }}">
                                     <i class="fa fa-share"></i>
                                     <span class="d-inline-block">
-                                        Share
+                                        {{ __('recipe.share') }}
                                     </span>
                                 </a>
                             </div>

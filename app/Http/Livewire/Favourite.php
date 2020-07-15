@@ -20,7 +20,7 @@ class Favourite extends Component
     public function render()
     {
         return <<<'blade'
-            <a href="javascript:void(0);" title="Add to favorites" wire:click="favourite">
+            <a href="javascript:void(0);" title="{{ __('general.add_to_favourites') }}" wire:click="favourite">
                 <i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i>
                 <span class="d-inline-block">
                     {{ $recipe->favourites->count() }} {{ trans_choice('general.like', $recipe->favourites->count()) }}

@@ -5,5 +5,4 @@ return [
     'view' => 'View Recipe',
     'edit' => 'Edit Recipe',
     'share' => 'Share this recipe',
-
 ];
