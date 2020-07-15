@@ -25,7 +25,7 @@
                         <p>
                             {{ \Illuminate\Support\Str::limit($recipe->description, 250, $end='...') }}
                         </p>
-                        <a href="" class="btn-link">{{ __('carousel.read_more') }}</a>
+                        <a href="{{ $recipe->url }}" class="btn-link">{{ __('carousel.read_more') }}</a>
                     </div>
                 </div>
             </div>
