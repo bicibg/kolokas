@@ -1,5 +1,13 @@
 <?php
 
 return [
-    'Authentic recipes of Cyprus' => 'Kıbrıs\'ın otantik tarifleri'
+    'recipes' => 'Yemek Tarifleri',
+    'all_recipes' => 'Tüm Tarifler',
+    'authors' => 'Yazarlar',
+    'restaurants' => 'Restoranlar',
+    'submit_recipe' => 'Yemek Tarifi Gönder',
+    'events' => 'Etkinlikler',
+    'my_profile' => 'Profilim',
+    'my_recipes' => 'Yemek Tariflerim',
+    'my_favourites' => 'Favorilerim',
 ];
