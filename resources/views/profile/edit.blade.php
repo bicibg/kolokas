@@ -6,7 +6,7 @@
             <div class="alert alert-success">{{session()->get('message')}}</div>
         @endif
         @if(count($errors)>0)
-            <ul>
+            <ul class="validation-errors">
                 @foreach($errors->all() as $error)
                     <li class="alert alert-danger">{{$error}}</li>
                 @endforeach

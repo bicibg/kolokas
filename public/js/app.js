@@ -53162,14 +53162,26 @@ window.flash = function (message) {
 };
 
 if (window.livewire) {
-  window.livewire.on('flash-success', function (message) {
-    flash(message, 'success');
+  window.livewire.on('flash-success', function (message, trans_key) {
+    if (message) {
+      flash(message, 'success');
+    } else if (trans_key) {
+      flash(__(trans_key), 'success');
+    }
   });
-  window.livewire.on('flash-warning', function (message) {
-    flash(message, 'warning');
+  window.livewire.on('flash-warning', function (message, trans_key) {
+    if (message) {
+      flash(message, 'warning');
+    } else if (trans_key) {
+      flash(__(trans_key), 'warning');
+    }
   });
-  window.livewire.on('flash-error', function (message) {
-    flash(message, 'error');
+  window.livewire.on('flash-error', function (message, trans_key) {
+    if (message) {
+      flash(message, 'error');
+    } else if (trans_key) {
+      flash(__(trans_key), 'error');
+    }
   });
 }
 
@@ -53403,37 +53415,51 @@ $(".image-checkbox").on("click", function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+window.__ = function __(key, replace) {
+  var translation,
+      translationNotFound = true;
+
+  try {
+    translation = key.split('.').reduce(function (t, i) {
+      return t[i] || null;
+    }, window._translations[window._locale].php);
+
+    if (translation) {
+      translationNotFound = false;
+    }
+  } catch (e) {
+    translation = key;
+  }
+
+  if (translationNotFound) {
+    translation = window._translations[window._locale]['json'][key] ? window._translations[window._locale]['json'][key] : key;
+  }
+
+  _.forEach(replace, function (value, key) {
+    translation = translation.replace(':' + key, value);
+  });
+
+  return translation;
+};
+
 module.exports = {
   methods: {
     /**
      * Translate the given key.
      */
-    __: function __(key, replace) {
-      var translation,
-          translationNotFound = true;
-
-      try {
-        translation = key.split('.').reduce(function (t, i) {
-          return t[i] || null;
-        }, window._translations[window._locale].php);
-
-        if (translation) {
-          translationNotFound = false;
-        }
-      } catch (e) {
-        translation = key;
+    __: function (_2) {
+      function __(_x, _x2) {
+        return _2.apply(this, arguments);
       }
 
-      if (translationNotFound) {
-        translation = window._translations[window._locale]['json'][key] ? window._translations[window._locale]['json'][key] : key;
-      }
+      __.toString = function () {
+        return _2.toString();
+      };
 
-      _.forEach(replace, function (value, key) {
-        translation = translation.replace(':' + key, value);
-      });
-
-      return translation;
-    }
+      return __;
+    }(function (key, replace) {
+      return __(key, replace);
+    })
   }
 };
 

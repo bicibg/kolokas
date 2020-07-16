@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Şifreniz sıfırlandı!',
-    'sent' => 'Şifre sıfırlama bağlantınızı e-postayla gönderdik!',
-    'throttled' => 'Lütfen tekrar denemeden önce bekleyin.',
-    'token' => 'Bu şifre sıfırlama jetonu geçersiz.',
-    'user' => "Bu e-posta adresine sahip bir kullanıcı bulamıyoruz.",
-    'updated' => 'Şifreniz başarı ile değiştirildi.',
+    'reset' => 'Parolanız sıfırlandı!',
+    'sent' => 'Parola sıfırlama bağlantınız e-posta ile gönderildi!',
+    'throttled' => 'Tekrar denemeden önce lütfen bekleyin.',
+    'token' => 'Parola sıfırlama kodu geçersiz.',
+    'user' => 'Bu e-posta adresi ile kayıtlı bir üye bulunamadı.',
+    'updated' => 'Parolaniz başarı ile değiştirildi.',
 ];

@@ -18,6 +18,7 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
 Vue.mixin(require('./trans'))
 
 Vue.component('base-button', require('./components/BaseButtonComponent.vue').default);
@@ -29,16 +30,28 @@ window.flash = function (message, type = 'success') {
 };
 
 if (window.livewire) {
-    window.livewire.on('flash-success', message => {
-        flash(message, 'success');
+    window.livewire.on('flash-success', (message, trans_key) => {
+        if (message) {
+            flash(message, 'success');
+        } else if (trans_key) {
+            flash(__(trans_key), 'success');
+        }
     })
 
-    window.livewire.on('flash-warning', message => {
-        flash(message, 'warning');
+    window.livewire.on('flash-warning', (message, trans_key) => {
+        if (message) {
+            flash(message, 'warning');
+        } else if (trans_key) {
+            flash(__(trans_key), 'warning');
+        }
     })
 
-    window.livewire.on('flash-error', message => {
-        flash(message, 'error');
+    window.livewire.on('flash-error', (message, trans_key) => {
+        if (message) {
+            flash(message, 'error');
+        } else if (trans_key) {
+            flash(__(trans_key), 'error');
+        }
     })
 
 }

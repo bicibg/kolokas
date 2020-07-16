@@ -111,7 +111,7 @@ return [
     'languages' => [
         'en' => 'English',
         'tr' => 'Türkçe',
-        'gr' => 'Ελληνικά'
+        'el' => 'Ελληνικά'
     ],
 
     /*

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\RecordVisits;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,7 @@ Route::middleware('localized')->group(function () {
     Route::post('/demo-enable', 'DemoModeController@enable')->name('demo.enable');
     Route::get('/demo-activate', 'DemoModeController@activate')->name('demo.activate');
 
-    Route::get('/lang/{locale}',
-        'LocalizationController@switchLang')->name('locale')->withoutMiddleware('localized');
+    Route::get('/{locale}')->name('locale')->where('locale', implode('|', array_keys(Config::get('app.languages'))));
 
     Route::name('recipe.')->group(function () {
         Route::get('/recipes/create', 'RecipeController@create')->name('create');

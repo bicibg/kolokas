@@ -3,7 +3,6 @@
         <img alt="{{ $recipe->title }}" src="{{ $recipe->mainImage->url }}"
              height="266" width="400">
 
-
         @if ($recipe->author->is(auth()->user()))
             <a href="{{ route('recipe.edit', $recipe) }}">
                 <div class="hover-button hover-button-first">{{ __('recipe.edit') }}</div>

@@ -7,7 +7,7 @@ return [
     'register' => 'Kayıt ol',
     'login' => 'Oturum aç',
     'logout' => 'Çıkış yap',
-    'log_in_as' => ':name olarak giriş yapıldı',
+    'logged_in_as' => ':name olarak giriş yapıldı',
     'request_another_email' => 'Başka bir tane talep etmek için burayı tıklayın',
     'email' => 'E-posta adresi',
     'password' => 'Şifre',
