@@ -5,7 +5,7 @@
         @include('home.partial.search', ['action' => route('recipe.favourites')])
         <div class="row justify-content-center text-center">
             <div class="col-md-12">
-                <h3 class="section-title">Favourite Recipes</h3>
+                <h3 class="section-title">{{ __('nav.my_favourites') }}</h3>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     <h5 class="text-center">
                         <i class="fa fa-cutlery" aria-hidden="true"></i>
-                        {{ $count }} {{ \Illuminate\Support\Str::plural('Recipe', $count) }}
+                        {{ __(trans_choice('recipe.recipe', $recipes->count())) }}
                     </h5>
                 </div>
             @endif
@@ -22,7 +22,7 @@
                     @livewire('recipe-box', ['recipe'=>$recipe])
                 </div>
             @empty
-                No results found with this search, please try something else.
+                <span>{{ __('recipe.no_favourites') }}</span>
             @endforelse
         </div>
         {{ $recipes->links() }}

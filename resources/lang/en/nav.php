@@ -9,5 +9,5 @@ return [
     'events' => 'Events',
     'my_profile' => 'My Profile',
     'my_recipes' => 'My Recipes',
-    'my_favourites' => 'My Favourites',
+    'my_favourites' => 'My Favourite Recipes',
 ];
