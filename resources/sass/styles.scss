@@ -1038,17 +1038,7 @@ select.input-lg {
       font-family: 'Lora', 'PT Serif', serif;
     }
   }
-}
 
-.form-horizontal .form-group-lg .form-control {
-  font-family: 'Lora', 'PT Serif', serif;
-}
-
-.kolokas-form .content .input-lg, .form-horizontal .form-group-lg .form-control {
-  font-size: 16px;
-}
-
-.kolokas-form {
   label {
     font-weight: 700;
     color: $orange;
@@ -1056,8 +1046,11 @@ select.input-lg {
     font-family: 'Lora', 'PT Serif', serif;
   }
 
+  label.social {
+    text-transform: unset !important;
+  }
+
   .description {
-    font-size: 13px;
     font-size: 1.3rem;
     color: rgba(0, 0, 0, 0.5);
     margin-top: 3px;
@@ -1086,12 +1079,12 @@ select.input-lg {
   }
 }
 
-#kolokas-form {
-  #wp-description-editor-container, fieldset.content table {
-    padding: 0;
-    margin: 0;
-    border: 1px solid #e0e0e0;
-  }
+.form-horizontal .form-group-lg .form-control {
+  font-family: 'Lora', 'PT Serif', serif;
+}
+
+.kolokas-form .content .input-lg, .form-horizontal .form-group-lg .form-control {
+  font-size: 16px;
 }
 
 .add-more {

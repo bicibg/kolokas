@@ -12,7 +12,7 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('auth.name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('profile.name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"

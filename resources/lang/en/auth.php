@@ -11,5 +11,5 @@ return [
     'request_another_email' => 'Click here to request another',
     'email' => 'E-Mail Address',
     'remember_me' => 'Remember Me',
-    'name' => 'Name',
+    'account' => 'Your Account'
 ];

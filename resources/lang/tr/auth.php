@@ -11,5 +11,5 @@ return [
     'request_another_email' => 'Başka bir tane talep etmek için burayı tıklayın',
     'email' => 'E-posta adresi',
     'remember_me' => 'Beni hatırla',
-    'name' => 'İsim',
+    'account' => 'Hesabınız'
 ];

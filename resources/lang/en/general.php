@@ -11,4 +11,6 @@ return [
     'search_by_keyword' => 'Search by Keyword',
     'add_to_favourites' => 'Add to favorites',
     'print' => 'Print / PDF',
+    'or' => 'Or',
+    'read_more' => 'Read more',
 ];

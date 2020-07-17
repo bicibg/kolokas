@@ -39,7 +39,13 @@
         <flash message="{{ session('flash') }}"></flash>
         <flash message="{{ session('flash-error') }}" type="error"></flash>
         <flash message="{{ session('flash-warning') }}" type="warning"></flash>
-
+        @if(count($errors)>0)
+            <ul class="validation-errors">
+                @foreach($errors->all() as $error)
+                    <li class="alert alert-danger">{{$error}}</li>
+                @endforeach
+            </ul>
+        @endif
         @yield('content')
     </main>
 </div>

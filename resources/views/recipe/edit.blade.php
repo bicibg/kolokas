@@ -11,17 +11,6 @@
                         marked with *. Recipes that do not comply with Kolokas.com standards may be removed.</p>
                     <hr>
                 </div>
-                @if(session()->has('message'))
-                    <div class="alert alert-success">{{session()->get('message')}}</div>
-                @endif
-                @if(count($errors)>0)
-
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li class="alert alert-danger">{{$error}}</li>
-                        @endforeach
-                    </ul>
-                @endif
             </div>
             <form method="POST" action="{{ route('recipe.update', $recipe) }}" enctype="multipart/form-data">
                 @csrf
