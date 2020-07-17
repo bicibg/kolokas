@@ -31,7 +31,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">{{ __('nav.authors') }}</a>
+                <a class="nav-link" href="{{ route('profile.index') }}">{{ __('nav.authors') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">

@@ -4,12 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Profile;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
+    }
+
+    public function index(Request $request)
+    {
+        $profiles = Profile::with('user.recipes')->has('user.recipes');
+
+        if (!empty($request->get('sp'))) {
+            $searchTerm = Str::lower($request->get('sp'));
+            $profiles->where('name', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('email', 'LIKE', "%{$searchTerm}%");
+        }
+
+        $count = $profiles->count();
+        $profiles = $profiles->paginate(16);
+        return view('profile.index', compact('profiles', 'count'));
     }
 
     public function show(Profile $profile)

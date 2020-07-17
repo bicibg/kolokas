@@ -2,6 +2,7 @@
 
 return [
     'recipe' => 'recipe|recipes',
+    'recipes_found' => ':number recipe|:number recipes',
     'view' => 'View Recipe',
     'edit' => 'Edit Recipe',
     'share' => 'Share this recipe',
@@ -10,4 +11,5 @@ return [
     'published_recipes' => ':number published recipe|:number published recipes',
     'pending_recipes' => ':number pending recipe|:number pending recipes',
     'no_favourites' => 'You don\'t have any favourites yet',
+    'no_recipes_found' => 'No recipes found with this search criteria.',
 ];

@@ -44,6 +44,7 @@ Route::middleware('localized')->group(function () {
     Route::patch('/profile/edit', 'ProfileController@update')->name('profile.update');
 
     Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
+    Route::get('/authors', 'ProfileController@index')->name('profile.index');
 
     Route::get('/', 'HomeController@index')->name('home');
 

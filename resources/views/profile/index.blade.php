@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container pt-5">
-        @include('recipe.partial.search-extended')
+        @include('profile.partial.search-extended')
         <div class="row justify-content-center text-center">
             <div class="col-md-12">
-                <h3 class="section-title">{{ __('nav.recipes') }}</h3>
+                <h3 class="section-title">{{ __('nav.authors') }}</h3>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -13,18 +13,18 @@
                 <div class="col-lg-12">
                     <h5 class="text-center">
                         <i class="fa fa-cutlery" aria-hidden="true"></i>
-                        {{ trans_choice('recipe.recipes_found', $count, ['number' => $count]) }}
+                        {{ trans_choice('profile.profiles_found', $count, ['number' => $count]) }}
                     </h5>
                 </div>
             @endif
-            @forelse($recipes as $recipe)
+            @forelse($profiles as $profile)
                 <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-items-stretch">
-                    @livewire('recipe-box', ['recipe'=>$recipe])
+                    @livewire('author-box', ['profile'=>$profile])
                 </div>
             @empty
-            {{ __('recipe.no_recipes_found') }}
+                {{ __('profile.no_profiles_found') }}
             @endforelse
         </div>
-        {{ $recipes->links() }}
+        {{ $profiles->links() }}
     </div>
 @endsection

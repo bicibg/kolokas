@@ -3,6 +3,7 @@
 return [
     'profile' => 'Profile',
     'name' => 'Name',
+    'profiles_found' => ':number author|:number authors',
     'city' => 'City',
     'telephone' => 'Telephone',
     'info' => 'Personal Info',
@@ -12,4 +13,5 @@ return [
     'website' => 'Website',
     'website_text' => 'Your website (must belong to you).',
     'update_success' => 'Your profile has been successfully updated.',
+    'no_profiles_found' => 'No authors found with this search criteria.',
 ];
