@@ -30,7 +30,7 @@
 
                             <div class="form-group row">
                                 <label for="password"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('auth.password') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('passwords.password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -66,7 +66,7 @@
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('auth.forgot_password') }}
+                                            {{ __('passwords.forgot_password') }}
                                         </a>
                                     @endif
                                 </div>

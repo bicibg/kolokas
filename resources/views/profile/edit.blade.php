@@ -27,38 +27,36 @@
                             <fieldset>
                                 <div class="row">
                                     <div class="form-group col-md-12 col-sm-12">
-                                        <label for="email">E-mail</label>
+                                        <label for="email">{{ __('auth.email') }}</label>
                                         <input class="form-control-plaintext"
                                                readonly
                                                id="email"
                                                value="{{ auth()->user()->email }}">
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
-                                        <label for="current_password">Current Password * </label>
-                                        <input class="form-control input-lg" name="current_password" type="password"
+                                        <label for="current_password">{{ __('passwords.current_password') }} * </label>
+                                        <input class="form-control input-lg"
+                                               name="current_password"
+                                               type="password"
                                                id="current_password">
-                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">Your
-                                            current password</small>
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
-                                        <label for="new_password">New Password *</label>
-                                        <input class="form-control input-lg" name="new_password" type="password"
+                                        <label for="new_password">{{ __('passwords.new_password') }} *</label>
+                                        <input class="form-control input-lg"
+                                               name="new_password"
+                                               type="password"
                                                id="new_password">
-                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">Your new
-                                            password</small>
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
-                                        <label for="new_password_confirmation">Repeat Password *</label>
+                                        <label for="new_password_confirmation">{{ __('passwords.confirm_password') }} *</label>
                                         <input class="form-control input-lg"
                                                name="new_password_confirmation"
                                                type="password"
                                                id="new_password_confirmation">
-                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">Repeat
-                                            your new password</small>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <base-button :role="'submit'">
-                                            {{ __('Update password') }}
+                                            {{ __('passwords.update_password') }}
                                         </base-button>
                                     </div>
                                 </div>
