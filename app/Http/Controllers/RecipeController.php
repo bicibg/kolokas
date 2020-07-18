@@ -47,8 +47,7 @@ class RecipeController extends Controller
 
     public function index(Request $request)
     {
-        $recipes = Recipe::wherePublished(true)
-            ->latest();
+        $recipes = Recipe::wherePublished(true);
 
         if (!empty($request->get('s'))) {
             $searchTerm = Str::lower($request->get('s'));
@@ -60,6 +59,7 @@ class RecipeController extends Controller
                 return $q->whereCategoryId($request->get('c'));
             });
         }
+        $recipes = $recipes->latest();
         $recipesCount = $recipes->count();
         $recipes = $recipes->paginate(16);
         $categories = Category::all();
