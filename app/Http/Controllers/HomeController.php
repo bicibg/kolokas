@@ -31,9 +31,11 @@ class HomeController extends Controller
         $contributors = $contributors->random(min(4, $contributors->count()));
         $latest = Recipe::wherePublished(true)->latest()->limit(4)->get();
 
+        $recipesCount = $recipes = Recipe::wherePublished(true)->count();
+
         $categories = Category::all();
 
         return view('home.index',
-            compact('latest', 'featured', 'carousel', 'mostFavourited', 'mostVisited', 'contributors', 'categories'));
+            compact('latest', 'featured', 'carousel', 'mostFavourited', 'mostVisited', 'contributors', 'categories', 'recipesCount'));
     }
 }

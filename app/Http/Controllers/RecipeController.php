@@ -60,10 +60,10 @@ class RecipeController extends Controller
                 return $q->whereCategoryId($request->get('c'));
             });
         }
-        $count = $recipes->count();
+        $recipesCount = $recipes->count();
         $recipes = $recipes->paginate(16);
         $categories = Category::all();
-        return view('recipe.index', compact('recipes', 'count', 'categories'));
+        return view('recipe.index', compact('recipes', 'recipesCount', 'categories'));
     }
 
     public function favourites(Request $request)

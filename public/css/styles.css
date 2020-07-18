@@ -1318,3 +1318,60 @@ table tbody tr:nth-child(even) {
 
 /* ================================= Search Form ================================= */
 
+.search .basic-search {
+  margin-bottom: 5px;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+.search .basic-search .input-field {
+  width: 100%;
+}
+
+.search .basic-search .input-field input {
+  padding: 10px 110px 10px 70px;
+  border: 0;
+  background: #fff;
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 3px;
+  height: 70px;
+  color: #555;
+}
+
+.search .basic-search .input-field .icon-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 60px;
+  height: 100%;
+}
+
+.search .basic-search .input-field .icon-wrap svg {
+  width: 34px;
+  height: 34px;
+  fill: #ccc;
+}
+
+.search .basic-search .input-field .result-count {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 110px;
+  top: 0;
+  right: 0;
+  position: absolute;
+  font-weight: bold;
+  color: #555;
+  height: 100%;
+  font-size: 14px;
+}
+
+.search .basic-search .input-field .result-count span {
+  color: #ff9638;
+  padding-right: 5px;
+}
+

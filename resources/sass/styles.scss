@@ -1339,6 +1339,67 @@ table tbody tr {
 
 /* ================================= Search Form ================================= */
 
+.search {
+  .basic-search {
+    margin-bottom: 5px;
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 
+    .input-field {
+      width: 100%;
 
+      input {
+        padding: 10px 110px 10px 70px;
+        border: 0;
+        background: #fff;
+        display: block;
+        width: 100%;
+        font-size: 18px;
+        border-radius: 3px;
+        height: 70px;
+        color: #555;
+      }
 
+      .icon-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 60px;
+        height: 100%;
+
+        svg {
+          width: 34px;
+          height: 34px;
+          fill: #ccc;
+        }
+      }
+
+      .result-count {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 110px;
+        top: 0;
+        right: 0;
+        position: absolute;
+        font-weight: bold;
+        color: #555;
+        height: 100%;
+        font-size: 14px;
+
+        span {
+          color: $orange;
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+}
