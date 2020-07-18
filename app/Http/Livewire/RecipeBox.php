@@ -12,6 +12,11 @@ class RecipeBox extends Component
      */
     public $recipe;
 
+    /**
+     * @var $locale
+     */
+    private $locale;
+
     public function render()
     {
         return view('livewire.recipe-box');
@@ -19,13 +24,14 @@ class RecipeBox extends Component
 
     public function mount(Recipe $recipe)
     {
+        $this->locale = app()->getLocale();
         $this->recipe = $recipe;
     }
 
     public function favourite()
     {
+        app()->setLocale($this->locale);
         if (!auth()->check()) {
-            //display warning
             $this->emit('flash-error', null, 'messages.general.not_logged_in');
             return;
         }

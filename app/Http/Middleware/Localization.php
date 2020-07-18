@@ -27,11 +27,6 @@ class Localization
         } else {
             if (auth()->check() && auth()->user()->locale) {
                 $locale = auth()->user()->locale;
-//            } elseif (
-//                $request->cookie('kolokas_locale') &&
-//                Arr::exists(Config::get('app.languages'), $request->cookie('kolokas_locale'))
-//            ) {
-//                $locale = $request->cookie('kolokas_locale');
             } elseif (
                 Session::has('kolokas.locale') &&
                 Arr::exists(Config::get('app.languages'), Session::get('kolokas.locale'))
@@ -52,11 +47,6 @@ class Localization
         }
         Session::put('kolokas.locale', $locale);
         app()->setLocale($locale);
-
-//        if ($requestedLocale) {
-//            return redirect()->back()->cookie('kolokas_locale', $locale, 4320);
-//        }
-//        return $next($request)->cookie('kolokas_locale', $locale, 4320);
         return $next($request);
     }
 }
