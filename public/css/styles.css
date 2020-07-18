@@ -1350,6 +1350,10 @@ table tbody tr:nth-child(even) {
   height: 100%;
 }
 
+.search .basic-search .input-field .icon-wrap i {
+  font-size: 1.8rem;
+}
+
 .search .basic-search .input-field .icon-wrap svg {
   width: 34px;
   height: 34px;
