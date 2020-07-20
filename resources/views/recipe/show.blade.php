@@ -5,7 +5,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8 single-post">
                 <div id="single-content" class="inner-content">
-                    <h1 class="h1 text-center mb-5 font-weight-bold text-dark">{{ $recipe->title }}</h1>
+                    <div class="heading">
+                        <h2>{{ $recipe->title }}</h2>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="carousel slide" data-ride="carousel">
@@ -47,14 +49,23 @@
                             </div>
                             <ul>
 
-                                <li>Prep Time<strong>
-                                        <i class="fa fa-clock-o"></i> {{ \Illuminate\Support\Str::plural($recipe->prep_time, 'minute') }}
-                                    </strong></li>
-                                <li>Cook Time<strong>
-                                        <i class="fa fa-clock-o"></i> {{ \Illuminate\Support\Str::plural($recipe->cook_time, 'minute') }}
-                                    </strong></li>
-                                <li>Serving<strong>
-                                        For {{ $recipe->servings }} </strong></li>
+                                <li>{{ __('recipe.prep_time') }}
+                                    <strong>
+                                        <i class="fa fa-clock-o"></i>
+                                        {{ $recipe->prep_time }}
+                                    </strong>
+                                </li>
+                                <li>{{ __('recipe.cook_time') }}
+                                    <strong>
+                                        <i class="fa fa-clock-o"></i>
+                                        {{ $recipe->cook_time }}
+                                    </strong>
+                                </li>
+                                <li>{{ __('recipe.servings') }}
+                                    <strong>
+                                        {{ __('recipe.servings_for', ['for' => $recipe->servings]) }}
+                                    </strong>
+                                </li>
                             </ul>
 
                         </div>
@@ -66,7 +77,7 @@
                                 </p>
                             </div>
                             <div class="col-md-5 col-sm-12">
-                                <h3 class="section-title">Ingredients</h3>
+                                <h3 class="section-title">{{ __('recipe.ingredients') }}</h3>
                                 <div class="ingredients-list">
                                     <ul class="ingredient-check">
                                         @foreach($recipe->ingredients as $key => $ingredient)
@@ -87,7 +98,7 @@
                             <div class="col-md-7 col-sm-12">
                                 <div class="directions">
                                     <!-- Directions -->
-                                    <h3 class="section-title">Instructions</h3>
+                                    <h3 class="section-title">{{ __('recipe.instructions') }}</h3>
                                     <div class="instructions">
                                         <ol>
                                             @foreach($recipe->instructions as $instruction)

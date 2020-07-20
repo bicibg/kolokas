@@ -12,4 +12,11 @@ return [
     'pending_recipes' => ':number pending recipe|:number pending recipes',
     'no_favourites' => 'You don\'t have any favourites yet',
     'no_recipes_found' => 'No recipes found with this search criteria.',
+    'prep_time' => 'Prep time',
+    'cook_time' => 'Cook time',
+    'servings' => 'Servings',
+    'servings_for' => 'For :for',
+    'ingredients' => 'Ingredients',
+    'instructions' => 'Instructions',
+    'recipe_not_published' => 'This recipe cannot be displayed at the moment.',
 ];

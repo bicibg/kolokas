@@ -161,10 +161,13 @@ class RecipeController extends Controller
      * Display the specified resource.
      *
      * @param  Recipe  $recipe
-     * @return Application|Factory|View
+     * @return RedirectResponse|Application|Factory|View
      */
     public function show(Recipe $recipe)
     {
+        if (!$recipe->published){
+            return redirect()->back()->with('flash-error', __('recipe.recipe_not_published'));
+        }
         $youMayAlsoLike = Recipe::with('categories')->whereHas('categories', function ($query) use ($recipe) {
             $query->whereIn('category_recipe.category_id',
                 $recipe->categories()->pluck('category_recipe.category_id')); // use whereIn
