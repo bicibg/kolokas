@@ -17,7 +17,15 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-print.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-480px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-768px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-992px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-1200px.css') }}" rel="stylesheet">
+
+    <link href="{{ mix('css/fontawesome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -41,10 +49,9 @@
         </div>
     </nav>
 
-    <main class="py-2">
-        <flash message="{{ session('flash') }}"></flash>
-        <flash message="{{ session('flash-error') }}" type="error"></flash>
-        <flash message="{{ session('flash-warning') }}" type="warning"></flash>
+    <main class="py-2 mt-xs-5 pt-xs-2">
+        <flash message="{{ session('flash') ?? (session('flash-warning') ?? session('flash-error')) }}"
+               type="{{ session('flash-warning') ? 'warning' : (session('flash-error') ? 'error' : '')  }}"></flash>
 
         <div class="container text-center">
             <a class="navbar-brand navbar-brand-demo mb-5 mt-5 " href="{{ route('home') }}">

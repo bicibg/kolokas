@@ -15,7 +15,7 @@ class RecipeBox extends Component
     /**
      * @var $locale
      */
-    private $locale;
+    public $locale;
 
     public function render()
     {
@@ -28,9 +28,13 @@ class RecipeBox extends Component
         $this->recipe = $recipe;
     }
 
-    public function favourite()
+    public function hydrate()
     {
         app()->setLocale($this->locale);
+    }
+
+    public function favourite()
+    {
         if (!auth()->check()) {
             $this->emit('flash-error', null, 'messages.general.not_logged_in');
             return;
