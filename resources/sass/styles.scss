@@ -529,7 +529,7 @@ ul.validation-errors {
 .heading {
   display: block;
   text-align: center;
-  margin-bottom: 60px;
+  margin: 30px 0;
 
   h2 {
     position: relative;
@@ -633,82 +633,6 @@ ul.validation-errors {
 
 .selectpicker {
   max-height: 25vh;
-}
-
-/*=================================*/
-/* ================================= 9. Search Box ================================= */
-
-.search-box {
-  position: relative;
-  background-size: 100%;
-  padding: 30px;
-  //margin-top: -50px;
-  z-index: 100;
-  margin-bottom: 30px;
-  background: #fff;
-  -webkit-box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
-  box-shadow: 0 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
-  transition: box-shadow 0.2s ease-in-out;
-
-  &:hover {
-    -webkit-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
-    box-shadow: 0px 0px 25px 3.6px rgba(0, 0, 0, 0.24);
-    transition: box-shadow 0.2s ease-in-out;
-  }
-
-  .button-group {
-    background-color: #f7f7f7;
-    margin: -60px -30px;
-    margin-top: 20px;
-    padding: 15px 30px;
-  }
-
-  .action-buttons {
-    text-align: right;
-  }
-}
-
-.quick-search {
-  .button-group {
-    background-color: #f7f7f7;
-    margin: -25px -40px;
-    margin-top: 20px;
-    padding: 15px 30px;
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
-    background-color: #fff;
-    padding: 30px 30px 20px;
-    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.07);
-    -webkit-transform: translateY(84px);
-    transform: translateY(84px);
-  }
-
-  .button-group {
-    .action-buttons {
-      float: right;
-      line-height: 12px;
-    }
-
-    &:after {
-      display: table;
-      content: '';
-      clear: both;
-    }
-
-    .action-buttons .btn-success {
-      margin-right: 10px;
-    }
-  }
-}
-
-select.input-lg {
-  height: 46px;
-  line-height: 24px;
 }
 
 /*=================================*/
@@ -934,14 +858,7 @@ select.input-lg {
     }
   }
 
-  .section-title {
-    line-height: 28px;
-    margin-bottom: 20px;
-    font-weight: 500;
-    font-style: italic;
-    font-size: 1.65em;
-    color: #555;
-  }
+
 }
 
 /*=================================*/
@@ -1341,13 +1258,17 @@ table tbody tr {
 
 .search {
   .basic-search {
-    margin-bottom: 5px;
     box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+
+    ul {
+      max-height: 40vh;
+      z-index: 1030;
+    }
 
     .input-field {
       width: 100%;
 
-      input {
+      input#search{
         padding: 10px 110px 10px 70px;
         border: 0;
         background: #fff;
@@ -1357,6 +1278,10 @@ table tbody tr {
         border-radius: 3px;
         height: 70px;
         color: #555;
+
+        &:focus {
+          outline: none;
+        }
       }
 
       .icon-wrap {
@@ -1384,19 +1309,19 @@ table tbody tr {
       }
 
       .result-count {
-        display: -ms-flexbox;
-        display: flex;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
         -ms-flex-pack: start;
         justify-content: flex-start;
-        -ms-flex-align: center;
-        align-items: center;
-        width: 110px;
-        top: 0;
-        right: 0;
-        position: absolute;
+        //-ms-flex-align: center;
+        //align-items: center;
+        //width: 110px;
+        //top: 0;
+        //right: 0;
+        //position: absolute;
         font-weight: bold;
         color: #555;
-        height: 100%;
+        //height: 100%;
         font-size: 14px;
 
         span {
@@ -1404,6 +1329,18 @@ table tbody tr {
           padding-right: 5px;
         }
       }
+    }
+  }
+
+  .advance-search {
+    margin-top: 4px;
+    background: #fff;
+    padding: 40px;
+    border-radius: 3px;
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+
+    ul {
+      max-height: 40vh;
     }
   }
 }

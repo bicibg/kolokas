@@ -115,6 +115,12 @@ class Recipe extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
+    public function scopeAuthor ($query, $author) {
+        return $query->whereHas('author', function ($q) use ($author) {
+            $q->where('user_id', $author->id);
+        });
+    }
+
     public function images()
     {
         return $this->hasMany('App\Models\RecipeImage');

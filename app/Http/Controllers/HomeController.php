@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Profile;
 use App\Models\Recipe;
 use Illuminate\Contracts\Support\Renderable;
@@ -31,11 +30,7 @@ class HomeController extends Controller
         $contributors = $contributors->random(min(4, $contributors->count()));
         $latest = Recipe::wherePublished(true)->latest()->limit(4)->get();
 
-        $recipesCount = $recipes = Recipe::wherePublished(true)->count();
-
-        $categories = Category::all();
-
         return view('home.index',
-            compact('latest', 'featured', 'carousel', 'mostFavourited', 'mostVisited', 'contributors', 'categories', 'recipesCount'));
+            compact('latest', 'featured', 'carousel', 'mostFavourited', 'mostVisited', 'contributors'));
     }
 }

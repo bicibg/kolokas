@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RecipeCreateRequest;
 use App\Http\Requests\RecipeUpdateRequest;
 use App\Models\Category;
+use App\Models\Profile;
 use App\Models\Recipe;
 use App\Models\User;
 use Exception;
@@ -59,11 +60,16 @@ class RecipeController extends Controller
                 return $q->whereCategoryId($request->get('c'));
             });
         }
+        if ($request->get('a')) {
+            $author = Profile::where('slug', $request->get('a'))->first();
+            if ($author) {
+                $recipes->author($author);
+            }
+        }
         $recipes = $recipes->latest();
         $recipesCount = $recipes->count();
         $recipes = $recipes->paginate(16);
-        $categories = Category::all();
-        return view('recipe.index', compact('recipes', 'recipesCount', 'categories'));
+        return view('recipe.index', compact('recipes', 'recipesCount'));
     }
 
     public function favourites(Request $request)
@@ -80,10 +86,9 @@ class RecipeController extends Controller
                 return $q->whereCategoryId($request->get('c'));
             });
         }
-        $count = $recipes->count();
+        $recipesCount = $recipes->count();
         $recipes = $recipes->paginate(16);
-        $categories = Category::all();
-        return view('recipe.fav-index', compact('recipes', 'count', 'categories'));
+        return view('recipe.fav-index', compact('recipes', 'recipesCount'));
     }
 
     /**

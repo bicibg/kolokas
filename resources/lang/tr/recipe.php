@@ -2,7 +2,7 @@
 
 return [
     'recipe' => 'tarif|tarifler',
-    'recipes_found' => ':number yazar',
+    'recipes_found' => ':number tarif',
     'view' => 'Tarifi görüntüle',
     'edit' => 'Tarifi düzenle',
     'share' => 'Bu tarifi paylaş',
