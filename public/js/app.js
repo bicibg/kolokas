@@ -3010,7 +3010,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       this.$button = this.$newElement.children('button');
       this.$menu = this.$newElement.children(Selector.MENU);
       this.$menuInner = this.$menu.children('.inner');
-      this.$searchbox = this.$menu.find('input');
+      this.$RecipeSearchBox = this.$menu.find('input');
 
       element.classList.remove('bs-select-hidden');
 
@@ -3025,7 +3025,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
       if (this.options.liveSearch) {
         this.liveSearchListener();
-        this.focusedParent = this.$searchbox[0];
+        this.focusedParent = this.$RecipeSearchBox[0];
       } else {
         this.focusedParent = this.$menuInner[0];
       }
@@ -3111,7 +3111,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       // Elements
       var drop,
           header = '',
-          searchbox = '',
+          RecipeSearchBox = '',
           actionsbox = '',
           donebutton = '';
 
@@ -3124,8 +3124,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       }
 
       if (this.options.liveSearch) {
-        searchbox =
-          '<div class="bs-searchbox">' +
+        RecipeSearchBox =
+          '<div class="bs-RecipeSearchBox">' +
             '<input type="search" class="form-control" autocomplete="off"' +
               (
                 this.options.liveSearchPlaceholder === null ? ''
@@ -3179,7 +3179,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           '</button>' +
           '<div class="' + classNames.MENU + ' ' + (version.major === '4' ? '' : classNames.SHOW) + '">' +
             header +
-            searchbox +
+            RecipeSearchBox +
             actionsbox +
             '<div class="inner ' + classNames.SHOW + '" role="listbox" id="' + this.selectId + '" tabindex="-1" ' + multiselectable + '>' +
                 '<ul class="' + classNames.MENU + ' inner ' + (version.major === '4' ? classNames.SHOW : '') + '" role="presentation">' +
@@ -3976,7 +3976,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       if (header) menu.appendChild(header);
       if (search) {
         var input = document.createElement('input');
-        search.className = 'bs-searchbox';
+        search.className = 'bs-RecipeSearchBox';
         input.className = 'form-control';
         search.appendChild(input);
         menu.appendChild(search);
@@ -4170,7 +4170,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         this.setMenuSize();
 
         if (this.options.liveSearch) {
-          this.$searchbox
+          this.$RecipeSearchBox
             .off('input.setMenuSize propertychange.setMenuSize')
             .on('input.setMenuSize propertychange.setMenuSize', function () {
               return that.setMenuSize();
@@ -4457,7 +4457,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
       function setFocus () {
         if (that.options.liveSearch) {
-          that.$searchbox.trigger('focus');
+          that.$RecipeSearchBox.trigger('focus');
         } else {
           that.$menuInner.trigger('focus');
         }
@@ -4602,7 +4602,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           if (!that.multiple || (that.multiple && that.options.maxOptions === 1)) {
             that.$button.trigger('focus');
           } else if (that.options.liveSearch) {
-            that.$searchbox.trigger('focus');
+            that.$RecipeSearchBox.trigger('focus');
           }
 
           // Trigger select 'change'
@@ -4622,7 +4622,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
           e.preventDefault();
           e.stopPropagation();
           if (that.options.liveSearch && !$(e.target).hasClass('close')) {
-            that.$searchbox.trigger('focus');
+            that.$RecipeSearchBox.trigger('focus');
           } else {
             that.$button.trigger('focus');
           }
@@ -4633,7 +4633,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         e.preventDefault();
         e.stopPropagation();
         if (that.options.liveSearch) {
-          that.$searchbox.trigger('focus');
+          that.$RecipeSearchBox.trigger('focus');
         } else {
           that.$button.trigger('focus');
         }
@@ -4643,13 +4643,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         that.$button.trigger('click');
       });
 
-      this.$searchbox.on('click', function (e) {
+      this.$RecipeSearchBox.on('click', function (e) {
         e.stopPropagation();
       });
 
       this.$menu.on('click', '.actions-btn', function (e) {
         if (that.options.liveSearch) {
-          that.$searchbox.trigger('focus');
+          that.$RecipeSearchBox.trigger('focus');
         } else {
           that.$button.trigger('focus');
         }
@@ -4701,18 +4701,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
       var that = this;
 
       this.$button.on('click.bs.dropdown.data-api', function () {
-        if (!!that.$searchbox.val()) {
-          that.$searchbox.val('');
+        if (!!that.$RecipeSearchBox.val()) {
+          that.$RecipeSearchBox.val('');
           that.selectpicker.search.previousValue = undefined;
         }
       });
 
-      this.$searchbox.on('click.bs.dropdown.data-api focus.bs.dropdown.data-api touchend.bs.dropdown.data-api', function (e) {
+      this.$RecipeSearchBox.on('click.bs.dropdown.data-api focus.bs.dropdown.data-api touchend.bs.dropdown.data-api', function (e) {
         e.stopPropagation();
       });
 
-      this.$searchbox.on('input propertychange', function () {
-        var searchValue = that.$searchbox[0].value;
+      this.$RecipeSearchBox.on('input propertychange', function () {
+        var searchValue = that.$RecipeSearchBox[0].value;
 
         that.selectpicker.search.elements = [];
         that.selectpicker.search.data = [];
@@ -4901,7 +4901,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         that.$button.trigger('click.bs.dropdown.data-api');
 
         if (that.options.liveSearch) {
-          that.$searchbox.trigger('focus');
+          that.$RecipeSearchBox.trigger('focus');
           return;
         }
       }
@@ -4979,7 +4979,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
         if (updateScroll) that.$menuInner[0].scrollTop = offset;
 
         if (that.options.liveSearch) {
-          that.$searchbox.trigger('focus');
+          that.$RecipeSearchBox.trigger('focus');
         } else {
           $this.trigger('focus');
         }
@@ -5270,8 +5270,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     .off('keydown.bs.dropdown.data-api')
     .on('keydown.bs.dropdown.data-api', ':not(.bootstrap-select) > [data-toggle="dropdown"]', keydownHandler)
     .on('keydown.bs.dropdown.data-api', ':not(.bootstrap-select) > .dropdown-menu', keydownHandler)
-    .on('keydown' + EVENT_KEY, '.bootstrap-select [data-toggle="dropdown"], .bootstrap-select [role="listbox"], .bootstrap-select .bs-searchbox input', Selectpicker.prototype.keydown)
-    .on('focusin.modal', '.bootstrap-select [data-toggle="dropdown"], .bootstrap-select [role="listbox"], .bootstrap-select .bs-searchbox input', function (e) {
+    .on('keydown' + EVENT_KEY, '.bootstrap-select [data-toggle="dropdown"], .bootstrap-select [role="listbox"], .bootstrap-select .bs-RecipeSearchBox input', Selectpicker.prototype.keydown)
+    .on('focusin.modal', '.bootstrap-select [data-toggle="dropdown"], .bootstrap-select [role="listbox"], .bootstrap-select .bs-RecipeSearchBox input', function (e) {
       e.stopPropagation();
     });
 

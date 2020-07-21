@@ -18,13 +18,15 @@
                 </div>
             @endif
             @forelse($profiles as $profile)
-                <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-items-stretch">
+                <div class="col-md-3 col-sm-4 d-flex align-items-stretch">
                     @livewire('author-box', ['profile'=>$profile])
                 </div>
             @empty
                 {{ __('profile.no_profiles_found') }}
             @endforelse
         </div>
-        {{ $profiles->links() }}
+        <div class="d-flex justify-content-center">
+            {{ $recipes->withQueryString()->links() }}
+        </div>
     </div>
 @endsection

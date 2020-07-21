@@ -6,13 +6,12 @@ use App\Models\Category;
 use App\Models\Profile;
 use App\Models\Recipe;
 use Livewire\Component;
-use phpDocumentor\Reflection\Types\Boolean;
 
 /**
- * Class SearchBox
+ * Class RecipeSearchBox
  * @package App\Http\Livewire
  */
-class SearchBox extends Component
+class RecipeSearchBox extends Component
 {
     /**
      * @var bool|null
@@ -97,7 +96,7 @@ class SearchBox extends Component
 
     public function render()
     {
-        return view('livewire.search-box');
+        return view('livewire.recipe-search-box');
     }
 
     public function hydrate()

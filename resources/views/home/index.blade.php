@@ -3,7 +3,7 @@
 @section('content')
     @include('home.partial.carousel')
     <div class="container">
-        @livewire('search-box')
+        @livewire('recipe-search-box')
     </div>
     <div class="container pt-0 pt-sm-5">
         @include('home.partial.mostFavourited')

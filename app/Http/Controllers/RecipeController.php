@@ -46,7 +46,7 @@ class RecipeController extends Controller
         return view('recipe.create');
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $recipes = Recipe::wherePublished(true);
         $recipes = $this->addFilterToRecipes($recipes);
@@ -60,16 +60,19 @@ class RecipeController extends Controller
     {
         $recipes = auth()->user()->favourites();
         $recipes = $this->addFilterToRecipes($recipes);
+
         $recipesCount = $recipes->count();
-        $recipes = $recipes->paginate(20);
+        $recipes = $recipes->paginate(16);
         return view('recipe.fav-index', compact('recipes', 'recipesCount'));
     }
 
     private function addFilterToRecipes($recipes) {
         if (!empty(request()->get('s'))) {
             $searchTerm = Str::lower(request()->get('s'));
-            $recipes->where('title', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+            $recipes = $recipes->where(function($query) use ($searchTerm) {
+                $query->where('title', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+            });
         }
         if (request()->get('c')) {
             $request = request();
@@ -85,10 +88,18 @@ class RecipeController extends Controller
         }
 
         if (request()->get('mp')) {
-            $recipes->where('prep_time', '<=', intval(request()->get('mp')));
+            $recipes->where(function($query) {
+                $query->where('prep_time', '<=', intval(request()->get('mp')))
+                    ->orWhereNull('prep_time')
+                    ->orderBy('prep_time', 'DESC');
+            });
         }
         if (request()->get('mc')) {
-            $recipes->where('cook_time', '<=', intval(request()->get('mc')));
+            $recipes->where(function($query) {
+                $query->where('cook_time', '<=', intval(request()->get('mc')))
+                    ->orWhereNull('cook_time')
+                    ->orderBy('cook_time', 'DESC');
+            });
         }
 
         return $recipes->latest();

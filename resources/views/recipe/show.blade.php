@@ -48,26 +48,30 @@
                                 </a>
                             </div>
                             <ul>
-
-                                <li>{{ __('recipe.prep_time') }}
-                                    <strong>
-                                        <i class="fa fa-clock-o"></i>
-                                        {{ $recipe->prep_time }}
-                                    </strong>
-                                </li>
-                                <li>{{ __('recipe.cook_time') }}
-                                    <strong>
-                                        <i class="fa fa-clock-o"></i>
-                                        {{ $recipe->cook_time }}
-                                    </strong>
-                                </li>
-                                <li>{{ __('recipe.servings') }}
-                                    <strong>
-                                        {{ __('recipe.servings_for', ['for' => $recipe->servings]) }}
-                                    </strong>
-                                </li>
+                                @if ($recipe->getAttributes()['prep_time'])
+                                    <li>{{ __('recipe.prep_time') }}
+                                        <strong>
+                                            <i class="fa fa-clock-o"></i>
+                                            {{ $recipe->prep_time }}
+                                        </strong>
+                                    </li>
+                                @endif
+                                @if ($recipe->getAttributes()['cook_time'])
+                                    <li>{{ __('recipe.cook_time') }}
+                                        <strong>
+                                            <i class="fa fa-clock-o"></i>
+                                            {{ $recipe->cook_time }}
+                                        </strong>
+                                    </li>
+                                @endif
+                                @if ($recipe->getAttributes()['servings'])
+                                    <li>{{ __('recipe.servings') }}
+                                        <strong>
+                                            {{ __('recipe.servings_for', ['for' => $recipe->servings]) }}
+                                        </strong>
+                                    </li>
+                                @endif
                             </ul>
-
                         </div>
                         <div class="clearfix"></div>
                         <div class="row recipe-details">

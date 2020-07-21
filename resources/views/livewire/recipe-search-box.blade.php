@@ -129,7 +129,7 @@
                     @if($extended)
                         <div class="col-md-4 pt-3">
                             <div class="row w-100">
-                                <div class="col-4 text-right">
+                                <div class="col-4 text-right pr-0">
                                     <div class="result-count">
                                         <span>{{ $resultCount }} </span>{{ trans_choice('recipe.recipe', $resultCount) }}
                                     </div>
