@@ -1,6 +1,6 @@
 <div class="search my-3">
-    <div class="basic-search">
-        <form method="get" class="search-form" action="{{ $action }}">
+    <form method="get" class="search-form" action="{{ $action }}">
+        <div class="basic-search">
             <div class="input-field position-relative">
                 <div class="row flex align-items-center bg-white py-2 m-0">
                     <div class="col-md-4">
@@ -18,12 +18,13 @@
                                type="text"
                                name="s"
                                value="{{ request()->get('s') }}"
-                               placeholder="{{ __('general.search') }}...">
+                               placeholder="{{ __('general.keyword') }}...">
                     </div>
                     <div class="col-md-3">
-                        <div class="form-group">
+                        <div class="form-group" wire:ignore id="categories_container">
                             <label for="category">{{ __('general.category') }}</label>
                             <select name="c"
+                                    data-container="#categories_container"
                                     id="category"
                                     class="selectpicker form-control show-tick"
                                     data-live-search="true">
@@ -42,9 +43,10 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="form-group">
+                        <div class="form-group" wire:ignore id="author_container">
                             <label for="author">{{ __('general.author') }}</label>
                             <select name="a"
+                                    data-container="#author_container"
                                     id="author"
                                     class="selectpicker form-control show-tick"
                                     data-live-search="true">
@@ -62,21 +64,89 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-2 text-center">
-                        <div class="result-count mr-3">
-                            <span>{{ $resultCount }} </span>{{ trans_choice('recipe.recipe', $resultCount) }}
+                    @if($extended)
+                        <div class="col-md-2"></div>
+                    @else
+                        <div class="col-md-2 text-center">
+                            <div class="result-count mr-3">
+                                <span>{{ $resultCount }} </span>{{ trans_choice('recipe.recipe', $resultCount) }}
+                            </div>
+                            <base-button :role="'submit'">
+                                {{ __('general.search') }}
+                            </base-button>
                         </div>
-                        <base-button :role="'submit'">
-                            {{ __('general.search') }}
-                        </base-button>
-                    </div>
+                    @endif
                 </div>
             </div>
-        </form>
-    </div>
-    @if($extended)
-        <div class="advance-search">
-            Here will lie the extended search
         </div>
-    @endif
+        @if($extended)
+            <div class="advance-search">
+                <div class="row flex align-items-center bg-white py-2 m-0">
+                    <div class="col-md-4 justify-content-center">
+                        <div class="form-group form-inline w-75 mr-auto ml-auto">
+                            <label for="max_prep_time">{{ __('recipe.max_prep_time') }}:&nbsp;
+                                <input id="max_prep_time"
+                                       type="text"
+                                       readonly
+                                       class="form-control-plaintext max-time-input"
+                                       value="{{ __('recipe.minutes', ['minute' => $maxPrepTime]) }}">
+                            </label>
+                        </div>
+                        <div class="slidecontainer w-75 mr-auto ml-auto">
+                            <input id="prep_time"
+                                   type="range"
+                                   wire:model="maxPrepTime"
+                                   min="{{ $cookTimes['minPrep'] }}"
+                                   max="{{ $cookTimes['maxPrep'] }}"
+                                   value="{{ $maxPrepTime }}"
+                                   step="5"
+                                   name="mp"
+                                   class="slider">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-inline w-75 mr-auto ml-auto">
+                            <label for="max_cook_time">{{ __('recipe.max_cook_time') }}:&nbsp;
+                                <input id="max_cook_time"
+                                       type="text"
+                                       readonly
+                                       class="form-control-plaintext max-time-input"
+                                       value="{{ __('recipe.minutes', ['minute' => $maxCookTime]) }}">
+                            </label>
+                        </div>
+                        <div class="slidecontainer w-75 mr-auto ml-auto">
+                            <input id="cook_time"
+                                   type="range"
+                                   wire:model="maxCookTime"
+                                   min="{{ $cookTimes['minCook'] }}"
+                                   max="{{ $cookTimes['maxCook'] }}"
+                                   value="{{ $maxCookTime }}"
+                                   step="5"
+                                   name="mc"
+                                   class="slider">
+                        </div>
+                    </div>
+                    @if($extended)
+                        <div class="col-md-4 pt-3">
+                            <div class="row w-100">
+                                <div class="col-4 text-right">
+                                    <div class="result-count">
+                                        <span>{{ $resultCount }} </span>{{ trans_choice('recipe.recipe', $resultCount) }}
+                                    </div>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <base-button :role="'submit'">
+                                        {{ __('general.search') }}
+                                    </base-button>
+                                </div>
+                                <div class="col-4">&nbsp;</div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="col-md-4"></div>
+                    @endif
+                </div>
+            </div>
+        @endif
+    </form>
 </div>

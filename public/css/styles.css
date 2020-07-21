@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
 }
 
@@ -1292,7 +1290,51 @@ table tbody tr:nth-child(even) {
   fill: #ccc;
 }
 
-.search .basic-search .input-field .result-count {
+.search .advance-search {
+  margin-top: 4px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+.search .advance-search ul {
+  max-height: 40vh;
+}
+
+.search .advance-search .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.search .advance-search .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.search .advance-search .slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.search .advance-search .max-time-input {
+  max-width: 50%;
+}
+
+.search .result-count {
   display: inline-flex;
   justify-content: flex-start;
   font-weight: bold;
@@ -1300,20 +1342,8 @@ table tbody tr:nth-child(even) {
   font-size: 14px;
 }
 
-.search .basic-search .input-field .result-count span {
+.search .result-count span {
   color: #ff9638;
   padding-right: 5px;
-}
-
-.search .advance-search {
-  margin-top: 4px;
-  background: #fff;
-  padding: 40px;
-  border-radius: 3px;
-  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-}
-
-.search .advance-search ul {
-  max-height: 40vh;
 }
 
