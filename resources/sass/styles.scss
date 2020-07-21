@@ -424,13 +424,9 @@ ul.validation-errors {
     }
   }
 
-  .menu-large {
-    position: static !important;
-  }
-
   .megamenu {
     padding: 20px 0px;
-    width: 100%;
+    min-width: 50vw;
 
     .dropdown-header {
       color: #428bca;

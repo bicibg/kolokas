@@ -23,17 +23,17 @@
                 </a>
 
                 <div class="dropdown-menu megamenu text-center">
-                    <div class="row d-inline-flex text-left">
+                    <div class="row text-left m-row justify-content-between">
                         <div class="col-md-2">
-                            <a class="dropdown-item" href="{{ route('recipe.index') }}">{{ __('nav.all_recipes') }}</a>
+                            <a class="d-inline d-flex dropdown-item" href="{{ route('recipe.index') }}">{{ __('nav.all_recipes') }}</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </div>
-                    <div class="row d-inline-flex text-left">
-                        @foreach($categories->chunk(7) as $group)
+                    <div class="row text-left m-row justify-content-between">
+                        @foreach($categories->chunk(5) as $group)
                             <div class="col-md-2">
                                 @foreach($group as $category)
-                                    <a class="dropdown-item"
+                                    <a class="d-inline d-flex dropdown-item"
                                        href="{{ route('recipe.index') . '?c=' . $category->id }}">{{ $category->name }}</a>
                                 @endforeach
                             </div>

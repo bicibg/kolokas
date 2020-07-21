@@ -425,13 +425,9 @@ ul.validation-errors li {
   background-color: #ff9638;
 }
 
-.navbar.navbar-main .menu-large {
-  position: static !important;
-}
-
 .navbar.navbar-main .megamenu {
   padding: 20px 0px;
-  width: 100%;
+  min-width: 50vw;
 }
 
 .navbar.navbar-main .megamenu .dropdown-header {
