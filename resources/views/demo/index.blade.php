@@ -92,7 +92,7 @@
     </main>
 </div>
 @livewireScripts
-<script>
+<script type="text/javascript">
     window._locale = '{{ app()->getLocale() }}';
     window._translations = {!! cache('translations') !!};
 </script>
