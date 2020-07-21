@@ -108,6 +108,7 @@ return [
 
     'custom' => [
         'new_password.required' => 'Απαιτείται νέος κωδικός πρόσβασης για την αλλαγή του υπάρχοντος κωδικού πρόσβασης.',
+        'subscription_exists' => 'Έχετε ήδη εγγραφεί στο newsletter μας',
     ],
 
     'attributes' => [

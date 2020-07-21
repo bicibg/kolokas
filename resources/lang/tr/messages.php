@@ -16,6 +16,7 @@ return [
         'updated' => 'Tarifiniz güncellendi.'
     ],
     'general' => [
-        'not_logged_in' => 'Bu işlem için giriş yapmanız gerekiyor.'
+        'not_logged_in' => 'Bu işlem için giriş yapmanız gerekiyor.',
+        'subscription_success' => 'Bültenimize başarıyla abone oldunuz.',
     ]
 ];

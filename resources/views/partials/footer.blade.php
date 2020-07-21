@@ -36,7 +36,7 @@
                 <form method="POST" action="{{ route('subscribe') }}">
                     @csrf
                     <div class="form-group">
-                        <input type="email" class="form-control" name="email">
+                        <input type="email" class="form-control" name="subscriber_email">
                     </div>
                     <base-button role="submit">
                         <i class="fa fa-search"></i>

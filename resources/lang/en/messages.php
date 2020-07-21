@@ -16,6 +16,7 @@ return [
         'updated' => 'Your recipe has been updated.'
     ],
     'general' => [
-        'not_logged_in' => 'You you need to be logged in for this action.'
+        'not_logged_in' => 'You you need to be logged in for this action.',
+        'subscription_success' => 'You have successfully subscribed to our newsletter.',
     ]
 ];

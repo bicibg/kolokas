@@ -108,6 +108,7 @@ return [
 
     'custom' => [
         'new_password.required' => 'A new password is required to change your existing password.',
+        'subscription_exists' => 'You are already subscribed to our newsletter',
     ],
 
 

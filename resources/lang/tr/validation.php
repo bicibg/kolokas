@@ -108,6 +108,7 @@ return [
 
     'custom' => [
         'new_password.required' => 'Mevcut şifrenizi değiştirmek için yeni bir şifre gereklidir.',
+        'subscription_exists' => 'Bültenimize zaten abonesiniz',
     ],
 
     'attributes' => [
