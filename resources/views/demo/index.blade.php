@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Kolokas') }}</title>
 
     <!-- Scripts -->
-    <script type="application/javascript" src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -26,7 +26,8 @@
     <link href="{{ mix('css/styles-1200px.css') }}" rel="stylesheet">
 
     <link href="{{ mix('css/fontawesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet">
+
+    @livewireStyles
 </head>
 <body>
 <div id="app">
@@ -91,11 +92,9 @@
         </div>
     </main>
 </div>
-@livewireScripts
-<script type="text/javascript">
+<script>
     window._locale = '{{ app()->getLocale() }}';
     window._translations = {!! cache('translations') !!};
 </script>
 </body>
 </html>
-

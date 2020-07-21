@@ -89,7 +89,7 @@
                                        type="text"
                                        readonly
                                        class="form-control-plaintext max-time-input"
-                                       value="{{ __('recipe.minutes', ['minute' => $maxPrepTime]) }}">
+                                       value="{{ trans_choice('recipe.minutes', $maxPrepTime, ['minute' => $maxPrepTime]) }}">
                             </label>
                         </div>
                         <div class="slidecontainer w-75 mr-auto ml-auto">
@@ -111,7 +111,7 @@
                                        type="text"
                                        readonly
                                        class="form-control-plaintext max-time-input"
-                                       value="{{ __('recipe.minutes', ['minute' => $maxCookTime]) }}">
+                                       value="{{ trans_choice('recipe.minutes', $maxCookTime, ['minute' => $maxCookTime]) }}">
                             </label>
                         </div>
                         <div class="slidecontainer w-75 mr-auto ml-auto">

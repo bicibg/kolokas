@@ -8,10 +8,14 @@ require('./bootstrap');
 require('bootstrap-select');
 window.Vue = require('vue');
 import $ from 'jquery';
-window.$ = window.jQuery = $;
-import 'livewire-vue';
-
 import 'jquery-ui/ui/widgets/slider.js';
+
+window.$ = window.jQuery = $;
+
+if (window.livewire) {
+    require('livewire-vue');
+}
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -33,7 +37,7 @@ window.flash = function (message, type = 'success') {
     window.events.$emit('flash', {message, type});
 };
 
-if (window.livewire) {
+if (window.livewire !== undefined) {
     window.livewire.on('flash-success', (message, trans_key) => {
         if (message) {
             flash(message, 'success');

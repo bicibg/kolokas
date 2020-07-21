@@ -54997,10 +54997,8 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var livewire_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! livewire-vue */ "./node_modules/livewire-vue/dist/livewire-vue.js");
-/* harmony import */ var livewire_vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(livewire_vue__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jquery_ui_ui_widgets_slider_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery-ui/ui/widgets/slider.js */ "./node_modules/jquery-ui/ui/widgets/slider.js");
-/* harmony import */ var jquery_ui_ui_widgets_slider_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_ui_widgets_slider_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jquery_ui_ui_widgets_slider_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery-ui/ui/widgets/slider.js */ "./node_modules/jquery-ui/ui/widgets/slider.js");
+/* harmony import */ var jquery_ui_ui_widgets_slider_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_ui_widgets_slider_js__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -55012,9 +55010,12 @@ __webpack_require__(/*! bootstrap-select */ "./node_modules/bootstrap-select/dis
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
+
 window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 
-
+if (window.livewire) {
+  __webpack_require__(/*! livewire-vue */ "./node_modules/livewire-vue/dist/livewire-vue.js");
+}
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -55024,6 +55025,7 @@ window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
 
 Vue.mixin(__webpack_require__(/*! ./trans */ "./resources/js/trans.js"));
 Vue.component('base-button', __webpack_require__(/*! ./components/BaseButtonComponent.vue */ "./resources/js/components/BaseButtonComponent.vue")["default"]);
@@ -55038,7 +55040,7 @@ window.flash = function (message) {
   });
 };
 
-if (window.livewire) {
+if (window.livewire !== undefined) {
   window.livewire.on('flash-success', function (message, trans_key) {
     if (message) {
       flash(message, 'success');
