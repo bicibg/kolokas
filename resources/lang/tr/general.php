@@ -7,6 +7,7 @@ return [
     'coming_soon' => 'Çok yakında',
     'search' => 'Ara',
     'category' => 'Kategori',
+    'categories' => 'Kategoriler',
     'all_categories' => 'Tüm Kategoriler',
     'clear' => 'Temizle',
     'keyword' => 'Arama terimi',

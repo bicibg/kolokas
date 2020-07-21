@@ -6,6 +6,7 @@ return [
     'coming_soon' => 'Coming soon',
     'search' => 'Search',
     'category' => 'Category',
+    'categories' => 'Categories',
     'all_categories' => 'All Categories',
     'clear' => 'Clear',
     'keyword' => 'Search term',

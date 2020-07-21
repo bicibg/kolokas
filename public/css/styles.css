@@ -425,11 +425,18 @@ ul.validation-errors li {
   background-color: #ff9638;
 }
 
-.navbar.navbar-main .dropdown-menu {
-  margin: 0;
-  border-radius: 4px;
-  max-height: 50vh;
-  overflow-y: auto;
+.navbar.navbar-main .menu-large {
+  position: static !important;
+}
+
+.navbar.navbar-main .megamenu {
+  padding: 20px 0px;
+  width: 100%;
+}
+
+.navbar.navbar-main .megamenu .dropdown-header {
+  color: #428bca;
+  font-size: 18px;
 }
 
 .navbar-brand {

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,5 +33,12 @@ class AppServiceProvider extends ServiceProvider
             $existingForm = isset($data[$other_field]) ? $data[$other_field] : [];
             return count($existingForm) + count($value) <= $max;
         }, 'You can have maximum of 5 additional images. Make sure to deselect old ones if you want to replace them.');
+
+        \View::composer('*', function ($view) {
+            $categories = Cache::rememberForever('categories', function() {
+                return Category::all();
+            });
+            $view->with('categories', $categories);
+        });
     }
 }

@@ -13,7 +13,7 @@
     </button>
     <div class="navbar-collapse collapse" id="navbarResponsive">
         <ul class="navbar-nav mr-auto ml-auto">
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown menu-large">
                 <a class="nav-link dropdown-toggle"
                    href="{{ route('recipe.index') }}"
                    data-toggle="dropdown"
@@ -21,13 +21,24 @@
                    aria-expanded="false">
                     {{ __('nav.recipes') }}
                 </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ route('recipe.index') }}">{{ __('nav.all_recipes') }}</a>
-                    <div class="dropdown-divider"></div>
-                    @foreach(\App\Models\Category::all() as $category)
-                        <a class="dropdown-item"
-                           href="{{ route('recipe.index') . '?c=' . $category->id }}">{{ $category->name }}</a>
-                    @endforeach
+
+                <div class="dropdown-menu megamenu text-center">
+                    <div class="row d-inline-flex text-left">
+                        <div class="col-md-2">
+                            <a class="dropdown-item" href="{{ route('recipe.index') }}">{{ __('nav.all_recipes') }}</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </div>
+                    <div class="row d-inline-flex text-left">
+                        @foreach($categories->chunk(7) as $group)
+                            <div class="col-md-2">
+                                @foreach($group as $category)
+                                    <a class="dropdown-item"
+                                       href="{{ route('recipe.index') . '?c=' . $category->id }}">{{ $category->name }}</a>
+                                @endforeach
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </li>
             <li class="nav-item">

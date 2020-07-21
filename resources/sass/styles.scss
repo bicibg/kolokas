@@ -424,12 +424,20 @@ ul.validation-errors {
     }
   }
 
-  .dropdown-menu {
-    margin: 0;
-    border-radius: 4px;
-    max-height: 50vh;
-    overflow-y: auto;
+  .menu-large {
+    position: static !important;
   }
+
+  .megamenu {
+    padding: 20px 0px;
+    width: 100%;
+
+    .dropdown-header {
+      color: #428bca;
+      font-size: 18px;
+    }
+  }
+
 }
 
 .navbar-brand {
