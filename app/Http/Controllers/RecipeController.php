@@ -49,24 +49,8 @@ class RecipeController extends Controller
     public function index(Request $request)
     {
         $recipes = Recipe::wherePublished(true);
+        $recipes = $this->addFilterToRecipes($recipes);
 
-        if (!empty($request->get('s'))) {
-            $searchTerm = Str::lower($request->get('s'));
-            $recipes->where('title', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
-        }
-        if ($request->get('c')) {
-            $recipes->whereHas('categories', function ($q) use ($request) {
-                return $q->whereCategoryId($request->get('c'));
-            });
-        }
-        if ($request->get('a')) {
-            $author = Profile::where('slug', $request->get('a'))->first();
-            if ($author) {
-                $recipes->author($author);
-            }
-        }
-        $recipes = $recipes->latest();
         $recipesCount = $recipes->count();
         $recipes = $recipes->paginate(16);
         return view('recipe.index', compact('recipes', 'recipesCount'));
@@ -75,20 +59,39 @@ class RecipeController extends Controller
     public function favourites(Request $request)
     {
         $recipes = auth()->user()->favourites();
+        $recipes = $this->addFilterToRecipes($recipes);
+        $recipesCount = $recipes->count();
+        $recipes = $recipes->paginate(20);
+        return view('recipe.fav-index', compact('recipes', 'recipesCount'));
+    }
 
-        if (!empty($request->get('s'))) {
-            $searchTerm = Str::lower($request->get('s'));
+    private function addFilterToRecipes($recipes) {
+        if (!empty(request()->get('s'))) {
+            $searchTerm = Str::lower(request()->get('s'));
             $recipes->where('title', 'LIKE', "%{$searchTerm}%")
                 ->orWhere('description', 'LIKE', "%{$searchTerm}%");
         }
-        if ($request->get('c')) {
+        if (request()->get('c')) {
+            $request = request();
             $recipes->whereHas('categories', function ($q) use ($request) {
                 return $q->whereCategoryId($request->get('c'));
             });
         }
-        $recipesCount = $recipes->count();
-        $recipes = $recipes->paginate(16);
-        return view('recipe.fav-index', compact('recipes', 'recipesCount'));
+        if (request()->get('a')) {
+            $author = Profile::where('slug', request()->get('a'))->first();
+            if ($author) {
+                $recipes->author($author);
+            }
+        }
+
+        if (request()->get('mp')) {
+            $recipes->where('prep_time', '<=', intval(request()->get('mp')));
+        }
+        if (request()->get('mc')) {
+            $recipes->where('cook_time', '<=', intval(request()->get('mc')));
+        }
+
+        return $recipes->latest();
     }
 
     /**

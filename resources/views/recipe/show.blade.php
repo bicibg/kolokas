@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pt-5">
+    <div class="container pt-0 pt-sm-5">
         <div class="row justify-content-center">
             <div class="col-md-8 single-post">
                 <div id="single-content" class="inner-content">
@@ -121,7 +121,7 @@
             </div>
         </div>
     </div>
-    <div class="container pt-5 no-print">
+    <div class="container pt-0 pt-sm-5 no-print">
         @include('home.partial.youMayAlsoLike')
     </div>
 @endsection

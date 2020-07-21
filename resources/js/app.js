@@ -9,6 +9,7 @@ require('bootstrap-select');
 window.Vue = require('vue');
 import $ from 'jquery';
 window.$ = window.jQuery = $;
+import 'livewire-vue';
 
 import 'jquery-ui/ui/widgets/slider.js';
 /**

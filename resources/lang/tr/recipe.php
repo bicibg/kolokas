@@ -19,5 +19,7 @@ return [
     'ingredients' => 'Malzemeler',
     'instructions' => 'Talimatlar',
     'recipe_not_published' => 'Bu tarif şu anda görüntülenemiyor.',
+    'max_prep_time' => 'Maksimum hazırlık süresi',
+    'max_cook_time' => 'Maksimum pişirme süresi',
     'minutes' => ':minute dakika',
 ];

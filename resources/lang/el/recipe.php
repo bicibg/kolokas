@@ -19,5 +19,7 @@ return [
     'ingredients' => 'Συστατικά',
     'instructions' => 'Οδηγίες',
     'recipe_not_published' => 'Αυτή η συνταγή δεν μπορεί να εμφανιστεί αυτήν τη στιγμή.',
+    'max_prep_time' => 'μέγιστος χρόνος προετοιμασίας',
+    'max_cook_time' => 'μέγιστος χρόνος μαγειρέματος',
     'minutes' => ':minute λεπτό | :minute λεπτά',
 ];

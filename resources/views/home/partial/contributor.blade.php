@@ -6,7 +6,7 @@
     </div>
 
     @foreach($contributors as $profile)
-        <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-content-center">
+        <div class="col-md-3 col-sm-4 d-flex align-content-center">
             @livewire('author-box', ['profile' => $profile])
         </div>
     @endforeach

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pt-5">
+    <div class="container pt-0 pt-sm-5">
         <div class="row justify-content-center text-center">
             <div class="col-md-12">
                 <h3 class="section-title">{{ __('nav.my_recipes') }}</h3>

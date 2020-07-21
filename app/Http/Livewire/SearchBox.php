@@ -42,8 +42,14 @@ class SearchBox extends Component
      * @var array|mixed
      */
     public $cookTimes;
-
+    /**
+     * @var mixed
+     */
     public $maxPrepTime;
+    /**
+     * @var mixed
+     */
+    public $maxCookTime;
 
     /**
      * @param  int|null  $resultCount
@@ -85,7 +91,8 @@ class SearchBox extends Component
             'minCook' => $minCook->getAttributes()['cook_time'],
             'maxCook' => $maxCook->getAttributes()['cook_time'],
         ];
-        $this->maxPrepTime = $this->cookTimes['maxPrep'];
+        $this->maxPrepTime = request()->get('mp', $this->cookTimes['maxPrep']);
+        $this->maxCookTime = request()->get('mc', $this->cookTimes['maxCook']);
     }
 
     public function render()

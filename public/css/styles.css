@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
 }
 
@@ -1292,23 +1290,9 @@ table tbody tr:nth-child(even) {
   fill: #ccc;
 }
 
-.search .basic-search .input-field .result-count {
-  display: inline-flex;
-  justify-content: flex-start;
-  font-weight: bold;
-  color: #555;
-  font-size: 14px;
-}
-
-.search .basic-search .input-field .result-count span {
-  color: #ff9638;
-  padding-right: 5px;
-}
-
 .search .advance-search {
   margin-top: 4px;
   background: #fff;
-  padding: 40px;
   border-radius: 3px;
   box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 }
@@ -1348,5 +1332,18 @@ table tbody tr:nth-child(even) {
 
 .search .advance-search .max-time-input {
   max-width: 50%;
+}
+
+.search .result-count {
+  display: inline-flex;
+  justify-content: flex-start;
+  font-weight: bold;
+  color: #555;
+  font-size: 14px;
+}
+
+.search .result-count span {
+  color: #ff9638;
+  padding-right: 5px;
 }
 

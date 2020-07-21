@@ -5,7 +5,7 @@
         </div>
     </div>
     @foreach($latest as $recipe)
-        <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-items-stretch">
+        <div class="col-md-3 col-sm-4 d-flex align-items-stretch">
             @livewire('recipe-box', ['recipe'=>$recipe])
         </div>
     @endforeach

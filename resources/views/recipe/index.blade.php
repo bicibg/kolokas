@@ -19,6 +19,8 @@
                 <span>{{ __('recipe.no_recipes_found') }}</span>
             @endforelse
         </div>
-        {{ $recipes->links() }}
+        <div class="d-flex justify-content-center">
+            {!! $recipes->links() !!}
+        </div>
     </div>
 @endsection
