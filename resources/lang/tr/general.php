@@ -16,4 +16,6 @@ return [
     'or' => 'veya',
     'author' => 'Yazar',
     'all_authors' => 'Tüm Yazarlar',
+    'subscribe' => 'Abone ol',
+    'subscribe_text' => 'Haftalık bültene ve Kolokas.com haberlerine abone olun',
 ];

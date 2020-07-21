@@ -16,4 +16,6 @@ return [
     'read_more' => 'Read more',
     'author' => 'Author',
     'all_authors' => 'All Authors',
+    'subscribe' => 'Subscribe',
+    'subscribe_text' => 'Subscribe to the weekly newsletter and Kolokas.com news',
 ];

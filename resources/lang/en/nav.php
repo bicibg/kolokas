@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'home' => 'Home',
     'recipes' => 'Recipes',
     'all_recipes' => 'All Recipes',
     'authors' => 'Authors',
@@ -10,4 +11,7 @@ return [
     'my_profile' => 'My Profile',
     'my_recipes' => 'My Recipes',
     'my_favourites' => 'My Favourite Recipes',
+    'about' => 'About us',
+    'pages' => 'Pages',
+    'newsletter' => 'Newsletter',
 ];

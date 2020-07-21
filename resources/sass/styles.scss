@@ -1341,7 +1341,7 @@ table tbody tr {
       width: 25px;
       height: 25px;
       border-radius: 50%;
-      background: #4CAF50;
+      background: $orange;
       cursor: pointer;
     }
 
@@ -1349,7 +1349,7 @@ table tbody tr {
       width: 25px;
       height: 25px;
       border-radius: 50%;
-      background: #4CAF50;
+      background: $orange;
       cursor: pointer;
     }
 
@@ -1363,20 +1363,34 @@ table tbody tr {
     display: inline-flex;
     -ms-flex-pack: start;
     justify-content: flex-start;
-    //-ms-flex-align: center;
-    //align-items: center;
-    //width: 110px;
-    //top: 0;
-    //right: 0;
-    //position: absolute;
     font-weight: bold;
     color: #555;
-    //height: 100%;
     font-size: 14px;
 
     span {
       color: $orange;
       padding-right: 5px;
     }
+  }
+}
+
+footer {
+  margin-top: 40px;
+  padding: 50px 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  background-color: lightgray;
+
+  h5 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #484848;
+  }
+
+  ul li {
+    list-style: none;
+  }
+
+  a {
+    color: inherit;
   }
 }

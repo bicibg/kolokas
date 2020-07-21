@@ -50,3 +50,5 @@ Route::middleware('localized')->group(function () {
 
     Route::post('password-update', 'ChangePasswordController@store')->name('password.new');
 });
+
+Route::post('/subscribe', 'SubscriptionController@subscribe')->name('subscribe');

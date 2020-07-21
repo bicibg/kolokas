@@ -45,6 +45,7 @@
             </ul>
         @endif
         @yield('content')
+        @include('partials.footer')
     </main>
 </div>
 <script>

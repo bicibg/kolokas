@@ -1321,7 +1321,7 @@ table tbody tr:nth-child(even) {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: #ff9638;
   cursor: pointer;
 }
 
@@ -1329,7 +1329,7 @@ table tbody tr:nth-child(even) {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: #ff9638;
   cursor: pointer;
 }
 
@@ -1348,5 +1348,26 @@ table tbody tr:nth-child(even) {
 .search .result-count span {
   color: #ff9638;
   padding-right: 5px;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 50px 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  background-color: lightgray;
+}
+
+footer h5 {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #484848;
+}
+
+footer ul li {
+  list-style: none;
+}
+
+footer a {
+  color: inherit;
 }
 

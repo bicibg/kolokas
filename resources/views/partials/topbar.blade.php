@@ -57,9 +57,9 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('profile.edit') }}">My Profile</a>
-                        <a class="dropdown-item" href="{{ route('recipe.my-index') }}">My Recipes</a>
-                        <a class="dropdown-item" href="{{ route('recipe.favourites') }}">My Favourites</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('nav.my_profile') }}</a>
+                        <a class="dropdown-item" href="{{ route('recipe.my-index') }}">{{ __('nav.my_recipes') }}</a>
+                        <a class="dropdown-item" href="{{ route('recipe.favourites') }}">{{ __('nav.my_favourites') }}</a>
 
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
