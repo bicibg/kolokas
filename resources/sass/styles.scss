@@ -1268,7 +1268,7 @@ table tbody tr {
     .input-field {
       width: 100%;
 
-      input#search{
+      input#search {
         padding: 10px 110px 10px 70px;
         border: 0;
         background: #fff;
@@ -1341,6 +1341,40 @@ table tbody tr {
 
     ul {
       max-height: 40vh;
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 15px;
+      border-radius: 5px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #4CAF50;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #4CAF50;
+      cursor: pointer;
+    }
+
+    .max-time-input {
+      max-width: 50%;
     }
   }
 }

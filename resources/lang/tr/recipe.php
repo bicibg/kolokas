@@ -19,4 +19,5 @@ return [
     'ingredients' => 'Malzemeler',
     'instructions' => 'Talimatlar',
     'recipe_not_published' => 'Bu tarif şu anda görüntülenemiyor.',
+    'minutes' => ':minute dakika',
 ];

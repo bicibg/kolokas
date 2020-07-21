@@ -76,7 +76,30 @@
     </div>
     @if($extended)
         <div class="advance-search">
-            Here will lie the extended search
+            <div class="row flex align-items-center bg-white py-2 m-0">
+                <div class="col-md-4 justify-content-center">
+                    <div class="form-group form-inline w-75">
+                        <label for="max_prep_time">{{ __('recipe.max_prep_time') }}:&nbsp;
+                        <input id="max_prep_time"
+                               type="text"
+                               readonly
+                               class="form-control-plaintext max-time-input"
+                               value="{{ __('recipe.minutes', ['minute' => $maxPrepTime]) }}">
+                        </label>
+                    </div>
+                    <div class="slidecontainer w-75">
+                        <input id="prep_time"
+                               type="range"
+                               wire:model="maxPrepTime"
+                               min="{{ $cookTimes['minPrep'] }}"
+                               max="{{ $cookTimes['maxPrep'] }}"
+                               value="{{ $maxPrepTime }}"
+                               step="5"
+                               name="prep_time"
+                               class="slider">
+                    </div>
+                </div>
+            </div>
         </div>
     @endif
 </div>

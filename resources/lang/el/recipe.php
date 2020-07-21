@@ -18,5 +18,6 @@ return [
     'servings_for' => 'Για :for',
     'ingredients' => 'Συστατικά',
     'instructions' => 'Οδηγίες',
-    'recipe_not_published' => 'Αυτή η συνταγή δεν μπορεί να εμφανιστεί αυτήν τη στιγμή.'
+    'recipe_not_published' => 'Αυτή η συνταγή δεν μπορεί να εμφανιστεί αυτήν τη στιγμή.',
+    'minutes' => ':minute λεπτό | :minute λεπτά',
 ];

@@ -19,4 +19,6 @@ return [
     'ingredients' => 'Ingredients',
     'instructions' => 'Instructions',
     'recipe_not_published' => 'This recipe cannot be displayed at the moment.',
+    'max_prep_time' => 'Maksimum hazırlık süresi',
+    'minutes' => ':minute minute|:minute minutes'
 ];

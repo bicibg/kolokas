@@ -6,7 +6,7 @@
                     <div class="col-md-12">
                         <div class="form-group input-field second-wrap">
                             <div class="input-group mb-3 has-clear">
-                                <input type="text" class="form-control" placeholder="{{ __('general.search_by_keyword') }}"
+                                <input type="text" class="form-control" placeholder="{{ __('general.search') }}"
                                        value="{{ request()->get('sp') }}" name="sp" aria-describedby="clear">
                                 <div class="input-group-append form-control-clear form-control-feedback hidden">
                                     <span class="input-group-text clear" id="clear">{{ __('general.clear') }}</span>

@@ -43,6 +43,8 @@ class SearchBox extends Component
      */
     public $cookTimes;
 
+    public $maxPrepTime;
+
     /**
      * @param  int|null  $resultCount
      * @param  bool|null  $extended
@@ -78,11 +80,12 @@ class SearchBox extends Component
             ->first();
 
         $this->cookTimes = [
-            'min_prep' => $minPrep->getAttributes()['prep_time'],
-            'max_prep' => $maxPrep->getAttributes()['prep_time'],
-            'min_cook' => $minCook->getAttributes()['cook_time'],
-            'max_cook' => $maxCook->getAttributes()['cook_time'],
+            'minPrep' => $minPrep->getAttributes()['prep_time'],
+            'maxPrep' => $maxPrep->getAttributes()['prep_time'],
+            'minCook' => $minCook->getAttributes()['cook_time'],
+            'maxCook' => $maxCook->getAttributes()['cook_time'],
         ];
+        $this->maxPrepTime = $this->cookTimes['maxPrep'];
     }
 
     public function render()
