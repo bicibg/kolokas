@@ -12908,7 +12908,7 @@ select.selectpicker {
   display: block;
 }
 
-.bs-RecipeSearchBox,
+.bs-searchbox,
 .bs-actionsbox,
 .bs-donebutton {
   padding: 4px 8px;
@@ -12933,11 +12933,11 @@ select.selectpicker {
   width: 100%;
 }
 
-.bs-RecipeSearchBox + .bs-actionsbox {
+.bs-searchbox + .bs-actionsbox {
   padding: 0 8px 4px;
 }
 
-.bs-RecipeSearchBox .form-control {
+.bs-searchbox .form-control {
   margin-bottom: 0;
   width: 100%;
   float: none;

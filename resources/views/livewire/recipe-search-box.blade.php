@@ -82,8 +82,8 @@
         @if($extended)
             <div class="advance-search">
                 <div class="row flex align-items-center bg-white py-2 m-0">
-                    <div class="col-md-4 justify-content-center">
-                        <div class="form-group form-inline w-75 mr-auto ml-auto">
+                    <div class="col-md-5 justify-content-center">
+                        <div class="form-group form-inline w-75 mr-auto ml-auto mb-0">
                             <label for="max_prep_time">{{ __('recipe.max_prep_time') }}:&nbsp;
                                 <input id="max_prep_time"
                                        type="text"
@@ -104,8 +104,8 @@
                                    class="slider">
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group form-inline w-75 mr-auto ml-auto">
+                    <div class="col-md-5">
+                        <div class="form-group form-inline w-75 mr-auto ml-auto mb-0">
                             <label for="max_cook_time">{{ __('recipe.max_cook_time') }}:&nbsp;
                                 <input id="max_cook_time"
                                        type="text"
@@ -127,23 +127,16 @@
                         </div>
                     </div>
                     @if($extended)
-                        <div class="col-md-4 pt-3">
-                            <div class="row w-100">
-                                <div class="col-4 text-right pr-0">
-                                    <div class="result-count">
-                                        <span>{{ $resultCount }} </span>{{ trans_choice('recipe.recipe', $resultCount) }}
-                                    </div>
-                                </div>
-                                <div class="col-4 text-center">
-                                    <base-button :role="'submit'">
-                                        {{ __('general.search') }}
-                                    </base-button>
-                                </div>
-                                <div class="col-4">&nbsp;</div>
+                        <div class="col-md-2 text-center pt-4">
+                            <div class="result-count mr-3">
+                                <span>{{ $resultCount }} </span>{{ trans_choice('recipe.recipe', $resultCount) }}
                             </div>
+                            <base-button :role="'submit'">
+                                {{ __('general.search') }}
+                            </base-button>
                         </div>
                     @else
-                        <div class="col-md-4"></div>
+                        <div class="col-md-2"></div>
                     @endif
                 </div>
             </div>

@@ -60,7 +60,7 @@
 
             <div class="col-sm-12 col-md-8 mt-5">
                 <div class="header text-left">
-                    <h2>{{ __('profile.profile') }}</h2>
+                    <h2>{{ __('nav.my_profile') }}</h2>
                     <hr>
                 </div>
             </div>

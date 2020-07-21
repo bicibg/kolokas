@@ -1,7 +1,16 @@
 <template>
     <div :class="['alert alert-flash fade show', alertType]" role="alert" v-show="show">
-        <strong v-text="alertPrefix"></strong> {{ body }}
-        <a class="btn btn-inline" v-on:click="hide()">X</a>
+        <div class="row">
+            <div class="col-10">
+                <strong v-text="alertPrefix"></strong>
+                <span>
+                    {{ body }}
+                </span>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-inline" v-on:click="hide()">X</a>
+            </div>
+        </div>
     </div>
 </template>
 

@@ -2,6 +2,7 @@
 
 return [
     'profile' => 'Profile',
+    'author' => 'author|authors',
     'name' => 'Name',
     'profiles_found' => ':number author|:number authors',
     'city' => 'City',

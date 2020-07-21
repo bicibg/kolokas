@@ -24,9 +24,9 @@ class ProfileController extends Controller
                 ->orWhere('email', 'LIKE', "%{$searchTerm}%");
         }
 
-        $count = $profiles->count();
+        $authorsCount = $profiles->count();
         $profiles = $profiles->paginate(16);
-        return view('profile.index', compact('profiles', 'count'));
+        return view('profile.index', compact('profiles', 'authorsCount'));
     }
 
     public function show(Profile $profile)
