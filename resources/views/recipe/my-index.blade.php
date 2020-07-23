@@ -15,7 +15,6 @@
         @else
             @if ($published->count())
                 <div class="row justify-content-center">
-
                     <div class="col-md-12">
                         <h5 class="text-center">
                             <i class="fa fa-cutlery" aria-hidden="true"></i>
@@ -23,9 +22,9 @@
                         </h5>
                     </div>
                     <div class="col-md-12">
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center m-2">
                             @foreach($published as $recipe)
-                                <div class="col-md-3 col-sm-4 col-xs-6 d-flex align-items-stretch">
+                                <div class="col-md-3 col-sm-6 col-12 d-flex align-items-stretch">
                                     @livewire('recipe-box', ['recipe'=>$recipe])
                                 </div>
                             @endforeach

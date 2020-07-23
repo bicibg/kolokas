@@ -15,4 +15,6 @@ return [
     'website_text' => 'Your website (must belong to you).',
     'update_success' => 'Your profile has been successfully updated.',
     'no_profiles_found' => 'No authors found with this search criteria.',
+    'about' => 'About',
+    'social_media' => 'Social Media',
 ];

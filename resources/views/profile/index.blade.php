@@ -10,9 +10,9 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center m-2">
             @forelse($profiles as $profile)
-                <div class="col-md-3 col-sm-4 d-flex align-items-stretch">
+                <div class="col-md-3 col-sm-6 col-12 d-flex align-items-stretch">
                     @livewire('author-box', ['profile'=>$profile])
                 </div>
             @empty

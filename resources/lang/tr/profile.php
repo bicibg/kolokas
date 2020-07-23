@@ -14,4 +14,6 @@ return [
     'website_text' => 'Web siteniz (size ait olmalıdır).',
     'update_success' => 'Profiliniz başarıyla güncellendi.',
     'no_profiles_found' => 'Bu kriterlerde yazar bulunamadı.',
+    'about' => 'Hakkında',
+    'social_media' => 'Sosyal Medya',
 ];
