@@ -28,5 +28,11 @@
   .navbar-nav .open .dropdown-menu .dropdown-header {
     color: #fff;
   }
+
+  .navbar-nav .nav-link {
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 25px;
+  }
 }
 
