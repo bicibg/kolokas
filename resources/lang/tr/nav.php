@@ -14,4 +14,5 @@ return [
     'about' => 'Hakkımizda',
     'pages' => 'Sayfalar',
     'newsletter' => 'Bülten',
+    'contact_us' => 'Bize Ulaşın'
 ];

@@ -38,8 +38,9 @@ Route::middleware('localized')->group(function () {
     Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
     Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
     Route::get('/authors', 'ProfileController@index')->name('profile.index');
-    
-    Route::get('/contact', 'ContactController@index');
+
+    Route::get('/contact', 'ContactController@create')->name('contact.create');
+    Route::post('/contact', 'ContactController@store')->name('contact.store');;
 });
 
 Route::post('/demo-enable', 'DemoModeController@enable')->name('demo.enable');

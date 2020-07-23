@@ -66,6 +66,12 @@
                     <small class="position-absolute" style="margin-top: -6px;">{{ __('general.coming_soon') }}</small>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('contact.create') }}">
+                    <div>{{ __('nav.contact_us') }}</div>
+                </a>
+            </li>
+
             <li class="nav-item d-md-none">
                 <div class="dropdown-divider"></div>
             </li>

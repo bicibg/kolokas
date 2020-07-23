@@ -109,6 +109,8 @@ return [
     'custom' => [
         'new_password.required' => 'A new password is required to change your existing password.',
         'subscription_exists' => 'You are already subscribed to our newsletter',
+        'total_images_with_existing' => 'You can have a maximum of 5 additional images. Make sure to deselect old ones if you want to replace them.',
+        'nohtml' => 'HTML tags are not allowed.'
     ],
 
 

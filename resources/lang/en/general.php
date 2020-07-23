@@ -18,4 +18,12 @@ return [
     'all_authors' => 'All Authors',
     'subscribe' => 'Subscribe',
     'subscribe_text' => 'Subscribe to the weekly newsletter and Kolokas.com news',
+    'contact' => [
+        'name' => 'Name',
+        'subject' => 'Subject',
+        'email' => 'Email',
+        'message' => 'Message',
+        'send' => 'Send',
+        'message_sent' => 'Message is sent! We will get back to you soon!'
+    ],
 ];

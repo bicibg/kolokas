@@ -21,9 +21,6 @@
                             <base-button :role="'submit'" :className="'btn-link p-0 m-0 align-baseline'">
                                 {{ __('auth.request_another_email') }} }}
                             </base-button>
-                            <button type="submit"
-                                    class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>
-                            .
                         </form>
                     </div>
                 </div>

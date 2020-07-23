@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Mail\ContactFormMessage;
+use App\Rules\NoHtml;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+class ContactController extends Controller
+{
+    public function create()
+    {
+        return view('contact.create');
+    }
+
+    public function store(Request $request)
+    {
+        // validate fields
+        $this->validate($request, [
+            'name' => ['required', 'string', new NoHtml],
+            'email' => ['required', 'email', new NoHtml],
+            'subject' => ['required', 'string', new NoHtml],
+            'user_message' => ['required', 'string', new NoHtml]
+        ]);
+
+        // redirect to contact form with message
+        Mail::send('emails.contact',
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'subject' => $request->subject,
+                'user_message' => $request->user_message,
+            ], function ($message) use ($request) {
+                $message->from($request->email);
+                $message->to(env('APP_ADMIN_CONTACT'));
+            });
+        return redirect()->to('/')->with('flash', __('general.contact.message_sent'));
+    }
+}

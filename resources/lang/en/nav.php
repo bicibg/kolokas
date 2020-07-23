@@ -14,4 +14,5 @@ return [
     'about' => 'About us',
     'pages' => 'Pages',
     'newsletter' => 'Newsletter',
+    'contact_us' => 'Contact Us'
 ];

@@ -18,4 +18,12 @@ return [
     'all_authors' => 'Tüm Yazarlar',
     'subscribe' => 'Abone ol',
     'subscribe_text' => 'Haftalık bültene ve Kolokas.com haberlerine abone olun',
+    'contact' => [
+        'name' => 'İsim',
+        'subject' => 'Konu',
+        'email' => 'E-posta adresi',
+        'message' => 'Mesaj',
+        'send' => 'Gönder',
+        'message_sent' => 'Mesaj gönderildi! En kısa zamanda dönüş yapacağız!'
+    ],
 ];

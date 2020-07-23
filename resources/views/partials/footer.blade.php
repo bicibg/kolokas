@@ -10,6 +10,7 @@
                 <h5>{{ __('nav.pages') }}</h5>
                 <ul class="p-0">
                     <li><a class="btn-link" href="{{ route('home') }}">{{ __('nav.home') }}</a></li>
+                    <li><a class="btn-link" href="{{ route('contact.create') }}">{{ __('nav.contact_us') }}</a></li>
                     <li><a class="btn-link" href="{{ route('profile.index') }}">{{ __('nav.authors') }}</a></li>
                     <li><a class="btn-link" href="{{ route('profile.edit') }}">{{ __('nav.my_profile') }}</a></li>
                     <li>

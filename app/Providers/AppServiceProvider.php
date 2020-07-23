@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
             $data = $validator->getData();
             $existingForm = isset($data[$other_field]) ? $data[$other_field] : [];
             return count($existingForm) + count($value) <= $max;
-        }, 'You can have maximum of 5 additional images. Make sure to deselect old ones if you want to replace them.');
+        }, __('validation.custom.total_images_with_existing'));
 
         \View::composer('*', function ($view) {
             $categories = Cache::rememberForever('categories', function() {

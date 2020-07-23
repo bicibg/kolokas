@@ -115,6 +115,8 @@ return [
         'name' => 'İsim',
         'website' => 'Internet sitesi',
         'info' => 'Kişisel bilgi',
+        'total_images_with_existing' => 'En fazla 5 ek resminiz olabilir. Bunları değiştirmek isterseniz eskilerinin seçimini kaldırdığınızdan emin olun.',
+        'nohtml' => 'HTML etiketli girişlere izin verilmiyor.',
     ],
 
 ];
