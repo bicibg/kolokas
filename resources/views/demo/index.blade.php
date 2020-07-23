@@ -22,8 +22,6 @@
     <link href="{{ mix('css/styles-print.css') }}" rel="stylesheet">
     <link href="{{ mix('css/styles-480px.css') }}" rel="stylesheet">
     <link href="{{ mix('css/styles-768px.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/styles-992px.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/styles-1200px.css') }}" rel="stylesheet">
 
     <link href="{{ mix('css/fontawesome.css') }}" rel="stylesheet">
 
