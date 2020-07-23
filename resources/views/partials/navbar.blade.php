@@ -13,8 +13,8 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse" id="navbarResponsive">
-        <ul class="navbar-nav mr-auto ml-auto mt-2 d-md-none">
-            <li class="nav-item">
+        <ul class="navbar-nav mr-auto ml-auto">
+            <li class="nav-item d-md-none mt-2">
                 <a
                     class="nav-link"
                     href="{{ route('recipe.index') }}"
@@ -56,13 +56,13 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">
-                    {{ __('nav.restaurants') }}
+                    <div>{{ __('nav.restaurants') }}</div>
                     <small class="position-absolute" style="margin-top: -6px;">{{ __('general.coming_soon') }}</small>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">
-                    {{ __('nav.events') }}
+                    <div>{{ __('nav.events') }}</div>
                     <small class="position-absolute" style="margin-top: -6px;">{{ __('general.coming_soon') }}</small>
                 </a>
             </li>

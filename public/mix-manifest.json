@@ -1,9 +1,11 @@
 {
-    "/js/app.js": "/js/app.js?id=e51c9f9479b6d3d9fdcf",
-    "/css/app.css": "/css/app.css?id=f69fa6030a7460982c5e",
-    "/css/styles.css": "/css/styles.css?id=5008ebc619192dc9742a",
-    "/css/styles-print.css": "/css/styles-print.css?id=f3f2d1847c70e635f6a2",
-    "/css/styles-480px.css": "/css/styles-480px.css?id=ed9db1baf43634b307d3",
-    "/css/styles-768px.css": "/css/styles-768px.css?id=b432f0e6fb425d611790",
-    "/css/fontawesome.css": "/css/fontawesome.css?id=a8aaca4f768ec74be006"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/styles.css": "/css/styles.css",
+    "/css/styles-print.css": "/css/styles-print.css",
+    "/css/styles-480px.css": "/css/styles-480px.css",
+    "/css/styles-768px.css": "/css/styles-768px.css",
+    "/css/styles-992px.css": "/css/styles-992px.css",
+    "/css/styles-1200px.css": "/css/styles-1200px.css",
+    "/css/fontawesome.css": "/css/fontawesome.css"
 }

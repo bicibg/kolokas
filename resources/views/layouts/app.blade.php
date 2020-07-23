@@ -22,6 +22,8 @@
     <link href="{{ mix('css/styles-print.css') }}" rel="stylesheet">
     <link href="{{ mix('css/styles-480px.css') }}" rel="stylesheet">
     <link href="{{ mix('css/styles-768px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-992px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-1200px.css') }}" rel="stylesheet">
 
     <link href="{{ mix('css/fontawesome.css') }}" rel="stylesheet">
 
@@ -33,7 +35,6 @@
         @include('partials.topbar')
         @include('partials.navbar')
     </div>
-    <div class="overlay"></div>
     <main class="py-2 mt-xs-5 pt-xs-2">
         <flash message="{{ session('flash') ?? (session('flash-warning') ?? session('flash-error')) }}"
                type="{{ session('flash-warning') ? 'warning' : (session('flash-error') ? 'error' : '')  }}"></flash>        @if(count($errors)>0)
