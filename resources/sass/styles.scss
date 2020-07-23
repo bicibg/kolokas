@@ -5,6 +5,15 @@
   box-sizing: border-box;
 }
 
+main {
+  opacity: 1;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+
+}
 main > .container {
   max-width: 1400px !important;
 }
@@ -467,6 +476,21 @@ ul.validation-errors {
     border-bottom: 3px solid $orange;
   }
 
+}
+
+.lock-scroll {
+  overflow: hidden;
+
+  main {
+    opacity: 50%;
+    touch-action: none;
+    pointer-events: none;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+  }
 }
 
 /*=================================*/

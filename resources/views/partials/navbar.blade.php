@@ -4,6 +4,7 @@
     </a>
     <button class="navbar-toggler ml-auto"
             type="button"
+            onclick="lockScroll();"
             data-toggle="collapse"
             data-target="#navbarResponsive"
             aria-controls="navbarResponsive"
@@ -12,8 +13,16 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse" id="navbarResponsive">
-        <ul class="navbar-nav mr-auto ml-auto">
-            <li class="nav-item dropdown menu-large">
+        <ul class="navbar-nav mr-auto ml-auto mt-2 d-md-none">
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    href="{{ route('recipe.index') }}"
+                >
+                    {{ __('nav.recipes') }}
+                </a>
+            </li>
+            <li class="nav-item dropdown menu-large d-none d-md-block">
                 <a class="nav-link dropdown-toggle"
                    href="{{ route('recipe.index') }}"
                    data-toggle="dropdown"
@@ -25,7 +34,8 @@
                 <div class="dropdown-menu megamenu text-center">
                     <div class="row text-left m-row justify-content-between">
                         <div class="col-md-2">
-                            <a class="d-inline d-flex dropdown-item" href="{{ route('recipe.index') }}">{{ __('nav.all_recipes') }}</a>
+                            <a class="d-inline d-flex dropdown-item"
+                               href="{{ route('recipe.index') }}">{{ __('nav.all_recipes') }}</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </div>
@@ -46,17 +56,19 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">
-                    <div>{{ __('nav.restaurants') }}</div>
+                    {{ __('nav.restaurants') }}
                     <small class="position-absolute" style="margin-top: -6px;">{{ __('general.coming_soon') }}</small>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">
-                    <div>{{ __('nav.events') }}</div>
+                    {{ __('nav.events') }}
                     <small class="position-absolute" style="margin-top: -6px;">{{ __('general.coming_soon') }}</small>
                 </a>
             </li>
-
+            <li class="nav-item d-md-none">
+                <div class="dropdown-divider"></div>
+            </li>
             <li class="nav-item d-md-none">
                 <a class="nav-link login_button font-weight-bold"
                    id="show_login"
@@ -80,6 +92,9 @@
                     @endforeach
                 </div>
             </li>
+            <li class="nav-item d-md-none">
+                <div class="dropdown-divider"></div>
+            </li>
             @guest
                 <li class="nav-item d-md-none">
                     <a class="nav-link login_button" id="show_login" href="{{ route('login') }}">
@@ -94,28 +109,42 @@
                     </a>
                 </li>
             @else
-                <li class="nav-item dropdown d-md-none">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ __('auth.logged_in_as', ['name' => Auth::user()->name]) }} <span class="caret"></span>
+                <li class="nav-item d-md-none">
+                    <h6 class="dropdown-header">
+                        {{ __('auth.logged_in_as', ['name' => Auth::user()->name]) }}
+                    </h6>
+                </li>
+                <li class="nav-item d-md-none">
+                    <a class="nav-link" href="{{ route('profile.edit') }}">
+                        <i class="fa fa-user"></i>
+                        {{ __('nav.my_profile') }}
                     </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('nav.my_profile') }}</a>
-                        <a class="dropdown-item" href="{{ route('recipe.my-index') }}">{{ __('nav.my_recipes') }}</a>
-                        <a class="dropdown-item"
-                           href="{{ route('recipe.favourites') }}">{{ __('nav.my_favourites') }}</a>
-
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            {{ __('auth.logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                              style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
+                </li>
+                <li class="nav-item d-md-none">
+                    <a class="nav-link" href="{{ route('recipe.my-index') }}">
+                        <i class="fa fa-cutlery"></i>
+                        {{ __('nav.my_recipes') }}
+                    </a>
+                </li>
+                <li class="nav-item d-md-none">
+                    <a class="nav-link" href="{{ route('recipe.favourites') }}">
+                        <i class="fa fa-heart-o"></i>
+                        {{ __('nav.my_favourites') }}
+                    </a>
+                </li>
+                <li class="nav-item d-md-none">
+                    <a
+                        class="nav-link"
+                        href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    >
+                        <i class="fa fa-sign-out"></i>
+                        {{ __('auth.logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                          style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             @endguest
         </ul>

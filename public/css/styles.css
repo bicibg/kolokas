@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+main {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
 main > .container {
   max-width: 1400px !important;
 }
@@ -464,6 +469,17 @@ ul.validation-errors li {
 .navbar-nav .nav-link.active {
   color: #ff9638;
   border-bottom: 3px solid #ff9638;
+}
+
+.lock-scroll {
+  overflow: hidden;
+}
+
+.lock-scroll main {
+  opacity: 50%;
+  touch-action: none;
+  pointer-events: none;
+  transition: opacity 1s ease-in-out;
 }
 
 /*=================================*/

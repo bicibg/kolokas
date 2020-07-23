@@ -55304,6 +55304,14 @@ $(".image-checkbox").on("click", function (e) {
   e.preventDefault();
 });
 
+window.lockScroll = function () {
+  if ($('body').hasClass('lock-scroll')) {
+    $('body').removeClass('lock-scroll');
+  } else {
+    $('body').addClass('lock-scroll');
+  }
+};
+
 /***/ }),
 
 /***/ "./resources/js/trans.js":
