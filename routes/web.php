@@ -16,39 +16,35 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('localized')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
     Auth::routes();
 
     Route::get('/demo', 'DemoModeController@index')->name('demo.index');
-    Route::post('/demo-enable', 'DemoModeController@enable')->name('demo.enable');
     Route::get('/demo-activate', 'DemoModeController@activate')->name('demo.activate');
 
-    Route::get('/{locale}')->name('locale')->where('locale', implode('|', array_keys(Config::get('app.languages'))));
+    Route::get('/{locale}', function () {
+        return redirect()->back();
+    })->name('locale')->where('locale', implode('|', array_keys(Config::get('app.languages'))));
 
-    Route::name('recipe.')->group(function () {
-        Route::get('/recipes/create', 'RecipeController@create')->name('create');
-        Route::get('/recipes/{recipe}/edit', 'RecipeController@edit')->name('edit');
-        Route::post('/recipes', 'RecipeController@store')->name('store');
-        Route::get('/recipes', 'RecipeController@index')->name('index');
-        Route::patch('/recipes/{recipe}', 'RecipeController@update')->name('update');
-        Route::get('/recipes/favourites', 'RecipeController@favourites')->name('favourites');
-
-        Route::get('/manage/recipes', 'RecipeController@myRecipes')->name('my-index');
-
-
-        Route::middleware(RecordVisits::class)->group(function () {
-            Route::get('/recipes/{recipe}', 'RecipeController@show')->name('show');
-        });
+    Route::get('/recipes/create', 'RecipeController@create')->name('recipe.create');
+    Route::get('/recipes/{recipe}/edit', 'RecipeController@edit')->name('recipe.edit');
+    Route::get('/recipes', 'RecipeController@index')->name('recipe.index');
+    Route::get('/recipes/favourites', 'RecipeController@favourites')->name('recipe.favourites');
+    Route::get('/manage/recipes', 'RecipeController@myRecipes')->name('recipe.my-index');
+    Route::middleware(RecordVisits::class)->group(function () {
+        Route::get('/recipes/{recipe}', 'RecipeController@show')->name('recipe.show');
     });
 
     Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
-    Route::patch('/profile/edit', 'ProfileController@update')->name('profile.update');
-
     Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
     Route::get('/authors', 'ProfileController@index')->name('profile.index');
-
-    Route::get('/', 'HomeController@index')->name('home');
-
-    Route::post('password-update', 'ChangePasswordController@store')->name('password.new');
+    
+    Route::get('/contact', 'ContactController@index');
 });
 
+Route::post('/demo-enable', 'DemoModeController@enable')->name('demo.enable');
+Route::post('/recipes', 'RecipeController@store')->name('recipe.store');
+Route::patch('/recipes/{recipe}', 'RecipeController@update')->name('recipe.update');
 Route::post('/subscribe', 'SubscriberController@store')->name('subscribe');
+Route::post('/password-update', 'ChangePasswordController@store')->name('password.new');
+Route::patch('/profile/edit', 'ProfileController@update')->name('profile.update');

@@ -21,9 +21,8 @@ class Localization
     public function handle($request, Closure $next)
     {
         $locale = null;
-        $requestedLocale = null;
         if ($request->segment(1) && Arr::exists(Config::get('app.languages'), $request->segment(1))) {
-            $locale = $requestedLocale = $request->segment(1);
+            $locale = $request->segment(1);
         } else {
             if (auth()->check() && auth()->user()->locale) {
                 $locale = auth()->user()->locale;
