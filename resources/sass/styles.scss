@@ -466,7 +466,6 @@ ul.validation-errors {
     color: $orange;
     border-bottom: 3px solid $orange;
   }
-
 }
 
 .lock-scroll {
@@ -954,6 +953,17 @@ ul.validation-errors {
 /* ================================= 13. Kolokas Form ================================= */
 
 .kolokas-form {
+  i.check {
+    color: #32CD32;
+    font-size: 1.5rem;
+    border-radius: 50%;
+  }
+
+  label.required:before {
+    content: "*";
+    color: red;
+  }
+
   img {
     height: 100px;
   }

@@ -6,7 +6,7 @@ return [
     'all_recipes' => 'Tüm Tarifler',
     'authors' => 'Yazarlar',
     'restaurants' => 'Restoranlar',
-    'submit_recipe' => 'Yemek Tarifi Gönder',
+    'submit_recipe' => 'Tarif Gönder',
     'events' => 'Etkinlikler',
     'my_profile' => 'Profilim',
     'my_recipes' => 'Yemek Tariflerim',

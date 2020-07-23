@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container kolokas-form">
+    <div class="container-fluid kolokas-form mt-5">
         <div class="row justify-content-center kolokas-form">
-            <div class="col-xs-12 col-md-8">
+            <div class="col-sm-12">
                 <div class="header text-left">
                     <h2>Create your recipe</h2>
                     <p>Enter all relevant information as described under or next to each field. Mandatory fields are
@@ -11,64 +11,132 @@
                     <hr>
                 </div>
             </div>
-            <form method="POST" action="{{ route('recipe.store') }}" enctype="multipart/form-data">
+            <div class="col-md-3">
+                <!-- Tabs nav -->
+                <div class="nav flex-column nav-pills nav-pills-custom"
+                     id="v-pills-tab"
+                     role="tablist"
+                     aria-orientation="vertical">
+                    <a class="nav-link mb-3 p-3 shadow active"
+                       id="w-description-tab"
+                       data-toggle="pill"
+                       href="#w-description"
+                       role="tab"
+                       aria-controls="w-description"
+                       aria-selected="true">
+                        <i class="fa fa-pen mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase">Description</span>
+                        <i class="fa fa-check-circle-o float-right check"></i>
+                    </a>
+                    <a class="nav-link mb-3 p-3 shadow"
+                       id="w-media-tab"
+                       data-toggle="pill"
+                       href="#w-media"
+                       role="tab"
+                       aria-controls="w-media"
+                       aria-selected="false">
+                        <i class="fa fa-photo mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase">Media</span>
+                        <i class="fa fa-check-circle-o float-right"></i>
+                    </a>
+
+                    <a class="nav-link mb-3 p-3 shadow"
+                       id="w-meta-information-tab"
+                       data-toggle="pill"
+                       href="#w-meta-information"
+                       role="tab"
+                       aria-controls="w-meta-information"
+                       aria-selected="false">
+                        <i class="fa fa-info mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase">Meta Information</span>
+                        <i class="fa fa-check-circle-o float-right"></i>
+                    </a>
+
+                    <a class="nav-link mb-3 p-3 shadow"
+                       id="w-recipe-tab"
+                       data-toggle="pill"
+                       href="#w-recipe"
+                       role="tab"
+                       aria-controls="w-recipe"
+                       aria-selected="false">
+                        <i class="fa fa-cutlery mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase">Recipe</span>
+                        <i class="fa fa-check-circle-o float-right"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-md-9">
+                <form method="POST" action="{{ route('recipe.store') }}" enctype="multipart/form-data">
                 @csrf
-                <div class="justify-content-center form-row">
-                    <div class="col-xs-12 col-md-8">
-                        <fieldset>
+                <!-- Tabs content -->
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade shadow rounded bg-white show active p-5"
+                             id="w-description"
+                             role="tabpanel"
+                             aria-labelledby="w-description-tab">
+                            <fieldset>
+                                <div class="form-row mb-2">
+                                    <div class="col-md-2">
+                                        <label class="col-form-label" for="title">Title:</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" value="{{ old('title') }}" placeholder="Recipe Name" name="title" id="title">
+                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                            Keep it short and descriptive
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-2">
+                                    <div class="col-md-2">
+                                        <label class="col-form-label" for="description">Short description:</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                    <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Recipe Description">{{ old('description') }}</textarea>
+                                        <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
+                                            Short description about this recipe
+                                        </small>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="tab-pane fade shadow rounded bg-white p-5"
+                             id="w-media"
+                             role="tabpanel"
+                             aria-labelledby="w-media-tab">
+                            <fieldset>
+                                <div class="form-row mb-2">
+                                    <div class="col-md-12">
+                                        <label class="col-form-label" for="main_image">Main Photo:</label>
+                                        <input type="file" class="bg-none border-0 form-control" name="main_image"
+                                               id="main_image"/>
+                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                            This will be the main image for your recipe
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-2">
+                                    <div class="col-md-12">
+                                        <label class="col-form-label" for="images">Additional Photos:</label>
+                                        <input type="file" class="bg-none border-0 form-control" name="images[]" multiple
+                                               id="images"/>
+                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                            You can upload more than one (max 5)
+                                        </small>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="tab-pane fade shadow rounded bg-white p-5"
+                             id="w-meta-information"
+                             role="tabpanel"
+                             aria-labelledby="w-meta-information-tab">
                             <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="title">Title:</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" value="{{ old('title') }}"
-                                           placeholder="Recipe Name" name="title" id="title">
-                                    <small id="titleHelp" class="footnote form-text text-muted font-italic">Keep it
-                                        short and
-                                        descriptive</small>
-                                </div>
-                            </div>
-                            <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="main_image">Main Photo:</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <input type="file" class="bg-none border-0 form-control" name="main_image"
-                                           id="main_image"/>
-                                    <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                        This will be the main image for your recipe
-                                    </small>
-                                </div>
-                            </div>
-                            <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="images">Additional Photos:</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <input type="file" class="bg-none border-0 form-control" name="images[]" multiple
-                                           id="images"/>
-                                    <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                        You can upload more than one (max 5)
-                                    </small>
-                                </div>
-                            </div>
-                            <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="description">Short description:</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <textarea name="description" id="description" cols="30" rows="10"
-                                              class="form-control"
-                                              placeholder="Recipe Description">{{ old('description') }}</textarea>
-                                    <small id="descriptionHelp" class="footnote form-text text-muted font-italic">Short
-                                        description about this recipe</small>
-                                </div>
-                            </div>
-                            <div class="form-row mb-2">
-                                <div class="col-md-2">
+                                <div class="col-md-12">
                                     <label class="col-form-label" for="categories">Categories:</label>
-                                </div>
-                                <div class="col-md-10">
                                     <select class="categories-picker form-control"
                                             multiple
                                             name="categories[]"
@@ -83,15 +151,14 @@
                                                 {{ $category->name }}</option>
                                         @endforeach
                                     </select>
-                                    <small id="descriptionHelp" class="footnote form-text text-muted font-italic">You
-                                        can select multiple categories.</small>
+                                    <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
+                                        You can select multiple categories.
+                                    </small>
                                 </div>
                             </div>
                             <div class="form-row mb-2">
-                                <div class="col-md-2">
+                                <div class="col-md-6">
                                     <label class="col-form-label" for="prepTime">Prep Time:</label>
-                                </div>
-                                <div class="col-md-4">
                                     <input type="number"
                                            class="form-control"
                                            id="prepTime"
@@ -99,10 +166,8 @@
                                            placeholder="in minutes"
                                            value="{{ old('prep_time') }}">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-6">
                                     <label class="col-form-label" for="cookTime">Cook Time:</label>
-                                </div>
-                                <div class="col-md-4">
                                     <input type="number"
                                            class="form-control"
                                            id="cookTime"
@@ -111,57 +176,65 @@
                                            value="{{ old('cook_time') }}">
                                 </div>
                             </div>
-
                             <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="servings">Servings:</label>
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
+                                    <label class="required col-form-label" for="servings">Servings:</label>
                                     <input type="text"
                                            class="form-control"
                                            id="servings"
                                            name="servings"
                                            placeholder="# of servings"
                                            value="{{ old('servings') }}">
-                                </div>
-                                <div class="col-md-2 form-control border-0">
-                                    Ex: 3 scoops
-                                </div>
-                            </div>
-
-                            <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="ingredients">Ingredients:</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <textarea name="ingredients" id="ingredients" cols="30" rows="10"
-                                              class="form-control"
-                                              placeholder="Enter one ingredient per line.">{{ old('ingredients') }}</textarea>
-                                </div>
-                            </div>
-                            <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="instructions">Instructions:</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <textarea name="instructions" id="instructions" cols="30" rows="10"
-                                              class="form-control"
-                                              placeholder="Add all of the cooking instructions, one per line.">{{ old('instructions') }}</textarea>
-                                </div>
-                            </div>
-                            <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="notes">Notes:</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <textarea name="notes" id="notes" cols="30" rows="10" class="form-control"
-                                              placeholder="Additional Notes">{{ old('notes') }}</textarea>
-                                    <small id="ingredientsHelp" class="footnote form-text text-muted font-italic">
-                                        Add any other notes like recipe source, cooking hints, etc. This section will
-                                        show up under the cooking instructions.
+                                    <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
+                                        Ex: 3 scoops
                                     </small>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="tab-pane fade shadow rounded bg-white p-5"
+                             id="w-recipe"
+                             role="tabpanel"
+                             aria-labelledby="w-recipe-tab">
+                            <fieldset>
+                                <div class="form-row mb-2">
+                                    <div class="col-md-2">
+                                        <label class="col-form-label" for="ingredients">Ingredients:</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                    <textarea name="ingredients" id="ingredients" cols="30" rows="10"
+                                              class="form-control"
+                                              placeholder="Enter one ingredient per line.">{{ old('ingredients') }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-2">
+                                    <div class="col-md-2">
+                                        <label class="col-form-label" for="instructions">Instructions:</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                    <textarea name="instructions" id="instructions" cols="30" rows="10"
+                                              class="form-control"
+                                              placeholder="Add all of the cooking instructions, one per line.">{{ old('instructions') }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-2">
+                                    <div class="col-md-2">
+                                        <label class="col-form-label" for="notes">Notes:</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                    <textarea name="notes" id="notes" cols="30" rows="10" class="form-control"
+                                              placeholder="Additional Notes">{{ old('notes') }}</textarea>
+                                        <small id="ingredientsHelp" class="footnote form-text text-muted font-italic">
+                                            Add any other notes like recipe source, cooking hints, etc. This section will
+                                            show up under the cooking instructions.
+                                        </small>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 justify-content-end">
                             <div class="form-row mb-2 mt-5">
                                 <div class="offset-md-2 col-md-10 border-top">
                                     <div class="muted">
@@ -188,13 +261,10 @@
                                     </base-button>
                                 </div>
                             </div>
-                        </fieldset>
-
+                        </div>
                     </div>
-                </div>
-
-            </form>
-
+                </form>
+            </div>
         </div>
     </div>
 @endsection
