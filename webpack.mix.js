@@ -9,10 +9,14 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/fontawesome.scss', 'public/css')
 
 
-.options({
+    .options({
         extractVueStyles: true,
         globalStyles: 'resources/sass/_variables.scss',
-    }).version();
+    });
+
+if (mix.inProduction()) {
+    mix.version();
+}
 
 /*
 const mix = require('laravel-mix');
