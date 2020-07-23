@@ -12,7 +12,7 @@ mix.js('resources/js/app.js', 'public/js')
 .options({
         extractVueStyles: true,
         globalStyles: 'resources/sass/_variables.scss',
-    });
+    }).version();
 
 /*
 const mix = require('laravel-mix');

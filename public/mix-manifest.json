@@ -1,9 +1,9 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/styles.css": "/css/styles.css",
-    "/css/styles-print.css": "/css/styles-print.css",
-    "/css/styles-480px.css": "/css/styles-480px.css",
-    "/css/styles-768px.css": "/css/styles-768px.css",
-    "/css/fontawesome.css": "/css/fontawesome.css"
+    "/js/app.js": "/js/app.js?id=356d13e0734c2ea0dab1",
+    "/css/app.css": "/css/app.css?id=c0218e9aacccfab8986a",
+    "/css/styles.css": "/css/styles.css?id=db31befd2162510c558a",
+    "/css/styles-print.css": "/css/styles-print.css?id=311e3462e076f73b322a",
+    "/css/styles-480px.css": "/css/styles-480px.css?id=68c1975d5761c735ffa5",
+    "/css/styles-768px.css": "/css/styles-768px.css?id=2ae4347ac0d1bfa10044",
+    "/css/fontawesome.css": "/css/fontawesome.css?id=d2ee4933feed501843b9"
 }
