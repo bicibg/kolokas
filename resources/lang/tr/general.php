@@ -26,4 +26,9 @@ return [
         'send' => 'Gönder',
         'message_sent' => 'Mesaj gönderildi! En kısa zamanda dönüş yapacağız!'
     ],
+    'languages' => [
+        'tr' => 'Türkçe',
+        'en' => 'İngilizce',
+        'el' => 'Rumca',
+    ],
 ];

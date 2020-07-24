@@ -22,4 +22,7 @@ return [
     'max_prep_time' => 'Maksimum hazırlık süresi',
     'max_cook_time' => 'Maksimum pişirme süresi',
     'minutes' => ':minute dakika',
+    'create' => [
+        'can_be_auto_translated' => 'isteğe bağlı, otomatik tercüme edilebilir',
+    ],
 ];

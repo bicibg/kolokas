@@ -22,4 +22,7 @@ return [
     'max_prep_time' => 'Max prep time',
     'max_cook_time' => 'Max cook time',
     'minutes' => ':minute minute|:minute minutes',
+    'create' => [
+        'can_be_auto_translated' => 'optional, can be auto-translated',
+    ],
 ];

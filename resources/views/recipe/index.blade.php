@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container m-2">
+    <div class="container mt-2">
         @livewire('recipe-search-box', ['resultCount' => $recipesCount, 'extended' => true])
         <div class="row justify-content-center text-center">
             <div class="col-md-12">

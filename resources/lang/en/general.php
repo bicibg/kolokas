@@ -26,4 +26,9 @@ return [
         'send' => 'Send',
         'message_sent' => 'Message is sent! We will get back to you soon!'
     ],
+    'languages' => [
+        'tr' => 'Turkish',
+        'en' => 'English',
+        'el' => 'Greek',
+    ],
 ];

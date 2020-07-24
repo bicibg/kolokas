@@ -66,7 +66,6 @@
                 </div>
             </div>
 
-
             <div class="col-md-9">
                 <form method="POST" action="{{ route('recipe.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -76,30 +75,10 @@
                              id="w-description"
                              role="tabpanel"
                              aria-labelledby="w-description-tab">
-                            <fieldset>
-                                <div class="form-row mb-2">
-                                    <div class="col-md-2">
-                                        <label class="col-form-label" for="title">Title:</label>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" value="{{ old('title') }}" placeholder="Recipe Name" name="title" id="title">
-                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            Keep it short and descriptive
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="form-row mb-2">
-                                    <div class="col-md-2">
-                                        <label class="col-form-label" for="description">Short description:</label>
-                                    </div>
-                                    <div class="col-md-10">
-                                    <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Recipe Description">{{ old('description') }}</textarea>
-                                        <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
-                                            Short description about this recipe
-                                        </small>
-                                    </div>
-                                </div>
-                            </fieldset>
+                            @include('recipe.partial.create.description', ['lang' => app()->getLocale(), 'parent' => 'w-description'])
+                            @foreach($langs as $lang)
+                                @include('recipe.partial.create.description', ['lang' => $lang, 'parent' => 'w-description'])
+                            @endforeach
                         </div>
 
                         <div class="tab-pane fade shadow rounded bg-white p-5"

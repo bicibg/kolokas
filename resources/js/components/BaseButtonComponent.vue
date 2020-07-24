@@ -15,6 +15,9 @@
                 type: String,
                 default: '#'
             },
+            props: {
+
+            },
             role: {
                 type: String,
                 default: 'button'

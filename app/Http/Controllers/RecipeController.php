@@ -14,6 +14,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -43,7 +44,11 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        return view('recipe.create');
+        $langInUse = app()->getLocale();
+        $langs = Config::get('app.languages');
+        unset($langs[$langInUse]);
+        $langs = array_keys($langs);
+        return view('recipe.create', compact('langs'));
     }
 
     public function index()
