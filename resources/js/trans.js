@@ -24,6 +24,35 @@ window.__ = function __(key, replace) {
     return translation
 }
 
+var translationsDone = 0;
+var maxTranslations = 24;
+window.gtranslate = function gtranslate(from, to, context) {
+    let fromEl = document.getElementById(context + '_' + from);
+    let toEl = document.getElementById(context + '_' + to);
+
+    if (!fromEl.value.length) {
+        flash(__('general.translation_source_missing', {source: __('recipe.' + context)}), 'error')
+        return;
+    }
+    if (toEl.value.length) {
+        flash(__('general.translation_target_filled', {target: __('recipe.' + context)}), 'error')
+        return;
+    }
+    if (translationsDone >= maxTranslations) {
+        flash(__('general.translation_limit_reached'), 'error')
+        return;
+    }
+    if (fromEl.value.length && !toEl.value.length && translationsDone < maxTranslations) {
+        axios.post('/translate', {
+            text: fromEl.value,
+            to: to
+        }).then(({data}) => {
+            translationsDone++;
+            toEl.value = data.text;
+        });
+    }
+}
+
 module.exports = {
     methods: {
         /**
@@ -31,6 +60,9 @@ module.exports = {
          */
         __(key, replace) {
             return __(key, replace);
+        },
+        gtranslate(from, to) {
+            return gtranslate(from, to);
         }
     },
 }

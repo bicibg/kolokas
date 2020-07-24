@@ -9,6 +9,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class RecipeCreateRequest extends FormRequest
@@ -23,6 +24,11 @@ class RecipeCreateRequest extends FormRequest
         return auth()->check();
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge($this->lang[app()->getLocale()]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -33,22 +39,21 @@ class RecipeCreateRequest extends FormRequest
         return [
             'title' => [
                 'required',
-                'regex:/[^A-Za-zÀ-ȕ0-9 ]+/i',
                 Rule::unique('recipes', 'title')->where(function ($query) {
                     $query->where('user_id', auth()->user()->id);
                 })
             ],
-            'main_image' => 'required|image|mimes:jpeg,jpg,png',
-            'images' => 'array|max:5',
-            'images.*' => 'image|mimes:png,jpeg,jpg|max:8000',
+//            'main_image' => 'required|image|mimes:jpeg,jpg,png',
+//            'images' => 'array|max:5',
+//            'images.*' => 'image|mimes:png,jpeg,jpg|max:8000',
             'description' => 'max:2000',
-            'categories' => 'required',
-            'ingredients' => 'required',
-            'instructions' => 'required',
-            'prep_time' => 'integer',
-            'cook_time' => 'integer',
-            'servings' => 'required|max:64',
-            'notes' => 'max:2000',
+//            'categories' => 'required',
+//            'ingredients' => 'required',
+//            'instructions' => 'required',
+//            'prep_time' => 'integer',
+//            'cook_time' => 'integer',
+//            'servings' => 'required|max:64',
+//            'notes' => 'max:2000',
             'agreement' => 'accepted',
         ];
     }

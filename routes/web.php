@@ -41,6 +41,8 @@ Route::middleware('localized')->group(function () {
 
     Route::get('/contact', 'ContactController@create')->name('contact.create');
     Route::post('/contact', 'ContactController@store')->name('contact.store');;
+
+    Route::post('/translate', 'TranslationController@translate')->name('translate');
 });
 
 Route::post('/demo-enable', 'DemoModeController@enable')->name('demo.enable');

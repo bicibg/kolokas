@@ -28,7 +28,6 @@ if (window.livewire) {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.mixin(require('./trans'))
-
 Vue.component('base-button', require('./components/BaseButtonComponent.vue').default);
 Vue.component('flash', require('./components/Flash.vue').default);
 window.events = new Vue();

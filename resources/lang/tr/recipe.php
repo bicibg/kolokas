@@ -25,4 +25,7 @@ return [
     'create' => [
         'can_be_auto_translated' => 'isteğe bağlı, otomatik tercüme edilebilir',
     ],
+    'title' => 'Tarif ismi',
+    'description' => 'Açıklama',
+    'description_text' => 'Kısa ve açıklayıcı tutun',
 ];

@@ -31,4 +31,8 @@ return [
         'en' => 'English',
         'el' => 'Greek',
     ],
+    'translate' => ':from &#x2192; :to',
+    'translation_source_missing' => 'In order to use this translation feature, \':source\' field in your own language must be filled',
+    'translation_target_filled' => 'In order to use this translation feature, \':target\' field must be empty',
+    'translation_limit_reached' => 'You have reached your transaction limit for this time.'
 ];

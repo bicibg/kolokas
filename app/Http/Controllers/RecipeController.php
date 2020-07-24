@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeCreateRequest;
 use App\Http\Requests\RecipeUpdateRequest;
-use App\Models\Category;
 use App\Models\Profile;
 use App\Models\Recipe;
 use App\Models\User;
 use Exception;
+use GoogleTranslate;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -71,10 +71,11 @@ class RecipeController extends Controller
         return view('recipe.fav-index', compact('recipes', 'recipesCount'));
     }
 
-    private function addFilterToRecipes($recipes) {
+    private function addFilterToRecipes($recipes)
+    {
         if (!empty(request()->get('s'))) {
             $searchTerm = Str::lower(request()->get('s'));
-            $recipes = $recipes->where(function($query) use ($searchTerm) {
+            $recipes = $recipes->where(function ($query) use ($searchTerm) {
                 $query->where('title', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('description', 'LIKE', "%{$searchTerm}%");
             });
@@ -93,14 +94,14 @@ class RecipeController extends Controller
         }
 
         if (request()->get('mp')) {
-            $recipes->where(function($query) {
+            $recipes->where(function ($query) {
                 $query->where('prep_time', '<=', intval(request()->get('mp')))
                     ->orWhereNull('prep_time')
                     ->orderBy('prep_time', 'DESC');
             });
         }
         if (request()->get('mc')) {
-            $recipes->where(function($query) {
+            $recipes->where(function ($query) {
                 $query->where('cook_time', '<=', intval(request()->get('mc')))
                     ->orWhereNull('cook_time')
                     ->orderBy('cook_time', 'DESC');
@@ -116,8 +117,26 @@ class RecipeController extends Controller
      * @param  RecipeCreateRequest  $request
      * @return RedirectResponse
      */
-    public function store(RecipeCreateRequest $request)
+    public function store(RecipeCreateRequest $request/*RecipeCreateRequest $request*/)
     {
+        $data = [];
+
+        $localeLang = $request->validated();
+        foreach ($request->get('lang') as $lang => $values) {
+            if ($lang === app()->getLocale()) {
+                continue;
+            }
+            foreach ($values as $key => $value) {
+                if (empty($value) && !empty($localeLang[$key])) {
+                    $data[$lang][$key] = translate($localeLang[$key], $lang);
+                } else {
+                    $data[$lang][$key] = $value;
+                }
+            }
+        }
+        $data[app()->getLocale()] = $localeLang;
+
+
         DB::transaction(function () use ($request) {
             $recipe = Recipe::create([
                 'title' => $request->get('title'),
@@ -184,7 +203,7 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        if (!$recipe->published){
+        if (!$recipe->published) {
             return redirect()->back()->with('flash-error', __('recipe.recipe_not_published'));
         }
         $youMayAlsoLike = Recipe::with('categories')->whereHas('categories', function ($query) use ($recipe) {

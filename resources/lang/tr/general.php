@@ -31,4 +31,8 @@ return [
         'en' => 'İngilizce',
         'el' => 'Rumca',
     ],
+    'translate' => ':from &#x2192; :to',
+    'translation_source_missing' => 'Bu çeviri özelliğini kullanabilmek için kendi dilinizde \':source\' alanının doldurulması gerekir',
+    'translation_target_filled' => 'Bu çeviri özelliğini kullanabilmek için \':target\' alanının boş olması gerekir',
+    'translation_limit_reached' => 'Bu süre için çeviri sınırınıza ulaştınız.',
 ];

@@ -25,4 +25,7 @@ return [
     'create' => [
         'can_be_auto_translated' => 'optional, can be auto-translated',
     ],
+    'title' => 'Recipe Title',
+    'description' => 'Description',
+    'description_text' => 'Keep it short and descriptive',
 ];

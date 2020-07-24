@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Log;
 
+
 /**
  * Generates random image; temporary fix for current issue.
  * @link https://github.com/fzaninotto/Faker/issues/1884
@@ -50,4 +51,14 @@ function imageUrl($width = 640, $height = 480)
     $url .= '?' . random_int(10000, 99999);
 
     return $baseUrl . $url;
+}
+
+function translate($text, $to)
+{
+    $translate = new \Google\Cloud\Translate\V2\TranslateClient([
+        'key' => env('GOOGLE_TRANSLATE_API_KEY')
+    ]);
+    return $translate->translate($text, [
+        'target' => $to,
+    ]);
 }

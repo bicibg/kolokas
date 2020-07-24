@@ -23,34 +23,49 @@
             <fieldset>
                 <div class="form-row mb-2">
                     <div class="col-md-2">
-                        <label class="col-form-label" for="title">Title:</label>
+                        <label class="col-form-label" for="title_{{ $lang }}">{{ __('recipe.title') }}:</label>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <input type="text"
                                class="form-control"
-                               value="{{ old('title') }}"
+                               value="{{ old("lang.$lang.title") }}"
                                placeholder="Recipe Name"
-                               name="{{ $lang }}[title]"
-                               id="title">
-                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                            Keep it short and descriptive
-                        </small>
+                               name="lang[{{ $lang }}][title]"
+                               id="title_{{ $lang }}">
+                    </div>
+                    <div class="col-md-2">
+                        @if (app()->getLocale() !== $lang)
+                            <a href="javascript:void(0)"
+                               class="btn btn-link"
+                               onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'title')">
+                                {!! __('general.translate', ['from' => __('general.languages.' . app()->getLocale()), 'to' => __('general.languages.' . $lang)]) !!}
+                            </a>
+                        @endif
                     </div>
                 </div>
                 <div class="form-row mb-2">
                     <div class="col-md-2">
-                        <label class="col-form-label" for="description">Short description:</label>
+                        <label class="col-form-label" for="description_{{ $lang }}">{{ __('recipe.description') }}:</label>
                     </div>
-                    <div class="col-md-10">
-                        <textarea name="{{ $lang }}[description]"
-                                  id="description"
+                    <div class="col-md-8">
+                        <textarea name="lang[{{ $lang }}][description]"
+                                  id="description_{{ $lang }}"
                                   cols="30"
                                   rows="10"
                                   class="form-control"
                                   placeholder="Recipe Description">{{ old('description') }}</textarea>
                         <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
-                            Short description about this recipe
+                            {{ __('recipe.description_text') }}
                         </small>
+                    </div>
+                    <div class="col-md-2">
+                        @if (app()->getLocale() !== $lang)
+                            <a href="javascript:void(0)"
+                               class="btn btn-link"
+                               onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'description')">
+                                {!! __('general.translate', ['from' => __('general.languages.' . app()->getLocale()), 'to' => __('general.languages.' . $lang)]) !!}
+                            </a>
+                        @endif
                     </div>
                 </div>
             </fieldset>
