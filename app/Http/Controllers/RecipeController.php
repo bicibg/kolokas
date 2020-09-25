@@ -44,11 +44,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        $langInUse = app()->getLocale();
-        $langs = Config::get('app.languages');
-        unset($langs[$langInUse]);
-        $langs = array_keys($langs);
-        return view('recipe.create', compact('langs'));
+        return view('recipe.create');
     }
 
     public function index()

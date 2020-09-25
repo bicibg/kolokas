@@ -1,69 +1,69 @@
 <div class="card">
-    <div class="card-header" id="heading_{{ $lang }}">
+    <div class="card-header" id="heading_{{ $locale }}">
         <h2 class="mb-0">
-            <button class="btn btn-link @if($lang === app()->getLocale()) collapsed @endif"
+            <button class="btn btn-link @if($locale === app()->getLocale()) collapsed @endif"
                     type="button"
                     data-toggle="collapse"
-                    data-target="#collapse_{{$lang}}"
-                    aria-expanded="@if($lang === app()->getLocale()) true @else false @endif"
-                    aria-controls="collapse_{{$lang}}">
-                {{ __('general.languages.' . $lang) }}
-                @if($lang !== app()->getLocale())
+                    data-target="#collapse_{{$locale}}"
+                    aria-expanded="@if($locale === app()->getLocale()) true @else false @endif"
+                    aria-controls="collapse_{{$locale}}">
+                {{ __('general.languages.' . $locale) }}
+                @if($locale !== app()->getLocale())
                     ({{ __('recipe.create.can_be_auto_translated') }})
                 @endif
             </button>
         </h2>
     </div>
 
-    <div id="collapse_{{$lang}}"
-         class="collapse @if($lang === app()->getLocale()) show @endif"
-         aria-labelledby="heading_{{ $lang }}"
+    <div id="collapse_{{$locale}}"
+         class="collapse @if($locale === app()->getLocale()) show @endif"
+         aria-labelledby="heading_{{ $locale }}"
          data-parent="#{{$parent}}">
         <div class="card-body">
             <fieldset>
                 <div class="form-row mb-2">
                     <div class="col-md-2">
-                        <label class="col-form-label" for="title_{{ $lang }}">{{ __('recipe.title') }}:</label>
+                        <label class="col-form-label" for="title_{{ $locale }}">{{ __('recipe.title') }}:</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text"
                                class="form-control"
-                               value="{{ old("lang.$lang.title") }}"
-                               placeholder="Recipe Name"
-                               name="lang[{{ $lang }}][title]"
-                               id="title_{{ $lang }}">
+                               value="{{ old("lang.$locale.title") }}"
+                               name="lang[{{ $locale }}][title]"
+                               wire:model="title.{{ $locale }}"
+                               id="title_{{ $locale }}">
                     </div>
                     <div class="col-md-2">
-                        @if (app()->getLocale() !== $lang)
+                        @if (app()->getLocale() !== $locale)
                             <a href="javascript:void(0)"
                                class="btn btn-link"
-                               onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'title')">
-                                {!! __('general.translate', ['from' => __('general.languages.' . app()->getLocale()), 'to' => __('general.languages.' . $lang)]) !!}
+                               onclick="gtranslate('{{ app()->getLocale() }}', '{{ $locale }}', 'title')">
+                                {!! __('general.translate', ['from' => __('general.languages.' . app()->getLocale()), 'to' => __('general.languages.' . $locale)]) !!}
                             </a>
                         @endif
                     </div>
                 </div>
                 <div class="form-row mb-2">
                     <div class="col-md-2">
-                        <label class="col-form-label" for="description_{{ $lang }}">{{ __('recipe.description') }}:</label>
+                        <label class="col-form-label" for="description_{{ $locale }}">{{ __('recipe.create.description') }}:</label>
                     </div>
                     <div class="col-md-8">
-                        <textarea name="lang[{{ $lang }}][description]"
-                                  id="description_{{ $lang }}"
+                        <textarea name="lang[{{ $locale }}][description]"
+                                  id="description_{{ $locale }}"
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  placeholder="Recipe Description">{{ old('description') }}</textarea>
+                                  wire:model="description.{{ $locale }}">{{ old('description') }}</textarea>
                         <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
-                            {{ __('recipe.description_text') }}
+                            {{ __('recipe.create.description_text') }}
                         </small>
                     </div>
                     <div class="col-md-2">
-                        @if (app()->getLocale() !== $lang)
+                        @if (app()->getLocale() !== $locale)
                             <a href="javascript:void(0)"
                                class="btn btn-link"
-                               onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'description')">
-                                {!! __('general.translate', ['from' => __('general.languages.' . app()->getLocale()), 'to' => __('general.languages.' . $lang)]) !!}
+                               onclick="gtranslate('{{ app()->getLocale() }}', '{{ $locale }}', 'description')">
+                                {!! __('general.translate', ['from' => __('general.languages.' . app()->getLocale()), 'to' => __('general.languages.' . $locale)]) !!}
                             </a>
                         @endif
                     </div>
