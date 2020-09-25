@@ -12,12 +12,12 @@
                     <div class="form-group">
                         <label for="name">{{ __('general.contact.name') }}</label>
                         @include('partials.has-errors', ['field' => 'name'])
-                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name', auth()->check() ? auth()->user()->name: '') }}">
                     </div>
                     <div class="form-group">
                         <label for="email">{{ __('general.contact.email') }}</label>
                         @include('partials.has-errors', ['field' => 'email'])
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', auth()->check() ? auth()->user()->email: '') }}">
                     </div>
                     <div class="form-group">
                         <label for="subject">{{ __('general.contact.subject') }}</label>
