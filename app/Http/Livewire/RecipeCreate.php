@@ -31,6 +31,24 @@ class RecipeCreate extends Component
     public $cook_time = null;
     public $servings = null;
 
+    public $ingredients = [
+        'tr' => '',
+        'en' => '',
+        'el' => '',
+    ];
+
+    public $instructions = [
+        'tr' => '',
+        'en' => '',
+        'el' => '',
+    ];
+
+    public $notes = [
+        'tr' => '',
+        'en' => '',
+        'el' => '',
+    ];
+
     public function mount()
     {
         $langInUse = app()->getLocale();
@@ -44,6 +62,8 @@ class RecipeCreate extends Component
     {
         app()->setLocale($this->locale);
         $this->tab1Check = !empty($this->title[$this->locale]) && !empty($this->description[$this->locale]);
+        $this->tab3Check = !empty($this->categories) && !empty($this->prep_time) && !empty($this->cook_time) && !empty($this->servings);
+        $this->tab4Check = !empty($this->instructions[$this->locale]) && !empty($this->ingredients[$this->locale]);
 
     }
 

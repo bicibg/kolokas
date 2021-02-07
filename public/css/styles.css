@@ -943,8 +943,8 @@ ul.validation-errors li {
   border-radius: 50%;
 }
 
-.kolokas-form label.required:before {
-  content: "*";
+.kolokas-form label.required:after {
+  content: " *";
   color: red;
 }
 

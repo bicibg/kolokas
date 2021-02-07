@@ -23,7 +23,7 @@
             <fieldset>
                 <div class="form-row mb-2">
                     <div class="col-md-2">
-                        <label class="col-form-label" for="title_{{ $lang }}">{{ __('recipe.title') }}:</label>
+                        <label class="required col-form-label" for="title_{{ $lang }}">{{ __('recipe.title') }}:</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text"
@@ -53,7 +53,7 @@
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  wire:model="description.{{ $lang }}">{{ old('description') }}</textarea>
+                                  wire:model="description.{{ $lang }}">{{ old("lang.$lang.description") }}</textarea>
                         <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
                             {{ __('recipe.create.description_text') }}
                         </small>

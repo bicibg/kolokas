@@ -959,8 +959,8 @@ ul.validation-errors {
     border-radius: 50%;
   }
 
-  label.required:before {
-    content: "*";
+  label.required:after {
+    content: " *";
     color: red;
   }
 

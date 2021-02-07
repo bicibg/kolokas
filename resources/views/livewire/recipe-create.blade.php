@@ -115,7 +115,7 @@
                          aria-labelledby="w-meta-information-tab">
                         <div class="form-row mb-2">
                             <div class="col-md-12">
-                                <label class="col-form-label" for="categories">Categories:</label>
+                                <label class="required col-form-label" for="categories">Categories:</label>
                                 <select class="categories-picker form-control"
                                         multiple
                                         name="categories[]"
@@ -137,7 +137,7 @@
                         </div>
                         <div class="form-row mb-2">
                             <div class="col-md-6">
-                                <label class="col-form-label" for="prepTime">Prep Time:</label>
+                                <label class="required col-form-label" for="prepTime">Prep Time:</label>
                                 <input type="number"
                                        class="form-control"
                                        id="prepTime"
@@ -146,7 +146,7 @@
                                        value="{{ old('prep_time') }}">
                             </div>
                             <div class="col-md-6">
-                                <label class="col-form-label" for="cookTime">Cook Time:</label>
+                                <label class="required col-form-label" for="cookTime">Cook Time:</label>
                                 <input type="number"
                                        class="form-control"
                                        id="cookTime"
@@ -175,41 +175,45 @@
                          id="w-recipe"
                          role="tabpanel"
                          aria-labelledby="w-recipe-tab">
-                        <fieldset>
-                            <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="ingredients">Ingredients:</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <textarea name="ingredients" id="ingredients" cols="30" rows="10"
-                                              class="form-control"
-                                              placeholder="Enter one ingredient per line.">{{ old('ingredients') }}</textarea>
-                                </div>
-                            </div>
-                            <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="instructions">Instructions:</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <textarea name="instructions" id="instructions" cols="30" rows="10"
-                                              class="form-control"
-                                              placeholder="Add all of the cooking instructions, one per line.">{{ old('instructions') }}</textarea>
-                                </div>
-                            </div>
-                            <div class="form-row mb-2">
-                                <div class="col-md-2">
-                                    <label class="col-form-label" for="notes">Notes:</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <textarea name="notes" id="notes" cols="30" rows="10" class="form-control"
-                                              placeholder="Additional Notes">{{ old('notes') }}</textarea>
-                                    <small id="ingredientsHelp" class="footnote form-text text-muted font-italic">
-                                        Add any other notes like recipe source, cooking hints, etc. This section will
-                                        show up under the cooking instructions.
-                                    </small>
-                                </div>
-                            </div>
-                        </fieldset>
+                        @include('recipe.partial.create.recipe', ['lang' => app()->getLocale(), 'parent' => 'w-recipe'])
+                        @foreach($langs as $lang)
+                            @include('recipe.partial.create.recipe', ['lang' => $lang, 'parent' => 'w-recipe'])
+                        @endforeach
+{{--                        <fieldset>--}}
+{{--                            <div class="form-row mb-2">--}}
+{{--                                <div class="col-md-2">--}}
+{{--                                    <label class="col-form-label" for="ingredients">Ingredients:</label>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-10">--}}
+{{--                                    <textarea name="ingredients" id="ingredients" cols="30" rows="10"--}}
+{{--                                              class="form-control"--}}
+{{--                                              placeholder="Enter one ingredient per line.">{{ old('ingredients') }}</textarea>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-row mb-2">--}}
+{{--                                <div class="col-md-2">--}}
+{{--                                    <label class="col-form-label" for="instructions">Instructions:</label>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-10">--}}
+{{--                                    <textarea name="instructions" id="instructions" cols="30" rows="10"--}}
+{{--                                              class="form-control"--}}
+{{--                                              placeholder="Add all of the cooking instructions, one per line.">{{ old('instructions') }}</textarea>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-row mb-2">--}}
+{{--                                <div class="col-md-2">--}}
+{{--                                    <label class="col-form-label" for="notes">Notes:</label>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-10">--}}
+{{--                                    <textarea name="notes" id="notes" cols="30" rows="10" class="form-control"--}}
+{{--                                              placeholder="Additional Notes">{{ old('notes') }}</textarea>--}}
+{{--                                    <small id="ingredientsHelp" class="footnote form-text text-muted font-italic">--}}
+{{--                                        Add any other notes like recipe source, cooking hints, etc. This section will--}}
+{{--                                        show up under the cooking instructions.--}}
+{{--                                    </small>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </fieldset>--}}
                     </div>
                 </div>
                 <div class="form-row">
