@@ -60,5 +60,6 @@ function translate($text, $to)
     ]);
     return $translate->translate($text, [
         'target' => $to,
+        'format' => 'text'
     ]);
 }

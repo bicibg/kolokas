@@ -133,7 +133,7 @@
                                                id="facebook"
                                                value="{{ old('facebook') ?? $profile->facebook }}">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.placeholder', ['link' => 'https://facebook.com/kolokas-recipes ' . __('general.or') . ' https://www.facebook.com/groups/koloka-recipes']) }}
+                                            {{ __('profile.placeholder', ['link' => 'https://facebook.com/kolokasrecipes ' . __('general.or') . ' https://www.facebook.com/groups/koloka-recipes']) }}
                                         </small>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
@@ -145,7 +145,7 @@
                                                id="twitter"
                                                value="{{ old('twitter', $profile->twitter) }}">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.placeholder', ['link' => 'https://twitter.com/kolokas-recipes']) }}
+                                            {{ __('profile.placeholder', ['link' => 'https://twitter.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
@@ -157,7 +157,7 @@
                                                id="pinterest"
                                                value="{{ old('pinterest', $profile->pinterest) }}">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.placeholder', ['link' => 'https://pinterest.com/kolokas-recipes']) }}
+                                            {{ __('profile.placeholder', ['link' => 'https://pinterest.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
@@ -169,7 +169,7 @@
                                                id="instagram"
                                                value="{{ old('instagram', $profile->instagram) }}">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.placeholder', ['link' => 'https://instagram.com/kolokas-recipes']) }}
+                                            {{ __('profile.placeholder', ['link' => 'https://instagram.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
                                     <!-- / column -->
