@@ -52,6 +52,8 @@
     window._locale = '{{ app()->getLocale() }}';
     window._translations = {!! cache('translations') !!};
 </script>
+@stack('scripts')
+
 @livewireScripts
 </body>
 </html>

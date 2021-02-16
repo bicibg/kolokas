@@ -55282,13 +55282,15 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.categories-picker').selectpicker({
-  dropupAuto: false,
-  size: 10,
-  liveSearch: true,
-  liveSearchNormalize: true,
-  style: '',
-  styleBase: 'form-control'
+$(document).ready(function () {
+  $('.categories-picker').selectpicker({
+    dropupAuto: false,
+    size: 10,
+    liveSearch: true,
+    liveSearchNormalize: true,
+    style: '',
+    styleBase: 'form-control'
+  });
 });
 $(".image-checkbox").each(function () {
   if ($(this).find('input[type="checkbox"]').first().attr("checked")) {

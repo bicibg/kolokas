@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'accepted' => ':attribute mutlaka kabul edilmelidir.',
+    'accepted' => 'Şartlar ve koşullar kabul edilmelidir.',
     'active_url' => ':attribute mutlaka geçerli bir URL olmalıdır.',
     'after' => ':attribute mutlaka :date tarihinden sonra olmalıdır.',
     'after_or_equal' => ':attribute mutlaka :date tarihinden sonra veya aynı tarihte olmalıdır.',

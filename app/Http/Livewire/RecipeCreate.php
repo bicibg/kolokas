@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class RecipeCreate extends Component
 {
+    public $tab = 'description';
     /**
      * @var $locale
      */
@@ -61,7 +62,7 @@ class RecipeCreate extends Component
     public function hydrate()
     {
         app()->setLocale($this->locale);
-        $this->tab1Check = !empty($this->title[$this->locale]) && !empty($this->description[$this->locale]);
+        $this->tab1Check = !empty($this->title[$this->locale]);
         $this->tab3Check = !empty($this->categories) && !empty($this->prep_time) && !empty($this->cook_time) && !empty($this->servings);
         $this->tab4Check = !empty($this->instructions[$this->locale]) && !empty($this->ingredients[$this->locale]);
 

@@ -34,10 +34,11 @@ class RecipeCreateRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'title' => [
+                'bail',
                 'required',
                 Rule::unique('recipes', 'title')->where(function ($query) {
                     $query->where('user_id', auth()->user()->id);
@@ -47,7 +48,7 @@ class RecipeCreateRequest extends FormRequest
 //            'images' => 'array|max:5',
 //            'images.*' => 'image|mimes:png,jpeg,jpg|max:8000',
             'description' => 'max:2000',
-//            'categories' => 'required',
+            'categories' => 'required|array',
 //            'ingredients' => 'required',
 //            'instructions' => 'required',
 //            'prep_time' => 'integer',

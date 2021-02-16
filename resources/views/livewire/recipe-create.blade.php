@@ -13,7 +13,8 @@
                  id="v-pills-tab"
                  role="tablist"
                  aria-orientation="vertical">
-                <a class="nav-link mb-3 p-3 shadow active"
+                <a class="nav-link mb-3 p-3 shadow {{ $tab == 'description' ? 'active' : '' }}"
+                   wire:click="$set('tab', 'description')"
                    id="w-description-tab"
                    data-toggle="pill"
                    href="#w-description"
@@ -28,7 +29,8 @@
                         <i class="fa fa-check-circle-o float-right"></i>
                     @endif
                 </a>
-                <a class="nav-link mb-3 p-3 shadow"
+                <a class="nav-link mb-3 p-3 shadow {{ $tab == 'media' ? 'active' : '' }}"
+                   wire:click="$set('tab', 'media')"
                    id="w-media-tab"
                    data-toggle="pill"
                    href="#w-media"
@@ -37,22 +39,32 @@
                    aria-selected="false">
                     <i class="fa fa-photo mr-2"></i>
                     <span class="font-weight-bold small text-uppercase">{{ __('recipe.create.media') }}</span>
-                    <i class="fa fa-check-circle-o float-right"></i>
+                    @if($tab2Check)
+                        <i class="fa fa-check-circle-o float-right check"></i>
+                    @else
+                        <i class="fa fa-check-circle-o float-right"></i>
+                    @endif
                 </a>
 
-                <a class="nav-link mb-3 p-3 shadow"
-                   id="w-meta-information-tab"
+                <a class="nav-link mb-3 p-3 shadow {{ $tab == 'meta' ? 'active' : '' }}"
+                   wire:click="$set('tab', 'meta')"
+                   id="w-meta-tab"
                    data-toggle="pill"
-                   href="#w-meta-information"
+                   href="#w-meta"
                    role="tab"
-                   aria-controls="w-meta-information"
+                   aria-controls="w-meta"
                    aria-selected="false">
                     <i class="fa fa-info mr-2"></i>
                     <span class="font-weight-bold small text-uppercase">{{ __('recipe.create.meta') }}</span>
-                    <i class="fa fa-check-circle-o float-right"></i>
+                    @if($tab3Check)
+                        <i class="fa fa-check-circle-o float-right check"></i>
+                    @else
+                        <i class="fa fa-check-circle-o float-right"></i>
+                    @endif
                 </a>
 
-                <a class="nav-link mb-3 p-3 shadow"
+                <a class="nav-link mb-3 p-3 shadow {{ $tab == 'recipe' ? 'active' : '' }}"
+                   wire:click="$set('tab', 'recipe')"
                    id="w-recipe-tab"
                    data-toggle="pill"
                    href="#w-recipe"
@@ -61,7 +73,11 @@
                    aria-selected="false">
                     <i class="fa fa-cutlery mr-2"></i>
                     <span class="font-weight-bold small text-uppercase">{{ __('recipe.create.recipe') }}</span>
-                    <i class="fa fa-check-circle-o float-right"></i>
+                    @if($tab4Check)
+                        <i class="fa fa-check-circle-o float-right check"></i>
+                    @else
+                        <i class="fa fa-check-circle-o float-right"></i>
+                    @endif
                 </a>
             </div>
         </div>
@@ -71,7 +87,7 @@
             @csrf
             <!-- Tabs content -->
                 <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade shadow rounded bg-white show active p-5"
+                    <div class="tab-pane fade shadow rounded bg-white p-5 {{ $tab == 'description' ? 'active show' : '' }}"
                          id="w-description"
                          role="tabpanel"
                          aria-labelledby="w-description-tab">
@@ -81,7 +97,7 @@
                         @endforeach
                     </div>
 
-                    <div class="tab-pane fade shadow rounded bg-white p-5"
+                    <div class="tab-pane fade shadow rounded bg-white p-5 {{ $tab == 'media' ? 'active show' : '' }}"
                          id="w-media"
                          role="tabpanel"
                          aria-labelledby="w-media-tab">
@@ -91,7 +107,7 @@
                                     <label class="col-form-label" for="main_image">Main Photo:</label>
                                     <input type="file" class="bg-none border-0 form-control" name="main_image"
                                            id="main_image"/>
-                                    <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                    <small id="imageHelp" class="footnote form-text text-muted font-italic">
                                         This will be the main image for your recipe
                                     </small>
                                 </div>
@@ -101,7 +117,7 @@
                                     <label class="col-form-label" for="images">Additional Photos:</label>
                                     <input type="file" class="bg-none border-0 form-control" name="images[]" multiple
                                            id="images"/>
-                                    <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                    <small id="imagesHelp" class="footnote form-text text-muted font-italic">
                                         You can upload more than one (max 5)
                                     </small>
                                 </div>
@@ -109,69 +125,14 @@
                         </fieldset>
                     </div>
 
-                    <div class="tab-pane fade shadow rounded bg-white p-5"
-                         id="w-meta-information"
+                    <div class="tab-pane fade shadow rounded bg-white p-5 {{ $tab == 'meta' ? 'active show' : '' }}"
+                         id="w-meta"
                          role="tabpanel"
-                         aria-labelledby="w-meta-information-tab">
-                        <div class="form-row mb-2">
-                            <div class="col-md-12">
-                                <label class="required col-form-label" for="categories">Categories:</label>
-                                <select class="categories-picker form-control"
-                                        multiple
-                                        name="categories[]"
-                                        id="categories">
-                                    @foreach(\App\Models\Category::all() as $category)
-                                        <option
-                                            value="{{ $category->id }}"
-                                            @if (in_array($category->id, old('categories', [])))
-                                            selected="selected"
-                                            @endif
-                                        >
-                                            {{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                                <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
-                                    You can select multiple categories.
-                                </small>
-                            </div>
-                        </div>
-                        <div class="form-row mb-2">
-                            <div class="col-md-6">
-                                <label class="required col-form-label" for="prepTime">Prep Time:</label>
-                                <input type="number"
-                                       class="form-control"
-                                       id="prepTime"
-                                       name="prep_time"
-                                       placeholder="in minutes"
-                                       value="{{ old('prep_time') }}">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="required col-form-label" for="cookTime">Cook Time:</label>
-                                <input type="number"
-                                       class="form-control"
-                                       id="cookTime"
-                                       name="cook_time"
-                                       placeholder="in minutes"
-                                       value="{{ old('cook_time') }}">
-                            </div>
-                        </div>
-                        <div class="form-row mb-2">
-                            <div class="col-md-6">
-                                <label class="required col-form-label" for="servings">Servings:</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="servings"
-                                       name="servings"
-                                       placeholder="# of servings"
-                                       value="{{ old('servings') }}">
-                                <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
-                                    Ex: 3 scoops
-                                </small>
-                            </div>
-                        </div>
+                         aria-labelledby="w-meta-tab">
+                        @include('recipe.partial.create.meta', ['lang' => app()->getLocale(), 'parent' => 'w-meta'])
                     </div>
 
-                    <div class="tab-pane fade shadow rounded bg-white p-5"
+                    <div class="tab-pane fade shadow rounded bg-white p-5 {{ $tab == 'recipe' ? 'active show' : '' }}"
                          id="w-recipe"
                          role="tabpanel"
                          aria-labelledby="w-recipe-tab">
@@ -179,41 +140,6 @@
                         @foreach($langs as $lang)
                             @include('recipe.partial.create.recipe', ['lang' => $lang, 'parent' => 'w-recipe'])
                         @endforeach
-{{--                        <fieldset>--}}
-{{--                            <div class="form-row mb-2">--}}
-{{--                                <div class="col-md-2">--}}
-{{--                                    <label class="col-form-label" for="ingredients">Ingredients:</label>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-md-10">--}}
-{{--                                    <textarea name="ingredients" id="ingredients" cols="30" rows="10"--}}
-{{--                                              class="form-control"--}}
-{{--                                              placeholder="Enter one ingredient per line.">{{ old('ingredients') }}</textarea>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-row mb-2">--}}
-{{--                                <div class="col-md-2">--}}
-{{--                                    <label class="col-form-label" for="instructions">Instructions:</label>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-md-10">--}}
-{{--                                    <textarea name="instructions" id="instructions" cols="30" rows="10"--}}
-{{--                                              class="form-control"--}}
-{{--                                              placeholder="Add all of the cooking instructions, one per line.">{{ old('instructions') }}</textarea>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-row mb-2">--}}
-{{--                                <div class="col-md-2">--}}
-{{--                                    <label class="col-form-label" for="notes">Notes:</label>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-md-10">--}}
-{{--                                    <textarea name="notes" id="notes" cols="30" rows="10" class="form-control"--}}
-{{--                                              placeholder="Additional Notes">{{ old('notes') }}</textarea>--}}
-{{--                                    <small id="ingredientsHelp" class="footnote form-text text-muted font-italic">--}}
-{{--                                        Add any other notes like recipe source, cooking hints, etc. This section will--}}
-{{--                                        show up under the cooking instructions.--}}
-{{--                                    </small>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </fieldset>--}}
                     </div>
                 </div>
                 <div class="form-row">
