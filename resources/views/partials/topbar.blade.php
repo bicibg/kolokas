@@ -1,10 +1,10 @@
 <nav class="navbar topbar navbar-expand navbar-light bg-light no-print d-none d-md-block py-0 px-4">
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav m-0 p-0">
-            <li class="nav-item"><a href="https://www.facebook.com/kolokasrecipes"><i class="fa fa-facebook"></i></a></li>
-            <li class="nav-item"><a href="https://www.twitter.com/kolokasrecipes"><i class="fa fa-twitter"></i></a></li>
-            <li class="nav-item"><a href="https://www.pinterest.com/kolokasrecipes"><i class="fa fa-pinterest"></i></a></li>
-            <li class="nav-item"><a href="https://www.instagram.com/kolokasrecipes"><i class="fa fa-instagram"></i></a></li>
+            <li class="nav-item"><a href="https://www.facebook.com/kolokasrecipes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li class="nav-item"><a href="https://www.twitter.com/kolokasrecipes" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li class="nav-item"><a href="https://www.pinterest.com/kolokasrecipes" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+            <li class="nav-item"><a href="https://www.instagram.com/kolokasrecipes" target="_blank"><i class="fa fa-instagram"></i></a></li>
         </ul>
         <ul class="nav navbar-nav m-0 p-0 ml-auto">
             <li class="nav-item">

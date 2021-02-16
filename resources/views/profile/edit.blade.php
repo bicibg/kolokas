@@ -133,7 +133,7 @@
                                                id="facebook"
                                                value="{{ old('facebook') ?? $profile->facebook }}">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.placeholder', ['link' => 'https://facebook.com/kolokasrecipes ' . __('general.or') . ' https://www.facebook.com/groups/koloka-recipes']) }}
+                                            {{ __('profile.placeholder', ['link' => 'https://facebook.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
