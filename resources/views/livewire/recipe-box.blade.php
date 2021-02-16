@@ -42,6 +42,7 @@
                              src="http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=25&amp;d=mm&amp;r=g"
                              width="25">
                         <a href="{{ $recipe->author->profile->url }}" rel="author">{{ $recipe->author->name }}</a>
+                        <p class="font-italic small">{{ $recipe->author->profile->city }}</p>
                     </div>
                 </div>
                 {{--                <div class="col-md-4">--}}

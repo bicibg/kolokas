@@ -120,6 +120,10 @@
                                 </p>
                             </div>
                         </div>
+                        <div class="col-md-4 col-sm-12 col-12 d-flex align-items-stretch"></div>
+                        <div class="col-md-4 col-sm-12 col-12 d-flex align-items-stretch">
+                            @livewire('author-box', ['profile' => $recipe->author->profile])
+                        </div>
                     </div>
                 </div>
             </div>
