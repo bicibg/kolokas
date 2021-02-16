@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Visit;
 use Closure;
 use Illuminate\Http\Request;
+use Jaybizzle\CrawlerDetect\CrawlerDetect;
 
 class RecordVisits
 {
@@ -17,6 +18,10 @@ class RecordVisits
      */
     public function handle($request, Closure $next)
     {
+        $crawlerDetect = new CrawlerDetect();
+        if($crawlerDetect->isCrawler()) {
+            return $next($request);
+        }
         $recipe = $request->route('recipe');
         if (!empty($recipe)) {
             $recipe->visit();
