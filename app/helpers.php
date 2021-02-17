@@ -71,11 +71,11 @@ function getLocationString() {
         if ($position->cityName) {
             $location .= $position->cityName;
         }
-        if ($position->countryName) {
+        if (!empty($position->countryCode)) {
             if (!empty($location)) {
                 $location .= ', ';
             }
-            $location .= $position->countryName;
+            $location .= $position->countryCode;
         }
     } else {
         $location = 'Unknown';
