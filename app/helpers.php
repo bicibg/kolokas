@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Log;
+use Stevebauman\Location\Facades\Location;
 
 
 /**
@@ -62,4 +63,22 @@ function translate($text, $to)
         'target' => $to,
         'format' => 'text'
     ]);
+}
+
+function getLocationString() {
+    if ($position = Location::get(request()->getClientIp())) {
+        $location = '';
+        if ($position->cityName) {
+            $location .= $position->cityName;
+        }
+        if ($position->countryName) {
+            if (!empty($location)) {
+                $location .= ', ';
+            }
+            $location .= $position->countryName;
+        }
+    } else {
+        $location = 'Unknown';
+    }
+    return $location;
 }

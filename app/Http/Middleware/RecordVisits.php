@@ -29,6 +29,7 @@ class RecordVisits
             $visit = [
                 'session_id' => request()->getSession()->getId(),
                 'ip' => request()->getClientIp(),
+                'location' => getLocationString(),
                 'agent' => request()->header('User-Agent'),
                 'user_id' => auth()->id(),
             ];

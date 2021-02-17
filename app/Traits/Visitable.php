@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Traits;
-
 
 use App\Models\Visit;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -18,6 +16,7 @@ trait Visitable
         $visit = [
             'session_id' => request()->getSession()->getId(),
             'ip' => request()->getClientIp(),
+            'location' => getLocationString(),
             'agent' => request()->header('User-Agent'),
             'user_id' => auth()->id()
         ];
