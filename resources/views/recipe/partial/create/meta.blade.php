@@ -6,15 +6,14 @@
                     <label class="required col-form-label" for="categories">Categories:</label>
                     <select class="categories-picker form-control"
                             multiple
-                            wire:model="categories"
+                            wire:model.defer="categories"
                             id="categories">
                         @foreach(\App\Models\Category::all() as $category)
                             <option
                                 value="{{ $category->id }}"
-                                @if (in_array($category->id, old('categories', [])))
+                                @if (in_array($category->id, $categories->toArray()))
                                 selected="selected"
-                                @endif
-                            >
+                                @endif>
                                 {{ $category->name }}</option>
                         @endforeach
                     </select>
@@ -28,9 +27,7 @@
                     <label class="required col-form-label" for="prep_time">Prep Time:</label>
                     <input type="number"
                            class="form-control"
-                           value="{{ old("prep_time") }}"
-                           name="prep_time"
-                           wire:model="prep_time"
+                           wire:model.defer="prep_time"
                            id="prep_time"
                            placeholder="{{ __('recipe.in_minutes') }}">
                 </div>
@@ -38,9 +35,7 @@
                     <label class="required col-form-label" for="cook_time">Cook Time:</label>
                     <input type="number"
                            class="form-control"
-                           value="{{ old("cook_time") }}"
-                           name="cook_time"
-                           wire:model="cook_time"
+                           wire:model.defer="cook_time"
                            id="cook_time"
                            placeholder="{{ __('recipe.in_minutes') }}">
                 </div>
@@ -50,9 +45,7 @@
                     <label class="required col-form-label" for="servings">Servings:</label>
                     <input type="text"
                            class="form-control"
-                           value="{{ old("lang.$lang.servings") }}"
-                           name="lang[{{ $lang }}][servings]"
-                           wire:model="servings.{{ $lang }}"
+                           wire:model.defer="servings.{{ $lang }}"
                            id="servings_{{ $lang }}"
                            placeholder="{{ __('recipe.no_of_servings') }}">
                     <small id="descriptionHelp" class="footnote form-text text-muted font-italic">

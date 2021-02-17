@@ -1,12 +1,13 @@
-<div class="card">
+<div class="card" wire:key="recipe_{{$lang}}">
     <div class="card-header" id="heading_{{ $lang }}">
         <h2 class="mb-0">
-            <button class="btn btn-link @if($lang === app()->getLocale()) collapsed @endif"
+            <button class="btn btn-link @if($lang === $langTab) collapsed @endif"
                     type="button"
                     data-toggle="collapse"
                     data-target="#collapse_{{$lang}}"
-                    aria-expanded="@if($lang === app()->getLocale()) true @else false @endif"
-                    aria-controls="collapse_{{$lang}}">
+                    aria-expanded="@if($lang === $langTab) true @else false @endif"
+                    aria-controls="collapse_{{$lang}}"
+                    wire:click="switchLangTab('{{$lang}}')">
                 {{ __('general.languages.' . $lang) }}
                 @if($lang !== app()->getLocale())
                     ({{ __('recipe.create.can_be_auto_translated') }})
@@ -16,7 +17,7 @@
     </div>
 
     <div id="collapse_{{$lang}}"
-         class="collapse @if($lang === app()->getLocale()) show @endif"
+         class="collapse @if($lang === $langTab) show @endif"
          aria-labelledby="heading_{{ $lang }}"
          data-parent="#{{$parent}}">
         <div class="card-body">
@@ -26,12 +27,11 @@
                         <label class="required col-form-label" for="ingredients_{{ $lang }}">{{ __('recipe.ingredients') }}:</label>
                     </div>
                     <div class="col-md-8">
-                        <textarea name="lang[{{ $lang }}][ingredients]"
-                                  id="ingredients_{{ $lang }}"
+                        <textarea id="ingredients_{{ $lang }}"
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  wire:model="ingredients.{{ $lang }}">{{ old("lang.$lang.ingredients") }}</textarea>
+                                  wire:model.defer="ingredients.{{ $lang }}">{{ $ingredients[$lang] }}</textarea>
                         <small id="ingredientsHelp" class="footnote form-text text-muted font-italic">
                             {{__('recipe.create.one_ingredient_per_line') }}
                         </small>
@@ -51,12 +51,11 @@
                         <label class="required col-form-label" for="instructions_{{ $lang }}">{{ __('recipe.instructions') }}:</label>
                     </div>
                     <div class="col-md-8">
-                        <textarea name="lang[{{ $lang }}][instructions]"
-                                  id="instructions_{{ $lang }}"
+                        <textarea id="instructions_{{ $lang }}"
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  wire:model="instructions.{{ $lang }}">{{ old("lang.$lang.instructions") }}</textarea>
+                                  wire:model.defer="instructions.{{ $lang }}">{{ $instructions[$lang] }}</textarea>
                         <small id="instructionsHelp" class="footnote form-text text-muted font-italic">
                             {{__('recipe.create.add_all_cooking_instructions') }}
                         </small>
@@ -76,12 +75,11 @@
                         <label class="col-form-label" for="notes_{{ $lang }}">{{ __('recipe.notes') }}:</label>
                     </div>
                     <div class="col-md-8">
-                        <textarea name="lang[{{ $lang }}][notes]"
-                                  id="notes_{{ $lang }}"
+                        <textarea id="notes_{{ $lang }}"
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  wire:model="notes.{{ $lang }}">{{ old("lang.$lang.notes") }}</textarea>
+                                  wire:model.defer="notes.{{ $lang }}">{{ $notes[$lang] }}</textarea>
                         <small id="notesHelp" class="footnote form-text text-muted font-italic">
                             {{__('recipe.create.add_notes') }}
                         </small>

@@ -1920,6 +1920,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    disabled: {
+      type: [Number, String],
+      "default": 0
+    },
     href: {
       type: String,
       "default": '#'
@@ -1932,6 +1936,16 @@ __webpack_require__.r(__webpack_exports__);
     className: {
       type: String,
       "default": ''
+    }
+  },
+  data: function data() {
+    return {
+      internal_disabled: !!this.disabled
+    };
+  },
+  computed: {
+    isDisabled: function isDisabled() {
+      return this.internal_disabled;
     }
   }
 });
@@ -42772,7 +42786,7 @@ var render = function() {
         "button",
         {
           class: ["btn btn-lg btn-primary btn-base", _vm.className],
-          attrs: { type: _vm.role }
+          attrs: { type: _vm.role, disabled: _vm.isDisabled }
         },
         [_vm._t("default")],
         2
@@ -55019,6 +55033,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery_ui_ui_widgets_slider_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery-ui/ui/widgets/slider.js */ "./node_modules/jquery-ui/ui/widgets/slider.js");
 /* harmony import */ var jquery_ui_ui_widgets_slider_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_ui_widgets_slider_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var livewire_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! livewire-vue */ "./node_modules/livewire-vue/dist/livewire-vue.js");
+/* harmony import */ var livewire_vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(livewire_vue__WEBPACK_IMPORTED_MODULE_2__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -55033,9 +55049,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 
-if (window.livewire) {
-  __webpack_require__(/*! livewire-vue */ "./node_modules/livewire-vue/dist/livewire-vue.js");
-}
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -55045,7 +55058,6 @@ if (window.livewire) {
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
 
 Vue.mixin(__webpack_require__(/*! ./trans */ "./resources/js/trans.js"));
 Vue.component('base-button', __webpack_require__(/*! ./components/BaseButtonComponent.vue */ "./resources/js/components/BaseButtonComponent.vue")["default"]);
@@ -55385,6 +55397,7 @@ window.gtranslate = function gtranslate(from, to, context) {
       var data = _ref.data;
       translationsDone++;
       toEl.value = data.text;
+      toEl.dispatchEvent(new Event('input'));
     });
   }
 };

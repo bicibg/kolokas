@@ -1,12 +1,13 @@
-<div class="card">
+<div class="card" wire:key="description_{{$lang}}">
     <div class="card-header" id="heading_{{ $lang }}">
         <h2 class="mb-0">
-            <button class="btn btn-link @if($lang === app()->getLocale()) collapsed @endif"
+            <button class="btn btn-link @if($lang === $langTab) collapsed @endif"
                     type="button"
                     data-toggle="collapse"
                     data-target="#collapse_{{$lang}}"
-                    aria-expanded="@if($lang === app()->getLocale()) true @else false @endif"
-                    aria-controls="collapse_{{$lang}}">
+                    aria-expanded="@if($lang === $langTab) true @else false @endif"
+                    aria-controls="collapse_{{$lang}}"
+                    wire:click="switchLangTab('{{$lang}}')">
                 {{ __('general.languages.' . $lang) }}
                 @if($lang !== app()->getLocale())
                     ({{ __('recipe.create.can_be_auto_translated') }})
@@ -16,7 +17,7 @@
     </div>
 
     <div id="collapse_{{$lang}}"
-         class="collapse @if($lang === app()->getLocale()) show @endif"
+         class="collapse @if($lang === $langTab) show @endif"
          aria-labelledby="heading_{{ $lang }}"
          data-parent="#{{$parent}}">
         <div class="card-body">
@@ -28,9 +29,7 @@
                     <div class="col-md-8">
                         <input type="text"
                                class="form-control"
-                               value="{{ old("lang.$lang.title") }}"
-                               name="lang[{{ $lang }}][title]"
-                               wire:model="title.{{ $lang }}"
+                               wire:model.defer="title.{{ $lang }}"
                                id="title_{{ $lang }}">
                     </div>
                     <div class="col-md-2">
@@ -48,12 +47,11 @@
                         <label class="col-form-label" for="description_{{ $lang }}">{{ __('recipe.create.description') }}:</label>
                     </div>
                     <div class="col-md-8">
-                        <textarea name="lang[{{ $lang }}][description]"
-                                  id="description_{{ $lang }}"
+                        <textarea id="description_{{ $lang }}"
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  wire:model="description.{{ $lang }}">{{ old("lang.$lang.description") }}</textarea>
+                                  wire:model.defer="description.{{ $lang }}">{{ $description[$lang] }}</textarea>
                         <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
                             {{ __('recipe.create.description_text') }}
                         </small>

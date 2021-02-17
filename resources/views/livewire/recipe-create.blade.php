@@ -14,7 +14,7 @@
                  role="tablist"
                  aria-orientation="vertical">
                 <a class="nav-link mb-3 p-3 shadow {{ $tab == 'description' ? 'active' : '' }}"
-                   wire:click="$set('tab', 'description')"
+                   wire:click="switchTab('description')"
                    id="w-description-tab"
                    data-toggle="pill"
                    href="#w-description"
@@ -30,7 +30,7 @@
                     @endif
                 </a>
                 <a class="nav-link mb-3 p-3 shadow {{ $tab == 'media' ? 'active' : '' }}"
-                   wire:click="$set('tab', 'media')"
+                   wire:click="switchTab('media')"
                    id="w-media-tab"
                    data-toggle="pill"
                    href="#w-media"
@@ -47,7 +47,7 @@
                 </a>
 
                 <a class="nav-link mb-3 p-3 shadow {{ $tab == 'meta' ? 'active' : '' }}"
-                   wire:click="$set('tab', 'meta')"
+                   wire:click="switchTab('meta')"
                    id="w-meta-tab"
                    data-toggle="pill"
                    href="#w-meta"
@@ -64,7 +64,7 @@
                 </a>
 
                 <a class="nav-link mb-3 p-3 shadow {{ $tab == 'recipe' ? 'active' : '' }}"
-                   wire:click="$set('tab', 'recipe')"
+                   wire:click="switchTab('recipe')"
                    id="w-recipe-tab"
                    data-toggle="pill"
                    href="#w-recipe"
@@ -83,14 +83,15 @@
         </div>
 
         <div class="col-md-9">
-            <form method="POST" action="{{ route('recipe.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('recipe.store') }}" enctype="multipart/form-data" wire:submit.prevent="submit">
             @csrf
             <!-- Tabs content -->
                 <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade shadow rounded bg-white p-5 {{ $tab == 'description' ? 'active show' : '' }}"
-                         id="w-description"
-                         role="tabpanel"
-                         aria-labelledby="w-description-tab">
+                    <div
+                        class="tab-pane fade shadow rounded bg-white p-5 {{ $tab == 'description' ? 'active show' : '' }}"
+                        id="w-description"
+                        role="tabpanel"
+                        aria-labelledby="w-description-tab">
                         @include('recipe.partial.create.description', ['lang' => app()->getLocale(), 'parent' => 'w-description'])
                         @foreach($langs as $lang)
                             @include('recipe.partial.create.description', ['lang' => $lang, 'parent' => 'w-description'])
@@ -115,7 +116,8 @@
                             <div class="form-row mb-2">
                                 <div class="col-md-12">
                                     <label class="col-form-label" for="images">Additional Photos:</label>
-                                    <input type="file" class="bg-none border-0 form-control" name="images[]" multiple
+                                    <input type="file" class="bg-none border-0 form-control" wire:model="images"
+                                           multiple
                                            id="images"/>
                                     <small id="imagesHelp" class="footnote form-text text-muted font-italic">
                                         You can upload more than one (max 5)
@@ -157,17 +159,19 @@
                                         <input type="checkbox"
                                                class="form-check-input"
                                                id="agreement"
-                                               @if(old('agreement')) checked="checked"
+                                               @if($agreement) checked="checked"
                                                @endif
-                                               name="agreement">
+                                               wire:model="agreement">
                                         <label class="form-check-label" for="agreement"> &nbsp;
                                             I agree to the above and confirm this recipe is original to me.
                                         </label>
                                     </p>
                                 </div>
-                                <base-button :role="'submit'">
+                                <button
+                                    class="btn btn-lg {{ $canSubmit ? 'btn-primary' : 'btn-dark' }} btn-base"
+                                    type="submit" {{ $canSubmit ? '' : 'disabled' }}>
                                     {{ __('Submit for review') }}
-                                </base-button>
+                                </button>
                             </div>
                         </div>
                     </div>

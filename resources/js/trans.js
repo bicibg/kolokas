@@ -49,6 +49,7 @@ window.gtranslate = function gtranslate(from, to, context) {
         }).then(({data}) => {
             translationsDone++;
             toEl.value = data.text;
+            toEl.dispatchEvent(new Event('input'));
         });
     }
 }

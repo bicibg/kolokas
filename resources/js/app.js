@@ -11,10 +11,7 @@ import $ from 'jquery';
 import 'jquery-ui/ui/widgets/slider.js';
 
 window.$ = window.jQuery = $;
-
-if (window.livewire) {
-    require('livewire-vue');
-}
+import 'livewire-vue';
 
 /**
  * The following block of code may be used to automatically register your
