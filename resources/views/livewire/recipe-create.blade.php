@@ -1,4 +1,11 @@
 <div class="container-fluid kolokas-form mt-5">
+    @if (!empty($this->getErrorBag()->messages()))
+        <ul class="validation-errors">
+            @foreach($this->getErrorBag()->messages() as $error)
+                <li class="alert alert-danger">{{$error[0]}}</li>
+            @endforeach
+        </ul>
+    @endif
     <div class="row justify-content-center kolokas-form">
         <div class="col-sm-12">
             <div class="header text-center">
@@ -7,6 +14,7 @@
                 <hr>
             </div>
         </div>
+
         <div class="col-md-3">
             <!-- Tabs nav -->
             <div class="nav flex-column nav-pills nav-pills-custom"
@@ -81,9 +89,8 @@
                 </a>
             </div>
         </div>
-
         <div class="col-md-9">
-            <form method="POST" action="{{ route('recipe.store') }}" enctype="multipart/form-data" wire:submit.prevent="submit">
+            <form method="POST" enctype="multipart/form-data" wire:submit.prevent="{{ $canSubmit ? 'submit' : '' }}">
             @csrf
             <!-- Tabs content -->
                 <div class="tab-content" id="v-pills-tabContent">
@@ -102,29 +109,7 @@
                          id="w-media"
                          role="tabpanel"
                          aria-labelledby="w-media-tab">
-                        <fieldset>
-                            <div class="form-row mb-2">
-                                <div class="col-md-12">
-                                    <label class="col-form-label" for="main_image">Main Photo:</label>
-                                    <input type="file" class="bg-none border-0 form-control" name="main_image"
-                                           id="main_image"/>
-                                    <small id="imageHelp" class="footnote form-text text-muted font-italic">
-                                        This will be the main image for your recipe
-                                    </small>
-                                </div>
-                            </div>
-                            <div class="form-row mb-2">
-                                <div class="col-md-12">
-                                    <label class="col-form-label" for="images">Additional Photos:</label>
-                                    <input type="file" class="bg-none border-0 form-control" wire:model="images"
-                                           multiple
-                                           id="images"/>
-                                    <small id="imagesHelp" class="footnote form-text text-muted font-italic">
-                                        You can upload more than one (max 5)
-                                    </small>
-                                </div>
-                            </div>
-                        </fieldset>
+                        @include('recipe.partial.create.media', ['lang' => app()->getLocale(), 'parent' => 'w-media'])
                     </div>
 
                     <div class="tab-pane fade shadow rounded bg-white p-5 {{ $tab == 'meta' ? 'active show' : '' }}"

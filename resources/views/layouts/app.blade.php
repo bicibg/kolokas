@@ -37,7 +37,8 @@
     </div>
     <main class="py-2 mt-xs-5 pt-xs-2">
         <flash message="{{ session('flash') ?? (session('flash-warning') ?? session('flash-error')) }}"
-               type="{{ session('flash-warning') ? 'warning' : (session('flash-error') ? 'error' : '')  }}"></flash>        @if(count($errors)>0)
+               type="{{ session('flash-warning') ? 'warning' : (session('flash-error') ? 'error' : '')  }}"></flash>
+        @if(count($errors)>0)
             <ul class="validation-errors">
                 @foreach($errors->all() as $error)
                     <li class="alert alert-danger">{{$error}}</li>

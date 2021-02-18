@@ -24,12 +24,13 @@
             <fieldset>
                 <div class="form-row mb-2">
                     <div class="col-md-2">
-                        <label class="required col-form-label" for="title_{{ $lang }}">{{ __('recipe.title') }}:</label>
+                        <label class="col-form-label {{$lang === $locale ? 'required' : ''}}" for="title_{{ $lang }}">{{ __('recipe.title') }}:</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text"
                                class="form-control"
                                wire:model.defer="title.{{ $lang }}"
+                               name="title.{{ $lang }}"
                                id="title_{{ $lang }}">
                     </div>
                     <div class="col-md-2">
@@ -44,14 +45,16 @@
                 </div>
                 <div class="form-row mb-2">
                     <div class="col-md-2">
-                        <label class="col-form-label" for="description_{{ $lang }}">{{ __('recipe.create.description') }}:</label>
+                        <label class="col-form-label"
+                               for="description_{{ $lang }}">{{ __('recipe.create.description') }}:</label>
                     </div>
                     <div class="col-md-8">
                         <textarea id="description_{{ $lang }}"
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  wire:model.defer="description.{{ $lang }}">{{ $description[$lang] }}</textarea>
+                                  wire:model.defer="description.{{ $lang }}"
+                                  name="description.{{ $lang }}">{{ $description[$lang] }}</textarea>
                         <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
                             {{ __('recipe.create.description_text') }}
                         </small>

@@ -937,6 +937,11 @@ ul.validation-errors li {
 
 /* ================================= 13. Kolokas Form ================================= */
 
+.kolokas-form .imgPreview img {
+  padding: 8px;
+  height: 200px;
+}
+
 .kolokas-form i.check {
   color: #32CD32;
   font-size: 1.5rem;

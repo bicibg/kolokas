@@ -18,7 +18,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "livewire/livewire": "^1.2",
+        "livewire/livewire": "^2.0",
         "spatie/laravel-sluggable": "^2.5",
         "stevebauman/location": "^6.1"
     },

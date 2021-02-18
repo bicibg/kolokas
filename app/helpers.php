@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\ViewErrorBag;
 use Stevebauman\Location\Facades\Location;
 
 

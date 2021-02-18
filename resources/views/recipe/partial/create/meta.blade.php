@@ -7,6 +7,7 @@
                     <select class="categories-picker form-control"
                             multiple
                             wire:model.defer="categories"
+                            name="categories[]"
                             id="categories">
                         @foreach(\App\Models\Category::all() as $category)
                             <option
@@ -28,6 +29,7 @@
                     <input type="number"
                            class="form-control"
                            wire:model.defer="prep_time"
+                           name="prep_time"
                            id="prep_time"
                            placeholder="{{ __('recipe.in_minutes') }}">
                 </div>
@@ -36,6 +38,7 @@
                     <input type="number"
                            class="form-control"
                            wire:model.defer="cook_time"
+                           name="cook_time"
                            id="cook_time"
                            placeholder="{{ __('recipe.in_minutes') }}">
                 </div>
@@ -46,6 +49,7 @@
                     <input type="text"
                            class="form-control"
                            wire:model.defer="servings.{{ $lang }}"
+                           name="servings.{{ $lang }}"
                            id="servings_{{ $lang }}"
                            placeholder="{{ __('recipe.no_of_servings') }}">
                     <small id="descriptionHelp" class="footnote form-text text-muted font-italic">

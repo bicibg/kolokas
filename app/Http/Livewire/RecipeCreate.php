@@ -3,11 +3,15 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class RecipeCreate extends Component
 {
+    use WithFileUploads;
+
     public $tab = 'description';
     public $langTab;
     /**
@@ -20,6 +24,8 @@ class RecipeCreate extends Component
     public $tab3Check = false;
     public $tab4Check = false;
     public $canSubmit = false;
+
+    //description
     public $title = [
         'tr' => '',
         'en' => '',
@@ -30,11 +36,18 @@ class RecipeCreate extends Component
         'en' => '',
         'el' => '',
     ];
+
+    //media
+    public $main_image;
+    public $images = [];
+
+    //meta
     public $categories = [];
     public $prep_time = null;
     public $cook_time = null;
     public $servings = null;
 
+    //recipe
     public $ingredients = [
         'tr' => '',
         'en' => '',
@@ -69,9 +82,14 @@ class RecipeCreate extends Component
     {
         app()->setLocale($this->locale);
         $this->tab1Check = !empty($this->title[$this->locale]);
+        $this->tab2Check = !empty($this->main_image);
         $this->tab3Check = !empty($this->categories) && !empty($this->prep_time) && !empty($this->cook_time) && !empty($this->servings);
         $this->tab4Check = !empty($this->instructions[$this->locale]) && !empty($this->ingredients[$this->locale]);
-        $this->canSubmit = $this->tab1Check && $this->tab3Check && $this->tab4Check && $this->agreement;
+        $this->canSubmit = $this->tab1Check && $this->tab2Check && $this->tab3Check && $this->tab4Check && $this->agreement;
+
+        if ($this->images) {
+            $this->validate(['images' => "required|array|max:5"]);
+        }
     }
 
     public function render()
@@ -79,17 +97,78 @@ class RecipeCreate extends Component
         return view('livewire.recipe-create');
     }
 
-    public function submit()
-    {
-        var_dump($this->title);
+    protected function rules() {
+        return [
+            'title.' . $this->locale => [
+                'bail',
+                'required',
+                Rule::unique('recipes', 'title')->where(function ($query) {
+                    $query->where('user_id', auth()->user()->id);
+                })
+            ],
+            'description.' . $this->locale => 'max:2000',
+            'categories' => 'required|array',
+            'ingredients.' . $this->locale => 'required',
+            'instructions.' . $this->locale => 'required',
+            'prep_time' => 'integer',
+            'cook_time' => 'integer',
+            'servings.' . $this->locale => 'required|max:64',
+            'notes.' . $this->locale => 'max:2000',
+            'agreement' => 'accepted',
+            'main_image' => 'required|image|mimes:jpeg,jpg,png',
+        ];
     }
 
-    public function switchTab($tab) {
+    public function submit()
+    {
+        $this->validate();
+
+        foreach ($this->title as $lang => $value) {
+            if ($lang === $this->locale) continue;
+            if (empty($value) && !empty($langs[$lang])) {
+                $this->title[$lang] = translate($this->title[$this->locale], $lang);
+            }
+        }
+
+        $allowedfileExtension = ['jpg', 'jpeg', 'png'];
+        $mainPhoto = $this->main_image;
+        //main photo
+        $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
+        $extension = $mainPhoto->getClientOriginalExtension();
+        $check = in_array($extension, $allowedfileExtension);
+        if ($check) {
+            $filename .= '.' . $extension;
+            if (Storage::putFileAs('public/images/recipes/', $mainPhoto, $filename)) {
+                $recipe->images()->create([
+                    'url' => 'images/recipes/' . $filename,
+                    'main' => 1
+                ]);
+            }
+        }
+
+        $ext = $this->profile_image->getClientOriginalExtension();
+        dd($this->profile_image->storeAs('public/uploads', 'my-profile-pic2.' . $ext));
+
+//        foreach ($this->images as $key => $image) {
+//            $this->images[$key] = $image->store('images','public');
+//        }
+//        $this->images = json_encode($this->images);
+//        Image::create(['title' => $this->images]);
+
+    }
+
+    public function dehydrate()
+    {
+    }
+
+    public function switchTab($tab)
+    {
         $this->tab = $tab;
         $this->langTab = $this->locale;
     }
 
-    public function switchLangTab($langTab) {
+    public function switchLangTab($langTab)
+    {
         $this->langTab = $langTab;
     }
 }
