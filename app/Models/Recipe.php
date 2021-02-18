@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class Recipe extends Model
 {
-    use SoftDeletes, HasSlug, Favouritable, Visitable;
+    use SoftDeletes, HasSlug, Favouritable, Visitable, HasTranslations;
 
     /**
      * @var array
@@ -42,6 +43,8 @@ class Recipe extends Model
     protected $with = ['author', 'images'];
 
     protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount', 'mainImage'];
+
+    public $translatable = ['title', 'description', 'ingredients', 'instructions', 'notes', 'servings'];
 
     /**
      * @return string

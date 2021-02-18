@@ -2,7 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Recipe;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -45,7 +48,11 @@ class RecipeCreate extends Component
     public $categories = [];
     public $prep_time = null;
     public $cook_time = null;
-    public $servings = null;
+    public $servings = [
+        'tr' => '',
+        'en' => '',
+        'el' => '',
+    ];
 
     //recipe
     public $ingredients = [
@@ -106,14 +113,14 @@ class RecipeCreate extends Component
                     $query->where('user_id', auth()->user()->id);
                 })
             ],
-            'description.' . $this->locale => 'max:2000',
+            'description.' . $this->locale => 'max:4000',
             'categories' => 'required|array',
             'ingredients.' . $this->locale => 'required',
             'instructions.' . $this->locale => 'required',
             'prep_time' => 'integer',
             'cook_time' => 'integer',
             'servings.' . $this->locale => 'required|max:64',
-            'notes.' . $this->locale => 'max:2000',
+            'notes.' . $this->locale => 'max:4000',
             'agreement' => 'accepted',
             'main_image' => 'required|image|mimes:jpeg,jpg,png',
         ];
@@ -130,31 +137,108 @@ class RecipeCreate extends Component
             }
         }
 
-        $allowedfileExtension = ['jpg', 'jpeg', 'png'];
-        $mainPhoto = $this->main_image;
-        //main photo
-        $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
-        $extension = $mainPhoto->getClientOriginalExtension();
-        $check = in_array($extension, $allowedfileExtension);
-        if ($check) {
-            $filename .= '.' . $extension;
-            if (Storage::putFileAs('public/images/recipes/', $mainPhoto, $filename)) {
-                $recipe->images()->create([
-                    'url' => 'images/recipes/' . $filename,
-                    'main' => 1
-                ]);
+        foreach ($this->description as $lang => $value) {
+            if ($lang === $this->locale) continue;
+            if (empty($value) && !empty($langs[$lang])) {
+                $this->description[$lang] = translate($this->description[$this->locale], $lang);
             }
         }
 
-        $ext = $this->profile_image->getClientOriginalExtension();
-        dd($this->profile_image->storeAs('public/uploads', 'my-profile-pic2.' . $ext));
+        foreach ($this->instructions as $lang => $value) {
+            if ($lang === $this->locale) continue;
+            if (empty($value) && !empty($langs[$lang])) {
+                $this->instructions[$lang] = translate($this->instructions[$this->locale], $lang);
+            }
+        }
 
-//        foreach ($this->images as $key => $image) {
-//            $this->images[$key] = $image->store('images','public');
-//        }
-//        $this->images = json_encode($this->images);
-//        Image::create(['title' => $this->images]);
+        foreach ($this->ingredients as $lang => $value) {
+            if ($lang === $this->locale) continue;
+            if (empty($value) && !empty($langs[$lang])) {
+                $this->ingredients[$lang] = translate($this->ingredients[$this->locale], $lang);
+            }
+        }
 
+        foreach ($this->notes as $lang => $value) {
+            if ($lang === $this->locale) continue;
+            if (empty($value) && !empty($langs[$lang])) {
+                $this->notes[$lang] = translate($this->notes[$this->locale], $lang);
+            }
+        }
+
+        foreach ($this->servings as $lang => $value) {
+            if ($lang === $this->locale) continue;
+            if (empty($value) && !empty($langs[$lang])) {
+                $this->servings[$lang] = translate($this->servings[$this->locale], $lang);
+            }
+        }
+
+        DB::transaction(function () {
+            $recipe = Recipe::create([
+                'title' => $this->title,
+                'description' => $this->description,
+                'ingredients' => $this->ingredients,
+                'instructions' => $this->instructions,
+                'notes' => $this->notes,
+                'prep_time' => $this->prep_time,
+                'cook_time' => $this->cook_time,
+                'servings' => $this->servings,
+                'user_id' => auth()->id(),
+            ]);
+
+            foreach ($this->categories as $category) {
+                $recipe->categories()->attach($category);
+            }
+
+            $allowedfileExtension = ['jpg', 'jpeg', 'png'];
+            $mainPhoto = $this->main_image;
+            //main photo
+            $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
+            $extension = $mainPhoto->getClientOriginalExtension();
+            $check = in_array($extension, $allowedfileExtension);
+            if ($check) {
+                $filename .= '.' . $extension;
+//                if (Storage::putFileAs('public/images/recipes/', $mainPhoto, $filename)) {
+                try {
+                    if ($mainPhoto->storeAs('public/images/recipes/', $filename)) {
+                        $recipe->images()->create([
+                            'url' => 'images/recipes/' . $filename,
+                            'main' => 1
+                        ]);
+                    }
+                } catch (\Exception $e) {
+                    Log::error('Error while uploading image. ' . $e->getMessage());
+                    Log::error('Error while uploading image. ' . $e->getTraceAsString());
+                }
+            }
+
+            // other photos
+            if (count($this->images)) {
+                foreach ($this->images as $file) {
+                    $filename = $recipe->id . '_' . $file->getClientOriginalName() . '_' . uniqid();
+                    $extension = $file->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtension);
+                    if ($check) {
+                        $filename .= '.' . $extension;
+//                        if (Storage::putFileAs('public/images/recipes/', $file, $filename)) {
+
+                        try {
+                            if ($file->storeAs('public/images/recipes/', $filename)) {
+                                $recipe->images()->create([
+                                    'url' => 'images/recipes/' . $filename,
+                                    'main' => 0
+                                ]);
+                            }
+                        } catch (\Exception $e) {
+                            Log::error('Error while uploading image. ' . $e->getMessage());
+                            Log::error('Error while uploading image. ' . $e->getTraceAsString());
+                        }
+                    }
+                }
+            }
+        });
+        return redirect()->to(route('recipe.my-index'))->with([
+            'flash' => __('messages.recipe.submitted')
+        ]);
     }
 
     public function dehydrate()
