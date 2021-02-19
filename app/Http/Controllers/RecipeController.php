@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RecipeUpdateRequest;
 use App\Models\Profile;
 use App\Models\Recipe;
-use App\Models\User;
-use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 

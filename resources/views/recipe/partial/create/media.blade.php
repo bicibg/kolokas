@@ -9,13 +9,13 @@
                                id="main_image" wire:model.defer="main_image"/>
                     </div>
                     <div wire:loading wire:target="main_image">Uploading main image...</div>
-                    @if(!empty($main_image))
+                    @if(!empty($main_image) || !empty($existing_main_image))
                         <div class="user-image mb-3">
                             <div class="imgPreview">
-                                @if(method_exists($main_image, 'temporaryUrl'))
+                                @if($main_image)
                                     <img src="{{ $main_image->temporaryUrl() }}" alt="">
                                 @else
-                                    <img src="{{ $main_image->url }}" alt="">
+                                    <img src="{{ $existing_main_image->url }}" alt="">
                                 @endif
                             </div>
                         </div>
@@ -25,33 +25,44 @@
                         This will be the main image for your recipe
                     </small>
                 </div>
-            </div>
-            <div class="form-row mb-2">
                 <div class="col-md-12">
-                    <label class="col-form-label" for="images">Additional Photos:</label>
+                    <label class="col-form-label" for="images">Additional Photos (max {{ $maxNewImages }}):</label>
                     <div wire:loading.remove>
                         <input type="file" class="bg-none border-0 form-control" wire:model.defer="images"
                                multiple
                                id="images"/>
                     </div>
                     <div wire:loading wire:target="images">Uploading images...</div>
-                    @if(!empty($images))
-                        <div class="user-image mb-3">
-                            <div class="imgPreview">
-                                @foreach($images as $image)
-                                    @if(method_exists($image,'temporaryUrl'))
-                                        <img src="{{ $image->temporaryUrl() }}" alt="">
-                                    @else
-                                        <img src="{{ $image->url }}" alt="">
-                                    @endif
-                                @endforeach
+                    <div class="row">
+                        @foreach($images as $image)
+                            <div class="col-md-2 text-center">
+                                <label class="image-checkbox">
+                                    <img class="img-thumbnail img-responsive" src="{{ $image->temporaryUrl() }}" alt="">
+                                </label>
                             </div>
-                        </div>
-                    @endif
-                    <small id="imagesHelp" class="footnote form-text text-muted font-italic">
-                        You can upload more than one (max 5)
-                    </small>
+                        @endforeach
+                    </div>
                 </div>
+                @if ($recipe && $recipe->images()->whereMain(false)->count())
+                    <div class="col-md-12">
+                        <label class="col-form-label" for="images">Existing Photos (uncheck to remove):</label>
+                        <div class="row" wire:ignore>
+                            @foreach($recipe->images()->whereMain(false)->get() as $image)
+                                @if ($image->main) @continue @endif
+                                <div class="col-md-2 text-center">
+                                    <label class="">
+                                        <img class="img-thumbnail img-responsive" src="{{ $image->url }}" alt="">
+                                        <input wire:model="existing_images"
+                                               type="checkbox"
+                                               autocomplete="off"
+                                               value="{{ $image->id }}">
+                                        <i class="fa fa-check hidden"></i>
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </div>
         </fieldset>
     </div>

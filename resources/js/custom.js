@@ -7,24 +7,23 @@ $(document).ready(function() {
         style: '',
         styleBase: 'form-control'
     });
+
+    // $(".image-checkbox").each(function () {
+    //     if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+    //         $(this).addClass('image-checkbox-checked');
+    //     } else {
+    //         $(this).removeClass('image-checkbox-checked');
+    //     }
+    // });
+    // $(".image-checkbox").on("click", function() {
+    //     $(this).toggleClass('image-checkbox-checked');
+    //     var $checkbox = $(this).find('input[type="checkbox"]').first();
+    //     // $checkbox.attr("checked", "checked");
+    //     // $checkbox[0].dispatchEvent(new Event('input'));
+    //     console.log($checkbox[0]);
+    // });
+
 })
-
-$(".image-checkbox").each(function () {
-    if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
-        $(this).addClass('image-checkbox-checked');
-    } else {
-        $(this).removeClass('image-checkbox-checked');
-    }
-});
-
-// sync the state to the input
-$(".image-checkbox").on("click", function (e) {
-    $(this).toggleClass('image-checkbox-checked');
-    var $checkbox = $(this).find('input[type="checkbox"]');
-    $checkbox.prop("checked", !$checkbox.prop("checked"))
-
-    e.preventDefault();
-});
 
 window.lockScroll = function()
 {

@@ -83,25 +83,3 @@ function getLocationString()
     }
     return $location;
 }
-
-function getFile($url)
-{
-    //get name file by url and save in object-file
-    $path_parts = pathinfo($url);
-    //get image info (mime, size in pixel, size in bits)
-    $newPath = $path_parts['dirname'] . '/tmp-files/';
-    if (!is_dir($newPath)) {
-        mkdir($newPath, 0777);
-    }
-    $newUrl = $newPath . $path_parts['basename'];
-    copy($url, $newUrl);
-    $imgInfo = getimagesize($newUrl);
-    $file = new \Illuminate\Http\UploadedFile(
-        $newUrl,
-        $path_parts['basename'],
-        $imgInfo['mime'],
-        filesize($url),
-        TRUE,
-    );
-    return $file;
-}

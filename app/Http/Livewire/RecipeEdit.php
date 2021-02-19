@@ -3,10 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Recipe;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -18,8 +16,11 @@ class RecipeEdit extends Component
     use WithFileUploads;
 
     public $recipe;
+    public $existing_images = [];
+    public $existing_main_image;
     public $tab = 'description';
     public $langTab;
+    public $maxNewImages = 5;
     /**
      * @var $locale
      */
@@ -98,31 +99,16 @@ class RecipeEdit extends Component
         $this->prep_time = $recipe->getAttributes()['prep_time'];
         $this->cook_time = $recipe->getAttributes()['cook_time'];
 
-        $path_parts = pathinfo($this->recipe->main_image->getAttributes()['url']);
-        $newPath = $path_parts['dirname'] . '/tmp-files/';
-        if(!is_dir (storage_path($newPath))){
-            mkdir(storage_path($newPath), 0777, true);
+        $this->existing_main_image = $this->recipe->images()->whereMain(true)->first();
+        $this->existing_images = $recipe->images()->whereMain(false)->pluck('id')->toArray();
+        foreach ($this->existing_images as $key => $value) {
+            $this->existing_images[$key] = (string)$value;
         }
-
-        $newUrl = $newPath . $path_parts['basename'];
-        copy($this->recipe->main_image->getAttributes()['url'], $newUrl);
-        $imgInfo = getimagesize($newUrl);
-//broken
-        $file = new UploadedFile(
-            $newUrl,
-            $path_parts['basename'],
-            $imgInfo['mime'],
-            filesize($this->recipe->main_image->getAttributes()['url']),
-            true,
-            TRUE
-        );
-dd($file);
-        $this->main_image = File::get();
-        dd($this->main_image);
-        $this->images = $recipe->images()->whereMain(false)->get();
+        $toBeDeleted = $this->recipe->images()->whereMain(false)->pluck('id')->diffAssoc($this->existing_images);
+        $this->maxNewImages = 5 - ($this->recipe->images()->whereMain(false)->count() - count($toBeDeleted));
 
         $this->tab1Check = !empty($this->title[$this->locale]);
-        $this->tab2Check = !empty($this->main_image);
+        $this->tab2Check = !empty($this->existing_main_image);
         $this->tab3Check = !empty($this->categories) && !empty($this->prep_time) && !empty($this->cook_time) && !empty($this->servings);
         $this->tab4Check = !empty($this->instructions[$this->locale]) && !empty($this->ingredients[$this->locale]);
         $this->canSubmit = $this->tab1Check && $this->tab2Check && $this->tab3Check && $this->tab4Check && $this->agreement;
@@ -132,14 +118,14 @@ dd($file);
     {
         app()->setLocale($this->locale);
         $this->tab1Check = !empty($this->title[$this->locale]);
-        $this->tab2Check = !empty($this->main_image);
+        $this->tab2Check = !empty($this->main_image) || !empty($this->existing_main_image);
         $this->tab3Check = !empty($this->categories) && !empty($this->prep_time) && !empty($this->cook_time) && !empty($this->servings);
         $this->tab4Check = !empty($this->instructions[$this->locale]) && !empty($this->ingredients[$this->locale]);
+
         $this->canSubmit = $this->tab1Check && $this->tab2Check && $this->tab3Check && $this->tab4Check && $this->agreement;
 
-        if ($this->images) {
-            $this->validate(['images' => "required|array|max:5"]);
-        }
+        $toBeDeleted = $this->recipe->images()->whereMain(false)->pluck('id')->diffAssoc($this->existing_images);
+        $this->maxNewImages = 5 - ($this->recipe->images()->whereMain(false)->count() - count($toBeDeleted));
     }
 
     public function render()
@@ -149,7 +135,7 @@ dd($file);
 
     protected function rules()
     {
-        return [
+        $rules = [
             'title.' . $this->locale => [
                 'bail',
                 'required',
@@ -166,8 +152,14 @@ dd($file);
             'servings.' . $this->locale => 'required|max:64',
             'notes.' . $this->locale => 'max:4000',
             'agreement' => 'accepted',
-            'main_image' => 'required|image|mimes:jpeg,jpg,png',
+            'images.*' => 'image|mimes:jpeg,jpg,png',
+            'images' => 'array|max:' . $this->maxNewImages,
         ];
+
+        if (!$this->existing_main_image) {
+            $rules['main_image'] = 'required|image|mimes:jpeg,jpg,png';
+        }
+        return $rules;
     }
 
     public function submit()
@@ -176,12 +168,7 @@ dd($file);
             session(['flash-error' => __('messages.recipe.edit_not_authorized')]);
             return redirect(route('home'));
         }
-
         $this->validate();
-
-        if ($this->recipe->images()->whereMain(false)->get()->diffAssoc($this->images)->count()) {
-            $this->validate(['images.*' => 'bail|image|mimes:jpeg,jpg,png']);
-        }
 
         foreach ($this->title as $lang => $value) {
             if ($lang === $this->locale) continue;
@@ -248,6 +235,7 @@ dd($file);
                 'cook_time' => $this->cook_time,
                 'servings' => $this->servings
             ];
+            $allowedfileExtension = ['jpg', 'jpeg', 'png'];
 
             try {
                 $this->recipe->update($data);
@@ -257,8 +245,7 @@ dd($file);
                     $this->recipe->categories()->attach($category);
                 }
 
-                if (!$this->recipe->main_image->is($this->main_image)) {
-                    $allowedfileExtension = ['jpg', 'jpeg', 'png'];
+                if ($this->main_image) {
                     $mainPhoto = $this->main_image;
                     //main photo
                     $filename = $this->recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
@@ -278,30 +265,32 @@ dd($file);
                     }
                 }
 
-                if ($this->recipe->images()->whereMain(false)->get()->diffAssoc($this->images)->count()) {
-                    foreach ($this->recipe->images()->whereMain(false)->get() as $delete) {
-                        Storage::delete($delete->url);
+                $toBeDeleted = $this->recipe->images()->whereMain(false)->pluck('id')->diffAssoc($this->existing_images);
+                if ($toBeDeleted->count()) {
+                    $deletes = $this->recipe->images()->whereMain(false)->whereIn('id', $toBeDeleted->toArray())->get();
+                    foreach ($deletes as $delete) {
+                        Storage::delete($delete->getAttributes()['url']);
                         $delete->delete();
                     }
+                }
+                // other photos
+                if (count($this->images)) {
+                    foreach ($this->images as $file) {
+                        $filename = $this->recipe->id .'_' . uniqid() . '_' . $file->getClientOriginalName();
+                        $extension = $file->getClientOriginalExtension();
 
-                    if (count($this->images)) {
-                        foreach ($this->images as $file) {
-                            $filename = $this->recipe->id . '_' . $file->getClientOriginalName() . '_' . uniqid();
-                            $extension = $file->getClientOriginalExtension();
-                            $check = in_array($extension, $allowedfileExtension);
-                            if ($check) {
-                                $filename .= '.' . $extension;
-
-                                if ($file->storeAs('public/images/recipes/', $filename)) {
-                                    $this->recipe->images()->create([
-                                        'url' => 'images/recipes/' . $filename,
-                                        'main' => 0
-                                    ]);
-                                }
+                        $check = in_array($extension, $allowedfileExtension);
+                        if ($check) {
+                            if ($file->storeAs('public/images/recipes/', $filename)) {
+                                $this->recipe->images()->create([
+                                    'url' => 'images/recipes/' . $filename,
+                                    'main' => 0
+                                ]);
                             }
                         }
                     }
                 }
+
                 DB::commit();
             } catch (\Exception $e) {
                 Log::error('Error updating recipe.' . $e->getMessage());
@@ -323,5 +312,16 @@ dd($file);
     public function switchLangTab($langTab)
     {
         $this->langTab = $langTab;
+    }
+
+    public function toggleExistingImage($id)
+    {
+        dd(in_array($id, $this->existing_images));
+        if (in_array($id, $this->existing_images)) {
+            $pos = array_search($id, $this->existing_images);
+            unset($this->existing_images[$pos]);
+        } else {
+            $existing_images[] = $id;
+        }
     }
 }
