@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         }, __('validation.custom.total_images_with_existing'));
 
         \View::composer('*', function ($view) {
-            $categories = Cache::rememberForever('categories', function() {
+            $categories = Cache::rememberForever('categories', function () {
                 return Category::all();
             });
             $view->with('categories', $categories);

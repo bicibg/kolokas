@@ -16,6 +16,7 @@ class Recipe extends Model
 {
     use SoftDeletes, HasSlug, Favouritable, Visitable, HasTranslations;
 
+    public $translatable = ['title', 'description', 'ingredients', 'instructions', 'notes', 'servings'];
     /**
      * @var array
      */
@@ -34,17 +35,12 @@ class Recipe extends Model
         'updated_by',
         'published',
     ];
-
     protected $casts = [
         'ingredients' => SplitList::class,
         'instructions' => SplitList::class,
     ];
-
     protected $with = ['author', 'images'];
-
     protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount', 'mainImage'];
-
-    public $translatable = ['title', 'description', 'ingredients', 'instructions', 'notes', 'servings'];
 
     /**
      * @return string
@@ -118,7 +114,8 @@ class Recipe extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
-    public function scopeAuthor ($query, $author) {
+    public function scopeAuthor($query, $author)
+    {
         return $query->whereHas('author', function ($q) use ($author) {
             $q->where('user_id', $author->id);
         });

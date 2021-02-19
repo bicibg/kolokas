@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Category;
 use App\Models\Profile;
-use App\Models\Recipe;
 use Livewire\Component;
 
 /**
@@ -27,8 +25,8 @@ class AuthorSearchBox extends Component
     public $resultCount;
 
     /**
-     * @param  int|null  $resultCount
-     * @param  string|null  $action
+     * @param int|null $resultCount
+     * @param string|null $action
      */
     public function mount(?int $resultCount = null, ?string $action = null)
     {

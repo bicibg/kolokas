@@ -102,30 +102,6 @@ class RecipeCreate extends Component
         return view('livewire.recipe-create');
     }
 
-    protected function rules()
-    {
-        return [
-            'title.' . $this->locale => [
-                'bail',
-                'required',
-                Rule::unique('recipes', 'title')->where(function ($query) {
-                    $query->where('user_id', auth()->user()->id);
-                })
-            ],
-            'description.' . $this->locale => 'max:4000',
-            'categories' => 'required|array',
-            'ingredients.' . $this->locale => 'required',
-            'instructions.' . $this->locale => 'required',
-            'prep_time' => 'integer',
-            'cook_time' => 'integer',
-            'servings.' . $this->locale => 'required|max:64',
-            'notes.' . $this->locale => 'max:4000',
-            'agreement' => 'accepted',
-            'main_image' => 'required|image|mimes:jpeg,jpg,png',
-            'images.*' => 'image|mimes:jpeg,jpg,png',
-        ];
-    }
-
     public function submit()
     {
         $this->validate();
@@ -222,7 +198,7 @@ class RecipeCreate extends Component
             // other photos
             if (count($this->images)) {
                 foreach ($this->images as $file) {
-                    $filename = $recipe->id .'_' . uniqid() . '_' . $file->getClientOriginalName();
+                    $filename = $recipe->id . '_' . uniqid() . '_' . $file->getClientOriginalName();
                     $extension = $file->getClientOriginalExtension();
                     $check = in_array($extension, $allowedfileExtension);
                     if ($check) {
@@ -254,5 +230,29 @@ class RecipeCreate extends Component
     public function switchLangTab($langTab)
     {
         $this->langTab = $langTab;
+    }
+
+    protected function rules()
+    {
+        return [
+            'title.' . $this->locale => [
+                'bail',
+                'required',
+                Rule::unique('recipes', 'title')->where(function ($query) {
+                    $query->where('user_id', auth()->user()->id);
+                })
+            ],
+            'description.' . $this->locale => 'max:4000',
+            'categories' => 'required|array',
+            'ingredients.' . $this->locale => 'required',
+            'instructions.' . $this->locale => 'required',
+            'prep_time' => 'integer',
+            'cook_time' => 'integer',
+            'servings.' . $this->locale => 'required|max:64',
+            'notes.' . $this->locale => 'max:4000',
+            'agreement' => 'accepted',
+            'main_image' => 'required|image|mimes:jpeg,jpg,png',
+            'images.*' => 'image|mimes:jpeg,jpg,png',
+        ];
     }
 }

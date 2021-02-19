@@ -55047,8 +55047,8 @@ __webpack_require__(/*! bootstrap-select */ "./node_modules/bootstrap-select/dis
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 
-window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 
+window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

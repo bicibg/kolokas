@@ -9,7 +9,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class RecipeCreateRequest extends FormRequest
@@ -22,11 +21,6 @@ class RecipeCreateRequest extends FormRequest
     public function authorize()
     {
         return auth()->check();
-    }
-
-    protected function prepareForValidation()
-    {
-        $this->merge($this->lang[app()->getLocale()]);
     }
 
     /**
@@ -73,5 +67,10 @@ class RecipeCreateRequest extends FormRequest
             'servings' => 'We need to know the serving size for your recipe',
             'agreement' => 'You must accept our Terms and Conditions before you can submit this recipe',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge($this->lang[app()->getLocale()]);
     }
 }

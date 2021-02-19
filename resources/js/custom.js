@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $('.categories-picker').selectpicker({
         dropupAuto: false,
         size: 10,
@@ -25,12 +25,10 @@ $(document).ready(function() {
 
 })
 
-window.lockScroll = function()
-{
+window.lockScroll = function () {
     if ($('body').hasClass('lock-scroll')) {
         $('body').removeClass('lock-scroll');
-    }
-    else {
+    } else {
         $('body').addClass('lock-scroll');
     }
 }

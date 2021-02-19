@@ -12,14 +12,14 @@ class RecordVisits
     /**
      * Handle an incoming request.
      *
-     * @param  Request  $request
-     * @param  Closure  $next
+     * @param Request $request
+     * @param Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
         $crawlerDetect = new CrawlerDetect();
-        if($crawlerDetect->isCrawler()) {
+        if ($crawlerDetect->isCrawler()) {
             return $next($request);
         }
         $recipe = $request->route('recipe');
@@ -36,8 +36,7 @@ class RecordVisits
             $existingSessionVisits = Visit::where('session_id', request()->getSession()->getId())
                 ->whereNull('visited_type')
                 ->whereNull('visited_id')->count();
-            if (!$existingSessionVisits)
-            {
+            if (!$existingSessionVisits) {
                 Visit::create($visit);
             }
         }

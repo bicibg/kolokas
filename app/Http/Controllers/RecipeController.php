@@ -39,16 +39,6 @@ class RecipeController extends Controller
         return view('recipe.index', compact('recipes', 'recipesCount'));
     }
 
-    public function favourites(Request $request)
-    {
-        $recipes = auth()->user()->favourites();
-        $recipes = $this->addFilterToRecipes($recipes);
-
-        $recipesCount = $recipes->count();
-        $recipes = $recipes->paginate(16);
-        return view('recipe.fav-index', compact('recipes', 'recipesCount'));
-    }
-
     private function addFilterToRecipes($recipes)
     {
         if (!empty(request()->get('s'))) {
@@ -87,6 +77,16 @@ class RecipeController extends Controller
         }
 
         return $recipes->latest();
+    }
+
+    public function favourites(Request $request)
+    {
+        $recipes = auth()->user()->favourites();
+        $recipes = $this->addFilterToRecipes($recipes);
+
+        $recipesCount = $recipes->count();
+        $recipes = $recipes->paginate(16);
+        return view('recipe.fav-index', compact('recipes', 'recipesCount'));
     }
 
     /**

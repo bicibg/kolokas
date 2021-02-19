@@ -37,7 +37,7 @@ class ContactController extends Controller
                     $message->from($request->email);
                     $message->to(env('APP_ADMIN_CONTACT'));
                 });
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             Log::error('Failed to send contact us mail: ' . $e->getMessage());
             Log::error($e->getTraceAsString());
         }

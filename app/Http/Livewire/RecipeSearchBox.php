@@ -51,9 +51,9 @@ class RecipeSearchBox extends Component
     public $maxCookTime;
 
     /**
-     * @param  int|null  $resultCount
-     * @param  bool|null  $extended
-     * @param  string|null  $action
+     * @param int|null $resultCount
+     * @param bool|null $extended
+     * @param string|null $action
      */
     public function mount(?int $resultCount = null, ?bool $extended = false, ?string $action = null)
     {

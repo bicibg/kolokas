@@ -133,35 +133,6 @@ class RecipeEdit extends Component
         return view('livewire.recipe-create');
     }
 
-    protected function rules()
-    {
-        $rules = [
-            'title.' . $this->locale => [
-                'bail',
-                'required',
-                Rule::unique('recipes', 'title')->where(function ($query) {
-                    $query->where('user_id', auth()->user()->id);
-                })
-            ],
-            'description.' . $this->locale => 'max:4000',
-            'categories' => 'required|array',
-            'ingredients.' . $this->locale => 'required',
-            'instructions.' . $this->locale => 'required',
-            'prep_time' => 'integer',
-            'cook_time' => 'integer',
-            'servings.' . $this->locale => 'required|max:64',
-            'notes.' . $this->locale => 'max:4000',
-            'agreement' => 'accepted',
-            'images.*' => 'image|mimes:jpeg,jpg,png',
-            'images' => 'array|max:' . $this->maxNewImages,
-        ];
-
-        if (!$this->existing_main_image) {
-            $rules['main_image'] = 'required|image|mimes:jpeg,jpg,png';
-        }
-        return $rules;
-    }
-
     public function submit()
     {
         if (!$this->recipe->author->is(auth()->user())) {
@@ -276,7 +247,7 @@ class RecipeEdit extends Component
                 // other photos
                 if (count($this->images)) {
                     foreach ($this->images as $file) {
-                        $filename = $this->recipe->id .'_' . uniqid() . '_' . $file->getClientOriginalName();
+                        $filename = $this->recipe->id . '_' . uniqid() . '_' . $file->getClientOriginalName();
                         $extension = $file->getClientOriginalExtension();
 
                         $check = in_array($extension, $allowedfileExtension);
@@ -323,5 +294,34 @@ class RecipeEdit extends Component
         } else {
             $existing_images[] = $id;
         }
+    }
+
+    protected function rules()
+    {
+        $rules = [
+            'title.' . $this->locale => [
+                'bail',
+                'required',
+                Rule::unique('recipes', 'title')->where(function ($query) {
+                    $query->where('user_id', auth()->user()->id);
+                })
+            ],
+            'description.' . $this->locale => 'max:4000',
+            'categories' => 'required|array',
+            'ingredients.' . $this->locale => 'required',
+            'instructions.' . $this->locale => 'required',
+            'prep_time' => 'integer',
+            'cook_time' => 'integer',
+            'servings.' . $this->locale => 'required|max:64',
+            'notes.' . $this->locale => 'max:4000',
+            'agreement' => 'accepted',
+            'images.*' => 'image|mimes:jpeg,jpg,png',
+            'images' => 'array|max:' . $this->maxNewImages,
+        ];
+
+        if (!$this->existing_main_image) {
+            $rules['main_image'] = 'required|image|mimes:jpeg,jpg,png';
+        }
+        return $rules;
     }
 }

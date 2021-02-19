@@ -22,7 +22,7 @@ class ChangePasswordController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @param  PasswordChangeRequest  $request
+     * @param PasswordChangeRequest $request
      * @return RedirectResponse
      */
     public function store(PasswordChangeRequest $request)

@@ -12,7 +12,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories =  [
+        $categories = [
             [
                 "tr" => "Atıştırmalık",
                 "en" => "Snack",

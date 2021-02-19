@@ -19,8 +19,8 @@ use Illuminate\Database\Eloquent\Factory;
 */
 
 $factory->define(/**
- * @param  Faker  $faker
- * @param  array  $attr
+ * @param Faker $faker
+ * @param array $attr
  * @return array
  */ Profile::class, function (Faker $faker, $attr = []) {
     $email = $faker->unique()->safeEmail;

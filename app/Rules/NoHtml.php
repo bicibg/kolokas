@@ -19,11 +19,12 @@ class NoHtml implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed $value
      * @return bool
      */
-    public function passes($attribute, $value){
+    public function passes($attribute, $value)
+    {
         return strip_tags($value) === $value;
     }
 
@@ -33,7 +34,8 @@ class NoHtml implements Rule
      *
      * @return string
      */
-    public function message(){
+    public function message()
+    {
         return __('validation.custom.nohtml');
     }
 }
