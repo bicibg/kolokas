@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Casts\SplitList;
 use App\Traits\Favouritable;
 use App\Traits\Visitable;
 use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
@@ -35,10 +35,7 @@ class Recipe extends Model
         'updated_by',
         'published',
     ];
-    protected $casts = [
-        'ingredients' => SplitList::class,
-        'instructions' => SplitList::class,
-    ];
+
     protected $with = ['author', 'images'];
     protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount', 'mainImage'];
 
@@ -92,6 +89,28 @@ class Recipe extends Model
     public function getCookTimeAttribute($value): CarbonInterval
     {
         return CarbonInterval::minutes($value)->cascade();
+    }
+
+    public function getIngredientsAttribute($value): \Illuminate\Support\Collection
+    {
+        $arr = Str::of($value)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
+        foreach ($arr as $key => $string) {
+            if (empty($string)) {
+                unset ($arr[$key]);
+            }
+        }
+        return $arr;
+    }
+
+    public function getInstructionsAttribute($value): \Illuminate\Support\Collection
+    {
+        $arr = Str::of($value)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
+        foreach ($arr as $key => $string) {
+            if (empty($string)) {
+                unset ($arr[$key]);
+            }
+        }
+        return $arr;
     }
 
     /**
