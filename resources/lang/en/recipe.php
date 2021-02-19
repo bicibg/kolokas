@@ -24,6 +24,7 @@ return [
     'minutes' => ':minute minute|:minute minutes',
     'create' => [
         'title' => 'Create your recipe',
+        'edit' => 'Edit your recipe',
         'description' => 'Description',
         'media' => 'Media',
         'meta' => 'Meta Information',

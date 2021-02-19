@@ -49,7 +49,7 @@ class Recipe extends Model
     /**
      * @return string
      */
-    public function getUrlAttribute()
+    public function getUrlAttribute(): string
     {
         return route('recipe.show', $this);
     }
@@ -69,7 +69,7 @@ class Recipe extends Model
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
@@ -81,7 +81,7 @@ class Recipe extends Model
      *
      * @return CarbonInterval
      */
-    public function getPrepTimeAttribute($value)
+    public function getPrepTimeAttribute($value): CarbonInterval
     {
         return CarbonInterval::minutes($value)->cascade();
     }
@@ -93,7 +93,7 @@ class Recipe extends Model
      *
      * @return CarbonInterval
      */
-    public function getCookTimeAttribute($value)
+    public function getCookTimeAttribute($value): CarbonInterval
     {
         return CarbonInterval::minutes($value)->cascade();
     }
@@ -103,7 +103,7 @@ class Recipe extends Model
      *
      * @return CarbonInterval
      */
-    public function getTotalTime()
+    public function getTotalTime(): CarbonInterval
     {
         $totalTime = clone $this->getAttribute('prep_time');
 
@@ -113,7 +113,7 @@ class Recipe extends Model
     /**
      * Get the author that wrote the recipe.
      */
-    public function author()
+    public function author(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo('App\Models\User', 'user_id');
     }
@@ -124,7 +124,7 @@ class Recipe extends Model
         });
     }
 
-    public function images()
+    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany('App\Models\RecipeImage');
     }
@@ -134,7 +134,7 @@ class Recipe extends Model
         return $this->hasOne('App\Models\RecipeImage')->where('main', true)->first();
     }
 
-    public function categories()
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany('App\Models\Category')->withTimestamps();
     }

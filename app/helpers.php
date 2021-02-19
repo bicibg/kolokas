@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\ViewErrorBag;
 use Stevebauman\Location\Facades\Location;
 
 
@@ -9,9 +8,9 @@ use Stevebauman\Location\Facades\Location;
  * Generates random image; temporary fix for current issue.
  * @link https://github.com/fzaninotto/Faker/issues/1884
  *
- * @param  string  $path
- * @param  int  $width
- * @param  int  $height
+ * @param string $path
+ * @param int $width
+ * @param int $height
  * @return string|bool
  */
 function saveRandomImage(string $path, int $width = 640, int $height = 480)
@@ -66,7 +65,8 @@ function translate($text, $to)
     ]);
 }
 
-function getLocationString() {
+function getLocationString()
+{
     if ($position = Location::get(request()->getClientIp())) {
         $location = '';
         if ($position->cityName) {
@@ -82,4 +82,26 @@ function getLocationString() {
         $location = 'Unknown';
     }
     return $location;
+}
+
+function getFile($url)
+{
+    //get name file by url and save in object-file
+    $path_parts = pathinfo($url);
+    //get image info (mime, size in pixel, size in bits)
+    $newPath = $path_parts['dirname'] . '/tmp-files/';
+    if (!is_dir($newPath)) {
+        mkdir($newPath, 0777);
+    }
+    $newUrl = $newPath . $path_parts['basename'];
+    copy($url, $newUrl);
+    $imgInfo = getimagesize($newUrl);
+    $file = new \Illuminate\Http\UploadedFile(
+        $newUrl,
+        $path_parts['basename'],
+        $imgInfo['mime'],
+        filesize($url),
+        TRUE,
+    );
+    return $file;
 }

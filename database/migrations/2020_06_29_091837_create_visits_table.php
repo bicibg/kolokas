@@ -19,6 +19,7 @@ class CreateVisitsTable extends Migration
             $table->unsignedInteger('visited_id');
             $table->string('visited_type', 50);
             $table->string("ip");
+            $table->string('location')->nullable()->default('Unknown');
             $table->string("agent");
             $table->foreignId('user_id')->nullable();
             $table->timestamps();

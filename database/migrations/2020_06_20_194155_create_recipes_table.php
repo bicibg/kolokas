@@ -18,7 +18,7 @@ class CreateRecipesTable extends Migration
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->onDelete('cascade');
-            $table->string('title');
+            $table->text('title');
             $table->string('slug');
             $table->text('description')->nullable();
             $table->text('ingredients');
@@ -26,7 +26,7 @@ class CreateRecipesTable extends Migration
             $table->text('notes')->nullable();
             $table->unsignedBigInteger('prep_time')->default(0)->nullable();   //minutes
             $table->unsignedBigInteger('cook_time')->default(0)->nullable();   //minutes
-            $table->string('servings')->nullable();       //how many servings
+            $table->text('servings')->nullable();       //how many servings
             $table->boolean('published')->default(false);
             $table->boolean('featured')->default(false);
             $table->softDeletes();

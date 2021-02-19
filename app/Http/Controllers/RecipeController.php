@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RecipeCreateRequest;
 use App\Http\Requests\RecipeUpdateRequest;
 use App\Models\Profile;
 use App\Models\Recipe;
 use App\Models\User;
 use Exception;
-use GoogleTranslate;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -25,16 +22,6 @@ class RecipeController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
-    }
-
-    /***
-     * @param  User  $user
-     * @return Application|Factory|View
-     */
-    public function myIndex(User $user)
-    {
-        $recipes = Recipe::whereUserId($user->id)->get();
-        return view('recipe.my-index', compact('recipes'));
     }
 
     /**
@@ -108,93 +95,9 @@ class RecipeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  RecipeCreateRequest  $request
-     * @return RedirectResponse
-     */
-    public function store(RecipeCreateRequest $request/*RecipeCreateRequest $request*/)
-    {
-        $data = [];
-
-        $localeLang = $request->validated();
-        foreach ($request->get('lang') as $lang => $values) {
-            if ($lang === app()->getLocale()) {
-                continue;
-            }
-            foreach ($values as $key => $value) {
-                if (empty($value) && !empty($localeLang[$key])) {
-                    $data[$lang][$key] = translate($localeLang[$key], $lang);
-                } else {
-                    $data[$lang][$key] = $value;
-                }
-            }
-        }
-        $data[app()->getLocale()] = $localeLang;
-
-
-        DB::transaction(function () use ($request) {
-            $recipe = Recipe::create([
-                'title' => $request->get('title'),
-                'description' => $request->get('description'),
-                'ingredients' => $request->get('ingredients'),
-                'instructions' => $request->get('instructions'),
-                'notes' => $request->get('notes'),
-                'prep_time' => $request->get('prep_time'),
-                'cook_time' => $request->get('cook_time'),
-                'servings' => $request->get('servings'),
-                'user_id' => auth()->id(),
-            ]);
-
-            foreach ($request->get('categories') as $category) {
-                $recipe->categories()->attach($category);
-            }
-
-            $allowedfileExtension = ['jpg', 'png'];
-            $mainPhoto = $request->file('main_image');
-            //main photo
-            $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
-            $extension = $mainPhoto->getClientOriginalExtension();
-            $check = in_array($extension, $allowedfileExtension);
-            if ($check) {
-                $filename .= '.' . $extension;
-                if (Storage::putFileAs('public/images/recipes/', $mainPhoto, $filename)) {
-                    $recipe->images()->create([
-                        'url' => 'images/recipes/' . $filename,
-                        'main' => 1
-                    ]);
-                }
-            }
-
-            // other photos
-            if ($request->hasFile('images')) {
-                $photos = $request->file('images');
-                foreach ($photos as $file) {
-                    $filename = $recipe->id . '_' . $file->getClientOriginalName() . '_' . uniqid();
-                    $extension = $file->getClientOriginalExtension();
-                    $check = in_array($extension, $allowedfileExtension);
-                    if ($check) {
-                        $filename .= '.' . $extension;
-                        if (Storage::putFileAs('public/images/recipes/', $file, $filename)) {
-                            $recipe->images()->create([
-                                'url' => 'images/recipes/' . $filename,
-                                'main' => 0
-                            ]);
-                        }
-                    }
-                }
-            }
-        });
-
-        return redirect()->to(route('my.index'))->with([
-            'flash' => __('messages.recipe.submitted')
-        ]);
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  Recipe  $recipe
+     * @param Recipe $recipe
      * @return RedirectResponse|Application|Factory|View
      */
     public function show(Recipe $recipe)
@@ -211,17 +114,15 @@ class RecipeController extends Controller
 
     public function myRecipes()
     {
-        $recipes = auth()->user()->recipes();
-        $published = $recipes->wherePublished(false)->get();
-
-        $pending = $recipes->wherePublished(false)->get();
+        $published = auth()->user()->recipes()->wherePublished(true)->get();
+        $pending = auth()->user()->recipes()->where('published', false)->get();
         return view('recipe.my-index', compact('published', 'pending'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Recipe  $recipe
+     * @param Recipe $recipe
      * @return Application|Factory|View|RedirectResponse
      */
     public function edit(Recipe $recipe)
@@ -233,97 +134,9 @@ class RecipeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  RecipeUpdateRequest  $request
-     * @param  Recipe  $recipe
-     * @return RedirectResponse
-     */
-    public function update(RecipeUpdateRequest $request, Recipe $recipe)
-    {
-        if (!$recipe->author->is(auth()->user())) {
-            return redirect(route('home'))->with(['flash-error' => __('messages.recipe.edit_not_authorized')]);
-        }
-        DB::transaction(function () use ($request, $recipe) {
-            $data = [
-                'description' => $request->get('description'),
-                'ingredients' => $request->get('ingredients'),
-                'instructions' => $request->get('instructions'),
-                'notes' => $request->get('instructions'),
-                'prep_time' => $request->get('prep_time'),
-                'cook_time' => $request->get('cook_time'),
-                'servings' => $request->get('servings'),
-            ];
-            try {
-                $recipe->update($data);
-
-                $recipe->categories()->detach();
-                foreach ($request->get('categories') as $category) {
-                    $recipe->categories()->attach($category);
-                }
-
-                $allowedfileExtension = ['jpg', 'png'];
-
-                if ($request->hasFile('main_image')) {
-                    $mainPhoto = $request->file('main_image');
-                    //main photo
-                    $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
-                    $extension = $mainPhoto->getClientOriginalExtension();
-                    $check = in_array($extension, $allowedfileExtension);
-                    if ($check) {
-                        $filename .= '.' . $extension;
-                        $oldImage = $recipe->images()->whereMain(true)->first();
-                        if (Storage::putFileAs('public/images/recipes/', $mainPhoto, $filename)) {
-                            if (file_exists($oldImage->getAttributes()['url'])) {
-                                Storage::delete($oldImage->getAttributes()['url']);
-                            }
-                            $recipe->images()->whereMain(true)->update([
-                                'url' => 'images/recipes/' . $filename,
-                            ]);
-                        }
-                    }
-                }
-
-                $existing = $recipe->images()->whereMain(false)->pluck('id')->toArray();
-                $toBeDeleted = $recipe->images()->find(array_diff($existing, $request->get('existing_images', [])));
-                // other photos
-                foreach ($toBeDeleted as $delete) {
-                    Storage::delete($delete->url);
-                    $delete->delete();
-                }
-
-                if ($request->hasFile('images')) {
-                    $photos = $request->file('images');
-                    foreach ($photos as $file) {
-                        $filename = $recipe->id . '_' . $file->getClientOriginalName() . '_' . uniqid();
-                        $extension = $file->getClientOriginalExtension();
-                        $check = in_array($extension, $allowedfileExtension);
-                        if ($check) {
-                            $filename .= '.' . $extension;
-                            if (Storage::putFileAs('public/images/recipes/', $file, $filename)) {
-                                $recipe->images()->create([
-                                    'url' => 'images/recipes/' . $filename,
-                                    'main' => 0
-                                ]);
-                            }
-                        }
-                    }
-                }
-                DB::commit();
-            } catch (Exception $e) {
-                DB::rollBack();
-            }
-        });
-
-        return redirect()->to(route('recipe.edit', $recipe->fresh()))->with([
-            'flash' => __('messages.recipe.updated')
-        ]);
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
-     * @param  Recipe  $recipe
+     * @param Recipe $recipe
      * @return Response
      */
     public function destroy(Recipe $recipe)

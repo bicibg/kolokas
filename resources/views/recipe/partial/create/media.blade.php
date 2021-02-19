@@ -12,7 +12,11 @@
                     @if(!empty($main_image))
                         <div class="user-image mb-3">
                             <div class="imgPreview">
-                                <img src="{{ $main_image->temporaryUrl() }}" alt="">
+                                @if(method_exists($main_image, 'temporaryUrl'))
+                                    <img src="{{ $main_image->temporaryUrl() }}" alt="">
+                                @else
+                                    <img src="{{ $main_image->url }}" alt="">
+                                @endif
                             </div>
                         </div>
                     @endif
@@ -35,7 +39,11 @@
                         <div class="user-image mb-3">
                             <div class="imgPreview">
                                 @foreach($images as $image)
-                                    <img src="{{ $image->temporaryUrl() }}" alt="">
+                                    @if(method_exists($image,'temporaryUrl'))
+                                        <img src="{{ $image->temporaryUrl() }}" alt="">
+                                    @else
+                                        <img src="{{ $image->url }}" alt="">
+                                    @endif
                                 @endforeach
                             </div>
                         </div>

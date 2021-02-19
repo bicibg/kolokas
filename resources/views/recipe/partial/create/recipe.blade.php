@@ -31,7 +31,7 @@
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  wire:model.defer="ingredients.{{ $lang }}"
+                                  wire:model="ingredients.{{ $lang }}"
                                   name="ingredients.{{ $lang }}">{{ $ingredients[$lang] }}</textarea>
                         <small id="ingredientsHelp" class="footnote form-text text-muted font-italic">
                             {{__('recipe.create.one_ingredient_per_line') }}
@@ -56,7 +56,7 @@
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  wire:model.defer="instructions.{{ $lang }}"
+                                  wire:model="instructions.{{ $lang }}"
                                   name="instructions.{{ $lang }}">{{ $instructions[$lang] }}</textarea>
                         <small id="instructionsHelp" class="footnote form-text text-muted font-italic">
                             {{__('recipe.create.add_all_cooking_instructions') }}
@@ -81,7 +81,7 @@
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  wire:model.defer="notes.{{ $lang }}"
+                                  wire:model="notes.{{ $lang }}"
                                   name="notes.{{ $lang }}">{{ $notes[$lang] }}</textarea>
                         <small id="notesHelp" class="footnote form-text text-muted font-italic">
                             {{__('recipe.create.add_notes') }}

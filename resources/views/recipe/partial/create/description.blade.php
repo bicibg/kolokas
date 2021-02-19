@@ -29,7 +29,7 @@
                     <div class="col-md-8">
                         <input type="text"
                                class="form-control"
-                               wire:model.defer="title.{{ $lang }}"
+                               wire:model="title.{{ $lang }}"
                                name="title.{{ $lang }}"
                                id="title_{{ $lang }}">
                     </div>
@@ -53,7 +53,7 @@
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  wire:model.defer="description.{{ $lang }}"
+                                  wire:model="description.{{ $lang }}"
                                   name="description.{{ $lang }}">{{ $description[$lang] }}</textarea>
                         <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
                             {{ __('recipe.create.description_text') }}
