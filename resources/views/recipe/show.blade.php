@@ -34,22 +34,22 @@
                                    title="Printer Friendly, PDF &amp; Email">
                                     <i class="fa fa-print"></i>
                                     <span class="d-inline-block">
-                                        {{ __('general.print') }}
+                                        {{ __('trx.print') }}
                                     </span>
                                 </a>
                                 <a data-toggle="modal"
                                    href="javascript:void(0);"
                                    data-target="#popup-social-{{ $recipe->slug }}"
-                                   title="{{ __('recipe.share') }}">
+                                   title="{{ __('trx.share') }}">
                                     <i class="fa fa-share"></i>
                                     <span class="d-inline-block">
-                                        {{ __('recipe.share') }}
+                                        {{ __('trx.share') }}
                                     </span>
                                 </a>
                             </div>
                             <ul>
                                 @if ($recipe->getAttributes()['prep_time'])
-                                    <li>{{ __('recipe.prep_time') }}
+                                    <li>{{ __('trx.prep_time') }}
                                         <strong>
                                             <i class="fa fa-clock-o"></i>
                                             {{ $recipe->prep_time }}
@@ -57,7 +57,7 @@
                                     </li>
                                 @endif
                                 @if ($recipe->getAttributes()['cook_time'])
-                                    <li>{{ __('recipe.cook_time') }}
+                                    <li>{{ __('trx.cook_time') }}
                                         <strong>
                                             <i class="fa fa-clock-o"></i>
                                             {{ $recipe->cook_time }}
@@ -65,9 +65,9 @@
                                     </li>
                                 @endif
                                 @if ($recipe->getAttributes()['servings'])
-                                    <li>{{ __('recipe.servings') }}
+                                    <li>{{ __('trx.servings') }}
                                         <strong>
-                                            {{ __('recipe.servings_for', ['for' => $recipe->servings]) }}
+                                            {{ __('trx.servings_for', ['for' => $recipe->servings]) }}
                                         </strong>
                                     </li>
                                 @endif
@@ -81,7 +81,7 @@
                                 </p>
                             </div>
                             <div class="col-md-5 col-sm-12">
-                                <h3 class="section-title">{{ __('recipe.ingredients') }}</h3>
+                                <h3 class="section-title">{{ __('trx.ingredients') }}</h3>
                                 <div class="ingredients-list">
                                     <ul class="ingredient-check">
                                         @foreach($recipe->ingredients as $key => $ingredient)
@@ -102,7 +102,7 @@
                             <div class="col-md-7 col-sm-12">
                                 <div class="directions">
                                     <!-- Directions -->
-                                    <h3 class="section-title">{{ __('recipe.instructions') }}</h3>
+                                    <h3 class="section-title">{{ __('trx.instructions') }}</h3>
                                     <div class="instructions">
                                         <ol>
                                             @foreach($recipe->instructions as $instruction)

@@ -31,15 +31,15 @@ window.gtranslate = function gtranslate(from, to, context) {
     let toEl = document.getElementById(context + '_' + to);
 
     if (!fromEl.value.length) {
-        flash(__('general.translation_source_missing', {source: __('recipe.' + context)}), 'error')
+        flash(__('trx.translation_source_missing', {source: __('recipe.' + context)}), 'error')
         return;
     }
     if (toEl.value.length) {
-        flash(__('general.translation_target_filled', {target: __('recipe.' + context)}), 'error')
+        flash(__('trx.translation_target_filled', {target: __('recipe.' + context)}), 'error')
         return;
     }
     if (translationsDone >= maxTranslations) {
-        flash(__('general.translation_limit_reached'), 'error')
+        flash(__('trx.translation_limit_reached'), 'error')
         return;
     }
     if (fromEl.value.length && !toEl.value.length && translationsDone < maxTranslations) {

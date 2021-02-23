@@ -25,22 +25,13 @@ class ContactController extends Controller
             'user_message' => ['required', 'string', new NoHtml]
         ]);
 
-        // redirect to contact form with message
-        try {
-            Mail::send('emails.contact',
-                [
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'subject' => $request->subject,
-                    'user_message' => $request->user_message,
-                ], function ($message) use ($request) {
-                    $message->from($request->email);
-                    $message->to(env('APP_ADMIN_CONTACT'));
-                });
-        } catch (Exception $e) {
-            Log::error('Failed to send contact us mail: ' . $e->getMessage());
-            Log::error($e->getTraceAsString());
-        }
-        return redirect()->to('/')->with('flash', __('general.contact.message_sent'));
+        // todo: save this to DB
+        /*
+         * 'name' => $request->name,
+                'email' => $request->email,
+                'subject' => $request->subject,
+                'user_message' => $request->user_message,
+         */
+        return redirect()->to('/')->with('flash', __('trx.contact_form_sent'));
     }
 }

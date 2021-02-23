@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('passwords.reset_password') }}</div>
+                    <div class="card-header">{{ __('trx.passwords.reset_password') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -19,7 +19,7 @@
 
                             <div class="form-group row">
                                 <label for="email"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('auth.email') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('trx.email') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -37,7 +37,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <base-button :role="'submit'">
-                                        {{ __('auth.send_reset_link') }}
+                                        {{ __('trx.password.send_reset_link') }}
                                     </base-button>
                                 </div>
                             </div>

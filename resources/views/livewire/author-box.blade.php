@@ -12,7 +12,7 @@
         @endphp
         <span>
             <i class="fa fa-spoon"></i>
-            {{ $profile->user->recipes->count() }} {{ trans_choice('recipe.recipe', $profile->user->recipes->count()) }}
+            {{ $profile->user->recipes->count() }} {{ trans_choice('trx.recipe', $profile->user->recipes->count()) }}
         </span>
     </div>
     <div class="recipe-content">

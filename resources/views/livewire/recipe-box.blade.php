@@ -5,21 +5,21 @@
 
         @if ($recipe->author->is(auth()->user()))
             <a href="{{ route('recipe.edit', $recipe) }}">
-                <div class="hover-button hover-button-first">{{ __('recipe.edit') }}</div>
+                <div class="hover-button hover-button-first">{{ __('trx.edit') }}</div>
             </a>
             <div class="clearfix"></div>
             <a href="{{ $recipe->url }}">
-                <div class="hover-button hover-button-second">{{ __('recipe.view') }}</div>
+                <div class="hover-button hover-button-second">{{ __('trx.view') }}</div>
             </a>
         @else
             <a href="{{ $recipe->url }}">
-                <div class="hover-button">{{ __('recipe.view') }}</div>
+                <div class="hover-button">{{ __('trx.view') }}</div>
             </a>
         @endif
     </div>
     <div class="recipe-meta text-center">
-        <span><i class="fa fa-heart"></i> {{ $recipe->favourites->count() }} {{ trans_choice('general.like', $recipe->favourites->count() ) }}</span>
-        <span><i class="fa fa-eye"></i> {{ $recipe->visitsCount }}  {{ trans_choice('general.view', $recipe->visitsCount ) }}</span>
+        <span><i class="fa fa-heart"></i> {{ $recipe->favourites->count() }} {{ trans_choice('trx.likes', $recipe->favourites->count() ) }}</span>
+        <span><i class="fa fa-eye"></i> {{ $recipe->visitsCount }}  {{ trans_choice('trx.views', $recipe->visitsCount ) }}</span>
     </div>
     <div class="recipe-content">
         <h3>
@@ -59,9 +59,9 @@
     </div>
     <div class="recipe-buttons">
         <a href="javascript:void(0);"
-           title="{{ __('general.add_to_favourites') }}"
+           title="{{ __('trx.add_to_favourites') }}"
            wire:click="favourite"><i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i></a>
-        <a data-toggle="modal" href="javascript:void(0);" data-target="#popup-social-{{ $recipe->slug }}" title="{{ __('recipe.share') }}">
+        <a data-toggle="modal" href="javascript:void(0);" data-target="#popup-social-{{ $recipe->slug }}" title="{{ __('trx.share') }}">
             <i class="fa fa-share"></i>
         </a>
     </div>

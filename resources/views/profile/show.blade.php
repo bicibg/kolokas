@@ -6,17 +6,17 @@
             <div class="col-xs-12 col-sm-8">
                 <h2>{{ $profile->name }}</h2>
                 @if ($profile->info)
-                    <p><strong>{{ __('profile.about') }}: </strong> {{ $profile->info }} </p>
+                    <p><strong>{{ __('trx.about') }}: </strong> {{ $profile->info }} </p>
                 @endif
                 @if ($profile->city)
                     <p>
-                        <strong>{{ __('profile.city') }}: </strong> {{ $profile->city }}
+                        <strong>{{ __('trx.city') }}: </strong> {{ $profile->city }}
                     </p>
                 @endif
             </div>
             <div class="col-12 col-sm-4 text-center border-left border-darker">
                 @if ($profile->website || $profile->facebook || $profile->instagram || $profile->twitter || $profile->pinterest)
-                    <h6><strong>{{ __('profile.social_media') }}</strong></h6>
+                    <h6><strong>{{ __('trx.social_media') }}</strong></h6>
                 @endif
                 @if($profile->website)
                     <p>
@@ -57,7 +57,7 @@
                     <div class="col-md-12">
                         <h5 class="text-center">
                             <i class="fa fa-cutlery" aria-hidden="true"></i>
-                            {{ __(trans_choice('recipe.recipes_found', $recipes->count(), ['number' => $recipes->count()])) }}
+                            {{ __(trans_choice('trx.recipes_found', $recipes->count(), ['number' => $recipes->count()])) }}
                         </h5>
                     </div>
                     <div class="col-md-12">
@@ -68,7 +68,7 @@
                                 </div>
                             @empty
                                 <div class="col-md-12">
-                                    This is user has currently no recipes.
+                                    {{ __('trx.user_no_recipes') }}
                                 </div>
                             @endforelse
                         </div>
@@ -76,9 +76,6 @@
 
                 </div>
             @endif
-
-
-
         </div>
 
         {{--            <div class="col-md-8 justify-content-center">--}}

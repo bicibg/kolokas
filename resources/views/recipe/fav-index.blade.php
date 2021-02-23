@@ -6,7 +6,7 @@
         <div class="row justify-content-center text-center">
             <div class="col-md-12">
                 <div class="heading">
-                    <h2>{{ __('nav.my_favourites') }}</h2>
+                    <h2>{{ __('trx.my_favourites') }}</h2>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     @livewire('recipe-box', ['recipe'=>$recipe])
                 </div>
             @empty
-                <span>{{ __('recipe.no_favourites') }}</span>
+                <span>{{ __('trx.no_favourites') }}</span>
             @endforelse
         </div>
         <div class="d-flex justify-content-center">

@@ -3,7 +3,7 @@
         <fieldset>
             <div class="form-row mb-2">
                 <div class="col-md-12" wire:ignore>
-                    <label class="required col-form-label" for="categories">Categories:</label>
+                    <label class="required col-form-label" for="categories">{{ __('trx.categories') }}:</label>
                     <select class="categories-picker form-control"
                             multiple
                             wire:model.defer="categories"
@@ -18,42 +18,42 @@
                                 {{ $category->name }}</option>
                         @endforeach
                     </select>
-                    <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
-                        You can select multiple categories.
+                    <small class="footnote form-text text-muted font-italic">
+                        {{ __('trx.categories_help') }}
                     </small>
                 </div>
             </div>
             <div class="form-row mb-2">
                 <div class="col-md-6">
-                    <label class="required col-form-label" for="prep_time">Prep Time:</label>
+                    <label class="required col-form-label" for="prep_time">{{ __('trx.prep_time') }}:</label>
                     <input type="number"
                            class="form-control"
                            wire:model.defer="prep_time"
                            name="prep_time"
                            id="prep_time"
-                           placeholder="{{ __('recipe.in_minutes') }}">
+                           placeholder="{{ __('trx.in_minutes') }}">
                 </div>
                 <div class="col-md-6">
-                    <label class="required col-form-label" for="cook_time">Cook Time:</label>
+                    <label class="required col-form-label" for="cook_time">{{ __('trx.cook_time') }}:</label>
                     <input type="number"
                            class="form-control"
                            wire:model.defer="cook_time"
                            name="cook_time"
                            id="cook_time"
-                           placeholder="{{ __('recipe.in_minutes') }}">
+                           placeholder="{{ __('trx.in_minutes') }}">
                 </div>
             </div>
             <div class="form-row mb-2">
                 <div class="col-md-6">
-                    <label class="required col-form-label" for="servings">Servings:</label>
+                    <label class="required col-form-label" for="servings">{{ __('trx.servings') }}:</label>
                     <input type="text"
                            class="form-control"
                            wire:model.defer="servings.{{ $lang }}"
                            name="servings.{{ $lang }}"
                            id="servings_{{ $lang }}"
-                           placeholder="{{ __('recipe.no_of_servings') }}">
+                           placeholder="{{ __('trx.no_of_servings') }}">
                     <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
-                    {{ 'recipe.servings_note' }} <!-- Ex. 3 Scoops -->
+                        {{ __('trx.servings_helper') }}
                     </small>
                 </div>
             </div>

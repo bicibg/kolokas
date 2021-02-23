@@ -81,12 +81,12 @@
             alertPrefix: function () {
                 switch (this.internal_type) {
                     case 'warning':
-                        return this.__('messages.flash.warning') + '!';
+                        return this.__('trx.flash.warning') + '!';
                     case 'error':
-                        return this.__('messages.flash.error') + '!';
+                        return this.__('trx.flash.error') + '!';
                     case 'success':
                     default:
-                        return this.__('messages.flash.success') + '!';
+                        return this.__('trx.flash.success') + '!';
 
                 }
             },

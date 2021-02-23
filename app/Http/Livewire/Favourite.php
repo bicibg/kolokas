@@ -20,10 +20,10 @@ class Favourite extends Component
     public function render()
     {
         return <<<'blade'
-            <a href="javascript:void(0);" title="{{ __('general.add_to_favourites') }}" wire:click="favourite">
+            <a href="javascript:void(0);" title="{{ __('trx.add_to_favourites') }}" wire:click="favourite">
                 <i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i>
                 <span class="d-inline-block">
-                    {{ $recipe->favourites->count() }} {{ trans_choice('general.like', $recipe->favourites->count()) }}
+                    {{ $recipe->favourites->count() }} {{ trans_choice('trx.likes', $recipe->favourites->count()) }}
                 </span>
             </a>
         blade;
@@ -33,7 +33,7 @@ class Favourite extends Component
     {
         if (!auth()->check()) {
             //display warning
-            $this->emit('flash-error', null, 'messages.general.not_logged_in');
+            $this->emit('flash-error', null, 'trx.not_logged_in');
             return;
         }
         if ($this->recipe->isFavourited()) {

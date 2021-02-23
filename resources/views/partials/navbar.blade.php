@@ -19,7 +19,7 @@
                     class="nav-link"
                     href="{{ route('recipe.index') }}"
                 >
-                    {{ __('nav.recipes') }}
+                    {{ __('trx.recipes') }}
                 </a>
             </li>
             <li class="nav-item dropdown menu-large d-none d-md-block">
@@ -28,14 +28,14 @@
                    data-toggle="dropdown"
                    aria-haspopup="true"
                    aria-expanded="false">
-                    {{ __('nav.recipes') }}
+                    {{ __('trx.recipes') }}
                 </a>
 
                 <div class="dropdown-menu megamenu text-center">
                     <div class="row text-left m-row justify-content-between">
                         <div class="col-md-2">
                             <a class="d-inline d-flex dropdown-item"
-                               href="{{ route('recipe.index') }}">{{ __('nav.all_recipes') }}</a>
+                               href="{{ route('recipe.index') }}">{{ __('trx.all_recipes') }}</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </div>
@@ -52,23 +52,23 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('profile.index') }}">{{ __('nav.authors') }}</a>
+                <a class="nav-link" href="{{ route('profile.index') }}">{{ __('trx.authors') }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">
-                    <div>{{ __('nav.restaurants') }}</div>
-                    <small class="position-absolute" style="margin-top: -6px;">{{ __('general.coming_soon') }}</small>
+                    <div>{{ __('trx.restaurants') }}</div>
+                    <small class="position-absolute" style="margin-top: -6px;">{{ __('trx.coming_soon') }}</small>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">
-                    <div>{{ __('nav.events') }}</div>
-                    <small class="position-absolute" style="margin-top: -6px;">{{ __('general.coming_soon') }}</small>
+                    <div>{{ __('trx.events') }}</div>
+                    <small class="position-absolute" style="margin-top: -6px;">{{ __('trx.coming_soon') }}</small>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('contact.create') }}">
-                    <div>{{ __('nav.contact_us') }}</div>
+                    <div>{{ __('trx.contact_us') }}</div>
                 </a>
             </li>
 
@@ -79,7 +79,7 @@
                 <a class="nav-link login_button font-weight-bold"
                    id="show_login"
                    href="{{ route('recipe.create') }}">
-                    <i class="fa fa-plus-square"></i> {{ __('nav.submit_recipe') }}
+                    <i class="fa fa-plus-square"></i> {{ __('trx.submit_recipe') }}
                 </a>
             </li>
             <li class="nav-item d-md-none">
@@ -105,37 +105,37 @@
                 <li class="nav-item d-md-none">
                     <a class="nav-link login_button" id="show_login" href="{{ route('login') }}">
                         <i class="fa fa-key"></i>
-                        {{ __('auth.login') }}
+                        {{ __('trx.login') }}
                     </a>
                 </li>
                 <li class="nav-item d-md-none">
                     <a class="nav-link login_button" id="show_signup" href="{{ route('register') }}">
                         <i class="fa fa-lock"></i>
-                        {{ __('auth.create_account') }}
+                        {{ __('trx.create_account') }}
                     </a>
                 </li>
             @else
                 <li class="nav-item d-md-none">
                     <h6 class="dropdown-header">
-                        {{ __('auth.logged_in_as', ['name' => Auth::user()->name]) }}
+                        {{ __('trx.logged_in_as', ['name' => Auth::user()->name]) }}
                     </h6>
                 </li>
                 <li class="nav-item d-md-none">
                     <a class="nav-link" href="{{ route('profile.edit') }}">
                         <i class="fa fa-user"></i>
-                        {{ __('nav.my_profile') }}
+                        {{ __('trx.my_profile') }}
                     </a>
                 </li>
                 <li class="nav-item d-md-none">
                     <a class="nav-link" href="{{ route('recipe.my-index') }}">
                         <i class="fa fa-cutlery"></i>
-                        {{ __('nav.my_recipes') }}
+                        {{ __('trx.my_recipes') }}
                     </a>
                 </li>
                 <li class="nav-item d-md-none">
                     <a class="nav-link" href="{{ route('recipe.favourites') }}">
                         <i class="fa fa-heart-o"></i>
-                        {{ __('nav.my_favourites') }}
+                        {{ __('trx.my_favourites') }}
                     </a>
                 </li>
                 <li class="nav-item d-md-none">
@@ -145,7 +145,7 @@
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     >
                         <i class="fa fa-sign-out"></i>
-                        {{ __('auth.logout') }}
+                        {{ __('trx.logout') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                           style="display: none;">

@@ -5,7 +5,6 @@
                 <div class="row flex align-items-center bg-white py-2 m-0">
                     <div class="col-md-10">
                         <div class="icon-wrap">
-                            {{--                <i class="fa fa-search"></i>--}}
                             <svg version="1.1"
                                  xmlns="http://www.w3.org/2000/svg"
                                  width="20"
@@ -18,14 +17,14 @@
                                type="text"
                                name="sp"
                                value="{{ request()->get('sp') }}"
-                               placeholder="{{ __('general.keyword') }}...">
+                               placeholder="{{ __('trx.search_term') }}...">
                     </div>
                     <div class="col-md-2 text-center">
                         <div class="result-count mr-3">
-                            <span>{{ $resultCount }} </span>{{ trans_choice('profile.author', $resultCount) }}
+                            <span>{{ $resultCount }} </span>{{ trans_choice('trx.author', $resultCount) }}
                         </div>
                         <base-button :role="'submit'">
-                            {{ __('general.search') }}
+                            {{ __('trx.search') }}
                         </base-button>
                     </div>
                 </div>

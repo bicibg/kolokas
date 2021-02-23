@@ -3,12 +3,12 @@
         <fieldset>
             <div class="form-row mb-2">
                 <div class="col-md-12">
-                    <label class="col-form-label" for="main_image">Main Photo:</label>
+                    <label class="col-form-label" for="main_image">{{ __('trx.main_photo') }}:</label>
                     <div wire:loading.remove>
                         <input type="file" class="bg-none border-0 form-control" name="main_image"
                                id="main_image" wire:model.defer="main_image"/>
                     </div>
-                    <div wire:loading wire:target="main_image">Uploading main image...</div>
+                    <div wire:loading wire:target="main_image">{{ __('trx.main_photo_uploading') }}</div>
                     @if(!empty($main_image) || !empty($existing_main_image))
                         <div class="user-image mb-3">
                             <div class="imgPreview">
@@ -22,17 +22,17 @@
                     @endif
 
                     <small id="imageHelp" class="footnote form-text text-muted font-italic">
-                        This will be the main image for your recipe
+                        {{ __('trx.main_photo_helper') }}
                     </small>
                 </div>
                 <div class="col-md-12">
-                    <label class="col-form-label" for="images">Additional Photos (max {{ $maxNewImages }}):</label>
+                    <label class="col-form-label" for="images">{{ __('trx.additional_photos', ['value' => $maxNewImages]) }}:</label>
                     <div wire:loading.remove>
                         <input type="file" class="bg-none border-0 form-control" wire:model.defer="images"
                                multiple
                                id="images"/>
                     </div>
-                    <div wire:loading wire:target="images">Uploading images...</div>
+                    <div wire:loading wire:target="images">{{ __('trx.additional_photos_uploading') }}</div>
                     <div class="row">
                         @foreach($images as $image)
                             <div class="col-md-2 text-center">
@@ -43,9 +43,9 @@
                         @endforeach
                     </div>
                 </div>
-                @if ($recipe && $recipe->images()->whereMain(false)->count())
+                @if (isset($recipe) && $recipe->images()->whereMain(false)->count())
                     <div class="col-md-12">
-                        <label class="col-form-label" for="images">Existing Photos (uncheck to remove):</label>
+                        <label class="col-form-label" for="images">{{ __('trx.additional_photos_existing') }}:</label>
                         <div class="row" wire:ignore>
                             @foreach($recipe->images()->whereMain(false)->get() as $image)
                                 @if ($image->main) @continue @endif

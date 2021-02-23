@@ -36,7 +36,7 @@ class RecipeBox extends Component
     public function favourite()
     {
         if (!auth()->check()) {
-            $this->emit('flash-error', null, 'messages.general.not_logged_in');
+            $this->emit('flash-error', null, 'trx.not_logged_in');
             return;
         }
         if ($this->recipe->isFavourited()) {

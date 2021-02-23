@@ -60,11 +60,11 @@
                 @csrf
                 <div class="row justify-content-center">
                     <div class="col-md-7 col-sm-12 text-center border-bottom">
-                        <h3 class="section-title">{{ __('demo.no_access') }}</h3>
+                        <h3 class="section-title">{{ __('trx.no_access') }}</h3>
                     </div>
 
                     <div class="col-md-7 col-sm-12 text-center mt-2 mb-2">
-                        <h5 class="section-title">{!! __('demo.contact') !!}</h5>
+                        <h5 class="section-title">{!! __('trx.contact') !!}</h5>
                     </div>
 
                     <div class="col-md-6 col-sm-12">
@@ -74,15 +74,15 @@
                             </div>
                             <input type="text"
                                    class="form-control"
-                                   placeholder="{{ __('demo.access_key') }}"
-                                   aria-label="{{ __('demo.access_key') }}"
+                                   placeholder="{{ __('trx.access_key') }}"
+                                   aria-label="{{ __('trx.access_key') }}"
                                    aria-describedby="key"
                                    name="demo-key">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <base-button :role="'submit'">
-                            {{ __('demo.letmein') }}
+                            {{ __('trx.letmein') }}
                         </base-button>
                     </div>
                 </div>

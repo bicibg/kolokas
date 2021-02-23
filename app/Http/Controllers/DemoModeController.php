@@ -15,11 +15,11 @@ class DemoModeController extends Controller
     {
         if (!empty(request()->get('demo-key')) && request()->get('demo-key') === config('demo.demo_key')) {
             return redirect(route('home'))
-                ->with(['flash' => __('messages.demo.enabled')])
+                ->with(['flash' => __('trx.demo.enabled')])
                 ->withCookie(cookie('demo-activated', request()->get('demo-key'), 24 * 60));
         } else {
             return redirect(route('demo.index'))
-                ->with(['flash-error' => __('messages.demo.unsuccessful')]);
+                ->with(['flash-error' => __('trx.demo.unsuccessful')]);
         }
     }
 }

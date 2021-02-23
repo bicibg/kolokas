@@ -57,7 +57,7 @@ class ProfileController extends Controller
 
         auth()->user()->profile->update($data);
         return redirect()->back()->with([
-            'flash' => __('profile.update_success')
+            'flash' => __('trx.profile_update_success')
         ]);
     }
 }

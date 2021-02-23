@@ -6,7 +6,7 @@
         <div class="row justify-content-center text-center">
             <div class="col-md-12">
                 <div class="heading">
-                    <h3 class="section-title">{{ __('nav.authors') }}</h3>
+                    <h3 class="section-title">{{ __('trx.authors') }}</h3>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     @livewire('author-box', ['profile'=>$profile])
                 </div>
             @empty
-                <span>{{ __('profile.no_profiles_found') }}</span>
+                <span>{{ __('trx.no_profiles_found') }}</span>
             @endforelse
         </div>
         <div class="d-flex justify-content-center">

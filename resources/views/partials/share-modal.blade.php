@@ -35,7 +35,6 @@
                         </li>
                         <li>
                             <a class="whatsapp"
-                               {{--                               href="whatsapp://send?{{ urlencode($recipe->description . ': ' . $recipe->url) }}"--}}
                                href="https://api.whatsapp.com/send?text={{ urlencode($recipe->description . ': ' . $recipe->url) }}"
                                data-action="share/whatsapp/share"
                                target="_blank">

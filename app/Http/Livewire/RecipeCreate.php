@@ -25,6 +25,7 @@ class RecipeCreate extends Component
     public $tab3Check = false;
     public $tab4Check = false;
     public $canSubmit = false;
+    public $maxNewImages = 5;
 
     //description
     public $title = [
@@ -216,7 +217,7 @@ class RecipeCreate extends Component
             }
         });
 
-        session()->flash('message', __('messages.recipe.submitted'));
+        session()->flash('message', __('trx.recipe_submitted_message'));
 
         return redirect()->to(route('recipe.my-index'));
     }

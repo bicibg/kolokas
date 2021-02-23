@@ -8,9 +8,9 @@
                     aria-expanded="@if($lang === $langTab) true @else false @endif"
                     aria-controls="collapse_{{$lang}}"
                     wire:click="switchLangTab('{{$lang}}')">
-                {{ __('general.languages.' . $lang) }}
+                {{ __('trx.languages.' . $lang) }}
                 @if($lang !== app()->getLocale())
-                    ({{ __('recipe.create.can_be_auto_translated') }})
+                    ({{ __('trx.can_be_auto_translated') }})
                 @endif
             </button>
         </h2>
@@ -24,7 +24,7 @@
             <fieldset>
                 <div class="form-row mb-2">
                     <div class="col-md-2">
-                        <label class="col-form-label {{$lang === $locale ? 'required' : ''}}" for="title_{{ $lang }}">{{ __('recipe.title') }}:</label>
+                        <label class="col-form-label {{$lang === $locale ? 'required' : ''}}" for="title_{{ $lang }}">{{ __('trx.create_page_title') }}:</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text"
@@ -38,7 +38,7 @@
                             <a href="javascript:void(0)"
                                class="btn btn-link"
                                onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'title')">
-                                {!! __('general.translate', ['from' => __('general.languages.' . app()->getLocale()), 'to' => __('general.languages.' . $lang)]) !!}
+                                {!! __('trx.translate', ['from' => __('trx.languages.' . app()->getLocale()), 'to' => __('trx.languages.' . $lang)]) !!}
                             </a>
                         @endif
                     </div>
@@ -46,7 +46,7 @@
                 <div class="form-row mb-2">
                     <div class="col-md-2">
                         <label class="col-form-label"
-                               for="description_{{ $lang }}">{{ __('recipe.create.description') }}:</label>
+                               for="description_{{ $lang }}">{{ __('trx.recipe_description') }}:</label>
                     </div>
                     <div class="col-md-8">
                         <textarea id="description_{{ $lang }}"
@@ -56,7 +56,7 @@
                                   wire:model="description.{{ $lang }}"
                                   name="description.{{ $lang }}">{{ $description[$lang] }}</textarea>
                         <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
-                            {{ __('recipe.create.description_text') }}
+                            {{ __('trx.recipe_description_helper') }}
                         </small>
                     </div>
                     <div class="col-md-2">
@@ -64,7 +64,7 @@
                             <a href="javascript:void(0)"
                                class="btn btn-link"
                                onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'description')">
-                                {!! __('general.translate', ['from' => __('general.languages.' . app()->getLocale()), 'to' => __('general.languages.' . $lang)]) !!}
+                                {!! __('trx.translate', ['from' => __('trx.languages.' . app()->getLocale()), 'to' => __('trx.languages.' . $lang)]) !!}
                             </a>
                         @endif
                     </div>

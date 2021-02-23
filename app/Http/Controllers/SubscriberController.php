@@ -18,7 +18,7 @@ class SubscriberController extends Controller
         $newsletter = new Subscriber();
         $newsletter->email = $request->input('subscriber_email');
         if ($newsletter->save()) {
-            return redirect()->back()->with('flash', __('messages.general.subscription_success'));
+            return redirect()->back()->with('flash', __('trx.subscription_success'));
         } else {
             return redirect()->back()->withErrors($validator);
         }

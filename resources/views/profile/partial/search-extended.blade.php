@@ -6,10 +6,10 @@
                     <div class="col-md-12">
                         <div class="form-group input-field second-wrap">
                             <div class="input-group mb-3 has-clear">
-                                <input type="text" class="form-control" placeholder="{{ __('general.search') }}"
+                                <input type="text" class="form-control" placeholder="{{ __('trx.search') }}"
                                        value="{{ request()->get('sp') }}" name="sp" aria-describedby="clear">
                                 <div class="input-group-append form-control-clear form-control-feedback hidden">
-                                    <span class="input-group-text clear" id="clear">{{ __('general.clear') }}</span>
+                                    <span class="input-group-text clear" id="clear">{{ __('trx.clear') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -18,7 +18,7 @@
                         <div class="action-buttons w-100 text-center">
                             <base-button role="submit">
                                 <i class="fa fa-search"></i>
-                                {{ __('general.search') }}
+                                {{ __('trx.search') }}
                             </base-button>
                         </div>
                     </div>

@@ -98,7 +98,7 @@ class RecipeController extends Controller
     public function show(Recipe $recipe)
     {
         if (!$recipe->published) {
-            return redirect()->back()->with('flash-error', __('recipe.recipe_not_published'));
+            return redirect()->back()->with('flash-error', __('trx.recipe_cannot_be_displayed'));
         }
         $youMayAlsoLike = Recipe::with('categories')->whereHas('categories', function ($query) use ($recipe) {
             $query->whereIn('category_recipe.category_id',
@@ -123,7 +123,7 @@ class RecipeController extends Controller
     public function edit(Recipe $recipe)
     {
         if (!$recipe->author->is(auth()->user())) {
-            return redirect()->back()->with(['flash-error' => __('messages.recipe.edit_not_authorized')]);
+            return redirect()->back()->with(['flash-error' => __('trx.recipe_edit_not_authorized')]);
         }
         return view('recipe.edit', compact('recipe'));
     }

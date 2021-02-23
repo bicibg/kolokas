@@ -11,7 +11,7 @@
                 <a class="login_button font-weight-bold"
                    id="show_login"
                    href="{{ route('recipe.create') }}">
-                    <i class="fa fa-plus-square"></i> {{ __('nav.submit_recipe') }}
+                    <i class="fa fa-plus-square"></i> {{ __('trx.submit_recipe') }}
                 </a>
             </li>
             <li class="nav-item dropdown">
@@ -39,31 +39,31 @@
                 <li class="nav-item">
                     <a class="login_button" id="show_login" href="{{ route('login') }}">
                         <i class="fa fa-key"></i>
-                        {{ __('auth.login') }}
+                        {{ __('trx.login') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="login_button" id="show_signup" href="{{ route('register') }}">
                         <i class="fa fa-lock"></i>
-                        {{ __('auth.create_account') }}
+                        {{ __('trx.create_account') }}
                     </a>
                 </li>
             @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ __('auth.logged_in_as', ['name' => Auth::user()->name]) }} <span class="caret"></span>
+                        {{ __('trx.logged_in_as', ['name' => Auth::user()->name]) }} <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('nav.my_profile') }}</a>
-                        <a class="dropdown-item" href="{{ route('recipe.my-index') }}">{{ __('nav.my_recipes') }}</a>
-                        <a class="dropdown-item" href="{{ route('recipe.favourites') }}">{{ __('nav.my_favourites') }}</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('trx.my_profile') }}</a>
+                        <a class="dropdown-item" href="{{ route('recipe.my-index') }}">{{ __('trx.my_recipes') }}</a>
+                        <a class="dropdown-item" href="{{ route('recipe.favourites') }}">{{ __('trx.my_favourites') }}</a>
 
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form-topbar').submit();">
-                            {{ __('auth.logout') }}
+                            {{ __('trx.logout') }}
                         </a>
                         <form id="logout-form-topbar" action="{{ route('logout') }}" method="POST"
                               style="display: none;">

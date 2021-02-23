@@ -136,7 +136,7 @@ class RecipeEdit extends Component
     public function submit()
     {
         if (!$this->recipe->author->is(auth()->user())) {
-            session(['flash-error' => __('messages.recipe.edit_not_authorized')]);
+            session(['flash-error' => __('trx.recipe_edit_not_authorized')]);
             return redirect(route('home'));
         }
         $this->validate();
@@ -269,7 +269,7 @@ class RecipeEdit extends Component
                 DB::rollBack();
             }
         });
-        session()->flash('message', __('messages.recipe.updated'));
+        session()->flash('message', __('trx.recipe_updated'));
 
         return redirect()->to(route('recipe.my-index'));
     }

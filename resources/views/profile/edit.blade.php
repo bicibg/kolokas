@@ -6,7 +6,7 @@
         <div class="row justify-content-center kolokas-form">
             <div class="col-sm-12 col-md-8">
                 <div class="header text-left">
-                    <h2>{{ __('auth.account') }}</h2>
+                    <h2>{{ __('trx.account') }}</h2>
                     <hr>
                 </div>
             </div>
@@ -18,28 +18,30 @@
                             <fieldset>
                                 <div class="row">
                                     <div class="form-group col-md-12 col-sm-12">
-                                        <label for="email">{{ __('auth.email') }}</label>
+                                        <label for="email">{{ __('trx.email') }}</label>
                                         <input class="form-control-plaintext"
                                                readonly
                                                id="email"
                                                value="{{ auth()->user()->email }}">
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
-                                        <label for="current_password">{{ __('passwords.current_password') }} * </label>
+                                        <label for="current_password">{{ __('trx.passwords.current_password') }}
+                                            * </label>
                                         <input class="form-control input-lg"
                                                name="current_password"
                                                type="password"
                                                id="current_password">
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
-                                        <label for="new_password">{{ __('passwords.new_password') }} *</label>
+                                        <label for="new_password">{{ __('trx.passwords.new_password') }} *</label>
                                         <input class="form-control input-lg"
                                                name="new_password"
                                                type="password"
                                                id="new_password">
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
-                                        <label for="new_password_confirmation">{{ __('passwords.confirm_password') }}
+                                        <label
+                                            for="new_password_confirmation">{{ __('trx.passwords.confirm_password') }}
                                             *</label>
                                         <input class="form-control input-lg"
                                                name="new_password_confirmation"
@@ -48,7 +50,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <base-button :role="'submit'">
-                                            {{ __('passwords.update_password') }}
+                                            {{ __('trx.passwords.update_password') }}
                                         </base-button>
                                     </div>
                                 </div>
@@ -60,7 +62,7 @@
 
             <div class="col-sm-12 col-md-8 mt-5">
                 <div class="header text-left">
-                    <h2>{{ __('nav.my_profile') }}</h2>
+                    <h2>{{ __('trx.my_profile') }}</h2>
                     <hr>
                 </div>
             </div>
@@ -73,7 +75,7 @@
                             <fieldset>
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
-                                        <label for="name">{{ __('profile.name') }}</label>
+                                        <label for="name">{{ __('trx.name') }}</label>
                                         @include('partials.has-errors', ['field' => 'name'])
                                         <input class="form-control input-lg"
                                                name="name"
@@ -83,7 +85,7 @@
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">&nbsp;</div>
                                     <div class="form-group col-md-6 col-sm-12">
-                                        <label for="city">{{ __('profile.city') }}</label>
+                                        <label for="city">{{ __('trx.city') }}</label>
                                         @include('partials.has-errors', ['field' => 'city'])
                                         <input class="form-control input-lg"
                                                name="city"
@@ -92,7 +94,7 @@
                                                value="{{ old('city', $profile->city) }}">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
-                                        <label for="telephone">{{ __('profile.telephone') }}</label>
+                                        <label for="telephone">{{ __('trx.telephone') }}</label>
                                         @include('partials.has-errors', ['field' => 'telephone'])
                                         <input class="form-control input-lg"
                                                name="telephone"
@@ -101,7 +103,7 @@
                                                value="{{ old('telephone', $profile->telephone) }}">
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
-                                        <label for="info">{{ __('profile.info') }}</label>
+                                        <label for="info">{{ __('trx.personal_info') }}</label>
                                         @include('partials.has-errors', ['field' => 'info'])
                                         <textarea class="form-control input-lg"
                                                   name="info"
@@ -109,11 +111,11 @@
                                                   rows="10"
                                                   cols="30">{{ old('info', $profile->info) }}</textarea>
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.info_text') }}
+                                            {{ __('trx.personal_info_helper') }}
                                         </small>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
-                                        <label for="website" class="social">{{ __('profile.website') }}</label>
+                                        <label for="website" class="social">{{ __('trx.website') }}</label>
                                         @include('partials.has-errors', ['field' => 'website'])
                                         <input class="form-control input-lg"
                                                name="website"
@@ -121,7 +123,7 @@
                                                id="website"
                                                value="{{ old('website', $profile->website) }}">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.website_text') }}
+                                            {{ __('trx.website_helper') }}
                                         </small>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
@@ -133,7 +135,7 @@
                                                id="facebook"
                                                value="{{ old('facebook') ?? $profile->facebook }}">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.placeholder', ['link' => 'https://facebook.com/kolokasrecipes']) }}
+                                            {{ __('trx.example_placeholder', ['value' => 'https://facebook.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
@@ -145,7 +147,7 @@
                                                id="twitter"
                                                value="{{ old('twitter', $profile->twitter) }}">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.placeholder', ['link' => 'https://twitter.com/kolokasrecipes']) }}
+                                            {{ __('trx.example_placeholder', ['value' => 'https://twitter.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
@@ -157,7 +159,7 @@
                                                id="pinterest"
                                                value="{{ old('pinterest', $profile->pinterest) }}">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.placeholder', ['link' => 'https://pinterest.com/kolokasrecipes']) }}
+                                            {{ __('trx.example_placeholder', ['value' => 'https://pinterest.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
@@ -169,13 +171,13 @@
                                                id="instagram"
                                                value="{{ old('instagram', $profile->instagram) }}">
                                         <small id="titleHelp" class="footnote form-text text-muted font-italic">
-                                            {{ __('profile.placeholder', ['link' => 'https://instagram.com/kolokasrecipes']) }}
+                                            {{ __('trx.example_placeholder', ['value' => 'https://instagram.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
                                     <!-- / column -->
                                     <div class="col-md-12 col-sm-12">
                                         <base-button :role="'submit'">
-                                            {{ __('profile.update') }}
+                                            {{ __('trx.update_profile') }}
                                         </base-button>
                                     </div>
                                 </div>
@@ -183,68 +185,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
-            {{--
-                        <div class="col-md-12">
-                            <div class="col-sm-12 col-md-8">
-                                <div class="header text-left">
-                                    <h2>Profile</h2>
-                                    <hr>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <form method="post" action="{{ route('profile.update') }}">
-                                    @csrf
-                                    <div class="justify-content-center form-row">
-                                        <div class="col-xs-12 col-md-8">
-                                            <fieldset>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6 col-sm-12">
-                                                        <label for="first-name">Name</label>
-                                                        <input class="form-control input-lg" name="first-name" type="text"
-                                                               id="name" value="">
-                                                    </div>
-                                                    <div class="form-group col-md-12 col-sm-12">
-                                                        <label for="info">Information</label>
-                                                        <textarea class="form-control input-lg" name="info" id="info"
-                                                                  rows="10" cols="30"></textarea>
-                                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">Keep
-                                                            it short and descriptive</small>
-                                                    </div>
-                                                    <div class="form-group col-md-12 col-sm-12">
-                                                        <label for="facebook">Facebook</label>
-                                                        <input class="form-control input-lg" name="facebook" type="text"
-                                                               id="facebook" value="">
-                                                    </div>
-                                                    <div class="form-group col-md-12 col-sm-12">
-                                                        <label for="twitter">Twitter</label>
-                                                        <input class="form-control input-lg" name="twitter" type="text" id="twitter"
-                                                               value="">
-                                                    </div>
-                                                    <div class="form-group col-md-12 col-sm-12">
-                                                        <label for="pinterest">Pinterest</label>
-                                                        <input class="form-control input-lg" name="pinterest" type="text"
-                                                               id="pinterest" value="">
-                                                    </div>
-                                                    <div class="form-group col-md-12 col-sm-12">
-                                                        <label for="instagramm">Instagram</label>
-                                                        <input class="form-control input-lg" name="instagramm" type="text"
-                                                               id="instagramm" value="">
-                                                    </div>
-                                                    <!-- / column -->
-                                                    <div class="col-md-12 col-sm-12">
-                                                        <base-button :role="'submit'">
-                                                            {{ __('Update profile') }}
-                                                        </base-button>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-            --}}
+            </div
         </div>
     </div>
 @endsection

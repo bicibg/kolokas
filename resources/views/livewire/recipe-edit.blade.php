@@ -9,8 +9,8 @@
     <div class="row justify-content-center kolokas-form">
         <div class="col-sm-12">
             <div class="header text-center">
-                <h2>{{ __('recipe.create.edit') }}</h2>
-                <p>{{ __('recipe.create.recipe_create_info') }}</p>
+                <h2>{{ __('trx.edit_page_title') }}</h2>
+                <p>{{ __('trx.create_page_info') }}</p>
                 <hr>
             </div>
         </div>
@@ -30,7 +30,7 @@
                    aria-controls="w-description"
                    aria-selected="true">
                     <i class="fa fa-pen mr-2"></i>
-                    <span class="font-weight-bold small text-uppercase">{{ __('recipe.create.description') }}</span>
+                    <span class="font-weight-bold small text-uppercase">{{ __('trx.recipe_description') }}</span>
                     @if($tab1Check)
                         <i class="fa fa-check-circle-o float-right check"></i>
                     @else
@@ -46,7 +46,7 @@
                    aria-controls="w-media"
                    aria-selected="false">
                     <i class="fa fa-photo mr-2"></i>
-                    <span class="font-weight-bold small text-uppercase">{{ __('recipe.create.media') }}</span>
+                    <span class="font-weight-bold small text-uppercase">{{ __('trx.media') }}</span>
                     @if($tab2Check)
                         <i class="fa fa-check-circle-o float-right check"></i>
                     @else
@@ -63,7 +63,7 @@
                    aria-controls="w-meta"
                    aria-selected="false">
                     <i class="fa fa-info mr-2"></i>
-                    <span class="font-weight-bold small text-uppercase">{{ __('recipe.create.meta') }}</span>
+                    <span class="font-weight-bold small text-uppercase">{{ __('trx.meta') }}</span>
                     @if($tab3Check)
                         <i class="fa fa-check-circle-o float-right check"></i>
                     @else
@@ -80,7 +80,7 @@
                    aria-controls="w-recipe"
                    aria-selected="false">
                     <i class="fa fa-cutlery mr-2"></i>
-                    <span class="font-weight-bold small text-uppercase">{{ __('recipe.create.recipe') }}</span>
+                    <span class="font-weight-bold small text-uppercase">{{ __('trx.recipe') }}</span>
                     @if($tab4Check)
                         <i class="fa fa-check-circle-o float-right check"></i>
                     @else
@@ -134,12 +134,7 @@
                         <div class="form-row mb-2 mt-5">
                             <div class="offset-md-2 col-md-10 border-top">
                                 <div class="muted">
-                                    <p>By submitting material for publication, you grant {{ env('APP_CLEAN_URL') }}
-                                        unrestricted use of the material, including your profile information.
-                                        We reserve the right to modify, reproduce and distribute the material in any
-                                        medium and in any manner. We may contact you via phone, email or mail
-                                        regarding your submission.
-                                    </p>
+                                    <p>{{ __('trx.agreement') }}</p>
                                     <p>
                                         <input type="checkbox"
                                                class="form-check-input"
@@ -148,14 +143,14 @@
                                                @endif
                                                wire:model="agreement">
                                         <label class="form-check-label" for="agreement"> &nbsp;
-                                            I agree to the above and confirm this recipe is original to me.
+                                            {{ __('trx.agreement_agree') }}
                                         </label>
                                     </p>
                                 </div>
                                 <button
                                     class="btn btn-lg {{ $canSubmit ? 'btn-primary' : 'btn-dark' }} btn-base"
                                     type="submit" {{ $canSubmit ? '' : 'disabled' }}>
-                                    {{ __('Submit for review') }}
+                                    {{ __('trx.submit_for_review') }}
                                 </button>
                             </div>
                         </div>
