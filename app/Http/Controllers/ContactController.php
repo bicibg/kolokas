@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactFormMessage;
+use App\Models\Message;
 use App\Rules\NoHtml;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -25,13 +26,12 @@ class ContactController extends Controller
             'user_message' => ['required', 'string', new NoHtml]
         ]);
 
-        // todo: save this to DB
-        /*
-         * 'name' => $request->name,
-                'email' => $request->email,
-                'subject' => $request->subject,
-                'user_message' => $request->user_message,
-         */
+        Message::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->user_message,
+        ]);
         return redirect()->to('/')->with('flash', __('trx.contact_form_sent'));
     }
 }
