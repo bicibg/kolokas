@@ -4,33 +4,41 @@ use App\Http\Middleware\RecordVisits;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'HomeController@index')->name('home');
-Auth::routes();
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
-Route::get('/demo', 'DemoModeController@index')->name('demo.index');
-Route::get('/demo-activate', 'DemoModeController@activate')->name('demo.activate');
+Route::middleware('localized')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Auth::routes();
 
-Route::get('/{locale}', function () {
-    return redirect()->back();
-})->name('locale')->where('locale', implode('|', array_keys(Config::get('app.languages'))));
+    Route::get('/demo', 'DemoModeController@index')->name('demo.index');
+    Route::get('/demo-activate', 'DemoModeController@activate')->name('demo.activate');
 
-Route::get('/recipes/create', 'RecipeController@create')->name('recipe.create');
-Route::get('/recipes/{recipe}/edit', 'RecipeController@edit')->name('recipe.edit');
-Route::get('/recipes', 'RecipeController@index')->name('recipe.index');
-Route::get('/recipes/favourites', 'RecipeController@favourites')->name('recipe.favourites');
-Route::get('/manage/recipes', 'RecipeController@myRecipes')->name('recipe.my-index');
-Route::middleware(RecordVisits::class)->group(function () {
-    Route::get('/recipes/{recipe}', 'RecipeController@show')->name('recipe.show');
+    Route::get('/{locale}', 'HomeController@locale')->name('locale')->where('locale', implode('|', array_keys(Config::get('app.languages'))));
+
+    Route::get('/recipes/create', 'RecipeController@create')->name('recipe.create');
+    Route::get('/recipes/{recipe}/edit', 'RecipeController@edit')->name('recipe.edit');
+    Route::get('/recipes', 'RecipeController@index')->name('recipe.index');
+    Route::get('/recipes/favourites', 'RecipeController@favourites')->name('recipe.favourites');
+    Route::get('/manage/recipes', 'RecipeController@myRecipes')->name('recipe.my-index');
+    Route::middleware(RecordVisits::class)->group(function () {
+        Route::get('/recipes/{recipe}', 'RecipeController@show')->name('recipe.show');
+    });
+
+    Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
+    Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
+    Route::get('/authors', 'ProfileController@index')->name('profile.index');
+
+    Route::get('/contact', 'ContactController@create')->name('contact.create');
 });
-
-Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
-Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
-Route::get('/authors', 'ProfileController@index')->name('profile.index');
-
-Route::get('/contact', 'ContactController@create')->name('contact.create');
-Route::post('/contact', 'ContactController@store')->name('contact.store');;
-
-Route::post('/translate', 'TranslationController@translate')->name('translate');
 
 Route::post('/demo-enable', 'DemoModeController@enable')->name('demo.enable');
 Route::post('/recipes', 'RecipeController@store')->name('recipe.store');
@@ -38,3 +46,5 @@ Route::patch('/recipes/{recipe}', 'RecipeController@update')->name('recipe.updat
 Route::post('/subscribe', 'SubscriberController@store')->name('subscribe');
 Route::post('/password-update', 'ChangePasswordController@store')->name('password.new');
 Route::patch('/profile/edit', 'ProfileController@update')->name('profile.update');
+Route::post('/contact', 'ContactController@store')->name('contact.store');;
+Route::post('/translate', 'TranslationController@translate')->name('translate');

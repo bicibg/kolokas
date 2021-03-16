@@ -33,4 +33,8 @@ class HomeController extends Controller
         return view('home.index',
             compact('latest', 'featured', 'carousel', 'mostFavourited', 'mostVisited', 'contributors'));
     }
+
+    public function locale() {
+        return redirect()->back();
+    }
 }
