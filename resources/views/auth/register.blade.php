@@ -5,14 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('auth.register') }}</div>
+                    <div class="card-header">{{ __('trx.register') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('profile.name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('trx.name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -29,7 +29,7 @@
 
                             <div class="form-group row">
                                 <label for="email"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('auth.email') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('trx.email') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -46,7 +46,7 @@
 
                             <div class="form-group row">
                                 <label for="password"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('passwords.password') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('trx.passwords.password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -63,7 +63,7 @@
 
                             <div class="form-group row">
                                 <label for="password-confirm"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('passwords.confirm_password') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('trx.passwords.confirm_password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"

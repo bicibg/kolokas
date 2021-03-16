@@ -46,7 +46,9 @@ return [
     'email' => 'E-Mail Address',
     'events' => 'Events',
     'example_placeholder' => 'i.e. :value',
-    'failed' => 'These credentials do not match our records.',
+    'auth' => [
+        'failed' => 'These credentials do not match our records.',
+    ],
     'flash' => [
         'error' => 'Oops',
         'success' => 'Success',
@@ -91,11 +93,12 @@ return [
     'notes' => 'Notes',
     'one_ingredient_per_line' => 'Enter one ingredient per line.',
     'pages' => 'Pages',
+
+    'remember_me' => 'Remember me',
     'passwords' => [
-        'confirm_password' => 'Confirm Password',
-        'confirm_password_text' => 'Please confirm your password before continuing.',
+        'confirm_password' => 'Confirm Password', 'confirm_password_text' => 'Please confirm your password before continuing.',
         'current_password' => 'Current Password',
-        'forgot_password' => 'Forgot Your Password?',
+        'forgot_password' => 'Forgot your password?',
         'new_password' => 'New Password',
         'password' => 'Password',
         'reset_password' => 'Reset Password',

@@ -37,7 +37,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <base-button :role="'submit'">
-                                        {{ __('trx.password.send_reset_link') }}
+                                        {{ __('trx.passwords.send_reset_link') }}
                                     </base-button>
                                 </div>
                             </div>

@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Kolokas') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,6 +22,8 @@
     <link href="{{ mix('css/styles-print.css') }}" rel="stylesheet">
     <link href="{{ mix('css/styles-480px.css') }}" rel="stylesheet">
     <link href="{{ mix('css/styles-768px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-992px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-1200px.css') }}" rel="stylesheet">
 
     <link href="{{ mix('css/fontawesome.css') }}" rel="stylesheet">
 
@@ -94,5 +96,6 @@
     window._locale = '{{ app()->getLocale() }}';
     window._translations = {!! cache('translations') !!};
 </script>
+@stack('scripts')
 </body>
 </html>
