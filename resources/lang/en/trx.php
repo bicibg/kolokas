@@ -7,7 +7,7 @@ return [
     'add_all_cooking_instructions' => 'Add all of the cooking instructions, one per line.',
     'add_notes' => 'Add any other notes like recipe source, cooking hints, etc. This section will show up under the cooking instructions.',
     'add_to_favourites' => 'Add to favorites',
-    'additional_photos' => 'Additional Photos (max :value)',
+    'additional_photos' => 'Additional Photos (max :value)', /* i.e. (max 5) */
     'additional_photos_existing' => 'Existing Photos (uncheck to remove)',
     'additional_photos_uploading' => 'Uploading additional photos...',
     'agreement' => 'By submitting material for publication, you grant Kolokas.com unrestricted use of the material, including your profile information. We reserve the right to modify, reproduce and distribute the material in any medium and in any manner. We may contact you via email regarding your submission.',
@@ -45,7 +45,7 @@ return [
     'editors_choice' => 'Editor\'s Choice',
     'email' => 'E-Mail Address',
     'events' => 'Events',
-    'example_placeholder' => 'i.e. :value',
+    'example_placeholder' => 'i.e. :value', /* i.e. some explanatory example */
     'auth' => [
         'failed' => 'These credentials do not match our records.',
     ],
@@ -65,7 +65,7 @@ return [
         'el' => 'Greek',
     ],
     'likes' => 'like|likes',
-    'logged_in_as' => 'Logged in as :name',
+    'logged_in_as' => 'Logged in as :name', /* i.e. Logged in as Bugra Ergin */
     'login' => 'Login',
     'logout' => 'Logout',
     'main_photo' => 'Main Photo',
@@ -76,7 +76,7 @@ return [
     'media' => 'Media',
     'message' => 'Message',
     'meta' => 'Meta Information',
-    'minutes' => ':minute minute|:minute minutes',
+    'minutes' => ':minute minute|:minute minutes', /* i.e. 1 minute OR 2 minutes */
     'most_favourited' => 'Most Favourited Recipes',
     'most_viewed' => 'Most Viewed Recipes',
     'my_favourites' => 'My Favourite Recipes',
@@ -106,14 +106,14 @@ return [
         'update_password' => 'Update Password',
         'updated' => 'Your password has been successfully changed.',
     ],
-    'pending_recipes' => ':number pending recipe|:number pending recipes',
+    'pending_recipes' => ':number pending recipe|:number pending recipes', /* i.e. 1 pending recipe OR 2 pending recipes */
     'personal_info' => 'Personal Info',
     'personal_info_helper' => 'A short information about yourself. Max 2000 chars.',
     'prep_time' => 'Prep time',
     'previous' => 'Previous',
     'print' => 'Print / PDF',
     'profile_update_success' => 'Your profile has been successfully updated.',
-    'published_recipes' => ':number published recipe|:number published recipes',
+    'published_recipes' => ':number published recipe|:number published recipes', /* i.e. 1 published recipe OR 2 published recipes */
     'read_more' => 'Read more',
     'recently_added' => 'Recently Added Recipes',
     'recipe' => 'recipe|recipes',
@@ -123,7 +123,7 @@ return [
     'recipe_submitted_message' => 'Your recipe was submitted successfully. It will be reviewed as soon as possible. We will let you know of the outcome.',
     'recipe_updated' => 'Your recipe has been updated.',
     'recipes' => 'Recipes',
-    'recipes_found' => ':number recipe|:number recipes',
+    'recipes_found' => ':number recipe|:number recipes', /* i.e. 1 recipe OR 2 recipes */
     'register' => 'Register',
     'request_another_email' => 'Click here to request another',
     'restaurants' => 'Restaurants',
@@ -131,7 +131,7 @@ return [
     'search_term' => 'Search term',
     'send' => 'Send',
     'servings' => 'Servings',
-    'servings_for' => 'For :for',
+    'servings_for' => 'For :for', /* i.e. For 2 loaves */
     'servings_helper' => 'e.g. 3 Scoops',
     'share' => 'Share this recipe',
     'social_media' => 'Social Media',
@@ -142,12 +142,12 @@ return [
     'subscribe_helper' => 'Subscribe to the weekly newsletter and Kolokas.com news',
     'subscription_success' => 'You have successfully subscribed to our newsletter.',
     'telephone' => 'Telephone',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.', /* i.e. ...try again in 60 seconds. */
     'top_authors' => 'Top Authors',
-    'translate' => ':from → :to',
+    'translate' => ':from → :to', /* i.e. EN → TR */
     'translation_limit_reached' => 'You have reached your transaction limit for this time.',
-    'translation_source_missing' => 'In order to use this translation feature, \':source\' field in your own language must be filled',
-    'translation_target_filled' => 'In order to use this translation feature, \':target\' field must be empty',
+    'translation_source_missing' => 'In order to use this translation feature, \':source\' field in your own language must be filled', /* i.e. ...feature, 'title' field in your own language must be filled */
+    'translation_target_filled' => 'In order to use this translation feature, \':target\' field must be empty', /* i.e. ...feature, 'title' field must be empty */
     'update_profile' => 'Update Profile',
     'user_has_no_recipes' => 'You don\'t have any recipes yet.',
     'user_no_recipes' => 'This is user has currently no recipes.',
