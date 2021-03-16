@@ -26,8 +26,6 @@
     <link href="{{ mix('css/styles-1200px.css') }}" rel="stylesheet">
 
     <link href="{{ mix('css/fontawesome.css') }}" rel="stylesheet">
-
-    @livewireStyles
 </head>
 <body>
 <div id="app">
@@ -52,6 +50,7 @@
 <script>
     window._locale = '{{ app()->getLocale() }}';
     window._translations = {!! cache('translations') !!};
+    console.log(window._translations);
 </script>
 @stack('scripts')
 
