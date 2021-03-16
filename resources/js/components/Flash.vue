@@ -1,5 +1,5 @@
 <template>
-    <div :class="['alert alert-flash fade show', alertType]" role="alert" v-show="show">
+    <div v-show="show" :class="['alert alert-flash fade show', alertType]" role="alert">
         <div class="row">
             <div class="col-10">
                 <strong v-text="alertPrefix"></strong>
@@ -15,81 +15,81 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            message: {
-                type: String,
-                default: "",
-            },
-            type: {
-                type: String,
-                default: "success"
+export default {
+    props: {
+        message: {
+            type: String,
+            default: "",
+        },
+        type: {
+            type: String,
+            default: "success"
+        }
+    },
+    data() {
+        return {
+            body: this.message,
+            show: false,
+            internal_type: this.type,
+            timeout: null,
+        }
+    },
+    created() {
+        if (this.message) {
+            this.flash(this.message);
+        }
+
+        window.events.$on('flash', message => {
+            if (message instanceof String) {
+                this.flash(message);
+            } else if (message instanceof Object) {
+                this.internal_type = message.type;
+                this.flash(message.message, message.type);
+            }
+        });
+
+    },
+    methods: {
+        flash(message) {
+            this.body = message;
+            this.show = true;
+            this.timeout = setTimeout(() => {
+                this.hide();
+            }, 10000)
+        },
+        hide() {
+            this.show = false;
+            if (this.timeout) {
+                clearTimeout(this.timeout);
             }
         },
-        data() {
-            return {
-                body: this.message,
-                show: false,
-                internal_type: this.type,
-                timeout: null,
+
+    },
+    computed: {
+        alertType: function () {
+            switch (this.internal_type) {
+                case 'warning':
+                    return 'alert-warning';
+                case 'error':
+                    return 'alert-danger';
+                case 'success':
+                default:
+                    return 'alert-success';
+
             }
         },
-        created() {
-            if (this.message) {
-                this.flash(this.message);
+        alertPrefix: function () {
+            switch (this.internal_type) {
+                case 'warning':
+                    return this.__('trx.flash.warning') + '!';
+                case 'error':
+                    return this.__('trx.flash.error') + '!';
+                case 'success':
+                default:
+                    return this.__('trx.flash.success') + '!';
+
             }
-
-            window.events.$on('flash', message => {
-                if (message instanceof String) {
-                    this.flash(message);
-                } else if (message instanceof Object) {
-                    this.internal_type = message.type;
-                    this.flash(message.message, message.type);
-                }
-            });
-
         },
-        methods: {
-            flash(message) {
-                this.body = message;
-                this.show = true;
-                this.timeout = setTimeout(() => {
-                    this.hide();
-                }, 10000)
-            },
-            hide() {
-                this.show = false;
-                if (this.timeout) {
-                    clearTimeout(this.timeout);
-                }
-            },
-
-        },
-        computed: {
-            alertType: function () {
-                switch (this.internal_type) {
-                    case 'warning':
-                        return 'alert-warning';
-                    case 'error':
-                        return 'alert-danger';
-                    case 'success':
-                    default:
-                        return 'alert-success';
-
-                }
-            },
-            alertPrefix: function () {
-                switch (this.internal_type) {
-                    case 'warning':
-                        return this.__('trx.flash.warning') + '!';
-                    case 'error':
-                        return this.__('trx.flash.error') + '!';
-                    case 'success':
-                    default:
-                        return this.__('trx.flash.success') + '!';
-
-                }
-            },
-        },
-    }
+    },
+}
 </script>

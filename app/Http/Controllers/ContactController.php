@@ -6,8 +6,6 @@ use App\Mail\ContactFormMessage;
 use App\Models\Message;
 use App\Rules\NoHtml;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {

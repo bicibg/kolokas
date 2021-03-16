@@ -2,27 +2,28 @@
 
 @media only screen and (max-width: 480px) {
 
-  .navbar-light {
-    top: 0 !important;
-  }
-
-  .carousel-item img {
-    width: unset;
-  }
-
-  .recipe-details {
-    padding: 0 20px;
-  }
-  .navbar-nav {
-    .nav-link {
-      padding: 10px 10px;
+    .navbar-light {
+        top: 0 !important;
     }
-    overflow-y: auto;
-  }
 
- .kolokas-form {
-   .tab-pane {
-     padding: 20px !important;
-   }
- }
+    .carousel-item img {
+        width: unset;
+    }
+
+    .recipe-details {
+        padding: 0 20px;
+    }
+    .navbar-nav {
+        .nav-link {
+            padding: 10px 10px;
+        }
+
+        overflow-y: auto;
+    }
+
+    .kolokas-form {
+        .tab-pane {
+            padding: 20px !important;
+        }
+    }
 }

@@ -1,10 +1,10 @@
 <template>
-    <a :class="['btn btn-lg btn-primary btn-base', className]"
-       :href="href"
-       v-if="href !== undefined && href !== '#' && href.length">
+    <a v-if="href !== undefined && href !== '#' && href.length"
+       :class="['btn btn-lg btn-primary btn-base', className]"
+       :href="href">
         <slot></slot>
     </a>
-    <button :class="['btn btn-lg btn-primary btn-base', className]" :type="role" :disabled="isDisabled" v-else>
+    <button v-else :class="['btn btn-lg btn-primary btn-base', className]" :disabled="isDisabled" :type="role">
         <slot></slot>
     </button>
 </template>
@@ -35,7 +35,7 @@ export default {
         }
     },
     computed: {
-        isDisabled(){
+        isDisabled() {
             return this.internal_disabled;
         }
     },
