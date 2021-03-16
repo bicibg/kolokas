@@ -33,7 +33,7 @@ class Favourite extends Component
     {
         if (!auth()->check()) {
             //display warning
-            $this->emit('flash-error', null, 'trx.not_logged_in');
+            $this->emit('flash-error', null, __('trx.not_logged_in'));
             return;
         }
         if ($this->recipe->isFavourited()) {
