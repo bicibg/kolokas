@@ -26,7 +26,7 @@ class HomeController extends Controller
 
         $mostVisited = Recipe::withCount('visits')->wherePublished(true)->orderByDesc('visits_count')->limit(4)->get();
 
-        $contributors = Profile::all();
+        $contributors = Profile::whereIsTop(1)->has('user.recipes', '>', 0)->get();
         $contributors = $contributors->random(min(4, $contributors->count()));
         $latest = Recipe::wherePublished(true)->latest()->limit(4)->get();
 
@@ -34,7 +34,8 @@ class HomeController extends Controller
             compact('latest', 'featured', 'carousel', 'mostFavourited', 'mostVisited', 'contributors'));
     }
 
-    public function locale() {
+    public function locale()
+    {
         return redirect()->back();
     }
 }

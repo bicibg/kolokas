@@ -2,22 +2,14 @@
 
 @section('content')
     @include('home.partial.carousel')
-    <div class="container">
-        @livewire('recipe-search-box')
-    </div>
-    <div class="container pt-0 pt-sm-5">
-        @include('home.partial.mostFavourited')
-    </div>
-    <div class="container pt-0 pt-sm-5">
-        @include('home.partial.mostVisited')
-    </div>
-    <div class="container pt-0 pt-sm-5">
-        @include('home.partial.featured')
-    </div>
-    <div class="container pt-0 pt-sm-5">
-        @include('home.partial.latest')
-    </div>
-    <div class="container pt-0 pt-sm-5">
-        @include('home.partial.contributor')
-    </div>
+    @if (\App\Models\Recipe::count())
+        <div class="container">
+            @livewire('recipe-search-box')
+        </div>
+    @endif
+    @include('home.partial.recipes-showdown', ['recipes' => $mostFavourited, 'title' => __('trx.most_favourited')])
+    @include('home.partial.recipes-showdown', ['recipes' => $mostVisited, 'title' => __('trx.most_viewed')])
+    @include('home.partial.recipes-showdown', ['recipes' => $featured, 'title' => __('trx.editors_choice')])
+    @include('home.partial.recipes-showdown', ['recipes' => $latest, 'title' => __('trx.recently_added')])
+    @include('home.partial.contributor')
 @endsection

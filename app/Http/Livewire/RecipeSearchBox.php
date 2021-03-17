@@ -64,32 +64,45 @@ class RecipeSearchBox extends Component
         $this->categories = Category::all();
         $this->authors = Profile::with('user.recipes')->has('user.recipes')->orderBy('name', 'ASC')->get();
 
+        $this->cookTimes = [
+            'minPrep' => 0,
+            'maxPrep' => 0,
+            'minCook' => 0,
+            'maxCook' => 0,
+        ];
+
         $minPrep = Recipe::wherePublished(true)
             ->whereNotNull('prep_time')
-            ->orderBy('prep_time', 'asc')
-            ->first();
+            ->orderBy('prep_time', 'asc');
+
+        if ($minPrep->count() > 0) {
+            $this->cookTimes['minPrep'] = $minPrep->first()->getAttributes()['prep_time'];
+        }
 
         $minCook = Recipe::wherePublished(true)
             ->whereNotNull('cook_time')
-            ->orderBy('cook_time', 'asc')
-            ->first();
+            ->orderBy('cook_time', 'asc');
+
+        if ($minCook->count() > 0) {
+            $this->cookTimes['minCook'] = $minCook->first()->getAttributes()['cook_time'];
+        }
 
         $maxPrep = Recipe::wherePublished(true)
             ->whereNotNull('prep_time')
-            ->orderBy('prep_time', 'desc')
-            ->first();
+            ->orderBy('prep_time', 'desc');
+
+        if ($maxPrep->count() > 0) {
+            $this->cookTimes['maxPrep'] = $maxPrep->first()->getAttributes()['prep_time'];
+        }
 
         $maxCook = Recipe::wherePublished(true)
             ->whereNotNull('cook_time')
-            ->orderBy('cook_time', 'desc')
-            ->first();
+            ->orderBy('cook_time', 'desc');
 
-        $this->cookTimes = [
-            'minPrep' => $minPrep->getAttributes()['prep_time'],
-            'maxPrep' => $maxPrep->getAttributes()['prep_time'],
-            'minCook' => $minCook->getAttributes()['cook_time'],
-            'maxCook' => $maxCook->getAttributes()['cook_time'],
-        ];
+        if ($maxCook->count() > 0) {
+            $this->cookTimes['maxCook'] = $maxCook->first()->getAttributes()['cook_time'];
+        }
+
         $this->maxPrepTime = request()->get('mp', $this->cookTimes['maxPrep']);
         $this->maxCookTime = request()->get('mc', $this->cookTimes['maxCook']);
     }

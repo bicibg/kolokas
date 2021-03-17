@@ -29,6 +29,7 @@ class CreateProfilesTable extends Migration
             $table->text('info')->nullable();
             $table->boolean('is_pro')->default(false);
             $table->boolean('is_restaurant')->default(false);
+            $table->boolean('is_top')->default(false);
             $table->timestamps();
         });
     }

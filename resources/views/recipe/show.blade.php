@@ -129,7 +129,5 @@
             </div>
         </div>
     </div>
-    <div class="container pt-0 pt-sm-5 no-print">
-        @include('home.partial.youMayAlsoLike')
-    </div>
+    @include('home.partial.recipes-showdown', ['recipes' => $youMayAlsoLike, 'title' => __('trx.you_may_also_like')])
 @endsection

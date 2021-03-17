@@ -13,31 +13,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $admins = [
-            [
-                'user' => [
-                    'email' => 'bugraergin@gmail.com',
-                    'password' => bcrypt('123456789'),
-                ],
-                'profile' => [
-                    'name' => 'Bugra Ergin',
-                    'email' => 'bugraergin@gmail.com',
-                ]
-            ],
-            [
-                'user' => [
-                    'email' => 'burakergin95@gmail.com',
-                    'password' => '$2y$10$AkMeLgCxf/3iXVkOXSJrc.MItFMQuetMSAan1IiWxWjx.6131Rm3.',
-                ],
-                'profile' => [
-                    'name' => 'Bugra Ergin',
-                    'email' => 'bugraergin@gmail.com',
-                ]
-            ]
-        ];
-
-        foreach ($admins as $admin) {
-            $user = factory(User::class)->create($admin['user']);
+        $usersWithNoProfiles = User::has('profile', '<', 1)->get();
+        foreach ($usersWithNoProfiles as $user) {
             $admin['profile']['user_id'] = $user->id;
             factory(Profile::class)->create($admin['profile']);
         }

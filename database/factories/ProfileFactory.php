@@ -36,5 +36,6 @@ $factory->define(/**
         'twitter' => $faker->url,
         'pinterest' => $faker->url,
         'info' => $faker->paragraph,
+        'is_top' => $faker->boolean(20)
     ];
 });
