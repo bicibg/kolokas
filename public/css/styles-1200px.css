@@ -1,6 +1,1 @@
-@media only screen and (max-width: 1200px) {
-  .navbar-light .navbar-nav {
-    margin-right: inherit !important;
-  }
-}
-
+@media only screen and (max-width:1200px){.navbar-light .navbar-nav{margin-right:inherit!important}}

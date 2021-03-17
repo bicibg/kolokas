@@ -18,7 +18,7 @@ return [
         'array' => ':attribute mutlaka :min - :max arasında öğe içermelidir.',
     ],
     'boolean' => ':attribute sadece doğru veya yanlış olmalıdır.',
-    'confirmed' => ':attribute tekrarı eşleşmiyor.',
+    'confirmed' => 'Parola tekrarı eşleşmiyor.',
     'date' => ':attribute geçerli bir tarih değil.',
     'date_equals' => ':attribute mutlaka :date ile aynı tarihte olmalıdır.',
     'date_format' => ':attribute mutlaka :format biçiminde olmalıdır.',

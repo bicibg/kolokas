@@ -16,6 +16,7 @@ window.__ = function __(key, replace) {
             ? window._translations[window._locale]['json'][key]
             : key
     }
+    console.log(translation);
 
     _.forEach(replace, (value, key) => {
         translation = translation.replace(':' + key, value)
