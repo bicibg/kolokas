@@ -8,10 +8,14 @@
             </div>
         </div>
         @if (!$published->count() && !$pending->count())
-            <span>
-                {{ __('trx.user_has_no_recipes') }}
-            </span>
-            <a href="{{ route('recipe.create') }}">{{ __('trx.create_one_now') }}</a>
+            <div class="row justify-content-center text-center">
+                <div class="col-md-12">
+                    <span>
+                        {{ __('trx.user_has_no_recipes') }}
+                    </span>
+                    <a href="{{ route('recipe.create') }}">{{ __('trx.create_one_now') }}</a>
+                </div>
+            </div>
         @else
             @if ($published->count())
                 <div class="row justify-content-center">
