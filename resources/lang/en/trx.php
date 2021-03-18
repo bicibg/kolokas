@@ -94,19 +94,7 @@ return [
     'notes' => 'Notes',
     'one_ingredient_per_line' => 'Enter one ingredient per line.',
     'pages' => 'Pages',
-
     'remember_me' => 'Remember me',
-    'passwords' => [
-        'confirm_password' => 'Confirm Password', 'confirm_password_text' => 'Please confirm your password before continuing.',
-        'current_password' => 'Current Password',
-        'forgot_password' => 'Forgot your password?',
-        'new_password' => 'New Password',
-        'password' => 'Password',
-        'reset_password' => 'Reset Password',
-        'send_reset_link' => 'Send password reset link',
-        'update_password' => 'Update Password',
-        'updated' => 'Your password has been successfully changed.',
-    ],
     'pending_recipes' => ':number pending recipe|:number pending recipes', /* i.e. 1 pending recipe OR 2 pending recipes */
     'personal_info' => 'Personal Info',
     'personal_info_helper' => 'A short information about yourself. Max 2000 chars.',

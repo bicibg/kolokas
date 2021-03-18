@@ -46,7 +46,7 @@
 
                             <div class="form-group row">
                                 <label for="password"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('trx.passwords.password') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('passwords.password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -63,7 +63,7 @@
 
                             <div class="form-group row">
                                 <label for="password-confirm"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('trx.passwords.confirm_password') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ __('passwords.confirm_password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"

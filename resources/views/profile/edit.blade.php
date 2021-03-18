@@ -25,7 +25,7 @@
                                                value="{{ auth()->user()->email }}">
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
-                                        <label for="current_password">{{ __('trx.passwords.current_password') }}
+                                        <label for="current_password">{{ __('passwords.current_password') }}
                                             * </label>
                                         <input class="form-control input-lg"
                                                name="current_password"
@@ -33,7 +33,7 @@
                                                id="current_password">
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
-                                        <label for="new_password">{{ __('trx.passwords.new_password') }} *</label>
+                                        <label for="new_password">{{ __('passwords.new_password') }} *</label>
                                         <input class="form-control input-lg"
                                                name="new_password"
                                                type="password"
@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
                                         <label
-                                            for="new_password_confirmation">{{ __('trx.passwords.confirm_password') }}
+                                            for="new_password_confirmation">{{ __('passwords.confirm_password') }}
                                             *</label>
                                         <input class="form-control input-lg"
                                                name="new_password_confirmation"
@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <base-button :role="'submit'">
-                                            {{ __('trx.passwords.update_password') }}
+                                            {{ __('passwords.update_password') }}
                                         </base-button>
                                     </div>
                                 </div>

@@ -29,6 +29,6 @@ class ChangePasswordController extends Controller
     {
         User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
 
-        return redirect()->back()->with(['flash' => __('trx.passwords.updated')]);
+        return redirect()->back()->with(['flash' => __('passwords.updated')]);
     }
 }

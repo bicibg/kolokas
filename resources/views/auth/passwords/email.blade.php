@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('trx.passwords.reset_password') }}</div>
+                    <div class="card-header">{{ __('passwords.reset_password') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -37,7 +37,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <base-button :role="'submit'">
-                                        {{ __('trx.passwords.send_reset_link') }}
+                                        {{ __('passwords.reset_password_link') }}
                                     </base-button>
                                 </div>
                             </div>
