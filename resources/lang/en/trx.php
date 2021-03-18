@@ -28,6 +28,7 @@ return [
     'contact_form_sent' => 'Your message is sent! We will get back to you soon!',
     'contact_us' => 'Contact Us',
     'cook_time' => 'Cook time',
+    'copyright' => 'Copyright Kolokas © 2021. All rights reserved.',
     'create_account' => 'Create Account',
     'create_one_now' => 'Create one now',
     'create_page_info' => 'Enter all relevant information, as described under each field. Mandatory fields are marked with *. Recipes that do not comply with Kolokas.com standards may be rejected.',
@@ -112,6 +113,7 @@ return [
     'prep_time' => 'Prep time',
     'previous' => 'Previous',
     'print' => 'Print / PDF',
+    'privacy_policy' => 'Privacy Policy',
     'profile_update_success' => 'Your profile has been successfully updated.',
     'published_recipes' => ':number published recipe|:number published recipes', /* i.e. 1 published recipe OR 2 published recipes */
     'read_more' => 'Read more',

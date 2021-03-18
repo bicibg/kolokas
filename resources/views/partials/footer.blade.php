@@ -1,15 +1,12 @@
-<footer>
+<footer class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <h5>{{ __('trx.about_us') }}</h5>
-                <p>Nunc at augue gravida est fermentum vulputate. gravida est fermentum vulputate Pellentesque et ipsum
-                    in dui malesuada tempus.</p>
-            </div>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <h5>{{ __('trx.pages') }}</h5>
                 <ul class="p-0">
                     <li><a class="btn-link" href="{{ route('home') }}">{{ __('trx.home') }}</a></li>
+                    <li><a class="btn-link" href="{{ route('about_us') }}">{{ __('trx.about_us') }}</a></li>
+                    <li><a class="btn-link" href="{{ route('privacy_policy') }}">{{ __('trx.privacy_policy') }}</a></li>
                     <li><a class="btn-link" href="{{ route('contact.create') }}">{{ __('trx.contact_us') }}</a></li>
                     <li><a class="btn-link" href="{{ route('profile.index') }}">{{ __('trx.authors') }}</a></li>
                     <li><a class="btn-link" href="{{ route('profile.edit') }}">{{ __('trx.my_profile') }}</a></li>
@@ -23,7 +20,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <h5>{{ __('trx.recipes') }}</h5>
                 <ul class="p-0">
                     <li><a class="btn-link" href="{{ route('recipe.index') }}">{{ __('trx.all_recipes') }}</a></li>
@@ -32,7 +29,7 @@
                     <li><a class="btn-link" href="{{ route('recipe.create') }}">{{ __('trx.submit_recipe') }}</a></li>
                 </ul>
             </div>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-12">
                 <h5>{{ __('trx.newsletter') }}</h5>
                 <form method="POST" action="{{ route('subscribe') }}">
                     @csrf
@@ -47,6 +44,15 @@
                         {{ __('trx.subscribe_helper') }}
                     </p>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright bg-dark px-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center pt-3">
+                    <p>{{ __('trx.copyright') }}</p>
+                </div>
             </div>
         </div>
     </div>

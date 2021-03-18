@@ -40,5 +40,7 @@ Route::middleware('localized')->group(function () {
     Route::post('/subscribe', 'SubscriberController@store')->name('subscribe');
     Route::patch('/profile/edit', 'ProfileController@update')->name('profile.update');
     Route::post('/contact', 'ContactController@store')->name('contact.store');;
+    Route::get('/about-us', 'HomeController@about_us')->name('about_us');;
+    Route::get('/privacy-policy', 'HomeController@privacy_policy')->name('privacy_policy');;
     Route::post('/translate', 'TranslationController@translate')->name('translate');
 });

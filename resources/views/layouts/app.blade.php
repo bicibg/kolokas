@@ -33,7 +33,7 @@
         @include('partials.topbar')
         @include('partials.navbar')
     </div>
-    <main class="py-2 mt-xs-5 pt-xs-2">
+    <main class="pt-2 mt-xs-5 pt-xs-2">
         <flash message="{{ session('flash') ?? (session('flash-warning') ?? session('flash-error')) }}"
                type="{{ session('flash-warning') ? 'warning' : (session('flash-error') ? 'error' : '')  }}"></flash>
         @if(count($errors)>0)

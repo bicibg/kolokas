@@ -38,4 +38,12 @@ class HomeController extends Controller
     {
         return redirect()->back();
     }
+
+    public function about_us() {
+        return view('home.about_us');
+    }
+
+    public function privacy_policy() {
+        return view('home.privacy_policy');
+    }
 }
