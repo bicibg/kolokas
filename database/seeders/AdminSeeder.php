@@ -1,5 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
@@ -51,9 +55,9 @@ class AdminSeeder extends Seeder
         ];
 
         foreach ($admins as $admin) {
-            $user = factory(\App\Models\User::class)->create($admin['user']);
+            $user = factory(User::class)->create($admin['user']);
             $admin['profile']['user_id'] = $user->id;
-            factory(\App\Models\Profile::class)->create($admin['profile']);
+            factory(Profile::class)->create($admin['profile']);
         }
     }
 }

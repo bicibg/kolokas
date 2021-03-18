@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Category;
 use App\Models\Recipe;
 use App\Models\RecipeImage;

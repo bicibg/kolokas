@@ -28,7 +28,7 @@
                 <ul class="p-0">
                     <li><a class="btn-link" href="{{ route('recipe.index') }}">{{ __('trx.all_recipes') }}</a></li>
                     <li><a class="btn-link" href="{{ route('recipe.my-index') }}">{{ __('trx.my_recipes') }}</a></li>
-                    <li><a class="btn-link" href="{{ route('recipe.favourites') }}">{{ __('rex.my_favourites') }}</a></li>
+                    <li><a class="btn-link" href="{{ route('recipe.favourites') }}">{{ __('trx.my_favourites') }}</a></li>
                     <li><a class="btn-link" href="{{ route('recipe.create') }}">{{ __('trx.submit_recipe') }}</a></li>
                 </ul>
             </div>
