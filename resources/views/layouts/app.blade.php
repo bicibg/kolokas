@@ -26,6 +26,8 @@
     <link href="{{ mix('css/styles-1200px.css') }}" rel="stylesheet">
 
     <link href="{{ mix('css/fontawesome.css') }}" rel="stylesheet">
+
+    @livewireStyles
 </head>
 <body>
 <div id="app">
