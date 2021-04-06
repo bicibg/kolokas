@@ -32,7 +32,7 @@
                                   rows="10"
                                   class="form-control"
                                   wire:model="ingredients.{{ $lang }}"
-                                  name="ingredients.{{ $lang }}">{{ $ingredients[$lang] }}</textarea>
+                                  name="ingredients.{{ $lang }}"></textarea>
                         <small id="ingredientsHelp" class="footnote form-text text-muted font-italic">
                             {{__('trx.one_ingredient_per_line') }}
                         </small>
@@ -57,7 +57,7 @@
                                   rows="10"
                                   class="form-control"
                                   wire:model="instructions.{{ $lang }}"
-                                  name="instructions.{{ $lang }}">{{ $instructions[$lang] }}</textarea>
+                                  name="instructions.{{ $lang }}"></textarea>
                         <small id="instructionsHelp" class="footnote form-text text-muted font-italic">
                             {{__('trx.add_all_cooking_instructions') }}
                         </small>
@@ -82,7 +82,7 @@
                                   rows="10"
                                   class="form-control"
                                   wire:model="notes.{{ $lang }}"
-                                  name="notes.{{ $lang }}">{{ $notes[$lang] }}</textarea>
+                                  name="notes.{{ $lang }}"></textarea>
                         <small id="notesHelp" class="footnote form-text text-muted font-italic">
                             {{__('trx.add_notes') }}
                         </small>

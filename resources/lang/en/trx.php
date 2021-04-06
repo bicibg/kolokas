@@ -107,6 +107,7 @@ return [
     'read_more' => 'Read more',
     'recently_added' => 'Recently Added Recipes',
     'recipe' => 'recipe|recipes',
+    'recipe_title' => 'Title',
     'recipe_description' => 'Description',
     'recipe_description_helper' => 'Keep it short and descriptive',
     'recipe_edit_not_authorized' => 'You are not allowed to edit this recipe',

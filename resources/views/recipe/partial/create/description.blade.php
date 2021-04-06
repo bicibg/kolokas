@@ -24,7 +24,7 @@
             <fieldset>
                 <div class="form-row mb-2">
                     <div class="col-md-2">
-                        <label class="col-form-label {{$lang === $locale ? 'required' : ''}}" for="title_{{ $lang }}">{{ __('trx.create_page_title') }}:</label>
+                        <label class="col-form-label {{$lang === $locale ? 'required' : ''}}" for="title_{{ $lang }}">{{ __('trx.recipe_title') }}:</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text"
@@ -54,7 +54,7 @@
                                   rows="10"
                                   class="form-control"
                                   wire:model="description.{{ $lang }}"
-                                  name="description.{{ $lang }}">{{ $description[$lang] }}</textarea>
+                                  name="description.{{ $lang }}"></textarea>
                         <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
                             {{ __('trx.recipe_description_helper') }}
                         </small>
