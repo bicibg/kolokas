@@ -32,11 +32,11 @@ window.gtranslate = function gtranslate(from, to, context) {
     let toEl = document.getElementById(context + '_' + to);
 
     if (!fromEl.value.length) {
-        flash(__('trx.translation_source_missing', {source: __('recipe.' + context)}), 'error')
+        flash(__('trx.translation_source_missing', {source: __('trx.' + context)}), 'error')
         return;
     }
     if (toEl.value.length) {
-        flash(__('trx.translation_target_filled', {target: __('recipe.' + context)}), 'error')
+        flash(__('trx.translation_target_filled', {target: __('trx.' + context)}), 'error')
         return;
     }
     if (translationsDone >= maxTranslations) {
