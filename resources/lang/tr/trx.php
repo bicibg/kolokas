@@ -62,8 +62,8 @@ return [
     'instructions' => 'Talimatlar',
     'languages' => [
         'tr' => 'Türkçe',
-        'en' => 'İngilizce',
-        'el' => 'Rumca',
+        'en' => 'English',
+        'el' => 'Ελληνικά',
     ],
     'likes' => 'beğeni|beğeni',
     'logged_in_as' => ':name olarak giriş yaptınız', /* i.e. Logged in as Bugra Ergin */
@@ -107,6 +107,7 @@ return [
     'read_more' => 'Daha fazla oku',
     'recently_added' => 'En Son Eklenen Tarifler',
     'recipe' => 'tarif|tarifler',
+    'recipe_title' => 'Tarif Başlığı',
     'recipe_description' => 'Açıklama',
     'recipe_description_helper' => 'Kısa ve açıklayıcı tutun',
     'recipe_edit_not_authorized' => 'Bu tarifi düzenleme izniniz yok',
