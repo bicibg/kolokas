@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use App\Models\Recipe;
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
@@ -40,7 +41,9 @@ class HomeController extends Controller
     }
 
     public function about_us() {
-        return view('home.about_us');
+        $bugra = User::whereEmail('bugraergin@gmail.com')->firstOrFail();
+        $burak = User::whereEmail('burakergin95@gmail.com')->firstOrFail();
+        return view('home.about_us', compact('bugra', 'burak'));
     }
 
     public function privacy_policy() {
