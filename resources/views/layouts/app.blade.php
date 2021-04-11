@@ -13,7 +13,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="@yield('facebook_share_title', 'Kolokas Recipes')" />
     <meta property="og:description" content="@yield('facebook_share_description', __('trx.website_title'))" />
-    <meta property="og:image" content="@yield('facebook_share_image', asset('images/kolokas.jpg'))" />
+    <meta property="og:image" content="@yield('facebook_share_image', asset('images/kolokas_fb.png'))" />
     <meta property="fb:app_id" content="715933872436925" />
 
     <!-- Scripts -->
