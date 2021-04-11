@@ -6,7 +6,7 @@
                     <label class="required col-form-label" for="categories">{{ __('trx.categories') }}:</label>
                     <select class="categories-picker form-control"
                             multiple
-                            wire:model.defer="categories"
+                            wire:model="categories"
                             name="categories[]"
                             id="categories">
                         @foreach(\App\Models\Category::all() as $category)
@@ -28,7 +28,7 @@
                     <label class="col-form-label" for="prep_time">{{ __('trx.prep_time') }}:</label>
                     <input type="number"
                            class="form-control"
-                           wire:model.defer="prep_time"
+                           wire:model="prep_time"
                            name="prep_time"
                            id="prep_time"
                            placeholder="{{ __('trx.in_minutes') }}">
@@ -37,26 +37,16 @@
                     <label class="col-form-label" for="cook_time">{{ __('trx.cook_time') }}:</label>
                     <input type="number"
                            class="form-control"
-                           wire:model.defer="cook_time"
+                           wire:model="cook_time"
                            name="cook_time"
                            id="cook_time"
                            placeholder="{{ __('trx.in_minutes') }}">
                 </div>
             </div>
-            <div class="form-row mb-2">
-                <div class="col-md-6">
-                    <label class="required col-form-label" for="servings">{{ __('trx.servings') }}:</label>
-                    <input type="text"
-                           class="form-control"
-                           wire:model.defer="servings.{{ $lang }}"
-                           name="servings.{{ $lang }}"
-                           id="servings_{{ $lang }}"
-                           placeholder="{{ __('trx.no_of_servings') }}">
-                    <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
-                        {{ __('trx.servings_helper') }}
-                    </small>
-                </div>
-            </div>
+            @include('recipe.partial.create.servings', ['lang' => app()->getLocale(), 'parent' => 'w-servings'])
+            @foreach($langs as $lang)
+                @include('recipe.partial.create.servings', ['lang' => $lang, 'parent' => 'w-servings'])
+            @endforeach
         </fieldset>
     </div>
 </div>

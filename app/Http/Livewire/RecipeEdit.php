@@ -109,7 +109,7 @@ class RecipeEdit extends Component
 
         $this->tab1Check = !empty($this->title[$this->locale]);
         $this->tab2Check = !empty($this->existing_main_image);
-        $this->tab3Check = !empty($this->categories) && !empty($this->servings);
+        $this->tab3Check = !empty($this->categories) && !empty($this->servings[$this->locale]);
 //        $this->tab3Check = !empty($this->categories) && !empty($this->prep_time) && !empty($this->cook_time) && !empty($this->servings);
         $this->tab4Check = !empty($this->instructions[$this->locale]) && !empty($this->ingredients[$this->locale]);
         $this->canSubmit = $this->tab1Check && $this->tab2Check && $this->tab3Check && $this->tab4Check && $this->agreement;
@@ -120,7 +120,8 @@ class RecipeEdit extends Component
         app()->setLocale($this->locale);
         $this->tab1Check = !empty($this->title[$this->locale]);
         $this->tab2Check = !empty($this->main_image) || !empty($this->existing_main_image);
-        $this->tab3Check = !empty($this->categories) && !empty($this->prep_time) && !empty($this->cook_time) && !empty($this->servings);
+        $this->tab3Check = !empty($this->categories) && !empty($this->servings[$this->locale]);
+//        $this->tab3Check = !empty($this->categories) && !empty($this->prep_time) && !empty($this->cook_time) && !empty($this->servings);
         $this->tab4Check = !empty($this->instructions[$this->locale]) && !empty($this->ingredients[$this->locale]);
 
         $this->canSubmit = $this->tab1Check && $this->tab2Check && $this->tab3Check && $this->tab4Check && $this->agreement;
@@ -288,7 +289,6 @@ class RecipeEdit extends Component
 
     public function toggleExistingImage($id)
     {
-        dd(in_array($id, $this->existing_images));
         if (in_array($id, $this->existing_images)) {
             $pos = array_search($id, $this->existing_images);
             unset($this->existing_images[$pos]);
@@ -311,8 +311,8 @@ class RecipeEdit extends Component
             'categories' => 'required|array',
             'ingredients.' . $this->locale => 'required',
             'instructions.' . $this->locale => 'required',
-            'prep_time' => 'integer',
-            'cook_time' => 'integer',
+            'prep_time' => 'integer|nullable',
+            'cook_time' => 'integer|nullable',
             'servings.' . $this->locale => 'required|max:64',
             'notes.' . $this->locale => 'max:4000',
             'agreement' => 'accepted',
