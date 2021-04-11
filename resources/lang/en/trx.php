@@ -107,6 +107,7 @@ return [
     'read_more' => 'Read more',
     'recently_added' => 'Recently Added Recipes',
     'recipe' => 'recipe|recipes',
+    'recipe_cannot_be_displayed' => 'This recipe cannot be displayed',
     'recipe_title' => 'Title',
     'recipe_description' => 'Description',
     'recipe_description_helper' => 'Keep it short and descriptive',

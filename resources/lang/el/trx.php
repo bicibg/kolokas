@@ -107,6 +107,7 @@ return [
     'read_more' => 'Διαβάστε περισσότερα',
     'recently_added' => 'Συνταγές που προστέθηκαν πρόσφατα',
     'recipe' => 'συνταγή|συνταγές',
+    'recipe_cannot_be_displayed' => 'Δεν είναι δυνατή η εμφάνιση αυτής της συνταγής',
     'recipe_title' => 'Τίτλος',
     'recipe_description' => 'Περιγραφή',
     'recipe_description_helper' => 'Κρατήστε το σύντομο και περιγραφικό',

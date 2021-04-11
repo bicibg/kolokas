@@ -107,6 +107,7 @@ return [
     'read_more' => 'Daha fazla oku',
     'recently_added' => 'En Son Eklenen Tarifler',
     'recipe' => 'tarif|tarifler',
+    'recipe_cannot_be_displayed' => 'Bu tarif şu anda gösterilemiyor',
     'recipe_title' => 'Tarif Başlığı',
     'recipe_description' => 'Açıklama',
     'recipe_description_helper' => 'Kısa ve açıklayıcı tutun',
