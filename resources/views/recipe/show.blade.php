@@ -1,5 +1,21 @@
 @extends('layouts.app')
-
+@section('facebook_share_url')
+    {{$recipe->url}}
+@endsection
+@section('facebook_share_title')
+    {{$recipe->title}}
+@endsection
+@section('facebook_share_description')
+    {{ \Illuminate\Support\Str::limit($recipe->description, 197, $end='...') }}
+@endsection
+@section('facebook_share_image')
+    @foreach($recipe->images as $image)
+        @if($image->main)
+            {{$image->url}}
+            @break
+        @endif
+    @endforeach
+@endsection
 @section('content')
     <div class="container pt-0 pt-sm-5">
         <div class="row justify-content-center">
