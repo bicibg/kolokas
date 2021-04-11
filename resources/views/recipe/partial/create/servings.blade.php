@@ -41,7 +41,7 @@
                         @if (app()->getLocale() !== $lang)
                             <a href="javascript:void(0)"
                                class="btn btn-link"
-                               onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'title')">
+                               onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'servings')">
                                 {!! __('trx.translate', ['from' => __('trx.languages.' . app()->getLocale()), 'to' => __('trx.languages.' . $lang)]) !!}
                             </a>
                         @endif
