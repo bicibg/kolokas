@@ -1,5 +1,13 @@
 @extends('layouts.app')
-
+@section('facebook_share_url')
+    {{$profile->url}}
+@endsection
+@section('facebook_share_title')
+    {{$profile->name}}
+@endsection
+@section('facebook_share_description')
+    {{ \Illuminate\Support\Str::limit($profile->info, 197, $end='...') }}
+@endsection
 @section('content')
     <div class="container">
         <div class="row mt-5">
