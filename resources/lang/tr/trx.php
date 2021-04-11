@@ -148,6 +148,7 @@ return [
     'views' => 'görünüm|görünüm',
     'website' => 'İnternet sitesi',
     'website_helper' => 'Web siteniz (size ait olmalıdır).',
+    'website_title' => 'Otantik Kıbrıs Tarifleri',
     'you_may_also_like' => 'Şunlar da hoşunuza gidebilir',
     'your_email' => 'E-posta adresiniz',
 ];

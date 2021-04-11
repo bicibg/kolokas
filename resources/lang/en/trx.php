@@ -148,6 +148,7 @@ return [
     'views' => 'view|views',
     'website' => 'Website',
     'website_helper' => 'Your website (must belong to you).',
+    'website_title' => 'Authentic Cyprus Recipes',
     'you_may_also_like' => 'You may also like',
     'your_email' => 'Your email',
 ];
