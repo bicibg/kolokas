@@ -25,7 +25,7 @@
             </div>
             <div class="form-row mb-2">
                 <div class="col-md-6">
-                    <label class="required col-form-label" for="prep_time">{{ __('trx.prep_time') }}:</label>
+                    <label class="col-form-label" for="prep_time">{{ __('trx.prep_time') }}:</label>
                     <input type="number"
                            class="form-control"
                            wire:model.defer="prep_time"
@@ -34,7 +34,7 @@
                            placeholder="{{ __('trx.in_minutes') }}">
                 </div>
                 <div class="col-md-6">
-                    <label class="required col-form-label" for="cook_time">{{ __('trx.cook_time') }}:</label>
+                    <label class="col-form-label" for="cook_time">{{ __('trx.cook_time') }}:</label>
                     <input type="number"
                            class="form-control"
                            wire:model.defer="cook_time"
