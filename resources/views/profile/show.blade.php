@@ -58,63 +58,22 @@
                 @endif
             </div>
         </div>
-        <div class="row mt-3">
-            @if ($recipes->count())
-                <div class="row justify-content-center">
 
-                    <div class="col-md-12">
-                        <h5 class="text-center">
-                            <i class="fa fa-cutlery" aria-hidden="true"></i>
-                            {{ __(trans_choice('trx.recipes_found', $recipes->count(), ['number' => $recipes->count()])) }}
-                        </h5>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="row justify-content-center m-2">
-                            @forelse($recipes as $recipe)
-                                <div class="col-md-3 col-sm-6 col-12 d-flex align-items-stretch">
-                                    @livewire('recipe-box', ['recipe'=>$recipe])
-                                </div>
-                            @empty
-                                <div class="col-md-12">
-                                    {{ __('trx.user_no_recipes') }}
-                                </div>
-                            @endforelse
-                        </div>
-                    </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                @if ($recipes->count())
+                    <h5 class="text-center">
+                        <i class="fa fa-cutlery" aria-hidden="true"></i>
+                        {{ __(trans_choice('trx.recipes_found', $recipes->count(), ['number' => $recipes->count()])) }}
+                    </h5>
+                @else
+                    {{ __('trx.user_no_recipes') }}
+                @endif
 
-                </div>
-            @endif
+            </div>
         </div>
 
-        {{--            <div class="col-md-8 justify-content-center">--}}
-        {{--                <div class="row">--}}
-        {{--                    @if($recipes->count())--}}
-        {{--                        <div class="col-lg-12">--}}
-        {{--                            <h5 class="text-center"><i class="fa fa-cutlery" aria-hidden="true"></i> Recipes</h5>--}}
-        {{--                        </div>--}}
-        {{--                    @endif--}}
-        {{--                    @forelse($recipes as $recipe)--}}
-        {{--                        <div class="col-md-4 col-sm-4 col-xs-6 d-flex align-items-stretch p-2">--}}
+        @include('home.partial.recipes-showdown', ['recipes' => $recipes, 'title' => ''])
 
-        {{--                            @livewire('recipe-box', ['recipe'=>$recipe])--}}
-
-        {{--                        </div>--}}
-        {{--                    @empty--}}
-        {{--                        <div class="col-md-12">--}}
-        {{--                            This is user has currently no recipes.--}}
-        {{--                        </div>--}}
-        {{--                    @endforelse--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-
-        {{--            <div class="col-md-4 justify-content-center border-left p-2">--}}
-        {{--                <div class="row">--}}
-        {{--                    <div class="col-lg-11">--}}
-        {{--                        <h5 class="text-center"><i class="fa fa-user" aria-hidden="true"></i> Author</h5>--}}
-        {{--                        @livewire('author-box', ['profile' => $profile])--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-    </div>
     </div>
 @endsection
