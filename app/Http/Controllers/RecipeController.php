@@ -100,7 +100,7 @@ class RecipeController extends Controller
         if (!$recipe->published) {
             return redirect()->back()->with('flash-error', __('trx.recipe_cannot_be_displayed'));
         }
-        $youMayAlsoLike = Recipe::with('categories')->whereHas('categories', function ($query) use ($recipe) {
+        $youMayAlsoLike = Recipe::with('categories')->where('id', '!=',  $recipe->id)->whereHas('categories', function ($query) use ($recipe) {
             $query->whereIn('category_recipe.category_id',
                 $recipe->categories()->pluck('category_recipe.category_id')); // use whereIn
         })->limit(4)->get();

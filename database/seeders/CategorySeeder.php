@@ -16,6 +16,11 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
+                "tr" => 'Ana yemek',
+                "en" => 'Main dish',
+                "el" => 'Κυρίος πιάτο'
+            ],
+            [
                 "tr" => "Atıştırmalık",
                 "en" => "Snack",
                 "el" => "Πρόχειρο φαγητό"
