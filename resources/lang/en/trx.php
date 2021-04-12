@@ -41,6 +41,7 @@ return [
         'no_access' => 'Kolokas.com is currently accessible by invite only for testing purposes. If you don\'t have an access key, check back later when we are live.',
         'unsuccessful' => 'Demo access key you entered is incorrect. Better check back when Kolokas.com is live.'
     ],
+    'description' => 'Description',
     'edit' => 'Edit recipe',
     'edit_page_title' => 'Edit your recipe',
     'editors_choice' => 'Editor\'s Choice',
@@ -135,6 +136,7 @@ return [
     'subscription_success' => 'You have successfully subscribed to our newsletter.',
     'telephone' => 'Telephone',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.', /* i.e. ...try again in 60 seconds. */
+    'title' => 'Title',
     'top_authors' => 'Top Authors',
     'translate' => ':from → :to', /* i.e. EN → TR */
     'translation_limit_reached' => 'You have reached your transaction limit for this time.',

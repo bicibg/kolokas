@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" id="{{$parent}}" wire:key="meta_{{$lang}}">
     <div class="card-body">
         <fieldset>
             <div class="form-row mb-2">
@@ -28,7 +28,7 @@
                     <label class="col-form-label" for="prep_time">{{ __('trx.prep_time') }}:</label>
                     <input type="number"
                            class="form-control"
-                           wire:model="prep_time"
+                           wire:model.defer="prep_time"
                            name="prep_time"
                            id="prep_time"
                            placeholder="{{ __('trx.in_minutes') }}">
@@ -37,7 +37,7 @@
                     <label class="col-form-label" for="cook_time">{{ __('trx.cook_time') }}:</label>
                     <input type="number"
                            class="form-control"
-                           wire:model="cook_time"
+                           wire:model.defer="cook_time"
                            name="cook_time"
                            id="cook_time"
                            placeholder="{{ __('trx.in_minutes') }}">

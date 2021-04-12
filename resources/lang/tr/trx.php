@@ -41,6 +41,7 @@ return [
         'no_access' => 'Kolokas.com\'a şu anda yalnızca test amacıyla davetle erişilebilmektedir. Erişim anahtarınız yoksa, sizi daha sonra herkese açık olduğumuzda görmek isteriz.',
         'unsuccessful' => 'Girdiğiniz demo erişim anahtarı yanlış. Kolokas.com yayında olduğunda tekrar kontrol etsen iyi olur.'
     ],
+    'description' => 'Açıklama',
     'edit' => 'Tarifi düzenleyin',
     'edit_page_title' => 'Tarifinizi düzenleyin',
     'editors_choice' => 'Editörün Seçimi',
@@ -135,6 +136,7 @@ return [
     'subscription_success' => 'Bültenimize başarıyla abone oldunuz.',
     'telephone' => 'Telefon',
     'throttle' => 'Çok fazla giriş denemesi. Lütfen :seconds saniye sonra tekrar deneyin.', /* i.e. ...try again in 60 seconds. */
+    'title' => 'Tarif Başlığı',
     'top_authors' => 'En İyi Yazarlar',
     'translate' => ':from → :to', /* i.e. EN → TR */
     'translation_limit_reached' => 'Bu sefer işlem limitinize ulaştınız.',

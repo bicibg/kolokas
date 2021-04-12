@@ -1,4 +1,4 @@
-<div class="card" wire:key="description_{{$lang}}">
+<div class="card" id="{{$parent}}" wire:key="description_{{$lang}}">
     <div class="card-header" id="heading_{{ $lang }}">
         <h2 class="mb-0">
             <button class="btn btn-link @if($lang === $langTab) collapsed @endif"
@@ -7,7 +7,7 @@
                     data-target="#collapse_{{$lang}}"
                     aria-expanded="@if($lang === $langTab) true @else false @endif"
                     aria-controls="collapse_{{$lang}}"
-                    wire:click="switchLangTab('{{$lang}}')">
+                    wire:click.prefetch="switchLangTab('{{$lang}}')">
                 {{ __('trx.languages.' . $lang) }}
                 @if($lang !== app()->getLocale())
                     ({{ __('trx.can_be_auto_translated') }})
@@ -24,12 +24,13 @@
             <fieldset>
                 <div class="form-row mb-2">
                     <div class="col-md-2">
-                        <label class="col-form-label {{$lang === $locale ? 'required' : ''}}" for="title_{{ $lang }}">{{ __('trx.recipe_title') }}:</label>
+                        <label class="col-form-label {{$lang === $locale ? 'required' : ''}}"
+                               for="title_{{ $lang }}">{{ __('trx.recipe_title') }}:</label>
                     </div>
                     <div class="col-md-8">
                         <input type="text"
                                class="form-control"
-                               wire:model="title.{{ $lang }}"
+                               wire:model.defer="title.{{ $lang }}"
                                name="title.{{ $lang }}"
                                id="title_{{ $lang }}">
                     </div>
