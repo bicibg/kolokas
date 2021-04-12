@@ -139,6 +139,7 @@ return [
     'title' => 'Τίτλος',
     'top_authors' => 'Κορυφαίοι συγγραφείς',
     'translate' => ':from → :to', /* i.e. EN → TR */
+    'translating' => 'Μετάφραση σε εξέλιξη...',
     'translation_limit_reached' => 'Έχετε φτάσει το όριό σας για αυτήν τη φορά.',
     'translation_source_missing' => 'Για να χρησιμοποιήσετε αυτήν τη λειτουργία μετάφρασης, πρέπει να συμπληρωθεί το πεδίο \':source\' στη δική σας γλώσσα', /* i.e. ...feature, 'title' field in your own language must be filled */
     'translation_target_filled' => 'Για να χρησιμοποιήσετε αυτήν τη δυνατότητα μετάφρασης, το πεδίο \':target\' πρέπει να είναι κενό', /* i.e. ...feature, 'title' field must be empty */

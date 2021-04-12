@@ -40,9 +40,12 @@
                     <div class="col-md-2">
                         @if (app()->getLocale() !== $lang)
                             <a href="javascript:void(0)"
-                               class="btn btn-link"
-                               onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'servings')">
+                               class="btn btn-link translate-btn"
+                               onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'servings', this)">
                                 {!! __('trx.translate', ['from' => __('trx.languages.' . app()->getLocale()), 'to' => __('trx.languages.' . $lang)]) !!}
+                                <div class="spinner spinner-border text-primary hidden" role="status">
+                                    <span class="sr-only">{{__('trx.translating')}}</span>
+                                </div>
                             </a>
                         @endif
                     </div>

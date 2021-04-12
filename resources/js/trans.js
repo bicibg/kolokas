@@ -25,22 +25,42 @@ window.__ = function __(key, replace) {
 
 var translationsDone = 0;
 var maxTranslations = 24;
-window.gtranslate = function gtranslate(from, to, context) {
+window.gtranslate = function gtranslate(from, to, context, self) {
+    var buttons = document.getElementsByClassName("translate-btn"),
+        len = buttons !== null ? buttons.length : 0;
+    for(let i=0; i < len; i++) {
+        buttons[i].classList.remove('disabled');
+        buttons[i].classList.add('disabled');
+    }
+
+    self.querySelector('.spinner').classList.remove('hidden');
     let fromEl = document.getElementById(context + '_' + from);
     let toEl = document.getElementById(context + '_' + to);
 
     if (!fromEl.value.length) {
         const contextName = __('trx.' + context);
         flash(__('trx.translation_source_missing', {source: contextName}), 'error')
+        self.querySelector('.spinner').classList.add('hidden');
+        for(let i=0; i < len; i++) {
+            buttons[i].classList.remove('disabled');
+        }
         return;
     }
     if (toEl.value.length) {
         const contextName = __('trx.' + context);
         flash(__('trx.translation_target_filled', {target: contextName}), 'error')
+        self.querySelector('.spinner').classList.add('hidden');
+        for(let i=0; i < len; i++) {
+            buttons[i].classList.remove('disabled');
+        }
         return;
     }
     if (translationsDone >= maxTranslations) {
         flash(__('trx.translation_limit_reached'), 'error')
+        self.querySelector('.spinner').classList.add('hidden');
+        for(let i=0; i < len; i++) {
+            buttons[i].classList.remove('disabled');
+        }
         return;
     }
     if (fromEl.value.length && !toEl.value.length && translationsDone < maxTranslations) {
@@ -51,6 +71,10 @@ window.gtranslate = function gtranslate(from, to, context) {
             translationsDone++;
             toEl.value = data.text;
             toEl.dispatchEvent(new Event('input'));
+            self.querySelector('.spinner').classList.add('hidden');
+            for(let i=0; i < len; i++) {
+                buttons[i].classList.remove('disabled');
+            }
         });
     }
 }

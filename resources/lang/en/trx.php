@@ -139,6 +139,7 @@ return [
     'title' => 'Title',
     'top_authors' => 'Top Authors',
     'translate' => ':from → :to', /* i.e. EN → TR */
+    'translating' => 'Translating...',
     'translation_limit_reached' => 'You have reached your transaction limit for this time.',
     'translation_source_missing' => 'In order to use this translation feature, \':source\' field in your own language must be filled', /* i.e. ...feature, 'title' field in your own language must be filled */
     'translation_target_filled' => 'In order to use this translation feature, \':target\' field must be empty', /* i.e. ...feature, 'title' field must be empty */

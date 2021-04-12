@@ -139,6 +139,7 @@ return [
     'title' => 'Tarif Başlığı',
     'top_authors' => 'En İyi Yazarlar',
     'translate' => ':from → :to', /* i.e. EN → TR */
+    'translating' => 'Tercüme ediliyor...',
     'translation_limit_reached' => 'Bu sefer işlem limitinize ulaştınız.',
     'translation_source_missing' => 'Bu çeviri özelliğini kullanmak için kendi dilinizdeki \':source\' alanı doldurulmalıdır', /* i.e. ...feature, 'title' field in your own language must be filled */
     'translation_target_filled' => 'Bu çeviri özelliğini kullanmak için \':target\' alanı boş olmalıdır', /* i.e. ...feature, 'title' field must be empty */
