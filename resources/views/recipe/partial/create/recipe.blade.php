@@ -7,7 +7,7 @@
                     data-target="#collapse_{{$lang}}"
                     aria-expanded="@if($lang === $langTab) true @else false @endif"
                     aria-controls="collapse_{{$lang}}"
-                    wire:click.prefetch="switchLangTab('{{$lang}}')">
+                    wire:click="switchLangTab('{{$lang}}')">
                 {{ __('trx.languages.' . $lang) }}
                 @if($lang !== app()->getLocale())
                     ({{ __('trx.can_be_auto_translated') }})
