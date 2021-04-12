@@ -22,10 +22,10 @@ class HomeController extends Controller
         $carousel = Recipe::wherePublished(true)->whereFeatured(true)->get();
         $carousel = $carousel->random(min(5, $carousel->count()));
 
-        $mostFavourited = Recipe::withCount('favourites')->wherePublished(true);
+        $mostFavourited = Recipe::withCount('favourites')->has('favourites', '>' , 0)->wherePublished(true);
         $mostFavourited = $mostFavourited->orderByDesc('favourites_count')->limit(4)->get();
 
-        $mostVisited = Recipe::withCount('visits')->wherePublished(true)->orderByDesc('visits_count')->limit(4)->get();
+        $mostVisited = Recipe::withCount('visits')->has('visits', '>' , 0)->wherePublished(true)->orderByDesc('visits_count')->limit(4)->get();
 
         $contributors = Profile::whereIsTop(1)->has('user.recipes', '>', 0)->get();
         $contributors = $contributors->random(min(4, $contributors->count()));
