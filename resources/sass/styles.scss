@@ -143,21 +143,31 @@ img {
     text-align: center;
     opacity: 0;
     display: inline-block;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
     font-size: 13px;
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
-    top: 50%;
     bottom: unset;
+    margin: -35px 0;
+    top: 20%;
+
+    &.hover-button-single {
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        margin: unset;
+    }
 }
 
 .hover-button-second {
     top: unset;
-    bottom: 50% !important;
+    bottom: 20% !important;
 }
 
 .hover-button:hover {

@@ -13,7 +13,7 @@
             </a>
         @else
             <a href="{{ $recipe->url }}">
-                <div class="hover-button">{{ __('trx.view') }}</div>
+                <div class="hover-button hover-button-single">{{ __('trx.view') }}</div>
             </a>
         @endif
     </div>
