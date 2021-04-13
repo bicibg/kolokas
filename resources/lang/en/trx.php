@@ -139,6 +139,7 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.', /* i.e. ...try again in 60 seconds. */
     'title' => 'Title',
     'top_authors' => 'Top Authors',
+    'traditional' => 'Traditional',
     'translate' => ':from → :to', /* i.e. EN → TR */
     'translated_recipe' => 'This is a translated recipe. Want to help us improve this translation? Suggest your changes.',
     'translated_recipe_suggestion_subject' => 'Translation feedback for the recipe: ',

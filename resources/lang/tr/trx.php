@@ -139,6 +139,7 @@ return [
     'throttle' => 'Çok fazla giriş denemesi. Lütfen :seconds saniye sonra tekrar deneyin.', /* i.e. ...try again in 60 seconds. */
     'title' => 'Tarif Başlığı',
     'top_authors' => 'En İyi Yazarlar',
+    'traditional' => 'Geleneksel',
     'translate' => ':from → :to', /* i.e. EN → TR */
     'translated_recipe' => 'Bu çevrilmiş bir tariftir. Bu çeviriyi geliştirmemize yardım etmek ister misiniz? Değişikliklerinizi önerin.',
     'translated_recipe_suggestion_subject' => 'Tarif için çeviri önerisi: ',
