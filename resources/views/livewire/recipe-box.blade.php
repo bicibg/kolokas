@@ -1,4 +1,7 @@
 <div class="recipe-container d-flex flex-column w-100">
+    @if($recipe->traditional)
+        <span class="badge badge-pill badge-primary position-absolute pro-badge text-light">Traditional</span>
+    @endif
     <div class="recipe-img">
         <img alt="{{ $recipe->title }}" src="{{ $recipe->mainImage->url }}"
              height="266" width="400">

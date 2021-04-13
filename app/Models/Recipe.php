@@ -31,6 +31,7 @@ class Recipe extends Model
         'cook_time',
         'servings',
         'featured',
+        'traditional',
         'created_by',
         'updated_by',
         'published',

@@ -632,11 +632,7 @@ ul.validation-errors {
 .pro-badge {
     top: -8px;
     right: 0;
-    //font-size: 0.7rem;
-    //width: 40px;
-    //position: absolute;
-    //top: -35px;
-    //right: -10px;
+    z-index: 1;
 }
 .author-details {
     position: relative;
