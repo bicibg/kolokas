@@ -153,4 +153,5 @@
         @include('home.partial.contributor', ['contributors' => collect([$recipe->author->profile])])
     </div>
     @include('home.partial.recipes-showdown', ['recipes' => $youMayAlsoLike, 'title' => __('trx.you_may_also_like')])
+    @include('partials.share-modal')
 @endsection
