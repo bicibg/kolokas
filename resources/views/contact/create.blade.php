@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label for="subject">{{ __('trx.subject') }}</label>
                         @include('partials.has-errors', ['field' => 'subject'])
-                        <input type="text" class="form-control" id="subject" name="subject" value="{{ old('subject') }}">
+                        <input type="text" class="form-control" id="subject" name="subject" value="{{ old('subject', $subject ?: '') }}">
                     </div>
                     <div class="form-group">
                         <label for="user_message">{{ __('trx.message') }}</label>

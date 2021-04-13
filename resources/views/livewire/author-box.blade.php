@@ -21,7 +21,12 @@
     <div class="recipe-content">
         <div class="author-details">
             <div class="contact">
-                <i class="fa fa-envelope-o"></i> <a href="mailto:{{ $profile->email }}">{{ $profile->email }}</a>
+                <i class="fa fa-envelope-o"></i>
+                @if (\Illuminate\Support\Str::contains($profile->email, 'kolokas@gmail.com'))
+                    <note>{{ __('trx.author_email_hidden') }}</note>
+                @else
+                    <a href="mailto:{{ $profile->email }}">{{ $profile->email }}</a>
+                @endif
             </div>
             @if ($profile->website)
                 <div class="contact">

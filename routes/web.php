@@ -32,7 +32,7 @@ Route::middleware('localized')->group(function () {
     Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
     Route::get('/authors/{profile}', 'ProfileController@show')->name('profile.show');
     Route::get('/authors', 'ProfileController@index')->name('profile.index');
-    Route::get('/contact', 'ContactController@create')->name('contact.create');
+    Route::get('/contact/{recipe?}', 'ContactController@create')->name('contact.create');
     Route::post('/password-update', 'ChangePasswordController@store')->name('password.new');
     Route::post('/demo-enable', 'DemoModeController@enable')->name('demo.enable');
     Route::post('/recipes', 'RecipeController@store')->name('recipe.store');

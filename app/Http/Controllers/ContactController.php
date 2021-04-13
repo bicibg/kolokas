@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactFormMessage;
 use App\Models\Message;
+use App\Models\Recipe;
 use App\Rules\NoHtml;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function create()
+    public function create(Recipe $recipe)
     {
-        return view('contact.create');
+        $subject = '';
+        if ($recipe->exists) {
+            $subject = __('trx.translated_recipe_suggestion_subject') . $recipe->title . ' (' . $recipe->slug . ')';
+        }
+        return view('contact.create', compact('subject'));
     }
 
     public function store(Request $request)

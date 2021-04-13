@@ -11,5 +11,5 @@
     @include('home.partial.recipes-showdown', ['recipes' => $mostVisited, 'title' => __('trx.most_viewed')])
     @include('home.partial.recipes-showdown', ['recipes' => $featured, 'title' => __('trx.editors_choice')])
     @include('home.partial.recipes-showdown', ['recipes' => $latest, 'title' => __('trx.recently_added')])
-    @include('home.partial.contributor')
+    @include('home.partial.contributor', ['contributors' => $contributors, 'title' => __('trx.top_authors') ])
 @endsection

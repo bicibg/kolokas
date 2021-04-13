@@ -93,7 +93,7 @@
                         <div class="row recipe-details">
                             <div class="col-md-12">
                                 <p>
-                                    {{ $recipe->description }}
+                                    {!! nl2br(e($recipe->description))  !!}
                                 </p>
                             </div>
                             <div class="col-md-5 col-sm-12">
@@ -132,18 +132,22 @@
                             </div>
                             <div class="col-md-12">
                                 <p>
-                                    {{ $recipe->notes }}
+                                    {!! nl2br(e($recipe->notes))  !!}
                                 </p>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-12 col-12 d-flex align-items-stretch"></div>
-                        <div class="col-md-4 col-sm-12 col-12 d-flex align-items-stretch">
-                            @livewire('author-box', ['profile' => $recipe->author->profile])
-                        </div>
+                        @if ($recipe->author->locale !== app()->getLocale())
+                            <div class="col-md-12 col-sm-12 col-12 text-left pl-0">
+                                <a href="{{ route('contact.create', [$recipe]) }}" class="btn btn-link pl-0">
+                                    {{ __('trx.translated_recipe') }}
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
+        @include('home.partial.contributor', ['contributors' => collect([$recipe->author->profile])])
     </div>
     @include('home.partial.recipes-showdown', ['recipes' => $youMayAlsoLike, 'title' => __('trx.you_may_also_like')])
 @endsection

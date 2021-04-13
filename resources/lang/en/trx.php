@@ -17,6 +17,7 @@ return [
     'all_recipes' => 'All Recipes',
     'author' => 'author|authors',
     'author_capital' => 'Author|Authors',
+    'author_email_hidden' => 'Author\'s email is hidden',
     'authors' => 'Authors',
     'can_be_auto_translated' => 'optional, can be auto-translated',
     'categories' => 'Categories',
@@ -139,6 +140,8 @@ return [
     'title' => 'Title',
     'top_authors' => 'Top Authors',
     'translate' => ':from → :to', /* i.e. EN → TR */
+    'translated_recipe' => 'This is a translated recipe. Want to help us improve this translation? Suggest your changes.',
+    'translated_recipe_suggestion_subject' => 'Translation feedback for the recipe: ',
     'translating' => 'Translating...',
     'translation_limit_reached' => 'You have reached your transaction limit for this time.',
     'translation_source_missing' => 'In order to use this translation feature, \':source\' field in your own language must be filled', /* i.e. ...feature, 'title' field in your own language must be filled */

@@ -17,6 +17,7 @@ return [
     'all_recipes' => 'Όλες οι συνταγές',
     'author' => 'συγγραφέας|συγγραφείς',
     'author_capital' => 'Συγγραφέας|Συγγραφείς',
+    'author_email_hidden' => 'Το email του συγγραφέα είναι κρυφό',
     'authors' => 'Συγγραφείς',
     'can_be_auto_translated' => 'προαιρετικά, μπορεί να μεταφραστεί αυτόματα',
     'categories' => 'Κατηγορίες',
@@ -139,6 +140,8 @@ return [
     'title' => 'Τίτλος',
     'top_authors' => 'Κορυφαίοι συγγραφείς',
     'translate' => ':from → :to', /* i.e. EN → TR */
+    'translated_recipe' => 'Αυτή είναι μια μεταφρασμένη συνταγή. Θέλετε να μας βοηθήσετε να βελτιώσουμε αυτήν τη μετάφραση; Προτείνετε τις αλλαγές σας.',
+    'translated_recipe_suggestion_subject' => 'Σχόλια μετάφρασης για τη συνταγή: ',
     'translating' => 'Μετάφραση σε εξέλιξη...',
     'translation_limit_reached' => 'Έχετε φτάσει το όριό σας για αυτήν τη φορά.',
     'translation_source_missing' => 'Για να χρησιμοποιήσετε αυτήν τη λειτουργία μετάφρασης, πρέπει να συμπληρωθεί το πεδίο \':source\' στη δική σας γλώσσα', /* i.e. ...feature, 'title' field in your own language must be filled */

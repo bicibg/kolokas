@@ -17,6 +17,7 @@ return [
     'all_recipes' => 'Tüm Tarifler',
     'author' => 'yazar|yazarlar',
     'author_capital' => 'Yazar|Yazarlar',
+    'author_email_hidden' => 'Yazarin emaili gizli',
     'authors' => 'Yazarlar',
     'can_be_auto_translated' => 'isteğe bağlı, otomatik olarak çevrilebilir',
     'categories' => 'Kategoriler',
@@ -139,6 +140,8 @@ return [
     'title' => 'Tarif Başlığı',
     'top_authors' => 'En İyi Yazarlar',
     'translate' => ':from → :to', /* i.e. EN → TR */
+    'translated_recipe' => 'Bu çevrilmiş bir tariftir. Bu çeviriyi geliştirmemize yardım etmek ister misiniz? Değişikliklerinizi önerin.',
+    'translated_recipe_suggestion_subject' => 'Tarif için çeviri önerisi: ',
     'translating' => 'Tercüme ediliyor...',
     'translation_limit_reached' => 'Bu sefer işlem limitinize ulaştınız.',
     'translation_source_missing' => 'Bu çeviri özelliğini kullanmak için kendi dilinizdeki \':source\' alanı doldurulmalıdır', /* i.e. ...feature, 'title' field in your own language must be filled */

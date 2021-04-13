@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'fail' => 'Bu kimlik bilgileri kayıtlarımızla eşleşmiyor.',
+    'failed' => 'Bu kimlik bilgileri kayıtlarımızla eşleşmiyor.',
     'throttle' => 'Çok fazla giriş denemesi yapildi. Lütfen birkaç saniye içinde tekrar deneyin.',
     'create_account' => 'Hesap Oluştur',
     'register' => 'Kayıt ol',
