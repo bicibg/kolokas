@@ -8,13 +8,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Kolokas - {{ __('trx.website_title') }}</title>
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="@yield('facebook_share_url', 'https://kolokas.com')" />
-    <meta property="og:title" content="@yield('facebook_share_title', 'Kolokas')" />
-    <meta property="og:description" content="@yield('facebook_share_description', __('trx.website_title'))" />
-    <meta property="og:image" content="@yield('facebook_share_image', asset('images/kolokas_fb.png'))" />
-    <meta property="fb:app_id" content="715933872436925" />
+    <title>@yield('sub_page_title')
+        Kolokas - {{ __('trx.website_title') }}
+    </title>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="@yield('facebook_share_url', 'https://kolokas.com')"/>
+    <meta property="og:title" content="@yield('facebook_share_title', 'Kolokas')"/>
+    <meta property="og:description" content="@yield('facebook_share_description', __('trx.website_title'))"/>
+    <meta property="og:image" content="@yield('facebook_share_image', asset('images/kolokas_fb.png'))"/>
+    <meta property="fb:app_id" content="715933872436925"/>
 
     <!-- Scripts -->
     @if (app()->environment('production'))

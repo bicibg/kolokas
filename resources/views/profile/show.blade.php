@@ -8,6 +8,9 @@
 @section('facebook_share_description')
     {{ \Illuminate\Support\Str::limit($profile->info, 197, $end='...') }}
 @endsection
+@section('sub_page_title')
+    {{ $profile->name }} -
+@endsection
 @section('content')
     <div class="container">
         <div class="row mt-5">

@@ -44,3 +44,5 @@ Route::middleware('localized')->group(function () {
     Route::get('/privacy-policy', 'HomeController@privacy_policy')->name('privacy_policy');;
     Route::post('/translate', 'TranslationController@translate')->name('translate');
 });
+
+Route::get('sitemap.xml','SitemapController@index');
