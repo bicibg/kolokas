@@ -17,15 +17,21 @@
     <meta property="fb:app_id" content="715933872436925" />
 
     <!-- Scripts -->
+    @if (app()->environment('production'))
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86539141-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86539141-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-        gtag('config', 'UA-86539141-2');
-    </script>
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', 'UA-86539141-2');
+        </script>
+    @endif
 
     <script src="{{ mix('js/app.js') }}" defer></script>
 

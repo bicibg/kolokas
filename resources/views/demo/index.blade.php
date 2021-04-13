@@ -8,23 +8,29 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Kolokas') }}</title>
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="@yield('facebook_share_url', 'https://kolokas.com')" />
-    <meta property="og:title" content="@yield('facebook_share_title', 'Kolokas Recipes')" />
-    <meta property="og:description" content="@yield('facebook_share_description', __('trx.website_title'))" />
-    <meta property="og:image" content="@yield('facebook_share_image', asset('images/kolokas_fb.png'))" />
-    <meta property="fb:app_id" content="715933872436925" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="@yield('facebook_share_url', 'https://kolokas.com')"/>
+    <meta property="og:title" content="@yield('facebook_share_title', 'Kolokas Recipes')"/>
+    <meta property="og:description" content="@yield('facebook_share_description', __('trx.website_title'))"/>
+    <meta property="og:image" content="@yield('facebook_share_image', asset('images/kolokas_fb.png'))"/>
+    <meta property="fb:app_id" content="715933872436925"/>
 
     <!-- Scripts -->
+    @if (app()->environment('production'))
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86539141-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86539141-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-        gtag('config', 'UA-86539141-2');
-    </script>
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', 'UA-86539141-2');
+        </script>
+    @endif
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
