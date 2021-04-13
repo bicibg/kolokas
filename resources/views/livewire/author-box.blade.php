@@ -1,6 +1,6 @@
 <div class="recipe-container d-flex flex-column w-100">
     @if($profile->is_pro)
-        <span class="badge badge-pill badge-primary position-absolute pro-badge text-light">PRO</span>
+        <span class="badge badge-pill position-absolute pro-badge text-light">PRO</span>
     @endif
     <div class="recipe-content">
         <div class="author-details">

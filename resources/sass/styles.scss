@@ -629,10 +629,13 @@ ul.validation-errors {
 /*=================================*/
 /* ================================= 7. Author details ================================= */
 
-.pro-badge {
+.pro-badge, .traditional-badge {
     top: -8px;
-    right: 0;
+    right: 20px;
     z-index: 1;
+}
+.pro-badge {
+    background-color: $purple;
 }
 .author-details {
     position: relative;
