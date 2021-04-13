@@ -36,11 +36,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="pull-left">
-                        <img alt=""
-                             class="avatar avatar-25 photo"
-                             height="25"
-                             src="http://1.gravatar.com/avatar/af8f966d8961c37e29603e8e4fbdd337?s=25&amp;d=mm&amp;r=g"
-                             width="25">
+{{--                        <img alt=""--}}
+{{--                             class="avatar avatar-25 photo"--}}
+{{--                             height="25"--}}
+{{--                             src="{{Avatar::create($recipe->author->name)->toBase64()}}"--}}
+{{--                             width="25">--}}
                         <a href="{{ $recipe->author->profile->url }}" rel="author">{{ $recipe->author->name }}</a>
                         <p class="font-italic small">{{ $recipe->author->profile->city }}</p>
                     </div>

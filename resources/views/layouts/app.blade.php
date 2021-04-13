@@ -39,18 +39,18 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="prefetch stylesheet">
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/styles.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/styles-print.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/styles-480px.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/styles-768px.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/styles-992px.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/styles-1200px.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="prefetch stylesheet">
+    <link href="{{ mix('css/styles.css') }}" rel="prefetch stylesheet">
+    <link href="{{ mix('css/styles-print.css') }}" rel="prefetch stylesheet">
+    <link href="{{ mix('css/styles-480px.css') }}" rel="prefetch stylesheet">
+    <link href="{{ mix('css/styles-768px.css') }}" rel="prefetch stylesheet">
+    <link href="{{ mix('css/styles-992px.css') }}" rel="prefetch stylesheet">
+    <link href="{{ mix('css/styles-1200px.css') }}" rel="prefetch stylesheet">
 
-    <link href="{{ mix('css/fontawesome.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/fontawesome.css') }}" rel="prefetch stylesheet">
 
     @livewireStyles
 </head>
