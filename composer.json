@@ -26,6 +26,7 @@
         "stevebauman/location": "^6.1"
     },
     "require-dev": {
+        "backpack/generators": "^3.1",
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.9.1",
         "laravel-shift/blueprint": "^1.23",
