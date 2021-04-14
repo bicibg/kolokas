@@ -139,60 +139,6 @@ class RecipeEdit extends Component
         }
         $this->validate();
 
-        foreach ($this->title as $lang => $value) {
-            if ($lang === $this->locale) continue;
-            if (empty($value) && collect($this->langs)->contains($lang)) {
-                if ($translation = translate($this->title[$this->locale], $lang)) {
-                    $this->title[$lang] = $translation['text'];
-                }
-            }
-        }
-
-        foreach ($this->description as $lang => $value) {
-            if ($lang === $this->locale) continue;
-            if (empty($value) && collect($this->langs)->contains($lang)) {
-                if ($translation = translate($this->description[$this->locale], $lang)) {
-                    $this->description[$lang] = $translation['text'];
-                }
-            }
-        }
-
-        foreach ($this->instructions as $lang => $value) {
-            if ($lang === $this->locale) continue;
-            if (empty($value) && collect($this->langs)->contains($lang)) {
-                if ($translation = translate($this->instructions[$this->locale], $lang)) {
-                    $this->instructions[$lang] = $translation['text'];
-                }
-            }
-        }
-
-        foreach ($this->ingredients as $lang => $value) {
-            if ($lang === $this->locale) continue;
-            if (empty($value) && collect($this->langs)->contains($lang)) {
-                if ($translation = translate($this->ingredients[$this->locale], $lang)) {
-                    $this->ingredients[$lang] = $translation['text'];
-                }
-            }
-        }
-
-        foreach ($this->notes as $lang => $value) {
-            if ($lang === $this->locale) continue;
-            if (empty($value) && collect($this->langs)->contains($lang)) {
-                if ($translation = translate($this->notes[$this->locale], $lang)) {
-                    $this->notes[$lang] = $translation['text'];
-                }
-            }
-        }
-
-        foreach ($this->servings as $lang => $value) {
-            if ($lang === $this->locale) continue;
-            if (empty($value) && collect($this->langs)->contains($lang)) {
-                if ($translation = translate($this->servings[$this->locale], $lang)) {
-                    $this->servings[$lang] = $translation['text'];
-                }
-            }
-        }
-
         DB::transaction(function () {
             $data = [
                 'title' => $this->title,

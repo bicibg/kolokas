@@ -7,6 +7,8 @@ use App\Traits\Visitable;
 use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -39,6 +41,40 @@ class Recipe extends Model
 
     protected $with = ['author', 'images'];
     protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount', 'mainImage'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            Recipe::fillTranslations($model);
+        });
+
+        self::updating(function ($model) {
+            Recipe::fillTranslations($model);
+        });
+    }
+
+    static function fillTranslations($model)
+    {
+        $title = $model->getTranslations('title');
+        $description = $model->getTranslations('description');
+        $instructions = $model->getTranslations('instructions');
+        $ingredients = $model->getTranslations('ingredients');
+        $notes = $model->getTranslations('notes');
+        $servings = $model->getTranslations('servings');
+
+        foreach (array_keys(Config::get('app.languages')) as $lang) {
+            if ($lang === App::getLocale()) continue;
+            $model->title = translateMissing($title, $lang);
+            $model->description = translateMissing($description, $lang);
+            $model->instructions = translateMissing($instructions, $lang);
+            $model->ingredients = translateMissing($ingredients, $lang);
+            $model->notes = translateMissing($notes, $lang);
+            $model->servings = translateMissing($servings, $lang);
+        }
+        return $model;
+    }
 
     /**
      * @return string
