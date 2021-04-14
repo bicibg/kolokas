@@ -15,7 +15,7 @@
                                 @if($main_image)
                                     <img src="{{ $main_image->temporaryUrl() }}" alt="">
                                 @else
-                                    <img src="{{ $existing_main_image->url }}" alt="">
+                                    <img src="{{ $existing_main_image }}" alt="">
                                 @endif
                             </div>
                         </div>
@@ -26,7 +26,8 @@
                     </small>
                 </div>
                 <div class="col-md-12">
-                    <label class="col-form-label" for="images">{{ __('trx.additional_photos', ['value' => $maxNewImages]) }}:</label>
+                    <label class="col-form-label"
+                           for="images">{{ __('trx.additional_photos', ['value' => $maxNewImages]) }}:</label>
                     <div wire:loading.remove>
                         <input type="file" class="bg-none border-0 form-control" wire:model.defer="images"
                                multiple
@@ -36,31 +37,31 @@
                     <div class="row">
                         @foreach($images as $image)
                             <div class="col-md-2 text-center">
-                                <label class="image-checkbox">
+                                <label>
                                     <img class="img-thumbnail img-responsive" src="{{ $image->temporaryUrl() }}" alt="">
                                 </label>
                             </div>
                         @endforeach
                     </div>
                 </div>
-                @if (isset($recipe) && $recipe->images()->whereMain(false)->count())
+                @if (isset($recipe) && $recipe->images()->count())
                     <div class="col-md-12">
                         <label class="col-form-label" for="images">{{ __('trx.additional_photos_existing') }}:</label>
-                        <div class="row" wire:ignore>
-                            @foreach($recipe->images()->whereMain(false)->get() as $image)
-                                @if ($image->main) @continue @endif
-                                <div class="col-md-2 text-center">
-                                    <label class="">
-                                        <img class="img-thumbnail img-responsive" src="{{ $image->url }}" alt="">
-                                        <input wire:model="existing_images"
-                                               type="checkbox"
-                                               autocomplete="off"
-                                               value="{{ $image->id }}">
-                                        <i class="fa fa-check hidden"></i>
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-between">
+                        {{--                        <div class="row" wire:ignore>--}}
+                        @foreach($recipe->images()->get() as $image)
+                            <div>
+                                <img class="img-thumbnail img-responsive" src="{{ $image->url }}" alt="">
+                                <input wire:model="existing_images"
+                                       type="checkbox"
+                                       autocomplete="off"
+                                       value="{{ $image->id }}">
+                                {{$image->id}}
+                                <i class="fa fa-check hidden"></i>
+                            </div>
+                        @endforeach
+                        {{--                        </div>--}}
                     </div>
                 @endif
             </div>

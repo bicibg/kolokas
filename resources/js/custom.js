@@ -8,6 +8,7 @@ $(document).ready(function () {
         styleBase: 'form-control'
     });
 
+    // // init the state from the input
     // $(".image-checkbox").each(function () {
     //     if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
     //         $(this).addClass('image-checkbox-checked');
@@ -15,16 +16,20 @@ $(document).ready(function () {
     //         $(this).removeClass('image-checkbox-checked');
     //     }
     // });
-    // $(".image-checkbox").on("click", function() {
-    //     $(this).toggleClass('image-checkbox-checked');
-    //     var $checkbox = $(this).find('input[type="checkbox"]').first();
-    //     // $checkbox.attr("checked", "checked");
-    //     // $checkbox[0].dispatchEvent(new Event('input'));
-    //     console.log($checkbox[0]);
+    //
+    // // sync the state to the input
+    // $(".image-checkbox").on("click", function (e) {
+    //     if ($(this).hasClass('image-checkbox-checked')) {
+    //         $(this).removeClass('image-checkbox-checked');
+    //         $(this).find('input[type="checkbox"]').first().removeAttr("checked");
+    //     } else {
+    //         $(this).addClass('image-checkbox-checked');
+    //         $(this).find('input[type="checkbox"]').first().attr("checked", "checked");
+    //     }
+    //
+    //     e.preventDefault();
     // });
-
-})
-
+});
 window.lockScroll = function () {
     if ($('body').hasClass('lock-scroll')) {
         $('body').removeClass('lock-scroll');

@@ -67,8 +67,9 @@ function translate($text, $to)
     ]);
 }
 
-function translateMissing($array, $lang) {
-    if (!empty($array[$lang]) || !collect(array_keys(Config::get('app.languages')))->contains($lang)) {
+function translateMissing($array, $lang)
+{
+    if (!empty($array[$lang]) || !collect(array_keys(Config::get('app.languages')))->contains($lang) || !isset($array[App::getLocale()])) {
         return $array;
     }
     if (!isset($array[$lang]) || empty($array[$lang])) {

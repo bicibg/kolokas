@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\LocalUrl;
 use App\Traits\Favouritable;
 use App\Traits\HasTranslations;
 use App\Traits\Visitable;
@@ -31,6 +32,7 @@ class Recipe extends Model
         'prep_time',
         'cook_time',
         'servings',
+        'main_image',
         'featured',
         'traditional',
         'created_by',
@@ -39,8 +41,10 @@ class Recipe extends Model
     ];
 
     protected $with = ['author', 'images'];
-    protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount', 'mainImage'];
-
+    protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount'];
+    protected $casts = [
+        'main_image' => LocalUrl::class
+    ];
     public static function boot()
     {
         parent::boot();
@@ -145,11 +149,6 @@ class Recipe extends Model
     public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany('App\Models\RecipeImage');
-    }
-
-    public function getMainImageAttribute()
-    {
-        return $this->hasOne('App\Models\RecipeImage')->where('main', true)->first();
     }
 
     public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

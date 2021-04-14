@@ -109,56 +109,33 @@ class RecipeCreate extends Component
         $this->validate();
 
         DB::transaction(function () {
-            $recipe = Recipe::create([
-                'title' => $this->title,
-                'description' => $this->description,
-                'ingredients' => $this->ingredients,
-                'instructions' => $this->instructions,
-                'notes' => $this->notes,
-                'prep_time' => $this->prep_time,
-                'cook_time' => $this->cook_time,
-                'servings' => $this->servings,
-                'user_id' => auth()->id(),
-            ]);
+            $filename = uniqid() . '_' . $this->main_image->getClientOriginalName();
 
-            foreach ($this->categories as $category) {
-                $recipe->categories()->attach($category);
-            }
+            if ($this->main_image->storeAs('public/images/recipes/', $filename)) {
+                $recipe = Recipe::create([
+                    'title' => $this->title,
+                    'description' => $this->description,
+                    'ingredients' => $this->ingredients,
+                    'instructions' => $this->instructions,
+                    'notes' => $this->notes,
+                    'prep_time' => $this->prep_time,
+                    'cook_time' => $this->cook_time,
+                    'servings' => $this->servings,
+                    'user_id' => auth()->id(),
+                    'main_image' => 'images/recipes/' . $filename
+                ]);
 
-            $allowedfileExtension = ['jpg', 'jpeg', 'png'];
-            $mainPhoto = $this->main_image;
-            //main photo
-            $filename = $recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
-            $extension = $mainPhoto->getClientOriginalExtension();
-            $check = in_array($extension, $allowedfileExtension);
-            if ($check) {
-                $filename .= '.' . $extension;
-//                if (Storage::putFileAs('public/images/recipes/', $mainPhoto, $filename)) {
-                if ($mainPhoto->storeAs('public/images/recipes/', $filename)) {
-                    $recipe->images()->create([
-                        'url' => 'images/recipes/' . $filename,
-                        'main' => 1
-                    ]);
+                foreach ($this->categories as $category) {
+                    $recipe->categories()->attach($category);
                 }
             }
 
-            // other photos
-            if (count($this->images)) {
-                foreach ($this->images as $file) {
-                    $filename = $recipe->id . '_' . uniqid() . '_' . $file->getClientOriginalName();
-                    $extension = $file->getClientOriginalExtension();
-                    $check = in_array($extension, $allowedfileExtension);
-                    if ($check) {
-                        $filename .= '.' . $extension;
-//                        if (Storage::putFileAs('public/images/recipes/', $file, $filename)) {
-
-                        if ($file->storeAs('public/images/recipes/', $filename)) {
-                            $recipe->images()->create([
-                                'url' => 'images/recipes/' . $filename,
-                                'main' => 0
-                            ]);
-                        }
-                    }
+            foreach ($this->images as $file) {
+                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                if ($file->storeAs('public/images/recipes/', $filename)) {
+                    $recipe->images()->create([
+                        'url' => 'images/recipes/' . $filename,
+                    ]);
                 }
             }
         });

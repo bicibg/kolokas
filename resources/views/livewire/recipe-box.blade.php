@@ -3,7 +3,7 @@
         <span class="badge badge-pill badge-primary position-absolute traditional-badge text-light">{{ __('trx.traditional') }}</span>
     @endif
     <div class="recipe-img">
-        <img alt="{{ $recipe->title }}" src="{{ $recipe->mainImage->url }}"
+        <img alt="{{ $recipe->title }}" src="{{ $recipe->main_image }}"
              height="266" width="400">
 
         @if ($recipe->author->is(auth()->user()))

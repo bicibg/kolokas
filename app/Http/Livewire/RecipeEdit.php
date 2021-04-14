@@ -97,13 +97,14 @@ class RecipeEdit extends Component
         $this->servings = array_merge($this->servings, $recipe->getTranslations('servings'));
         $this->categories = $recipe->categories()->pluck('categories.id');
 
-        $this->existing_main_image = $this->recipe->images()->whereMain(true)->first();
-        $this->existing_images = $recipe->images()->whereMain(false)->pluck('id')->toArray();
+        $this->existing_main_image = $this->recipe->main_image;
+        $this->existing_images = $recipe->images()->pluck('id')->toArray();
         foreach ($this->existing_images as $key => $value) {
             $this->existing_images[$key] = (string)$value;
         }
-        $toBeDeleted = $this->recipe->images()->whereMain(false)->pluck('id')->diffAssoc($this->existing_images);
-        $this->maxNewImages = 5 - ($this->recipe->images()->whereMain(false)->count() - count($toBeDeleted));
+        $toBeDeleted = $this->recipe->images()->pluck('id')->diff(collect($this->existing_images));
+
+        $this->maxNewImages = 5 - ($this->recipe->images()->count() - count($toBeDeleted));
 
         $this->tab1Check = !empty($this->title[$this->locale]);
         $this->tab2Check = !empty($this->existing_main_image);
@@ -122,8 +123,9 @@ class RecipeEdit extends Component
 
         $this->canSubmit = $this->tab1Check && $this->tab2Check && $this->tab3Check && $this->tab4Check && $this->agreement;
 
-        $toBeDeleted = $this->recipe->images()->whereMain(false)->pluck('id')->diffAssoc($this->existing_images);
-        $this->maxNewImages = 5 - ($this->recipe->images()->whereMain(false)->count() - count($toBeDeleted));
+        $toBeDeleted = $this->recipe->images()->pluck('id')->diff(collect($this->existing_images));
+
+        $this->maxNewImages = 5 - ($this->recipe->images()->count() - count($toBeDeleted));
     }
 
     public function render()
@@ -137,7 +139,6 @@ class RecipeEdit extends Component
             session(['flash-error' => __('trx.recipe_edit_not_authorized')]);
             return redirect(route('home'));
         }
-        $this->validate();
 
         DB::transaction(function () {
             $data = [
@@ -148,9 +149,39 @@ class RecipeEdit extends Component
                 'notes' => $this->notes,
                 'prep_time' => $this->prep_time,
                 'cook_time' => $this->cook_time,
-                'servings' => $this->servings
+                'servings' => $this->servings,
+                'main_image' => $this->existing_main_image
             ];
-            $allowedfileExtension = ['jpg', 'jpeg', 'png'];
+            if ($this->main_image) {
+                $filename = uniqid() . '_' . $this->main_image->getClientOriginalName();
+
+                if ($this->main_image->storeAs('public/images/recipes/', $filename)) {
+                    if (file_exists($this->existing_main_image)) {
+                        Storage::delete($this->existing_main_image);
+                    }
+                    $data['main_image'] = 'images/recipes/' . $filename;
+                }
+            }
+            $toBeDeleted = $this->recipe->images()->pluck('id')->diff(collect($this->existing_images));
+
+            if ($toBeDeleted->count()) {
+                $deletes = $this->recipe->images()->whereIn('id', $toBeDeleted->toArray())->get();
+                foreach ($deletes as $delete) {
+                    Storage::delete($delete->getAttributes()['url']);
+                    $delete->delete();
+                }
+            }
+
+            foreach ($this->images as $file) {
+                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                if ($file->storeAs('public/images/recipes/', $filename)) {
+                    $this->recipe->images()->create([
+                        'url' => 'images/recipes/' . $filename,
+                    ]);
+                }
+            }
+
+            $this->validate();
 
             try {
                 $this->recipe->update($data);
@@ -159,53 +190,6 @@ class RecipeEdit extends Component
                 foreach ($this->categories as $category) {
                     $this->recipe->categories()->attach($category);
                 }
-
-                if ($this->main_image) {
-                    $mainPhoto = $this->main_image;
-                    //main photo
-                    $filename = $this->recipe->id . '_' . $mainPhoto->getClientOriginalName() . '_' . uniqid();
-                    $extension = $mainPhoto->getClientOriginalExtension();
-                    $check = in_array($extension, $allowedfileExtension);
-                    if ($check) {
-                        $filename .= '.' . $extension;
-                        $oldImage = $this->recipe->images()->whereMain(true)->first();
-                        if ($mainPhoto->storeAs('public/images/recipes/', $filename)) {
-                            if (file_exists($oldImage->getAttributes()['url'])) {
-                                Storage::delete($oldImage->getAttributes()['url']);
-                            }
-                            $this->recipe->images()->whereMain(true)->update([
-                                'url' => 'images/recipes/' . $filename,
-                            ]);
-                        }
-                    }
-                }
-
-                $toBeDeleted = $this->recipe->images()->whereMain(false)->pluck('id')->diffAssoc($this->existing_images);
-                if ($toBeDeleted->count()) {
-                    $deletes = $this->recipe->images()->whereMain(false)->whereIn('id', $toBeDeleted->toArray())->get();
-                    foreach ($deletes as $delete) {
-                        Storage::delete($delete->getAttributes()['url']);
-                        $delete->delete();
-                    }
-                }
-                // other photos
-                if (count($this->images)) {
-                    foreach ($this->images as $file) {
-                        $filename = $this->recipe->id . '_' . uniqid() . '_' . $file->getClientOriginalName();
-                        $extension = $file->getClientOriginalExtension();
-
-                        $check = in_array($extension, $allowedfileExtension);
-                        if ($check) {
-                            if ($file->storeAs('public/images/recipes/', $filename)) {
-                                $this->recipe->images()->create([
-                                    'url' => 'images/recipes/' . $filename,
-                                    'main' => 0
-                                ]);
-                            }
-                        }
-                    }
-                }
-
                 DB::commit();
             } catch (\Exception $e) {
                 Log::error('Error updating recipe.' . $e->getMessage());
