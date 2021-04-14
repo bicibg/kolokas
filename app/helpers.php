@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use Stevebauman\Location\Facades\Location;
 
@@ -63,6 +65,18 @@ function translate($text, $to)
         'target' => $to,
         'format' => 'text'
     ]);
+}
+
+function translateMissing($array, $lang) {
+    if (!empty($array[$lang]) || !collect(array_keys(Config::get('app.languages')))->contains($lang)) {
+        return $array;
+    }
+    if (!isset($array[$lang]) || empty($array[$lang])) {
+        if ($translation = translate($array[App::getLocale()], $lang)) {
+            $array[$lang] = $translation['text'];
+        }
+    }
+    return $array;
 }
 
 function getLocationString()

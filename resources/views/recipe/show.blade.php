@@ -79,7 +79,7 @@
                                     <li>{{ __('trx.cook_time') }}
                                         <strong>
                                             <i class="fa fa-clock-o"></i>
-                                            {{ $recipe->cook_time }}
+                                            {{ \Carbon\CarbonInterval::minutes($revipe->cook_time)->cascade() }}
                                         </strong>
                                     </li>
                                 @endif

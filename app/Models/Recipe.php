@@ -6,16 +6,18 @@ use App\Traits\Favouritable;
 use App\Traits\HasTranslations;
 use App\Traits\Visitable;
 use Carbon\CarbonInterval;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class Recipe extends Model
 {
+    use SoftDeletes, Sluggable, Favouritable, Visitable, HasTranslations;
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
-    use SoftDeletes, Favouritable, Visitable, HasTranslations, HasSlug;
 
     public $translatable = ['title', 'description', 'ingredients', 'instructions', 'notes', 'servings'];
     /**
@@ -42,22 +44,46 @@ class Recipe extends Model
 
     protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount', 'mainImage'];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            Recipe::fillTranslations($model);
+        });
+
+        self::updating(function ($model) {
+            Recipe::fillTranslations($model);
+        });
+    }
+
+    static function fillTranslations($model)
+    {
+        $title = $model->getTranslations('title');
+        $description = $model->getTranslations('description');
+        $instructions = $model->getTranslations('instructions');
+        $ingredients = $model->getTranslations('ingredients');
+        $notes = $model->getTranslations('notes');
+        $servings = $model->getTranslations('servings');
+
+        foreach (array_keys(Config::get('app.languages')) as $lang) {
+            if ($lang === App::getLocale()) continue;
+            $model->title = translateMissing($title, $lang);
+            $model->description = translateMissing($description, $lang);
+            $model->instructions = translateMissing($instructions, $lang);
+            $model->ingredients = translateMissing($ingredients, $lang);
+            $model->notes = translateMissing($notes, $lang);
+            $model->servings = translateMissing($servings, $lang);
+        }
+        return $model;
+    }
+
     /**
      * @return string
      */
     public function getUrlAttribute(): string
     {
         return route('recipe.show', $this);
-    }
-
-    /**
-     * Get the options for generating the slug.
-     */
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
     }
 
     /**
@@ -83,7 +109,7 @@ class Recipe extends Model
 
     public function getInstructionsArray(): \Illuminate\Support\Collection
     {
-        $arr = Str::of($this->ingredients)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
+        $arr = Str::of($this->instructions)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
         foreach ($arr as $key => $string) {
             if (empty($string)) {
                 unset ($arr[$key]);
@@ -132,5 +158,14 @@ class Recipe extends Model
     public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany('App\Models\Category')->withTimestamps();
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
