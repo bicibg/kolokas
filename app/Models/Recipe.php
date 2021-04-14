@@ -5,18 +5,17 @@ namespace App\Models;
 use App\Traits\Favouritable;
 use App\Traits\Visitable;
 use Carbon\CarbonInterval;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
 class Recipe extends Model
 {
-    use SoftDeletes, HasSlug, Favouritable, Visitable, HasTranslations;
+    use SoftDeletes, Sluggable, Favouritable, Visitable, HasTranslations;
 
     public $translatable = ['title', 'description', 'ingredients', 'instructions', 'notes', 'servings'];
     /**
@@ -82,16 +81,6 @@ class Recipe extends Model
     public function getUrlAttribute(): string
     {
         return route('recipe.show', $this);
-    }
-
-    /**
-     * Get the options for generating the slug.
-     */
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
     }
 
     /**
@@ -166,5 +155,14 @@ class Recipe extends Model
     public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany('App\Models\Category')->withTimestamps();
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
