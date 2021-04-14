@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Favouritable;
+use App\Traits\HasTranslations;
 use App\Traits\Visitable;
 use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Model;
@@ -10,11 +11,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Spatie\Translatable\HasTranslations;
 
 class Recipe extends Model
 {
-    use SoftDeletes, HasSlug, Favouritable, Visitable, HasTranslations;
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
+    use SoftDeletes, Favouritable, Visitable, HasTranslations, HasSlug;
 
     public $translatable = ['title', 'description', 'ingredients', 'instructions', 'notes', 'servings'];
     /**
@@ -38,6 +39,7 @@ class Recipe extends Model
     ];
 
     protected $with = ['author', 'images'];
+
     protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount', 'mainImage'];
 
     /**
@@ -68,33 +70,9 @@ class Recipe extends Model
         return 'slug';
     }
 
-    /**
-     * Cast the prep_time value as a CarbonInterval
-     *
-     * @param $value
-     *
-     * @return CarbonInterval
-     */
-    public function getPrepTimeAttribute($value): CarbonInterval
+    public function getIngredientsArray(): \Illuminate\Support\Collection
     {
-        return CarbonInterval::minutes($value)->cascade();
-    }
-
-    /**
-     * Cast the cook_time value as a CarbonInterval
-     *
-     * @param $value
-     *
-     * @return CarbonInterval
-     */
-    public function getCookTimeAttribute($value): CarbonInterval
-    {
-        return CarbonInterval::minutes($value)->cascade();
-    }
-
-    public function getIngredientsAttribute($value): \Illuminate\Support\Collection
-    {
-        $arr = Str::of($value)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
+        $arr = Str::of($this->ingredients)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
         foreach ($arr as $key => $string) {
             if (empty($string)) {
                 unset ($arr[$key]);
@@ -103,9 +81,9 @@ class Recipe extends Model
         return $arr;
     }
 
-    public function getInstructionsAttribute($value): \Illuminate\Support\Collection
+    public function getInstructionsArray(): \Illuminate\Support\Collection
     {
-        $arr = Str::of($value)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
+        $arr = Str::of($this->ingredients)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
         foreach ($arr as $key => $string) {
             if (empty($string)) {
                 unset ($arr[$key]);
@@ -121,9 +99,9 @@ class Recipe extends Model
      */
     public function getTotalTime(): CarbonInterval
     {
-        $totalTime = clone $this->getAttribute('prep_time');
+        $totalTime = clone $this->prep_time;
 
-        return $totalTime->add($this->getAttribute('cook_time'));
+        return $totalTime->add($this->cook_time);
     }
 
     /**
