@@ -96,8 +96,6 @@ class RecipeEdit extends Component
         $this->notes = array_merge($this->notes, $recipe->getTranslations('notes'));
         $this->servings = array_merge($this->servings, $recipe->getTranslations('servings'));
         $this->categories = $recipe->categories()->pluck('categories.id');
-        $this->prep_time = $recipe->getAttributes()['prep_time'];
-        $this->cook_time = $recipe->getAttributes()['cook_time'];
 
         $this->existing_main_image = $this->recipe->images()->whereMain(true)->first();
         $this->existing_images = $recipe->images()->whereMain(false)->pluck('id')->toArray();
@@ -110,7 +108,6 @@ class RecipeEdit extends Component
         $this->tab1Check = !empty($this->title[$this->locale]);
         $this->tab2Check = !empty($this->existing_main_image);
         $this->tab3Check = !empty($this->categories) && !empty($this->servings[$this->locale]);
-//        $this->tab3Check = !empty($this->categories) && !empty($this->prep_time) && !empty($this->cook_time) && !empty($this->servings);
         $this->tab4Check = !empty($this->instructions[$this->locale]) && !empty($this->ingredients[$this->locale]);
         $this->canSubmit = $this->tab1Check && $this->tab2Check && $this->tab3Check && $this->tab4Check && $this->agreement;
     }
@@ -121,7 +118,6 @@ class RecipeEdit extends Component
         $this->tab1Check = !empty($this->title[$this->locale]);
         $this->tab2Check = !empty($this->main_image) || !empty($this->existing_main_image);
         $this->tab3Check = !empty($this->categories) && !empty($this->servings[$this->locale]);
-//        $this->tab3Check = !empty($this->categories) && !empty($this->prep_time) && !empty($this->cook_time) && !empty($this->servings);
         $this->tab4Check = !empty($this->instructions[$this->locale]) && !empty($this->ingredients[$this->locale]);
 
         $this->canSubmit = $this->tab1Check && $this->tab2Check && $this->tab3Check && $this->tab4Check && $this->agreement;
