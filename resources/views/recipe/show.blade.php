@@ -67,15 +67,15 @@
                                 </a>
                             </div>
                             <ul>
-                                @if ($recipe->getAttributes()['prep_time'])
+                                @if ($recipe->prep_time)
                                     <li>{{ __('trx.prep_time') }}
                                         <strong>
                                             <i class="fa fa-clock-o"></i>
-                                            {{ $recipe->prep_time }}
+                                            {{ \Carbon\CarbonInterval::minutes($recipe->prep_time)->cascade() }}
                                         </strong>
                                     </li>
                                 @endif
-                                @if ($recipe->getAttributes()['cook_time'])
+                                @if ($recipe->cook_time)
                                     <li>{{ __('trx.cook_time') }}
                                         <strong>
                                             <i class="fa fa-clock-o"></i>
@@ -83,7 +83,7 @@
                                         </strong>
                                     </li>
                                 @endif
-                                @if ($recipe->getAttributes()['servings'])
+                                @if ($recipe->servings)
                                     <li>{{ __('trx.servings') }}
                                         <strong>
                                             {{ __('trx.servings_for', ['for' => $recipe->servings]) }}
@@ -103,7 +103,7 @@
                                 <h3 class="section-title">{{ __('trx.ingredients') }}</h3>
                                 <div class="ingredients-list">
                                     <ul class="ingredient-check">
-                                        @foreach($recipe->ingredients as $key => $ingredient)
+                                        @foreach($recipe->getIngredientsArray() as $key => $ingredient)
                                             <li>
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox"
@@ -124,7 +124,7 @@
                                     <h3 class="section-title">{{ __('trx.instructions') }}</h3>
                                     <div class="instructions">
                                         <ol>
-                                            @foreach($recipe->instructions as $instruction)
+                                            @foreach($recipe->getInstructionsArray() as $instruction)
                                                 <li>
                                                     {{ $instruction }}
                                                 </li>
