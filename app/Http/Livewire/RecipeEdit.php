@@ -96,6 +96,8 @@ class RecipeEdit extends Component
         $this->notes = array_merge($this->notes, $recipe->getTranslations('notes'));
         $this->servings = array_merge($this->servings, $recipe->getTranslations('servings'));
         $this->categories = $recipe->categories()->pluck('categories.id');
+        $this->prep_time = $recipe->getAttributes()['prep_time'];
+        $this->cook_time = $recipe->getAttributes()['cook_time'];
 
         $this->existing_main_image = $this->recipe->images()->whereMain(true)->first();
         $this->existing_images = $recipe->images()->whereMain(false)->pluck('id')->toArray();

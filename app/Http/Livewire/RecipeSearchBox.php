@@ -76,7 +76,7 @@ class RecipeSearchBox extends Component
             ->orderBy('prep_time', 'asc');
 
         if ($minPrep->count() > 0) {
-            $this->cookTimes['minPrep'] = $minPrep->first()->prep_time;
+            $this->cookTimes['minPrep'] = $minPrep->first()->getAttributes()['prep_time'];
         }
 
         $minCook = Recipe::wherePublished(true)
@@ -84,7 +84,7 @@ class RecipeSearchBox extends Component
             ->orderBy('cook_time', 'asc');
 
         if ($minCook->count() > 0) {
-            $this->cookTimes['minCook'] = $minCook->first()->cook_time;
+            $this->cookTimes['minCook'] = $minCook->first()->getAttributes()['cook_time'];
         }
 
         $maxPrep = Recipe::wherePublished(true)
@@ -92,7 +92,7 @@ class RecipeSearchBox extends Component
             ->orderBy('prep_time', 'desc');
 
         if ($maxPrep->count() > 0) {
-            $this->cookTimes['maxPrep'] = $maxPrep->first()->prep_time;
+            $this->cookTimes['maxPrep'] = $maxPrep->first()->getAttributes()['prep_time'];
         }
 
         $maxCook = Recipe::wherePublished(true)
@@ -100,7 +100,7 @@ class RecipeSearchBox extends Component
             ->orderBy('cook_time', 'desc');
 
         if ($maxCook->count() > 0) {
-            $this->cookTimes['maxCook'] = $maxCook->first()->cook_time;
+            $this->cookTimes['maxCook'] = $maxCook->first()->getAttributes()['cook_time'];
         }
 
         $this->maxPrepTime = request()->get('mp', $this->cookTimes['maxPrep']);
