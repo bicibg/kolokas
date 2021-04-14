@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Favouritable;
+use App\Traits\HasTranslations;
 use App\Traits\Visitable;
 use Carbon\CarbonInterval;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -11,7 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
-use Spatie\Translatable\HasTranslations;
 
 class Recipe extends Model
 {
