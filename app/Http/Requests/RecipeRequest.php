@@ -11,7 +11,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class RecipeCreateRequest extends FormRequest
+class RecipeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,25 +31,24 @@ class RecipeCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => [
+            'title.' . $this->locale => [
                 'bail',
                 'required',
                 Rule::unique('recipes', 'title')->where(function ($query) {
                     $query->where('user_id', auth()->user()->id);
                 })
             ],
-//            'main_image' => 'required|image|mimes:jpeg,jpg,png',
-//            'images' => 'array|max:5',
-//            'images.*' => 'image|mimes:png,jpeg,jpg|max:8000',
-            'description' => 'max:2000',
+            'description.' . $this->locale => 'max:4000',
             'categories' => 'required|array',
-//            'ingredients' => 'required',
-//            'instructions' => 'required',
-//            'prep_time' => 'integer',
-//            'cook_time' => 'integer',
-//            'servings' => 'required|max:64',
-//            'notes' => 'max:2000',
+            'ingredients.' . $this->locale => 'required',
+            'instructions.' . $this->locale => 'required',
+            'prep_time' => 'integer|nullable',
+            'cook_time' => 'integer|nullable',
+            'servings.' . $this->locale => 'required|max:64',
+            'notes.' . $this->locale => 'max:4000',
             'agreement' => 'accepted',
+            'main_image' => 'required|image|mimes:jpeg,jpg,png',
+            'images.*' => 'image|mimes:jpeg,jpg,png',
         ];
     }
 
