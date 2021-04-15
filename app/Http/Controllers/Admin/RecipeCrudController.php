@@ -260,6 +260,28 @@ class RecipeCrudController extends CrudController
     /**
      * Define which routes are needed for this operation.
      *
+     * @param string $name       Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName  Prefix of the route name.
+     * @param string $controller Name of the current CrudController.
+     */
+    protected function setupUpdateRoutes($segment, $routeName, $controller)
+    {
+        Route::get($segment.'/{id}/edit', [
+            'as'        => $routeName.'.admin-edit',
+            'uses'      => $controller.'@edit',
+            'operation' => 'update',
+        ]);
+
+        Route::put($segment.'/{id}', [
+            'as'        => $routeName.'.admin-update',
+            'uses'      => $controller.'@update',
+            'operation' => 'update',
+        ]);
+    }
+
+    /**
+     * Define which routes are needed for this operation.
+     *
      * @param string $segment Name of the current entity (singular). Used as first URL segment.
      * @param string $routeName Prefix of the route name.
      * @param string $controller Name of the current CrudController.
