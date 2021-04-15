@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)http://localhost:8000/recipes/homemade-artisan-bread -->
+<!-- saved from url=(0052)https://kolokas.com/recipes/homemade-artisan-bread -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>(function(){function hookGeo() {
             //<![CDATA[
             const WAIT_TIME = 100;
@@ -144,7 +144,7 @@
         }hookGeo();})()</script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="http://localhost:8000/images/favicon.ico">
+    <link rel="shortcut icon" href="https://kolokas.com/images/favicon.ico">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="zTTrSdgx8GZ0VWrzfE5TqVPXfJnnNraft8OlZKyb">
@@ -153,13 +153,13 @@
         Kolokas - Authentic Cyprus Recipes
     </title>
     <meta property="og:type" content="article">
-    <meta property="og:url" content="    http://localhost:8000/recipes/homemade-artisan-bread
+    <meta property="og:url" content="    https://kolokas.com/recipes/homemade-artisan-bread
 ">
     <meta property="og:title" content="    Homemade Artisan Bread
 ">
     <meta property="og:description" content="    Even if you’ve never made homemade bread or worked with yeast before, this homemade crusty artisan bread is for you. It’s the perfect beginner recipe because it only requires 4 ingredients without...
 ">
-    <meta property="og:image" content="    http://localhost:8000/storage/images/recipes/6077e301503ef_bread.jpg
+    <meta property="og:image" content="    https://kolokas.com/storage/images/recipes/6077e301503ef_bread.jpg
 ">
     <meta property="fb:app_id" content="715933872436925">
 
@@ -172,15 +172,15 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="prefetch stylesheet">
 
     <!-- Styles -->
-    <link href="http://localhost:8000/css/app.css" rel="prefetch stylesheet">
-    <link href="http://localhost:8000/css/styles.css" rel="prefetch stylesheet">
-    <link href="http://localhost:8000/css/styles-print.css" rel="prefetch stylesheet">
-    <link href="http://localhost:8000/css/styles-480px.css" rel="prefetch stylesheet">
-    <link href="http://localhost:8000/css/styles-768px.css" rel="prefetch stylesheet">
-    <link href="http://localhost:8000/css/styles-992px.css" rel="prefetch stylesheet">
-    <link href="http://localhost:8000/css/styles-1200px.css" rel="prefetch stylesheet">
+    <link href="https://kolokas.com/css/app.css" rel="prefetch stylesheet">
+    <link href="https://kolokas.com/css/styles.css" rel="prefetch stylesheet">
+    <link href="https://kolokas.com/css/styles-print.css" rel="prefetch stylesheet">
+    <link href="https://kolokas.com/css/styles-480px.css" rel="prefetch stylesheet">
+    <link href="https://kolokas.com/css/styles-768px.css" rel="prefetch stylesheet">
+    <link href="https://kolokas.com/css/styles-992px.css" rel="prefetch stylesheet">
+    <link href="https://kolokas.com/css/styles-1200px.css" rel="prefetch stylesheet">
 
-    <link href="http://localhost:8000/css/fontawesome.css" rel="prefetch stylesheet">
+    <link href="https://kolokas.com/css/fontawesome.css" rel="prefetch stylesheet">
 
     <!-- Livewire Styles -->
     <style>
@@ -224,7 +224,7 @@
                         </a> </li> <li class="nav-item"><a href="#" class="nav-link">Authors</a></li> <li class="nav-item"><a href="#" class="nav-link disabled"><div>Restaurants</div> <small class="position-absolute" style="margin-top: -6px;">Coming soon</small></a></li> <li class="nav-item"><a href="#" class="nav-link disabled"><div>Events</div> <small class="position-absolute" style="margin-top: -6px;">Coming soon</small></a></li> <li class="nav-item"><a href="#" class="nav-link"><div>Contact Us</div></a></li> <li class="nav-item d-md-none"><div class="dropdown-divider"></div></li> <li class="nav-item d-md-none"><a id="show_login" href="#" class="nav-link login_button font-weight-bold"><i class="fa fa-plus-square"></i> Submit Recipe
                         </a></li> <li class="nav-item d-md-none"><a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-globe"></i>
                             English
-                            <span class="caret"></span></a> <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right"><a href="http://localhost:8000/tr" class="dropdown-item">Türkçe</a> <a href="#" class="dropdown-item">Ελληνικά</a></div></li> <li class="nav-item d-md-none"><div class="dropdown-divider"></div></li> <li class="nav-item d-md-none"><h6 class="dropdown-header">
+                            <span class="caret"></span></a> <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right"><a href="https://kolokas.com/tr" class="dropdown-item">Türkçe</a> <a href="#" class="dropdown-item">Ελληνικά</a></div></li> <li class="nav-item d-md-none"><div class="dropdown-divider"></div></li> <li class="nav-item d-md-none"><h6 class="dropdown-header">
                             Logged in as Bugra Ergin
                         </h6></li> <li class="nav-item d-md-none"><a href="#" class="nav-link"><i class="fa fa-user"></i>
                             My Profile
