@@ -31,7 +31,7 @@ class CheckForDemoMode
             }
             return redirect(RouteServiceProvider::DEMO);
         } elseif (config('demo.demo_enabled') && Cookie::has('demo-activated')) {
-            if (in_array($currentroute, config('demo.demo_route_names'))) {
+            if (in_array($currentroute, config('demo.demo_route_names')) && $currentroute != 'demo.recipe') {
                 return redirect(RouteServiceProvider::HOME);
             }
             return $response;
