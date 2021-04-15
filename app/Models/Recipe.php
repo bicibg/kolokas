@@ -12,7 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\Image;
 
 class Recipe extends Model
 {
@@ -46,6 +48,7 @@ class Recipe extends Model
     protected $casts = [
         'main_image' => LocalUrl::class
     ];
+
     public static function boot()
     {
         parent::boot();
@@ -80,10 +83,25 @@ class Recipe extends Model
         return $model;
     }
 
+    public function setMainImageAttribute($value)
+    {
+        if (Str::startsWith($value, 'data:image')) {
+            $image = \Image::make($value)->encode('jpg', 90);
+
+            $filename = md5($value.time()).'.jpg';
+            Storage::put('public/images/recipes/'.$filename, $image->stream());
+
+            Storage::delete($this->main_image);
+
+            $this->attributes['main_image'] = 'images/recipes/' . $filename;
+        }
+    }
+
     /**
      * @return string
      */
-    public function getUrlAttribute(): string
+    public
+    function getUrlAttribute(): string
     {
         return route('recipe.show', $this);
     }
@@ -93,12 +111,14 @@ class Recipe extends Model
      *
      * @return string
      */
-    public function getRouteKeyName(): string
+    public
+    function getRouteKeyName(): string
     {
         return 'slug';
     }
 
-    public function getIngredientsArray(): \Illuminate\Support\Collection
+    public
+    function getIngredientsArray(): \Illuminate\Support\Collection
     {
         $arr = Str::of($this->ingredients)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
         foreach ($arr as $key => $string) {
@@ -109,7 +129,8 @@ class Recipe extends Model
         return $arr;
     }
 
-    public function getInstructionsArray(): \Illuminate\Support\Collection
+    public
+    function getInstructionsArray(): \Illuminate\Support\Collection
     {
         $arr = Str::of($this->instructions)->split('/((?<!\\\|\r)\n)|((?<!\\\)\r\n)/');
         foreach ($arr as $key => $string) {
@@ -125,7 +146,8 @@ class Recipe extends Model
      *
      * @return CarbonInterval
      */
-    public function getTotalTime(): CarbonInterval
+    public
+    function getTotalTime(): CarbonInterval
     {
         $totalTime = clone $this->prep_time;
 
@@ -135,29 +157,34 @@ class Recipe extends Model
     /**
      * Get the author that wrote the recipe.
      */
-    public function author(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public
+    function author(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
-    public function scopeAuthor($query, $author)
+    public
+    function scopeAuthor($query, $author)
     {
         return $query->whereHas('author', function ($q) use ($author) {
             $q->where('user_id', $author->id);
         });
     }
 
-    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public
+    function images(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany('App\Models\RecipeImage');
     }
 
-    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public
+    function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany('App\Models\Category')->withTimestamps();
     }
 
-    public function sluggable(): array
+    public
+    function sluggable(): array
     {
         return [
             'slug' => [

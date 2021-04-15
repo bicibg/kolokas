@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lisa
- * Date: 11/13/17
- * Time: 7:48 PM
- */
 
 namespace App\Http\Requests;
 
@@ -20,7 +14,7 @@ class RecipeRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check();
+        return backpack_auth()->check();
     }
 
     /**
@@ -31,24 +25,23 @@ class RecipeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title.' . $this->locale => [
+            'title' => [
                 'bail',
                 'required',
                 Rule::unique('recipes', 'title')->where(function ($query) {
-                    $query->where('user_id', auth()->user()->id);
+                    $query->where('user_id', request()->input('user_id'));
                 })
             ],
-            'description.' . $this->locale => 'max:4000',
+            'description' => 'max:4000',
             'categories' => 'required|array',
-            'ingredients.' . $this->locale => 'required',
-            'instructions.' . $this->locale => 'required',
+            'ingredients' => 'required',
+            'instructions' => 'required',
             'prep_time' => 'integer|nullable',
             'cook_time' => 'integer|nullable',
-            'servings.' . $this->locale => 'required|max:64',
-            'notes.' . $this->locale => 'max:4000',
-            'agreement' => 'accepted',
-            'main_image' => 'required|image|mimes:jpeg,jpg,png',
-            'images.*' => 'image|mimes:jpeg,jpg,png',
+            'servings' => 'required|max:64',
+            'notes' => 'max:4000',
+            'main_image' => 'required|string',
+//            'images.*' => 'image|mimes:jpeg,jpg,png',
         ];
     }
 
@@ -66,10 +59,5 @@ class RecipeRequest extends FormRequest
             'servings' => 'We need to know the serving size for your recipe',
             'agreement' => 'You must accept our Terms and Conditions before you can submit this recipe',
         ];
-    }
-
-    protected function prepareForValidation()
-    {
-        $this->merge($this->lang[app()->getLocale()]);
     }
 }

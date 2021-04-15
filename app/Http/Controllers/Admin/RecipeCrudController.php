@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-//use App\Http\Requests\RecipeRequest;
+use App\Http\Requests\RecipeRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 class RecipeCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-//    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-//    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation {
         show as traitShow;
@@ -32,7 +32,6 @@ class RecipeCrudController extends CrudController
         CRUD::setModel(\App\Models\Recipe::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/recipe');
         CRUD::setEntityNameStrings('recipe', 'recipes');
-        $this->crud->denyAccess(['create', 'update']);
     }
 
     public function show($id)
@@ -54,7 +53,7 @@ class RecipeCrudController extends CrudController
             'entity' => 'images', // the method that defines the relationship in your Model
             'attribute' => "url", // foreign key attribute that is shown to user
             'model' => "App\Models\RecipeImage",
-            'view'  => 'backpack::crud.columns.images', // or path to blade file
+            'view' => 'backpack::crud.columns.images', // or path to blade file
         ]);
 
         CRUD::column('title');
@@ -67,6 +66,15 @@ class RecipeCrudController extends CrudController
             'attribute' => "name", // foreign key attribute that is shown to user
             'model' => "App\Models\User",
         ]);
+
+        $this->crud->addColumn([
+            'label' => "Categories",
+            'type' => "select_multiple",
+            'name' => 'categories', // the column that contains the ID of that connected entity;
+            'entity' => 'categories', // the method that defines the relationship in your Model
+            'attribute' => "name", // foreign key attribute that is shown to user
+        ]);
+
         $this->crud->addColumn([
             'name' => 'prep_time',
             'label' => 'Prep Time (in minutes)'
@@ -117,6 +125,7 @@ class RecipeCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('title');
+
         $this->crud->addColumn([
             'label' => "User",
             'type' => "select",
@@ -131,6 +140,7 @@ class RecipeCrudController extends CrudController
             'type' => "relationship_count",
             'name' => 'images', // the method that defines the relationship in your Model
         ]);
+
 
         CRUD::column('published');
         CRUD::column('traditional');
@@ -149,11 +159,55 @@ class RecipeCrudController extends CrudController
     {
         CRUD::setValidation(RecipeRequest::class);
 
-        CRUD::field('user_id');
+        $this->crud->addField([ // image
+            'label' => "Main Image",
+            'name' => "main_image",
+            'type' => 'image',
+            'crop' => false,
+            'aspect_ratio' => 0,
+        ]);
+
+//        $this->crud->addColumn([
+//            'label' => "Other Images",
+//            'type' => "view",
+//            'name' => "recipe_id",
+//            'entity' => 'images', // the method that defines the relationship in your Model
+//            'attribute' => "url", // foreign key attribute that is shown to user
+//            'model' => "App\Models\RecipeImage",
+//            'view'  => 'backpack::crud.columns.images', // or path to blade file
+//        ]);
+
         CRUD::field('title');
+
+        $this->crud->addField([
+            'label' => "User",
+            'type' => "select",
+            'name' => 'user_id', // the column that contains the ID of that connected entity;
+            'entity' => 'author', // the method that defines the relationship in your Model
+            'attribute' => "name", // foreign key attribute that is shown to user
+            'model' => "App\Models\User",
+        ]);
+
+        $this->crud->addField([
+            'label' => "Categories",
+            'type' => "select2_multiple",
+            'name' => 'categories',
+            'entity' => 'categories',
+            'attribute' => "name",
+            'model' => "App\Models\Category",
+        ]);
+
+        $this->crud->addField([
+            'name' => 'prep_time',
+            'label' => 'Prep Time (in minutes)'
+        ]);
+        $this->crud->addField([
+            'name' => 'cook_time',
+            'label' => 'Cook Time (in minutes)'
+        ]);
+        CRUD::field('ingredients');
         CRUD::field('instructions');
         CRUD::field('description');
-        CRUD::field('ingredients');
         CRUD::field('notes');
         CRUD::field('prep_time');
         CRUD::field('cook_time');
@@ -161,8 +215,6 @@ class RecipeCrudController extends CrudController
         CRUD::field('main_image');
         CRUD::field('featured');
         CRUD::field('traditional');
-        CRUD::field('created_by');
-        CRUD::field('updated_by');
         CRUD::field('published');
 
         /**
@@ -186,21 +238,21 @@ class RecipeCrudController extends CrudController
     /**
      * Define which routes are needed for this operation.
      *
-     * @param string $segment    Name of the current entity (singular). Used as first URL segment.
-     * @param string $routeName  Prefix of the route name.
+     * @param string $segment Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName Prefix of the route name.
      * @param string $controller Name of the current CrudController.
      */
     protected function setupCreateRoutes($segment, $routeName, $controller)
     {
-        Route::get($segment.'/create', [
-            'as'        => $routeName.'.admin-create',
-            'uses'      => $controller.'@create',
+        Route::get($segment . '/create', [
+            'as' => $routeName . '.admin-create',
+            'uses' => $controller . '@create',
             'operation' => 'create',
         ]);
 
         Route::post($segment, [
-            'as'        => $routeName.'.admin-store',
-            'uses'      => $controller.'@store',
+            'as' => $routeName . '.admin-store',
+            'uses' => $controller . '@store',
             'operation' => 'create',
         ]);
     }
@@ -208,15 +260,15 @@ class RecipeCrudController extends CrudController
     /**
      * Define which routes are needed for this operation.
      *
-     * @param string $segment    Name of the current entity (singular). Used as first URL segment.
-     * @param string $routeName  Prefix of the route name.
+     * @param string $segment Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName Prefix of the route name.
      * @param string $controller Name of the current CrudController.
      */
     protected function setupShowRoutes($segment, $routeName, $controller)
     {
-        Route::get($segment.'/{id}/show', [
-            'as'        => $routeName.'.admin-show',
-            'uses'      => $controller.'@show',
+        Route::get($segment . '/{id}/show', [
+            'as' => $routeName . '.admin-show',
+            'uses' => $controller . '@show',
             'operation' => 'show',
         ]);
     }
@@ -224,27 +276,27 @@ class RecipeCrudController extends CrudController
     /**
      * Define which routes are needed for this operation.
      *
-     * @param string $segment    Name of the current entity (singular). Used as first URL segment.
-     * @param string $routeName  Prefix of the route name.
+     * @param string $segment Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName Prefix of the route name.
      * @param string $controller Name of the current CrudController.
      */
     protected function setupListRoutes($segment, $routeName, $controller)
     {
-        Route::get($segment.'/', [
-            'as'        => $routeName.'.admin-index',
-            'uses'      => $controller.'@index',
+        Route::get($segment . '/', [
+            'as' => $routeName . '.admin-index',
+            'uses' => $controller . '@index',
             'operation' => 'list',
         ]);
 
-        Route::post($segment.'/search', [
-            'as'        => $routeName.'.admin-search',
-            'uses'      => $controller.'@search',
+        Route::post($segment . '/search', [
+            'as' => $routeName . '.admin-search',
+            'uses' => $controller . '@search',
             'operation' => 'list',
         ]);
 
-        Route::get($segment.'/{id}/details', [
-            'as'        => $routeName.'.showDetailsRow',
-            'uses'      => $controller.'@showDetailsRow',
+        Route::get($segment . '/{id}/details', [
+            'as' => $routeName . '.showDetailsRow',
+            'uses' => $controller . '@showDetailsRow',
             'operation' => 'list',
         ]);
     }
@@ -252,15 +304,15 @@ class RecipeCrudController extends CrudController
     /**
      * Define which routes are needed for this operation.
      *
-     * @param string $segment    Name of the current entity (singular). Used as first URL segment.
-     * @param string $routeName  Prefix of the route name.
+     * @param string $segment Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName Prefix of the route name.
      * @param string $controller Name of the current CrudController.
      */
     protected function setupDeleteRoutes($segment, $routeName, $controller)
     {
-        Route::delete($segment.'/{id}', [
-            'as'        => $routeName.'.admin-destroy',
-            'uses'      => $controller.'@destroy',
+        Route::delete($segment . '/{id}', [
+            'as' => $routeName . '.admin-destroy',
+            'uses' => $controller . '@destroy',
             'operation' => 'delete',
         ]);
     }
