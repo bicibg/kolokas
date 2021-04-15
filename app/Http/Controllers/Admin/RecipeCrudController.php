@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\RecipeRequest;
+//use App\Http\Requests\RecipeRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Route;
 
 /**
  * Class RecipeCrudController
@@ -14,8 +15,8 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class RecipeCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+//    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+//    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation {
         show as traitShow;
@@ -180,5 +181,87 @@ class RecipeCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    /**
+     * Define which routes are needed for this operation.
+     *
+     * @param string $segment    Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName  Prefix of the route name.
+     * @param string $controller Name of the current CrudController.
+     */
+    protected function setupCreateRoutes($segment, $routeName, $controller)
+    {
+        Route::get($segment.'/create', [
+            'as'        => $routeName.'.admin-create',
+            'uses'      => $controller.'@create',
+            'operation' => 'create',
+        ]);
+
+        Route::post($segment, [
+            'as'        => $routeName.'.admin-store',
+            'uses'      => $controller.'@store',
+            'operation' => 'create',
+        ]);
+    }
+
+    /**
+     * Define which routes are needed for this operation.
+     *
+     * @param string $segment    Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName  Prefix of the route name.
+     * @param string $controller Name of the current CrudController.
+     */
+    protected function setupShowRoutes($segment, $routeName, $controller)
+    {
+        Route::get($segment.'/{id}/show', [
+            'as'        => $routeName.'.admin-show',
+            'uses'      => $controller.'@show',
+            'operation' => 'show',
+        ]);
+    }
+
+    /**
+     * Define which routes are needed for this operation.
+     *
+     * @param string $segment    Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName  Prefix of the route name.
+     * @param string $controller Name of the current CrudController.
+     */
+    protected function setupListRoutes($segment, $routeName, $controller)
+    {
+        Route::get($segment.'/', [
+            'as'        => $routeName.'.admin-index',
+            'uses'      => $controller.'@index',
+            'operation' => 'list',
+        ]);
+
+        Route::post($segment.'/search', [
+            'as'        => $routeName.'.admin-search',
+            'uses'      => $controller.'@search',
+            'operation' => 'list',
+        ]);
+
+        Route::get($segment.'/{id}/details', [
+            'as'        => $routeName.'.showDetailsRow',
+            'uses'      => $controller.'@showDetailsRow',
+            'operation' => 'list',
+        ]);
+    }
+
+    /**
+     * Define which routes are needed for this operation.
+     *
+     * @param string $segment    Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName  Prefix of the route name.
+     * @param string $controller Name of the current CrudController.
+     */
+    protected function setupDeleteRoutes($segment, $routeName, $controller)
+    {
+        Route::delete($segment.'/{id}', [
+            'as'        => $routeName.'.admin-destroy',
+            'uses'      => $controller.'@destroy',
+            'operation' => 'delete',
+        ]);
     }
 }
