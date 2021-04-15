@@ -12,4 +12,9 @@ class RecipeImage extends Model
     protected $casts = [
         'url' => LocalUrl::class
     ];
+
+    public function recipe()
+    {
+        return $this->belongsTo(Recipe::class, 'recipe_id');
+    }
 }

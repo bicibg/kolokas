@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 
 class Recipe extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use SoftDeletes, Sluggable, Favouritable, Visitable, HasTranslations;
 
     public $translatable = ['title', 'description', 'ingredients', 'instructions', 'notes', 'servings'];
