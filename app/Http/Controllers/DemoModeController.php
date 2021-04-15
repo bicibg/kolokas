@@ -6,6 +6,12 @@ use function request;
 
 class DemoModeController extends Controller
 {
+    public function recipe()
+    {
+        return view('demo.demo.recipe');
+    }
+
+
     public function index()
     {
         return view('demo.index');

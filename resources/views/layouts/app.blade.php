@@ -55,6 +55,8 @@
     @livewireStyles
 </head>
 <body>
+<div id="print-wrapper">
+</div>
 <div id="app">
     <div class="sticky-top kolokas-nav">
         @include('partials.topbar')

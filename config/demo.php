@@ -6,6 +6,7 @@ return [
         'demo.index',
         'demo.enable',
         'demo.activate',
+        'demo.recipe',
         'locale',
     ],
     'demo_key' => env('DEMO_KEY', null)

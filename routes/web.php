@@ -19,6 +19,7 @@ Route::middleware('localized')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Auth::routes();
     Route::get('/demo', 'DemoModeController@index')->name('demo.index');
+    Route::get('/demo/recipe', 'DemoModeController@recipe')->name('demo.recipe');
     Route::get('/demo-activate', 'DemoModeController@activate')->name('demo.activate');
     Route::get('/{locale}', 'HomeController@locale')->name('locale')->where('locale', implode('|', array_keys(Config::get('app.languages'))));
     Route::get('/recipes/create', 'RecipeController@create')->name('recipe.create');

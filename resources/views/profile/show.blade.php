@@ -12,9 +12,9 @@
     {{ $profile->name }} -
 @endsection
 @section('content')
-    <div class="container">
+    <div class="container ml-auto mr-auto px-5 mb-5">
         <div class="row mt-5">
-            <div class="col-xs-12 col-sm-8">
+            <div class="col-xs-12 col-sm-6 text-center">
                 <h2>{{ $profile->name }}</h2>
                 @if ($profile->info)
                     <p><strong>{{ __('trx.about') }}: </strong> {{ $profile->info }} </p>
@@ -25,7 +25,7 @@
                     </p>
                 @endif
             </div>
-            <div class="col-12 col-sm-4 text-center border-left border-darker">
+            <div class="col-xs-12 col-sm-6 text-center border-left border-darker">
                 @if ($profile->website || $profile->facebook || $profile->instagram || $profile->twitter || $profile->pinterest)
                     <h6><strong>{{ __('trx.social_media') }}</strong></h6>
                 @endif
@@ -61,22 +61,19 @@
                 @endif
             </div>
         </div>
-
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                @if ($recipes->count())
-                    <h5 class="text-center">
-                        <i class="fa fa-cutlery" aria-hidden="true"></i>
-                        {{ __(trans_choice('trx.recipes_found', $recipes->count(), ['number' => $recipes->count()])) }}
-                    </h5>
-                @else
-                    {{ __('trx.user_no_recipes') }}
-                @endif
-
-            </div>
-        </div>
-
-        @include('home.partial.recipes-showdown', ['recipes' => $recipes, 'title' => ''])
-
     </div>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            @if ($recipes->count())
+                <h5 class="text-center">
+                    <i class="fa fa-cutlery" aria-hidden="true"></i>
+                    {{ __(trans_choice('trx.recipes_found', $recipes->count(), ['number' => $recipes->count()])) }}
+                </h5>
+            @else
+                {{ __('trx.user_no_recipes') }}
+            @endif
+
+        </div>
+    </div>
+    @include('home.partial.recipes-showdown', ['recipes' => $recipes, 'title' => ''])
 @endsection

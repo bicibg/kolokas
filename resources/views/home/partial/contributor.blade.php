@@ -1,5 +1,5 @@
 @if($contributors->count())
-    <div class="container pt-0 pt-sm-5">
+    <div class="container pt-0 pt-sm-5 no-print">
         <div class="row justify-content-center m-2">
             @if(!empty($title))
                 <div class="col-md-12">
