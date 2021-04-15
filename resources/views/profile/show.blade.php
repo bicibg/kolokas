@@ -38,25 +38,25 @@
                 @if($profile->facebook)
                     <p>
                         <i class="fa fa-facebook"></i>
-                        <a href="{{ $profile->website }}" class="btn-link">{{ $profile->website }}</a>
+                        <a href="{{ $profile->facebook }}" class="btn-link">{{ $profile->facebook }}</a>
                     </p>
                 @endif
                 @if($profile->instagram)
                     <p>
                         <i class="fa fa-instagram"></i>
-                        <a href="{{ $profile->website }}" class="btn-link">{{ $profile->website }}</a>
+                        <a href="{{ $profile->instagram }}" class="btn-link">{{ $profile->instagram }}</a>
                     </p>
                 @endif
                 @if($profile->twitter)
                     <p>
                         <i class="fa fa-twitter"></i>
-                        <a href="{{ $profile->website }}" class="btn-link">{{ $profile->website }}</a>
+                        <a href="{{ $profile->twitter }}" class="btn-link">{{ $profile->twitter }}</a>
                     </p>
                 @endif
                 @if($profile->pinterest)
                     <p>
                         <i class="fa fa-pinterest"></i>
-                        <a href="{{ $profile->website }}" class="btn-link">{{ $profile->website }}</a>
+                        <a href="{{ $profile->pinterest }}" class="btn-link">{{ $profile->pinterest }}</a>
                     </p>
                 @endif
             </div>
