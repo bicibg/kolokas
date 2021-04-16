@@ -36,7 +36,6 @@ Route::middleware('localized')->group(function () {
     Route::get('/contact/{recipe?}', 'ContactController@create')->name('contact.create');
     Route::post('/password-update', 'ChangePasswordController@store')->name('password.new');
     Route::post('/demo-enable', 'DemoModeController@enable')->name('demo.enable');
-    Route::post('/recipes', 'RecipeController@store')->name('recipe.store');
     Route::patch('/recipes/{recipe}', 'RecipeController@update')->name('recipe.update');
     Route::post('/subscribe', 'SubscriberController@store')->name('subscribe');
     Route::patch('/profile/edit', 'ProfileController@update')->name('profile.update');
@@ -44,6 +43,8 @@ Route::middleware('localized')->group(function () {
     Route::get('/about-us', 'HomeController@about_us')->name('about_us');;
     Route::get('/privacy-policy', 'HomeController@privacy_policy')->name('privacy_policy');;
     Route::post('/translate', 'TranslationController@translate')->name('translate');
+    Route::post('/recipes/{recipe}/images', 'RecipeController@images')->name('recipe.images');
+    Route::post('/recipes/deleteimage/{image}', 'RecipeController@deleteimage')->name('recipe.deleteimage');
 });
 
 Route::get('sitemap.xml','SitemapController@index');

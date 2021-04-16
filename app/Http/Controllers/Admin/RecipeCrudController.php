@@ -43,15 +43,15 @@ class RecipeCrudController extends CrudController
             'label' => "Main Image",
             'name' => "main_image",
             'type' => 'image',
-            'height' => '200px'
+            'height' => '100px'
         ]);
 
         $this->crud->addColumn([
             'label' => "Other Images",
             'type' => "view",
-            'name' => "recipe_id",
-            'entity' => 'images', // the method that defines the relationship in your Model
             'attribute' => "url", // foreign key attribute that is shown to user
+            'entity' => 'images', // the method that defines the relationship in your Model
+            'name' => "recipe_id",
             'model' => "App\Models\RecipeImage",
             'view' => 'backpack::crud.columns.images', // or path to blade file
         ]);
@@ -149,12 +149,6 @@ class RecipeCrudController extends CrudController
         CRUD::column('updated_at');
     }
 
-    /**
-     * Define what happens when the Create operation is loaded.
-     *
-     * @see https://backpackforlaravel.com/docs/crud-operation-create
-     * @return void
-     */
     protected function setupCreateOperation()
     {
         CRUD::setValidation(RecipeRequest::class);
@@ -166,16 +160,6 @@ class RecipeCrudController extends CrudController
             'crop' => false,
             'aspect_ratio' => 0,
         ]);
-
-//        $this->crud->addColumn([
-//            'label' => "Other Images",
-//            'type' => "view",
-//            'name' => "recipe_id",
-//            'entity' => 'images', // the method that defines the relationship in your Model
-//            'attribute' => "url", // foreign key attribute that is shown to user
-//            'model' => "App\Models\RecipeImage",
-//            'view'  => 'backpack::crud.columns.images', // or path to blade file
-//        ]);
 
         CRUD::field('title');
 
@@ -216,12 +200,6 @@ class RecipeCrudController extends CrudController
         CRUD::field('featured');
         CRUD::field('traditional');
         CRUD::field('published');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
     }
 
     /**
@@ -233,6 +211,14 @@ class RecipeCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+        $this->crud->addField([
+            'label' => "Other Images",
+            'type' => "dropzone",
+            'name' => 'images',
+            'fake' => true,
+            'mimes' => '.jpg,.jpeg,.png',
+            'filesize' => '5000'
+        ])->afterField('main_image');
     }
 
     /**
@@ -260,21 +246,21 @@ class RecipeCrudController extends CrudController
     /**
      * Define which routes are needed for this operation.
      *
-     * @param string $name       Name of the current entity (singular). Used as first URL segment.
-     * @param string $routeName  Prefix of the route name.
+     * @param string $name Name of the current entity (singular). Used as first URL segment.
+     * @param string $routeName Prefix of the route name.
      * @param string $controller Name of the current CrudController.
      */
     protected function setupUpdateRoutes($segment, $routeName, $controller)
     {
-        Route::get($segment.'/{id}/edit', [
-            'as'        => $routeName.'.admin-edit',
-            'uses'      => $controller.'@edit',
+        Route::get($segment . '/{id}/edit', [
+            'as' => $routeName . '.admin-edit',
+            'uses' => $controller . '@edit',
             'operation' => 'update',
         ]);
 
-        Route::put($segment.'/{id}', [
-            'as'        => $routeName.'.admin-update',
-            'uses'      => $controller.'@update',
+        Route::put($segment . '/{id}', [
+            'as' => $routeName . '.admin-update',
+            'uses' => $controller . '@update',
             'operation' => 'update',
         ]);
     }

@@ -41,7 +41,7 @@ class RecipeRequest extends FormRequest
             'servings' => 'required|max:64',
             'notes' => 'max:4000',
             'main_image' => 'required|string',
-//            'images.*' => 'image|mimes:jpeg,jpg,png',
+//            'images.*' => 'array|max:5|mimes:jpeg,jpg,png',
         ];
     }
 

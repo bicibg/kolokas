@@ -17,4 +17,8 @@ class RecipeImage extends Model
     {
         return $this->belongsTo(Recipe::class, 'recipe_id');
     }
+
+    public function identifiableAttribute() {
+        return 'url';
+    }
 }

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use App\Models\Recipe;
+use App\Models\RecipeImage;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
@@ -16,7 +18,7 @@ class RecipeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show', 'demo']);
+        $this->middleware('auth')->except(['index', 'show', 'demo', 'images']);
     }
 
     /**
@@ -137,5 +139,37 @@ class RecipeController extends Controller
     public function destroy(Recipe $recipe)
     {
         //
+    }
+
+    public function images(Recipe $recipe) {
+        $photos = request()->file('images', []);
+        try {
+            foreach ($photos as $file) {
+                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $file->storeAs('public/images/recipes/', $filename);
+                if ($file->storeAs('public/images/recipes/', $filename)) {
+                    $recipe->images()->create([
+                        'url' => 'images/recipes/' . $filename,
+                    ]);
+                }
+            }
+        } catch (\Throwable $exception) {
+            report($exception);
+            return false;
+        }
+
+        return response(['images' => $recipe->images()->pluck('url')], 200);
+    }
+
+    public function deleteimage(RecipeImage $image) {
+        try {
+            if(Storage::delete('public/' . $image->getAttributes()['url'])) {
+                $image->delete();
+            }
+        } catch (\Throwable $e) {
+            report ($e);
+            return false;
+        }
+        return response(['success' => true], 200);
     }
 }
