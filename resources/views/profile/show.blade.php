@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center text-center">
         <div class="col-md-12">
             @if ($recipes->count())
                 <h5 class="text-center">

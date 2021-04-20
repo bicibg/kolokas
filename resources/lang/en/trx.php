@@ -149,7 +149,7 @@ return [
     'translation_target_filled' => 'In order to use this translation feature, \':target\' field must be empty', /* i.e. ...feature, 'title' field must be empty */
     'update_profile' => 'Update Profile',
     'user_has_no_recipes' => 'You don\'t have any recipes yet.',
-    'user_no_recipes' => 'This is user has currently no recipes.',
+    'user_no_recipes' => 'This user has currently no recipes.',
     'verification_email_sent' => 'A verification link has been sent to your email address.',
     'verify_email' => 'Verify your Email address',
     'view' => 'View recipe',
