@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\CheckForDemoMode;
 use App\Http\Middleware\CheckForMaintenanceMode;
+use App\Http\Middleware\CheckIfAdmin;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\Localization;
 use App\Http\Middleware\RecordVisits;
@@ -90,5 +91,6 @@ class Kernel extends HttpKernel
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
         'localized' => Localization::class,
+        'admin.check' => CheckIfAdmin::class
     ];
 }

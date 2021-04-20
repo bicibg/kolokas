@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -110,6 +111,7 @@ class RecipeCreate extends Component
 
         DB::transaction(function () {
             $filename = uniqid() . '_' . $this->main_image->getClientOriginalName();
+            $filename = Str::slug($filename);
 
             if ($this->main_image->storeAs('public/images/recipes/', $filename)) {
                 $recipe = Recipe::create([
@@ -132,6 +134,7 @@ class RecipeCreate extends Component
 
             foreach ($this->images as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = Str::slug($filename);
                 if ($file->storeAs('public/images/recipes/', $filename)) {
                     $recipe->images()->create([
                         'url' => 'images/recipes/' . $filename,

@@ -108,6 +108,7 @@ class Recipe extends Model
                     $image = \Image::make($value)->encode('jpg', 90);
 
                     $filename = md5($value . time()) . '.jpg';
+                    $filename = Str::slug($filename);
                     Storage::put('public/images/recipes/' . $filename, $image->stream());
 
                     $newImages[] = 'images/recipes/' . $filename;

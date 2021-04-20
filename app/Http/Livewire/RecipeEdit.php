@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -154,7 +155,7 @@ class RecipeEdit extends Component
             ];
             if ($this->main_image) {
                 $filename = uniqid() . '_' . $this->main_image->getClientOriginalName();
-
+                $filename = Str::slug($filename);
                 if ($this->main_image->storeAs('public/images/recipes/', $filename)) {
                     if (file_exists($this->existing_main_image)) {
                         Storage::delete($this->existing_main_image);
@@ -174,6 +175,7 @@ class RecipeEdit extends Component
 
             foreach ($this->images as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = Str::slug($filename);
                 if ($file->storeAs('public/images/recipes/', $filename)) {
                     $this->recipe->images()->create([
                         'url' => 'images/recipes/' . $filename,

@@ -18,7 +18,8 @@ class RecipeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show', 'demo', 'images']);
+        $this->middleware('auth')->except(['index', 'show', 'demo', 'images', 'deleteimage']);
+        $this->middleware('admin.check')->only('images', 'deleteimage');
     }
 
     /**
@@ -146,6 +147,7 @@ class RecipeController extends Controller
         try {
             foreach ($photos as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = Str::slug($filename);
                 $file->storeAs('public/images/recipes/', $filename);
                 if ($file->storeAs('public/images/recipes/', $filename)) {
                     $recipe->images()->create([
