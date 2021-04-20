@@ -146,7 +146,7 @@ class Recipe extends Model
         if($this->published) {
             return '<a class="btn btn-sm btn-link" target="_blank" href="' . $this->url . '" data-toggle="tooltip" title="' . $this->title . '"><i class="fa fa-globe">&nbsp;</i>Public page</a>';
         }
-        return '';
+        return '<a class="btn btn-sm btn-link disabled" href="#" data-toggle="tooltip"><i class="fa fa-globe">&nbsp;</i>Public page</a>';
 
     }
 
