@@ -36,6 +36,7 @@ class RecipeCrudController extends CrudController
 
     public function show($id)
     {
+        $this->crud->addButtonFromModelFunction('line', 'url', 'getUrlWithLink', 'beginning');
         // custom logic before
         $this->crud->set('show.setFromDb', false);
 
@@ -107,8 +108,8 @@ class RecipeCrudController extends CrudController
         CRUD::column('published');
         CRUD::column('traditional');
         CRUD::column('featured');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+//        CRUD::column('created_at');
+//        CRUD::column('updated_at');
 
         $content = $this->traitShow($id);
 
@@ -124,6 +125,8 @@ class RecipeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->addButtonFromModelFunction('line', 'url', 'getUrlWithLink', 'beginning');
+
         CRUD::column('title');
 
         $this->crud->addColumn([
@@ -188,6 +191,15 @@ class RecipeCrudController extends CrudController
         $this->crud->addField([
             'name' => 'cook_time',
             'label' => 'Cook Time (in minutes)'
+        ]);
+        $this->crud->addField([
+            'name' => 'slug',
+            'label' => 'Slug',
+            'attributes' => [
+                'readonly' => 'readonly',
+                'disabled' => 'disabled',
+            ],
+            'type' => 'text',
         ]);
         CRUD::field('ingredients');
         CRUD::field('instructions');
