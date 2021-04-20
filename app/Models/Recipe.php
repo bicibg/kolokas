@@ -144,7 +144,7 @@ class Recipe extends Model
     public function getUrlWithLink(): string
     {
         if($this->published) {
-            return '<a class="btn btn-sm btn-link" target="_blank" href="' . $this->url . '" data-toggle="tooltip" title="' . $this->title . '"><i class="fa fa-search"></i>Public page</a>';
+            return '<a class="btn btn-sm btn-link" target="_blank" href="' . $this->url . '" data-toggle="tooltip" title="' . $this->title . '"><i class="fa fa-globe">&nbsp;</i>Public page</a>';
         }
         return '';
 
