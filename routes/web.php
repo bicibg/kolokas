@@ -47,4 +47,4 @@ Route::middleware('localized')->group(function () {
     Route::post('/recipes/deleteimage/{image}', 'RecipeController@deleteimage')->name('recipe.deleteimage');
 });
 
-Route::get('sitemap.xml','SitemapController@index');
+Route::get('sitemap.xml','SitemapController@index')->name('sitemap');

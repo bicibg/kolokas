@@ -8,7 +8,7 @@ return [
         'demo.activate',
         'demo.recipe',
         'locale',
-        'sitemap.xml'
+        'sitemap'
     ],
     'demo_key' => env('DEMO_KEY', null)
 ];
