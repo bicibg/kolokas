@@ -71,9 +71,8 @@ class Recipe extends Model
         $ingredients = $model->getTranslations('ingredients');
         $notes = $model->getTranslations('notes');
         $servings = $model->getTranslations('servings');
-
+        $locale = request()->get('locale') ?: App::getLocale();
         if (!$model->slug) {
-            $locale = request()->get('locale', App::getLocale());
             $existingTitle = $title[$locale];
             $otherLocales = config('app.languages');
             unset($otherLocales[$locale]);
