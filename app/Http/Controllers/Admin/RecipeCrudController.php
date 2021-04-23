@@ -127,6 +127,9 @@ class RecipeCrudController extends CrudController
     {
         $this->crud->addButtonFromModelFunction('line', 'url', 'getUrlWithLink', 'beginning');
 
+        $this->crud->addButton('top', 'create-tr', 'view', 'crud::buttons.create-tr');
+        $this->crud->addButton('top', 'create-el', 'view', 'crud::buttons.create-el');
+
         CRUD::column('title');
 
         $this->crud->addColumn([
