@@ -67,13 +67,15 @@ function translate($text, $to)
     ]);
 }
 
-function translateMissing($array, $lang)
+function translateMissing($array, $lang, $locale = null)
 {
-    if (!empty($array[$lang]) || !collect(array_keys(Config::get('app.languages')))->contains($lang) || !isset($array[App::getLocale()])) {
+    if (!$locale) $locale = App::getLocale();
+
+    if (!empty($array[$lang]) || !collect(array_keys(Config::get('app.languages')))->contains($lang) || !isset($array[$locale])) {
         return $array;
     }
     if (!isset($array[$lang]) || empty($array[$lang])) {
-        if ($translation = translate($array[App::getLocale()], $lang)) {
+        if ($translation = translate($array[$locale], $lang)) {
             $array[$lang] = $translation['text'];
         }
     }

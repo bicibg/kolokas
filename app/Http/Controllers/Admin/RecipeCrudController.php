@@ -155,7 +155,11 @@ class RecipeCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(RecipeRequest::class);
-
+        $this->crud->addField([
+            'name' => 'locale',
+            'type' => 'hidden',
+            'value' => request()->input('locale') ?? app()->getLocale(),
+        ]);
         $this->crud->addField([ // image
             'label' => "Main Image",
             'name' => "main_image",
@@ -192,15 +196,7 @@ class RecipeCrudController extends CrudController
             'name' => 'cook_time',
             'label' => 'Cook Time (in minutes)'
         ]);
-        $this->crud->addField([
-            'name' => 'slug',
-            'label' => 'Slug',
-            'attributes' => [
-                'readonly' => 'readonly',
-                'disabled' => 'disabled',
-            ],
-            'type' => 'text',
-        ]);
+
         CRUD::field('ingredients');
         CRUD::field('instructions');
         CRUD::field('description');
@@ -231,6 +227,16 @@ class RecipeCrudController extends CrudController
             'mimes' => '.jpg,.jpeg,.png',
             'filesize' => '5000'
         ])->afterField('main_image');
+
+        $this->crud->addField([
+            'name' => 'slug',
+            'label' => 'Slug',
+            'attributes' => [
+                'readonly' => 'readonly',
+                'disabled' => 'disabled',
+            ],
+            'type' => 'text',
+        ])->afterField('title');
     }
 
     /**

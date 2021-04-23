@@ -7,6 +7,7 @@ use App\Traits\Favouritable;
 use App\Traits\HasTranslations;
 use App\Traits\Visitable;
 use Carbon\CarbonInterval;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -71,14 +72,33 @@ class Recipe extends Model
         $notes = $model->getTranslations('notes');
         $servings = $model->getTranslations('servings');
 
+        if (!$model->slug) {
+            $locale = request()->get('locale', App::getLocale());
+            $existingTitle = $title[$locale];
+            $otherLocales = config('app.languages');
+            unset($otherLocales[$locale]);
+
+            if (!$existingTitle) {
+                foreach ($otherLocales as $l) {
+                    if ($title[$l]) {
+                        $existingTitle = $title[$l];
+                        break;
+                    }
+                }
+            }
+            if ($existingTitle) {
+                $model->slug = SlugService::createSlug($model, 'slug',$existingTitle);
+            }
+        }
         foreach (array_keys(Config::get('app.languages')) as $lang) {
-            if ($lang === App::getLocale()) continue;
-            $model->title = translateMissing($title, $lang);
-            $model->description = translateMissing($description, $lang);
-            $model->instructions = translateMissing($instructions, $lang);
-            $model->ingredients = translateMissing($ingredients, $lang);
-            $model->notes = translateMissing($notes, $lang);
-            $model->servings = translateMissing($servings, $lang);
+            if ($lang === $locale) continue;
+
+            $model->title = translateMissing($title, $lang, $locale);
+            $model->description = translateMissing($description, $lang, $locale);
+            $model->instructions = translateMissing($instructions, $lang, $locale);
+            $model->ingredients = translateMissing($ingredients, $lang, $locale);
+            $model->notes = translateMissing($notes, $lang, $locale);
+            $model->servings = translateMissing($servings, $lang, $locale);
         }
         return $model;
     }
