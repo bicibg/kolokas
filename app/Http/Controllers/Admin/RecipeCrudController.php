@@ -229,7 +229,7 @@ class RecipeCrudController extends CrudController
             'name' => 'images',
             'fake' => true,
             'mimes' => '.jpg,.jpeg,.png',
-            'filesize' => '5000'
+            'filesize' => '5'
         ])->afterField('main_image');
 
         $this->crud->addField([
