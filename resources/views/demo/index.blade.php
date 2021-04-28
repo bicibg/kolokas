@@ -64,7 +64,7 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 @foreach(config()->get('app.languages') as $key => $lang)
                     @if ($key !== app()->getLocale())
-                        <a class="dropdown-item" href="{{ route('locale', $key) }}">{{ $lang }}</a>
+                        <a class="dropdown-item" href="/{{ $key }}">{{ $lang }}</a>
                     @endif
                 @endforeach
             </div>

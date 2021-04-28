@@ -35,6 +35,6 @@ class ContactController extends Controller
             'subject' => $request->subject,
             'message' => $request->user_message,
         ]);
-        return redirect()->to('/')->with('flash', __('trx.contact_form_sent'));
+        return redirect()->route('contact')->with('flash', __('trx.contact_form_sent'));
     }
 }

@@ -32,7 +32,7 @@ class Profile extends Model
      */
     public function getUrlAttribute()
     {
-        return route('profile.show', $this);
+        return route('profile.show', ['profile' => $this]);
     }
 
     /**

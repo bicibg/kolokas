@@ -157,7 +157,7 @@ class Recipe extends Model
      */
     public function getUrlAttribute(): string
     {
-        return route('recipe.show', $this);
+        return route('recipe.show', ['recipe' =>  $this]);
     }
 
     public function getUrlWithLink(): string
