@@ -168,6 +168,7 @@ class RecipeCrudController extends CrudController
             'name' => "main_image",
             'type' => 'image',
             'crop' => false,
+            'max_file_size' => '5242880',
             'aspect_ratio' => 0,
         ]);
 
