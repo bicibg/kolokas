@@ -6,16 +6,6 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://kolokas.com/demo</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://kolokas.com/demo/recipe</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
         <loc>https://kolokas.com/recipes</loc>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>

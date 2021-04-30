@@ -3,7 +3,6 @@
 namespace App\Http;
 
 use App\Http\Middleware\Authenticate;
-use App\Http\Middleware\CheckForDemoMode;
 use App\Http\Middleware\CheckForMaintenanceMode;
 use App\Http\Middleware\CheckIfAdmin;
 use App\Http\Middleware\EncryptCookies;
@@ -46,7 +45,6 @@ class Kernel extends HttpKernel
         ValidatePostSize::class,
         TrimStrings::class,
         ConvertEmptyStringsToNull::class,
-        CheckForDemoMode::class,
     ];
 
     /**

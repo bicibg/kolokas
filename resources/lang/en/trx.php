@@ -34,14 +34,6 @@ return [
     'create_one_now' => 'Create one now',
     'create_page_info' => 'Enter all relevant information, as described under each field. Mandatory fields are marked with *. Recipes that do not comply with Kolokas.com standards may be rejected.',
     'create_page_title' => 'Create your recipe',
-    'demo' => [
-        'access_key' => 'Access key',
-        'contact' => 'If you don\'t have an access key but would like to help with testing or translating Kolokas.com, you can contact me on <a href=\'mailto:kolokas.recipes@gmail.com\' target=\'_blank\'>kolokas.recipes@gmail.com</a>',
-        'enabled' => 'You have successfully enabled demo mode on Kolokas.com.',
-        'letmein' => 'Let me in',
-        'no_access' => 'Kolokas.com is currently accessible by invite only for testing purposes. If you don\'t have an access key, check back later when we are live.',
-        'unsuccessful' => 'Demo access key you entered is incorrect. Better check back when Kolokas.com is live.'
-    ],
     'description' => 'Description',
     'edit' => 'Edit recipe',
     'edit_page_title' => 'Edit your recipe',

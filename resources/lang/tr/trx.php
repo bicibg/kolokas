@@ -34,14 +34,6 @@ return [
     'create_one_now' => 'Şimdi bir tane oluşturun',
     'create_page_info' => 'Her alanın altında açıklanan ilgili tüm bilgileri girin. Zorunlu alanlar * ile işaretlenmiştir. Kolokas.com standartlarına uymayan tarifler reddedilebilir.',
     'create_page_title' => 'Tarifinizi oluşturun',
-    'demo' => [
-        'access_key' => 'Erişim anahtarı',
-        'contact' => 'Erişim anahtarınız yoksa ancak Kolokas.com\'u test etmek veya çevirisinde yardım etmek istiyorsanız, bizimle şu emailden iletişime geçebilirsiniz: <a href=\'mailto:kolokas.recipes@gmail.com\' target=\'_blank\'>kolokas.recipes@gmail.com</a>',
-        'enabled' => 'Kolokas.com demo modunu başarıyla etkinleştirdiniz.',
-        'letmein' => 'Giriş yap',
-        'no_access' => 'Kolokas.com\'a şu anda yalnızca test amacıyla davetle erişilebilmektedir. Erişim anahtarınız yoksa, sizi daha sonra herkese açık olduğumuzda görmek isteriz.',
-        'unsuccessful' => 'Girdiğiniz demo erişim anahtarı yanlış. Kolokas.com yayında olduğunda tekrar kontrol etsen iyi olur.'
-    ],
     'description' => 'Açıklama',
     'edit' => 'Tarifi düzenleyin',
     'edit_page_title' => 'Tarifinizi düzenleyin',

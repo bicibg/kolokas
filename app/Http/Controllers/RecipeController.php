@@ -18,7 +18,7 @@ class RecipeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show', 'demo', 'images', 'deleteimage']);
+        $this->middleware('auth')->except(['index', 'show', 'images', 'deleteimage']);
         $this->middleware('admin.check')->only('images', 'deleteimage');
     }
 
