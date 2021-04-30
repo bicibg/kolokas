@@ -56,8 +56,6 @@
                 'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '492864908563456');
             fbq('track', 'PageView');
-            fbq('track', 'Search');
-            fbq('track', 'ViewContent');
         </script>
         <noscript><img height="1" width="1" style="display:none"
                        src="https://www.facebook.com/tr?id=492864908563456&ev=PageView&noscript=1"
