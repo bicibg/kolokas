@@ -98,7 +98,7 @@ return [
     'privacy_policy' => 'Gizlilik Politikası',
     'profile_update_success' => 'Profiliniz başarıyla güncellendi.',
     'published_recipes' => ':number yayınlanmış tarif|:number yayınlanmış tarif', /* i.e. 1 published recipe OR 2 published recipes */
-    'read_more' => 'Davamını oku',
+    'read_more' => 'Dvamını oku',
     'recently_added' => 'En Son Eklenen Tarifler',
     'recipe' => 'tarif|tarifler',
     'recipe_cannot_be_displayed' => 'Bu tarif şu anda gösterilemiyor',
