@@ -64,7 +64,6 @@
         <a href="javascript:void(0);"
            title="{{ __('trx.add_to_favourites') }}"
            wire:key="favourite_{{time()}}"
-           wire:id
            wire:click="favourite"><i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i></a>
         <a data-toggle="modal" href="javascript:void(0);" data-target="#popup-social-{{ $recipe->slug }}" title="{{ __('trx.share') }}">
             <i class="fa fa-share"></i>
