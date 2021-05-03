@@ -17,6 +17,8 @@ class RecipeBox extends Component
      */
     public $locale;
 
+    protected $listeners = ['recipeUpdated' => 'pullRecipe'];
+
     public function render()
     {
         return view('livewire.recipe-box');
@@ -33,6 +35,12 @@ class RecipeBox extends Component
         app()->setLocale($this->locale);
     }
 
+    public function pullRecipe(Recipe $recipe) {
+        if ($recipe->id === $this->recipe->id) {
+            $this->recipe = $recipe;
+        }
+    }
+
     public function favourite()
     {
         if (!auth()->check()) {
@@ -45,5 +53,6 @@ class RecipeBox extends Component
             $this->recipe->favourite();
         }
         $this->recipe = $this->recipe->fresh();
+        $this->emit('recipeUpdated', $this->recipe->slug);
     }
 }
