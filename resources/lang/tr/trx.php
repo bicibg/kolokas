@@ -19,6 +19,7 @@ return [
     'author_capital' => 'Yazar|Yazarlar',
     'author_email_hidden' => 'Yazarin emaili gizli',
     'authors' => 'Yazarlar',
+    'recipe_by' => ':author',
     'can_be_auto_translated' => 'isteğe bağlı, otomatik olarak çevrilebilir',
     'categories' => 'Kategoriler',
     'categories_help' => 'Birden çok kategori seçebilirsiniz.',

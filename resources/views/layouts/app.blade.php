@@ -16,6 +16,7 @@
     <meta property="og:title" content="@yield('facebook_share_title', 'Kolokas')"/>
     <meta property="og:description" content="@yield('facebook_share_description', __('trx.website_title'))"/>
     <meta property="og:image" content="@yield('facebook_share_image', asset('images/kolokas_fb.png'))"/>
+    <meta property="og:locale" content="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocaleRegional() }}"/>
     <meta property="fb:app_id" content="715933872436925"/>
 
     <!-- Scripts -->

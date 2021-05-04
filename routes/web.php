@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Middleware\RecordVisits;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
 /*

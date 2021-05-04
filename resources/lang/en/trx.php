@@ -19,6 +19,7 @@ return [
     'author_capital' => 'Author|Authors',
     'author_email_hidden' => 'Author\'s email is hidden',
     'authors' => 'Authors',
+    'recipe_by' => 'by :author',
     'can_be_auto_translated' => 'optional, can be auto-translated',
     'categories' => 'Categories',
     'categories_help' => 'You can select multiple categories.',

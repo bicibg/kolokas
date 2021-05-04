@@ -3,7 +3,7 @@
     {{$recipe->url}}
 @endsection
 @section('facebook_share_title')
-    {{ $recipe->title }}
+    {{ $recipe->title }} {{ __('trx.recipe_by', ['author' => $recipe->author->name]) }}
 @endsection
 @section('facebook_share_description')
     {{ \Illuminate\Support\Str::limit($recipe->description, 197, $end='...') }}

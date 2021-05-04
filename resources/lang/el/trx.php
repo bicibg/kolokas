@@ -19,6 +19,7 @@ return [
     'author_capital' => 'Συγγραφέας|Συγγραφείς',
     'author_email_hidden' => 'Το email του συγγραφέα είναι κρυφό',
     'authors' => 'Συγγραφείς',
+    'recipe_by' => 'από τον :author',
     'can_be_auto_translated' => 'προαιρετικά, μπορεί να μεταφραστεί αυτόματα',
     'categories' => 'Κατηγορίες',
     'categories_help' => 'Μπορείτε να επιλέξετε πολλές κατηγορίες.',
