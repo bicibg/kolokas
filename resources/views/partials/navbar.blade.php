@@ -93,7 +93,10 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     @foreach(config()->get('app.languages') as $key => $lang)
                         @if ($key !== app()->getLocale())
-                            <a class="dropdown-item" href="{{ route('locale', $key) }}">{{ $lang }}</a>
+                            <a class="dropdown-item"
+                               href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($key, Request::url()) }}">
+                                {{ $lang }}
+                            </a>
                         @endif
                     @endforeach
                 </div>

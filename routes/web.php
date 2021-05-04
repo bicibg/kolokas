@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::middleware('localized')->group(function () {
+Route::group(
+    [
+        'prefix' => \Mcamara\LaravelLocalization\Facades\LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'rememberLocale']
+    ], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Auth::routes();
-    Route::get('/{locale}', 'HomeController@locale')->name('locale')->where('locale', implode('|', array_keys(Config::get('app.languages'))));
+//    Route::get('/{locale}', 'HomeController@locale')->name('locale')->where('locale', implode('|', array_keys(Config::get('app.languages'))));
     Route::get('/recipes/create', 'RecipeController@create')->name('recipe.create');
     Route::get('/recipes/{recipe}/edit', 'RecipeController@edit')->name('recipe.edit');
     Route::get('/recipes', 'RecipeController@index')->name('recipe.index');
@@ -43,4 +46,4 @@ Route::middleware('localized')->group(function () {
     Route::post('/recipes/deleteimage/{image}', 'RecipeController@deleteimage')->name('recipe.deleteimage');
 });
 
-Route::get('sitemap.xml','SitemapController@index')->name('sitemap');
+Route::get('sitemap.xml', 'SitemapController@index')->name('sitemap');
