@@ -129,9 +129,9 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <p>
+                                <span>
                                     {!! nl2br(e($recipe->notes))  !!}
-                                </p>
+                                </span>
                             </div>
                         </div>
                         @if ($recipe->author->locale !== app()->getLocale())
