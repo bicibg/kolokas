@@ -6,7 +6,11 @@
     {{ $recipe->title }} {{ __('trx.recipe_by', ['author' => $recipe->author->name]) }}
 @endsection
 @section('facebook_share_description')
-    {{ \Illuminate\Support\Str::limit($recipe->description, 197, $end='...') }}
+    @if ($recipe->description)
+        {{ \Illuminate\Support\Str::limit($recipe->description, 197, $end='...') }}
+    @else
+        {{ \Illuminate\Support\Str::limit($recipe->instructions, 197, $end='...') }}
+    @endif
 @endsection
 @section('facebook_share_image')
     {{ $recipe->main_image }}
@@ -120,9 +124,7 @@
                                     <div class="instructions">
                                         <ol>
                                             @foreach($recipe->getInstructionsArray() as $instruction)
-                                                <li>
-                                                    <p>{{ $instruction }}</p>
-                                                </li>
+                                                <li>{{ $instruction }}</li>
                                             @endforeach
                                         </ol>
                                     </div>
