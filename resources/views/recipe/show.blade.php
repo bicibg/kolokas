@@ -121,7 +121,7 @@
                                         <ol>
                                             @foreach($recipe->getInstructionsArray() as $instruction)
                                                 <li>
-                                                    {{ $instruction }}
+                                                    <p>{{ $instruction }}</p>
                                                 </li>
                                             @endforeach
                                         </ol>
