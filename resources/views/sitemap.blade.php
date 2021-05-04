@@ -25,20 +25,22 @@
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
-    @foreach ($recipes as $recipe)
-        <url>
-            <loc>{{ $recipe->url }}</loc>
-            <lastmod>{{ gmdate('Y-m-d\TH:i:s\Z', strtotime($recipe->updated_at)) }}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-    @endforeach
-    @foreach ($authors as $author)
-        <url>
-            <loc>{{ $author->url }}</loc>
-            <lastmod>{{ gmdate('Y-m-d\TH:i:s\Z', strtotime($author->user->recipes->last()->updated_at)) }}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.6</priority>
-        </url>
+    @foreach(\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getSupportedLocales() as $key => $locale)
+        @foreach ($recipes as $recipe)
+            <url>
+                <loc>{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($key, $recipe->url) }}</loc>
+                <lastmod>{{ gmdate('Y-m-d\TH:i:s\Z', strtotime($recipe->updated_at)) }}</lastmod>
+                <changefreq>daily</changefreq>
+                <priority>0.8</priority>
+            </url>
+        @endforeach
+        @foreach ($authors as $author)
+            <url>
+                <loc>{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($key, $author->url)  }}</loc>
+                <lastmod>{{ gmdate('Y-m-d\TH:i:s\Z', strtotime($author->user->recipes->last()->updated_at)) }}</lastmod>
+                <changefreq>daily</changefreq>
+                <priority>0.6</priority>
+            </url>
+        @endforeach
     @endforeach
 </urlset>
