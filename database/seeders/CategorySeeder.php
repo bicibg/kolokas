@@ -179,9 +179,7 @@ class CategorySeeder extends Seeder
 
         foreach ($categories as $cat) {
             Category::create([
-                'name_en' => $cat['en'],
-                'name_tr' => $cat['tr'],
-                'name_el' => $cat['el'],
+                'name' => ['en' => $cat['en'], 'tr' => $cat['tr'], 'el' => $cat['el']],
             ]);
         }
     }

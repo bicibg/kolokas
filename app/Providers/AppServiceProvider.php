@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,7 +18,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->booted(function () {
+            // Backpack is registered after all providers have booted
+        });
     }
 
     /**
@@ -27,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Register Backpack after core services are available
+        $this->app->register(\Backpack\CRUD\BackpackServiceProvider::class);
+
         Paginator::useBootstrap();
 
         Validator::extend('total_images_with_existing', function ($attribute, $value, $parameters, $validator) {
@@ -37,10 +43,14 @@ class AppServiceProvider extends ServiceProvider
             return count($existingForm) + count($value) <= $max;
         }, __('validation.custom.total_images_with_existing'));
 
-        \View::composer('*', function ($view) {
-            $categories = Cache::rememberForever('categories', function () {
-                return Category::all();
-            });
+        View::composer('*', function ($view) {
+            try {
+                $categories = Cache::rememberForever('categories', function () {
+                    return Category::all();
+                });
+            } catch (\Exception $e) {
+                $categories = collect();
+            }
             $view->with('categories', $categories);
         });
     }

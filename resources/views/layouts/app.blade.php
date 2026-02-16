@@ -64,22 +64,21 @@
         <!-- End Facebook Pixel Code -->
     @endif
 
-    <script src="{{ mix('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="prefetch stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="prefetch stylesheet">
-    <link href="{{ mix('css/styles.css') }}" rel="prefetch stylesheet">
-    <link href="{{ mix('css/styles-print.css') }}" rel="prefetch stylesheet">
-    <link href="{{ mix('css/styles-480px.css') }}" rel="prefetch stylesheet">
-    <link href="{{ mix('css/styles-768px.css') }}" rel="prefetch stylesheet">
-    <link href="{{ mix('css/styles-992px.css') }}" rel="prefetch stylesheet">
-    <link href="{{ mix('css/styles-1200px.css') }}" rel="prefetch stylesheet">
-
-    <link href="{{ mix('css/fontawesome.css') }}" rel="prefetch stylesheet">
+    @vite([
+        'resources/js/app.js',
+        'resources/sass/app.scss',
+        'resources/sass/styles.scss',
+        'resources/sass/styles-print.scss',
+        'resources/sass/styles-480px.scss',
+        'resources/sass/styles-768px.scss',
+        'resources/sass/styles-992px.scss',
+        'resources/sass/styles-1200px.scss',
+        'resources/sass/fontawesome.scss',
+    ])
 
     @livewireStyles
 </head>
@@ -111,6 +110,6 @@
 </script>
 @stack('scripts')
 
-@livewireScripts
+@livewireScriptConfig
 </body>
 </html>

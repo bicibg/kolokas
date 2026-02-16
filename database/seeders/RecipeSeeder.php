@@ -19,16 +19,24 @@ class RecipeSeeder extends Seeder
     {
         $users = User::all();
         foreach ($users as $user) {
-            $recipes = factory(Recipe::class, random_int(1, 10))->create([
+            $recipes = Recipe::factory()->count(random_int(1, 10))->create([
                 'user_id' => $user->id,
             ]);
 
             foreach ($recipes as $recipe) {
+                $firstImageUrl = null;
                 for ($x = 0; $x < random_int(1, 5); $x++) {
-                    factory(RecipeImage::class)->create([
-                        'main' => $x === 0,
+                    $image = RecipeImage::factory()->create([
                         'recipe_id' => $recipe->id
                     ]);
+                    if ($x === 0) {
+                        $firstImageUrl = $image->getRawOriginal('url');
+                    }
+                }
+                if ($firstImageUrl) {
+                    Recipe::withoutTimestamps(fn () =>
+                        Recipe::where('id', $recipe->id)->update(['main_image' => $firstImageUrl])
+                    );
                 }
                 foreach (Category::all()->random(rand(1, 4)) as $category) {
                     $recipe->categories()->attach($category);

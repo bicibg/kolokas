@@ -9,6 +9,7 @@ use App\Traits\Visitable;
 use Carbon\CarbonInterval;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\File;
@@ -16,11 +17,12 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\Laravel\Facades\Image;
 
 class Recipe extends Model
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
-    use SoftDeletes, Sluggable, Favouritable, Visitable, HasTranslations;
+    use HasFactory, SoftDeletes, Sluggable, Favouritable, Visitable, HasTranslations;
 
     public $translatable = ['title', 'description', 'ingredients', 'instructions', 'notes', 'servings'];
     /**
@@ -50,15 +52,15 @@ class Recipe extends Model
         'main_image' => LocalUrl::class
     ];
 
-    public static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 
-        self::creating(function ($model) {
+        static::creating(function ($model) {
             Recipe::fillTranslations($model);
         });
 
-        self::updating(function ($model) {
+        static::updating(function ($model) {
             Recipe::fillTranslations($model);
         });
     }
@@ -105,10 +107,10 @@ class Recipe extends Model
     public function setMainImageAttribute($value)
     {
         if (Str::startsWith($value, 'data:image')) {
-            $image = \Image::make($value)->encode('jpg', 90);
+            $image = Image::read($value)->encodeByMediaType('image/jpeg', progressive: true, quality: 90);
 
             $filename = md5($value . time()) . '.jpg';
-            Storage::put('public/images/recipes/' . $filename, $image->stream());
+            Storage::put('public/images/recipes/' . $filename, (string) $image);
 
             Storage::delete($this->main_image);
 
@@ -124,11 +126,11 @@ class Recipe extends Model
         try {
             foreach ($values as $value) {
                 if (Str::startsWith($value, 'data:image')) {
-                    $image = \Image::make($value)->encode('jpg', 90);
+                    $image = Image::read($value)->encodeByMediaType('image/jpeg', progressive: true, quality: 90);
 
                     $filename = md5($value . time()) . '.jpg';
                     $filename = Str::slug($filename);
-                    Storage::put('public/images/recipes/' . $filename, $image->stream());
+                    Storage::put('public/images/recipes/' . $filename, (string) $image);
 
                     $newImages[] = 'images/recipes/' . $filename;
                 }

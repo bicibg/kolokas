@@ -79,7 +79,7 @@ window.gtranslate = function gtranslate(from, to, context, self) {
     }
 }
 
-module.exports = {
+export default {
     methods: {
         /**
          * Translate the given key.

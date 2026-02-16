@@ -1,41 +1,30 @@
 <?php
 
-/** @var Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Profile;
 use App\Models\User;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+class ProfileFactory extends Factory
+{
+    protected $model = Profile::class;
 
-$factory->define(/**
- * @param Faker $faker
- * @param array $attr
- * @return array
- */ Profile::class, function (Faker $faker, $attr = []) {
-    $email = $faker->unique()->safeEmail;
-    return [
-        'user_id' => $attr['user_id'] ?? factory(User::class)->create(['email' => $email]),
-        'name' => $faker->name,
-        'email' => $email,
-        'website' => $faker->url,
-        'telephone' => $faker->phoneNumber,
-        'city' => $faker->city,
-        'facebook' => $faker->url,
-        'instagram' => $faker->url,
-        'twitter' => $faker->url,
-        'pinterest' => $faker->url,
-        'info' => $faker->paragraph,
-        'is_top' => $faker->boolean(20)
-    ];
-});
+    public function definition(): array
+    {
+        return [
+            'user_id' => User::factory(),
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'website' => fake()->url(),
+            'telephone' => fake()->phoneNumber(),
+            'city' => fake()->city(),
+            'facebook' => fake()->url(),
+            'instagram' => fake()->url(),
+            'twitter' => fake()->url(),
+            'pinterest' => fake()->url(),
+            'info' => fake()->paragraph(),
+            'is_top' => fake()->boolean(20),
+        ];
+    }
+}

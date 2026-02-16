@@ -6,7 +6,7 @@
                     <label class="col-form-label" for="main_image">{{ __('trx.main_photo') }}:</label>
                     <div wire:loading.remove>
                         <input type="file" class="bg-none border-0 form-control" name="main_image"
-                               id="main_image" wire:model.defer="main_image" accept="image/png, image/jpeg"/>
+                               id="main_image" wire:model="main_image" accept="image/png, image/jpeg"/>
                     </div>
                     <div wire:loading wire:target="main_image">{{ __('trx.main_photo_uploading') }}</div>
                     @if(!empty($main_image) || !empty($existing_main_image))
@@ -29,7 +29,7 @@
                     <label class="col-form-label"
                            for="images">{{ __('trx.additional_photos', ['value' => $maxNewImages]) }}:</label>
                     <div wire:loading.remove>
-                        <input type="file" class="bg-none border-0 form-control" wire:model.defer="images"
+                        <input type="file" class="bg-none border-0 form-control" wire:model="images"
                                multiple
                                accept="image/png, image/jpeg"
                                id="images"/>
@@ -54,7 +54,7 @@
                         @foreach($recipe->images()->get() as $image)
                             <div>
                                 <img class="img-thumbnail img-responsive" src="{{ $image->url }}" alt="">
-                                <input wire:model="existing_images"
+                                <input wire:model.live="existing_images"
                                        type="checkbox"
                                        autocomplete="off"
                                        value="{{ $image->id }}">

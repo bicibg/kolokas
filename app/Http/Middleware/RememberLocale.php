@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use app;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class RememberLocale
 {
@@ -17,8 +17,8 @@ class RememberLocale
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->locale !== \Illuminate\Support\Facades\App::getLocale()) {
-            auth()->user()->locale = \Illuminate\Support\Facades\App::getLocale();
+        if (auth()->check() && auth()->user()->locale !== App::getLocale()) {
+            auth()->user()->locale = App::getLocale();
             auth()->user()->save();
         }
 

@@ -141,7 +141,7 @@
                                                id="agreement"
                                                @if($agreement) checked="checked"
                                                @endif
-                                               wire:model="agreement">
+                                               wire:model.live="agreement">
                                         <label class="form-check-label" for="agreement"> &nbsp;
                                             {{ __('trx.agreement_agree') }}
                                         </label>

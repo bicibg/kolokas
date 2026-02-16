@@ -6,7 +6,7 @@
                     <label class="required col-form-label" for="categories">{{ __('trx.categories') }}:</label>
                     <select class="categories-picker form-control"
                             multiple
-                            wire:model="categories"
+                            wire:model.live="categories"
                             name="categories[]"
                             id="categories">
                         @foreach(\App\Models\Category::all() as $category)
@@ -28,7 +28,7 @@
                     <label class="col-form-label" for="prep_time">{{ __('trx.prep_time') }}:</label>
                     <input type="number"
                            class="form-control"
-                           wire:model.defer="prep_time"
+                           wire:model="prep_time"
                            name="prep_time"
                            id="prep_time"
                            placeholder="{{ __('trx.in_minutes') }}">
@@ -37,7 +37,7 @@
                     <label class="col-form-label" for="cook_time">{{ __('trx.cook_time') }}:</label>
                     <input type="number"
                            class="form-control"
-                           wire:model.defer="cook_time"
+                           wire:model="cook_time"
                            name="cook_time"
                            id="cook_time"
                            placeholder="{{ __('trx.in_minutes') }}">

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Recipe;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class RecipeBox extends Component
@@ -16,8 +17,6 @@ class RecipeBox extends Component
      * @var $locale
      */
     public $locale;
-
-    protected $listeners = ['recipeUpdated' => 'pullRecipe'];
 
     public function render()
     {
@@ -35,8 +34,11 @@ class RecipeBox extends Component
         app()->setLocale($this->locale);
     }
 
-    public function pullRecipe(Recipe $recipe) {
-        if ($recipe->id === $this->recipe->id) {
+    #[On('recipeUpdated')]
+    public function pullRecipe($slug)
+    {
+        $recipe = Recipe::where('slug', $slug)->first();
+        if ($recipe && $recipe->id === $this->recipe->id) {
             $this->recipe = $recipe;
         }
     }
@@ -44,7 +46,7 @@ class RecipeBox extends Component
     public function favourite()
     {
         if (!auth()->check()) {
-            $this->emit('flash-error', null, __('trx.not_logged_in'));
+            $this->dispatch('flash-error', message: null, trans_key: __('trx.not_logged_in'));
             return;
         }
         if ($this->recipe->isFavourited()) {
@@ -53,6 +55,6 @@ class RecipeBox extends Component
             $this->recipe->favourite();
         }
         $this->recipe = $this->recipe->fresh();
-        $this->emit('recipeUpdated', $this->recipe->slug);
+        $this->dispatch('recipeUpdated', slug: $this->recipe->slug);
     }
 }

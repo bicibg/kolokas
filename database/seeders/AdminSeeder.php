@@ -55,9 +55,9 @@ class AdminSeeder extends Seeder
         ];
 
         foreach ($admins as $admin) {
-            $user = factory(User::class)->create($admin['user']);
+            $user = User::factory()->create($admin['user']);
             $admin['profile']['user_id'] = $user->id;
-            factory(Profile::class)->create($admin['profile']);
+            Profile::factory()->create($admin['profile']);
         }
     }
 }

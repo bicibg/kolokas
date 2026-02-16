@@ -1,17 +1,20 @@
 <?php
 
-/** @var Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Recipe;
 use App\Models\RecipeImage;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
+class RecipeImageFactory extends Factory
+{
+    protected $model = RecipeImage::class;
 
-$factory->define(RecipeImage::class, function (Faker $faker, $attr = []) {
-    return [
-        'main' => true,
-        'recipe_id' => $attr['recipe_id'] ?? factory(Recipe::class)->create(),
-        'url' => imageUrl(640, 480)//$faker->imageUrl(640, 480, 'food', true),
-    ];
-});
+    public function definition(): array
+    {
+        return [
+            'recipe_id' => Recipe::factory(),
+            'url' => imageUrl(640, 480),
+        ];
+    }
+}

@@ -29,7 +29,7 @@
                     <div class="col-md-8">
                         <input type="text"
                                class="form-control"
-                               wire:model.defer="servings.{{ $lang }}"
+                               wire:model="servings.{{ $lang }}"
                                name="servings.{{ $lang }}"
                                id="servings_{{ $lang }}"
                                placeholder="{{ __('trx.no_of_servings', [], $lang) }}">

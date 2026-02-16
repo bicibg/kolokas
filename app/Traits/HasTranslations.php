@@ -35,7 +35,6 @@ trait HasTranslations
         $translation = $this->getTranslation($key, $this->locale ?: config('app.locale'));
 
         // if it's a fake field, json_encode it
-//        dd(json_encode($translation, JSON_UNESCAPED_UNICODE));
         if (is_array($translation)) {
             return json_encode($translation, JSON_UNESCAPED_UNICODE);
         }
@@ -43,7 +42,7 @@ trait HasTranslations
         return $translation;
     }
 
-    public function getTranslation(string $key, string $locale, bool $useFallbackLocale = true)
+    public function getTranslation(string $key, string $locale, bool $useFallbackLocale = true): mixed
     {
         $locale = $this->normalizeLocale($key, $locale, $useFallbackLocale);
 
@@ -51,7 +50,7 @@ trait HasTranslations
 
         $translation = $translations[$locale] ?? '';
 
-        if ($this->hasGetMutator($key)) {
+        if ($this->hasAttributeMutator($key)) {
             return $this->mutateAttribute($key, $translation);
         }
 
@@ -116,7 +115,7 @@ trait HasTranslations
      * @param string $method
      * @param array $parameters
      *
-     * @return
+     * @return mixed
      */
     public function __call($method, $parameters)
     {
@@ -145,12 +144,10 @@ trait HasTranslations
                 }
 
                 return parent::__call($method, $parameters);
-                break;
 
             // do not translate any other methods
             default:
                 return parent::__call($method, $parameters);
-                break;
         }
     }
 }

@@ -96,7 +96,7 @@
                         <div class="slidecontainer w-75 mr-auto ml-auto">
                             <input id="prep_time"
                                    type="range"
-                                   wire:model="maxPrepTime"
+                                   wire:model.live="maxPrepTime"
                                    min="{{ $cookTimes['minPrep'] }}"
                                    max="{{ $cookTimes['maxPrep'] }}"
                                    value="{{ $maxPrepTime }}"
@@ -118,7 +118,7 @@
                         <div class="slidecontainer w-75 mr-auto ml-auto">
                             <input id="cook_time"
                                    type="range"
-                                   wire:model="maxCookTime"
+                                   wire:model.live="maxCookTime"
                                    min="{{ $cookTimes['minCook'] }}"
                                    max="{{ $cookTimes['maxCook'] }}"
                                    value="{{ $maxCookTime }}"

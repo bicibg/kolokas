@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Casts\LocalUrl;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class RecipeImage extends Model
 {
+    use HasFactory;
     protected $fillable = ['url'];
 
     protected $casts = [

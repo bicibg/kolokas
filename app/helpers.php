@@ -59,7 +59,7 @@ function imageUrl($width = 640, $height = 480)
 function translate($text, $to)
 {
     $translate = new \Google\Cloud\Translate\V2\TranslateClient([
-        'key' => env('GOOGLE_TRANSLATE_API_KEY')
+        'key' => config('services.google_translate.api_key')
     ]);
     return $translate->translate($text, [
         'target' => $to,

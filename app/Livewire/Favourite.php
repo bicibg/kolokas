@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Recipe;
 use Livewire\Component;
@@ -33,7 +33,7 @@ class Favourite extends Component
     {
         if (!auth()->check()) {
             //display warning
-            $this->emit('flash-error', null, __('trx.not_logged_in'));
+            $this->dispatch('flash-error', message: null, trans_key: __('trx.not_logged_in'));
             return;
         }
         if ($this->recipe->isFavourited()) {

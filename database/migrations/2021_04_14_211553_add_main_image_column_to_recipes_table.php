@@ -14,7 +14,7 @@ class AddMainImageColumnToRecipesTable extends Migration
     public function up()
     {
         Schema::table('recipes', function (Blueprint $table) {
-            $table->string('main_image')->after('servings');
+            $table->string('main_image')->nullable()->after('servings');
         });
     }
 
