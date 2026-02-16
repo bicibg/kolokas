@@ -1,30 +1,25 @@
 @extends('layouts.app')
-@section('facebook_share_url')
-    {{$recipe->url}}
-@endsection
-@section('facebook_share_title')
-    {{ $recipe->title }} {{ __('trx.recipe_by', ['author' => $recipe->author->name]) }}
-@endsection
-@section('facebook_share_description')
-    @if ($recipe->description)
-        {{ \Illuminate\Support\Str::limit($recipe->description, 197, $end='...') }}
-    @else
-        {{ \Illuminate\Support\Str::limit($recipe->instructions, 197, $end='...') }}
-    @endif
-@endsection
-@section('facebook_share_image')
-    {{ $recipe->main_image }}
-@endsection
-@section('sub_page_title')
-    {{ $recipe->title }} -
-@endsection
+@section('sub_page_title'){{ $recipe->title }} - @endsection
+@section('meta_description'){{ \Illuminate\Support\Str::limit($recipe->description ?: $recipe->instructions, 155, '...') }}@endsection
+@section('og_type')article@endsection
+@section('og_url'){{ $recipe->url }}@endsection
+@section('og_title'){{ $recipe->title }} {{ __('trx.recipe_by', ['author' => $recipe->author->name]) }}@endsection
+@section('og_description'){{ \Illuminate\Support\Str::limit($recipe->description ?: $recipe->instructions, 197, '...') }}@endsection
+@section('og_image'){{ $recipe->main_image }}@endsection
+@section('twitter_card')summary_large_image@endsection
+
+@include('partials.recipe-schema')
+@include('partials.breadcrumb-schema', ['breadcrumbs' => [
+    ['name' => __('trx.recipes'), 'url' => route('recipe.index')],
+    ['name' => $recipe->title, 'url' => $recipe->url],
+]])
 @section('content')
     <div class="container pt-0 pt-sm-5">
         <div class="row justify-content-center">
             <div class="col-md-8 single-post">
                 <div id="single-content" class="inner-content">
                     <div class="heading">
-                        <h2>{{ $recipe->title }}</h2>
+                        <h1>{{ $recipe->title }}</h1>
                     </div>
                     <div class="row">
                         <div class="col-md-12">

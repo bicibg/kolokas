@@ -40,8 +40,6 @@ class Recipe extends Model
         'main_image',
         'featured',
         'traditional',
-        'created_by',
-        'updated_by',
         'published',
     ];
 
@@ -147,7 +145,7 @@ class Recipe extends Model
 
             foreach($newImages as $newImage) {
                 $this->images()->create([
-                    'url' => 'images/recipes/' . $newImage,
+                    'url' => $newImage,
                 ]);
             }
         }

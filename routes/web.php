@@ -42,13 +42,12 @@ Route::group(
     Route::get('/authors', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/contact/{recipe?}', [ContactController::class, 'create'])->name('contact.create');
     Route::post('/password-update', [ChangePasswordController::class, 'store'])->name('password.new');
-    Route::patch('/recipes/{recipe}', [RecipeController::class, 'update'])->name('recipe.update');
-    Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe');
+    Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe')->middleware('throttle:5,1');
     Route::patch('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store')->middleware('throttle:5,1');
     Route::get('/about-us', [HomeController::class, 'about_us'])->name('about_us');
     Route::get('/privacy-policy', [HomeController::class, 'privacy_policy'])->name('privacy_policy');
-    Route::post('/translate', [TranslationController::class, 'translate'])->name('translate');
+    Route::post('/translate', [TranslationController::class, 'translate'])->name('translate')->middleware(['auth', 'throttle:10,1']);
     Route::post('/recipes/{recipe}/images', [RecipeController::class, 'images'])->name('recipe.images');
     Route::post('/recipes/deleteimage/{image}', [RecipeController::class, 'deleteimage'])->name('recipe.deleteimage');
 });

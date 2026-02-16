@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -141,6 +140,8 @@ class RecipeEdit extends Component
             return redirect(route('home'));
         }
 
+        $this->validate();
+
         DB::transaction(function () {
             $data = [
                 'title' => $this->title,
@@ -157,8 +158,8 @@ class RecipeEdit extends Component
                 $filename = uniqid() . '_' . $this->main_image->getClientOriginalName();
                 $filename = Str::slug($filename);
                 if ($this->main_image->storeAs('public/images/recipes/', $filename)) {
-                    if (file_exists($this->existing_main_image)) {
-                        Storage::delete($this->existing_main_image);
+                    if (Storage::disk('public')->exists($this->existing_main_image)) {
+                        Storage::delete('public/' . $this->existing_main_image);
                     }
                     $data['main_image'] = 'images/recipes/' . $filename;
                 }
@@ -168,7 +169,7 @@ class RecipeEdit extends Component
             if ($toBeDeleted->count()) {
                 $deletes = $this->recipe->images()->whereIn('id', $toBeDeleted->toArray())->get();
                 foreach ($deletes as $delete) {
-                    Storage::delete($delete->getAttributes()['url']);
+                    Storage::delete('public/' . $delete->getAttributes()['url']);
                     $delete->delete();
                 }
             }
@@ -183,21 +184,8 @@ class RecipeEdit extends Component
                 }
             }
 
-            $this->validate();
-
-            try {
-                $this->recipe->update($data);
-
-                $this->recipe->categories()->detach();
-                foreach ($this->categories as $category) {
-                    $this->recipe->categories()->attach($category);
-                }
-                DB::commit();
-            } catch (\Exception $e) {
-                Log::error('Error updating recipe.' . $e->getMessage());
-                Log::error($e->getTraceAsString());
-                DB::rollBack();
-            }
+            $this->recipe->update($data);
+            $this->recipe->categories()->sync($this->categories);
         });
         session()->flash('message', __('trx.recipe_updated'));
 
@@ -221,7 +209,7 @@ class RecipeEdit extends Component
             $pos = array_search($id, $this->existing_images);
             unset($this->existing_images[$pos]);
         } else {
-            $existing_images[] = $id;
+            $this->existing_images[] = $id;
         }
     }
 

@@ -22,7 +22,7 @@
                     <img class="d-block w-100" src="{{ $recipe->main_image }}" alt="{{ $recipe->title }}">
                     <div class="container">
                         <div class="carousel-caption text-right">
-                            <h1><a href="{{ $recipe->url }}">{{ $recipe->title }}</a></h1>
+                            <h2><a href="{{ $recipe->url }}">{{ $recipe->title }}</a></h2>
                             <p>
                                 {{ \Illuminate\Support\Str::limit($recipe->description, 250, $end='...') }}
                             </p>

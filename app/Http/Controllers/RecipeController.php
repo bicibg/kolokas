@@ -9,7 +9,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -129,17 +128,6 @@ class RecipeController extends Controller
             return redirect()->back()->with(['flash-error' => __('trx.recipe_edit_not_authorized')]);
         }
         return view('recipe.edit', compact('recipe'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Recipe $recipe
-     * @return Response
-     */
-    public function destroy(Recipe $recipe)
-    {
-        //
     }
 
     public function images(Recipe $recipe) {

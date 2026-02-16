@@ -4,7 +4,7 @@
     @endif
     <div class="recipe-img">
         <img alt="{{ $recipe->title }}" src="{{ $recipe->main_image }}"
-             height="266" width="400">
+             height="266" width="400" loading="lazy">
 
         @if ($recipe->author->is(auth()->user()))
             <a href="{{ route('recipe.edit', $recipe) }}">

@@ -1,47 +1,51 @@
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.w3.org/TR/xhtml11/xhtml11_schema.html http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/TR/xhtml11/xhtml11_schema.html">
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+    @php
+        $locales = array_keys(config('app.languages'));
+    @endphp
+
+    {{-- Static pages --}}
+    @foreach(['/' => ['daily', '1.0'], '/recipes' => ['daily', '0.8'], '/authors' => ['daily', '0.6'], '/contact' => ['monthly', '0.5'], '/about-us' => ['monthly', '0.5']] as $path => [$freq, $priority])
     <url>
-        <loc>https://kolokas.com</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
+        <loc>{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL('en', url($path)) }}</loc>
+        <changefreq>{{ $freq }}</changefreq>
+        <priority>{{ $priority }}</priority>
+        @foreach($locales as $lang)
+        <xhtml:link rel="alternate" hreflang="{{ $lang }}" href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($lang, url($path)) }}"/>
+        @endforeach
+        <xhtml:link rel="alternate" hreflang="x-default" href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL('en', url($path)) }}"/>
     </url>
+    @endforeach
+
+    {{-- Recipes --}}
+    @foreach ($recipes as $recipe)
     <url>
-        <loc>https://kolokas.com/recipes</loc>
-        <changefreq>daily</changefreq>
+        <loc>{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL('en', $recipe->url) }}</loc>
+        <lastmod>{{ $recipe->updated_at->toIso8601String() }}</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        @foreach($locales as $lang)
+        <xhtml:link rel="alternate" hreflang="{{ $lang }}" href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($lang, $recipe->url) }}"/>
+        @endforeach
+        <xhtml:link rel="alternate" hreflang="x-default" href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL('en', $recipe->url) }}"/>
     </url>
+    @endforeach
+
+    {{-- Authors --}}
+    @foreach ($authors as $author)
     <url>
-        <loc>https://kolokas.com/authors</loc>
-        <changefreq>daily</changefreq>
+        <loc>{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL('en', $author->url) }}</loc>
+        <lastmod>{{ $author->user->recipes->last()->updated_at->toIso8601String() }}</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://kolokas.com/contact</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://kolokas.com/about-us</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    @foreach(\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getSupportedLocales() as $key => $locale)
-        @foreach ($recipes as $recipe)
-            <url>
-                <loc>{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($key, $recipe->url) }}</loc>
-                <lastmod>{{ gmdate('Y-m-d\TH:i:s\Z', strtotime($recipe->updated_at)) }}</lastmod>
-                <changefreq>daily</changefreq>
-                <priority>0.8</priority>
-            </url>
+        @foreach($locales as $lang)
+        <xhtml:link rel="alternate" hreflang="{{ $lang }}" href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($lang, $author->url) }}"/>
         @endforeach
-        @foreach ($authors as $author)
-            <url>
-                <loc>{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($key, $author->url)  }}</loc>
-                <lastmod>{{ gmdate('Y-m-d\TH:i:s\Z', strtotime($author->user->recipes->last()->updated_at)) }}</lastmod>
-                <changefreq>daily</changefreq>
-                <priority>0.6</priority>
-            </url>
-        @endforeach
+        <xhtml:link rel="alternate" hreflang="x-default" href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL('en', $author->url) }}"/>
+    </url>
     @endforeach
 </urlset>

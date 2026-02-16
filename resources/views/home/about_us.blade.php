@@ -10,7 +10,7 @@
                 <p class="lead text-muted">{!! __('aboutus.par3') !!}</p>
                 <p class="lead text-muted font-italic">{!! __('aboutus.par4') !!}</p>
             </div>
-            <div class="col-lg-6 d-none d-lg-block"><img src="{{ asset('images/about_us_1.jpg') }}" alt=""
+            <div class="col-lg-6 d-none d-lg-block"><img src="{{ asset('images/about_us_1.jpg') }}" alt="Kolokas team"
                                                          class="img-fluid"></div>
         </div>
     </div>
@@ -27,7 +27,7 @@
             <!-- Team item-->
             <div class="col-xl-3 col-sm-6 mb-5">
                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                        src="{{ asset('images/bugra.jpeg') }}" alt=""
+                        src="{{ asset('images/bugra.jpeg') }}" alt="{{ $bugra->name }}"
                         width="130" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                     <h5 class="mb-0">{{$bugra->name}}</h5>
                     <span class="small text-uppercase text-muted">CEO - Founder - Developer</span><br>
@@ -49,7 +49,7 @@
             <!-- Team item-->
             <div class="col-xl-3 col-sm-6 mb-5">
                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                        src="{{ asset('images/burak.jpeg') }}" alt=""
+                        src="{{ asset('images/burak.jpeg') }}" alt="Burak Ergin"
                         width="130" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                     <h5 class="mb-0">Burak Ergin</h5><span
                         class="small text-uppercase text-muted">Product Manager - Marketing</span><br>

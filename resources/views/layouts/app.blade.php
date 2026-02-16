@@ -8,33 +8,32 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('sub_page_title')
-        Kolokas - {{ __('trx.website_title') }}
-    </title>
-    <meta property="og:type" content="article"/>
-    <meta property="og:url" content="@yield('facebook_share_url', 'https://kolokas.com')"/>
-    <meta property="og:title" content="@yield('facebook_share_title', 'Kolokas')"/>
-    <meta property="og:description" content="@yield('facebook_share_description', __('trx.website_title'))"/>
-    <meta property="og:image" content="@yield('facebook_share_image', asset('images/kolokas_fb.png'))"/>
+    <title>@yield('sub_page_title')Kolokas - {{ __('trx.website_title') }}</title>
+    <meta name="description" content="@yield('meta_description', __('trx.website_title'))">
+    <link rel="canonical" href="{{ url()->current() }}">
+    @foreach(config('app.languages') as $langCode => $langName)
+        <link rel="alternate" hreflang="{{ $langCode }}" href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($langCode, null, [], true) }}">
+    @endforeach
+    <link rel="alternate" hreflang="x-default" href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="@yield('og_type', 'website')"/>
+    <meta property="og:url" content="@yield('og_url', url()->current())"/>
+    <meta property="og:title" content="@yield('og_title', 'Kolokas - ' . __('trx.website_title'))"/>
+    <meta property="og:description" content="@yield('og_description', __('trx.website_title'))"/>
+    <meta property="og:image" content="@yield('og_image', asset('images/kolokas_fb.png'))"/>
     <meta property="og:locale" content="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocaleRegional() }}"/>
+    <meta property="og:site_name" content="Kolokas"/>
     <meta property="fb:app_id" content="715933872436925"/>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="@yield('twitter_card', 'summary')">
+    <meta name="twitter:title" content="@yield('og_title', 'Kolokas - ' . __('trx.website_title'))">
+    <meta name="twitter:description" content="@yield('og_description', __('trx.website_title'))">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/kolokas_fb.png'))">
 
     <!-- Scripts -->
 @if (app()->environment('production'))
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86539141-2"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-
-            gtag('js', new Date());
-
-            gtag('config', 'UA-86539141-2');
-        </script>
-
         <!-- Facebook Pixel Code -->
         <script>
             !function (f, b, e, v, n, t, s) {
@@ -66,7 +65,6 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="prefetch stylesheet">
 
     @vite([
         'resources/js/app.js',
@@ -81,16 +79,18 @@
     ])
 
     @livewireStyles
+    @stack('schema')
 </head>
 <body>
 <div id="print-wrapper">
 </div>
 <div id="app">
+    <a href="#main-content" class="sr-only sr-only-focusable">{{ __('trx.skip_to_content') ?? 'Skip to content' }}</a>
     <div class="sticky-top kolokas-nav">
         @include('partials.topbar')
         @include('partials.navbar')
     </div>
-    <main class="pt-2 mt-xs-5 pt-xs-2">
+    <main id="main-content" class="pt-2 mt-xs-5 pt-xs-2">
         <flash message="{{ session('flash') ?? (session('flash-warning') ?? session('flash-error')) }}"
                type="{{ session('flash-warning') ? 'warning' : (session('flash-error') ? 'error' : '')  }}"></flash>
         @if(count($errors)>0)

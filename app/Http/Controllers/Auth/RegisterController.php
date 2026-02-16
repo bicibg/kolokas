@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -65,7 +64,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        Log::info('Something for bugra: ' . print_r($data, true));
         $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

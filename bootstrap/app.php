@@ -3,6 +3,7 @@
 use App\Http\Middleware\CheckIfAdmin;
 use App\Http\Middleware\RecordVisits;
 use App\Http\Middleware\RememberLocale;
+use App\Http\Middleware\SecurityHeaders;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->web(append: [
             RecordVisits::class,
+            SecurityHeaders::class,
         ]);
 
         $middleware->alias([

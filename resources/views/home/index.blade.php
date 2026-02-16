@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@include('partials.organization-schema')
+@include('partials.website-schema')
+
 @section('content')
     @include('home.partial.carousel')
     @if (\App\Models\Recipe::count())

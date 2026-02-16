@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ContactFormMessage;
 use App\Models\Message;
 use App\Models\Recipe;
 use App\Rules\NoHtml;
