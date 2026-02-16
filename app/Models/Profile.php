@@ -24,6 +24,7 @@ class Profile extends Model
         'info',
         'is_pro',
         'is_restaurant',
+        'is_top',
     ];
 
     protected $appends = ['url'];
