@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
-    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory, Notifiable;
 
     /**

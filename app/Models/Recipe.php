@@ -21,7 +21,6 @@ use Intervention\Image\Laravel\Facades\Image;
 
 class Recipe extends Model
 {
-    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory, SoftDeletes, Sluggable, Favouritable, Visitable, HasTranslations;
 
     public $translatable = ['title', 'description', 'ingredients', 'instructions', 'notes', 'servings'];
