@@ -23,7 +23,7 @@ class Favourite extends Component
             <a href="javascript:void(0);" title="{{ __('trx.add_to_favourites') }}" wire:click="favourite">
                 <i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i>
                 <span class="d-inline-block">
-                    {{ $recipe->favourites->count() }} {{ trans_choice('trx.likes', $recipe->favourites->count()) }}
+                    {{ $recipe->favourites_count ?? $recipe->favourites->count() }} {{ trans_choice('trx.likes', $recipe->favourites_count ?? $recipe->favourites->count()) }}
                 </span>
             </a>
         blade;
@@ -41,6 +41,7 @@ class Favourite extends Component
         } else {
             $this->recipe->favourite();
         }
-        $this->recipe = $this->recipe->fresh();
+        $this->recipe = Recipe::with(['author', 'images'])->withCount('favourites', 'visits')
+            ->find($this->recipe->id);
     }
 }

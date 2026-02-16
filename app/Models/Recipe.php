@@ -43,8 +43,7 @@ class Recipe extends Model
         'published',
     ];
 
-    protected $with = ['author', 'images'];
-    protected $appends = ['favouritesCount', 'isFavourited', 'url', 'isVisited', 'visitsCount'];
+    protected $appends = ['url'];
     protected $casts = [
         'main_image' => LocalUrl::class
     ];

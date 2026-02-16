@@ -132,3 +132,72 @@
 ### Next Session
 - P2 items: database indexes, N+1 query fixes ($appends, $with), caching
 - P3 items: tests, CI pipeline, bundle optimization
+
+---
+
+## Session 4 — 2026-02-16
+
+### Completed — P2 Architecture & Performance
+
+#### Phase 1: Fix N+1 Query Issues (ARCH-002, ARCH-003)
+- **ARCH-002**: Removed `favouritesCount`, `isFavourited`, `isVisited`, `visitsCount` from Recipe `$appends` (kept `url`)
+- **ARCH-003**: Removed global `$with = ['author', 'images']` from Recipe model
+- Added explicit `with(['author', 'images'])->withCount('favourites', 'visits')` in:
+  - `HomeController::index()` — all 5 recipe queries
+  - `RecipeController::index()`, `show()`, `myRecipes()`, `favourites()`, `edit()`
+  - `ProfileController::show()`
+  - `RecipeBox::pullRecipe()` and `favourite()` refresh
+  - `Favourite::favourite()` refresh
+- Updated `recipe-box.blade.php` and `Favourite.php` templates to use `favourites_count`/`visits_count` with fallback
+
+#### Phase 2: Database Indexes (ARCH-004)
+- Created migration `add_performance_indexes` with indexes on:
+  - `recipes`: slug, published, featured, composite(published+featured), created_at
+  - `favourites`: favourited_id
+  - `visits`: visited_id
+  - `category_recipe`: recipe_id, category_id
+- Migration ran successfully on SQLite
+
+#### Phase 3: Caching & SearchBox Optimization (ARCH-014, ARCH-008, INFRA-011)
+- **ARCH-008**: Replaced 8 separate queries in RecipeSearchBox with single cached aggregate query
+- **INFRA-011**: Added cache invalidation for categories and search stats via model events in AppServiceProvider
+- Category cache already existed (`Cache::rememberForever('categories')`) — added `saved`/`deleted` listeners
+
+#### Phase 4: Authorization & Error Handling
+- **ARCH-005**: Created `RecipePolicy` with `update()` and `delete()` methods. Replaced inline auth checks in `RecipeController::edit()` and `RecipeEdit::submit()` with policy calls
+- **ARCH-007**: Added try/catch to `translate()` helper — returns original text on failure instead of crashing
+- **SEC-018**: Changed TrustProxies from `'*'` (all) to `'127.0.0.1'` (nginx only)
+
+#### Phase 5: Data & Relationship Fixes
+- **CQ-015**: Fixed `Category::recipes()` from `hasManyThrough` to `belongsToMany`. Deleted unused `CategoryRecipe` model
+- **CQ-022**: Fixed `ProfileController::index()` orWhere scoping — wrapped search in closure to preserve `has('user.recipes')` constraint
+
+#### Phase 6: DX Improvements
+- **DX-007**: Updated `.env.example` — changed to SQLite, removed MySQL/Redis/Pusher/AWS, added GOOGLE_TRANSLATE_API_KEY and SENTRY config
+
+### Files Created
+- `app/Policies/RecipePolicy.php`
+- `database/migrations/2026_02_16_225613_add_performance_indexes.php`
+
+### Files Modified
+- `app/Models/Recipe.php` — removed `$with`, removed 4 items from `$appends`
+- `app/Models/Category.php` — fixed `recipes()` relationship to `belongsToMany`
+- `app/Http/Controllers/HomeController.php` — explicit eager loading + withCount
+- `app/Http/Controllers/RecipeController.php` — eager loading, withCount, policy auth
+- `app/Http/Controllers/ProfileController.php` — eager loading, orWhere scoping fix
+- `app/Livewire/RecipeBox.php` — eager reload on favourite/pullRecipe
+- `app/Livewire/Favourite.php` — eager reload, template uses favourites_count
+- `app/Livewire/RecipeSearchBox.php` — single aggregate query, cached
+- `app/Livewire/RecipeEdit.php` — policy-based auth check
+- `app/Providers/AppServiceProvider.php` — cache invalidation events
+- `app/helpers.php` — translate() error handling
+- `bootstrap/app.php` — TrustProxies 127.0.0.1
+- `.env.example` — updated for current stack
+- `resources/views/livewire/recipe-box.blade.php` — favourites_count/visits_count
+
+### Files Deleted
+- `app/Models/CategoryRecipe.php`
+
+### Next Session
+- P3 items: tests, CI pipeline, bundle optimization
+- INFRA-005: Sentry integration (composer require)

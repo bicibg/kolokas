@@ -37,7 +37,8 @@ class RecipeBox extends Component
     #[On('recipeUpdated')]
     public function pullRecipe($slug)
     {
-        $recipe = Recipe::where('slug', $slug)->first();
+        $recipe = Recipe::with(['author', 'images'])->withCount('favourites', 'visits')
+            ->where('slug', $slug)->first();
         if ($recipe && $recipe->id === $this->recipe->id) {
             $this->recipe = $recipe;
         }
@@ -54,7 +55,8 @@ class RecipeBox extends Component
         } else {
             $this->recipe->favourite();
         }
-        $this->recipe = $this->recipe->fresh();
+        $this->recipe = Recipe::with(['author', 'images'])->withCount('favourites', 'visits')
+            ->find($this->recipe->id);
         $this->dispatch('recipeUpdated', slug: $this->recipe->slug);
     }
 }

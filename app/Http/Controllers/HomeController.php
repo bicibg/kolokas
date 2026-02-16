@@ -16,20 +16,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $featured = Recipe::wherePublished(true)->whereFeatured(true)->get();
+        $featured = Recipe::with(['author', 'images'])->withCount('favourites', 'visits')
+            ->wherePublished(true)->whereFeatured(true)->get();
         $featured = $featured->random(min(4, $featured->count()));
 
-        $carousel = Recipe::wherePublished(true)->whereFeatured(true)->get();
+        $carousel = Recipe::with(['author', 'images'])
+            ->wherePublished(true)->whereFeatured(true)->get();
         $carousel = $carousel->random(min(5, $carousel->count()));
 
-        $mostFavourited = Recipe::withCount('favourites')->has('favourites', '>' , 0)->wherePublished(true);
-        $mostFavourited = $mostFavourited->orderByDesc('favourites_count')->limit(4)->get();
+        $mostFavourited = Recipe::with(['author', 'images'])->withCount('favourites', 'visits')
+            ->has('favourites', '>', 0)->wherePublished(true)
+            ->orderByDesc('favourites_count')->limit(4)->get();
 
-        $mostVisited = Recipe::withCount('visits')->has('visits', '>' , 0)->wherePublished(true)->orderByDesc('visits_count')->limit(4)->get();
+        $mostVisited = Recipe::with(['author', 'images'])->withCount('favourites', 'visits')
+            ->has('visits', '>', 0)->wherePublished(true)
+            ->orderByDesc('visits_count')->limit(4)->get();
 
         $contributors = Profile::whereIsTop(1)->has('user.recipes', '>', 0)->get();
         $contributors = $contributors->random(min(4, $contributors->count()));
-        $latest = Recipe::wherePublished(true)->latest()->limit(4)->get();
+
+        $latest = Recipe::with(['author', 'images'])->withCount('favourites', 'visits')
+            ->wherePublished(true)->latest()->limit(4)->get();
 
         return view('home.index',
             compact('latest', 'featured', 'carousel', 'mostFavourited', 'mostVisited', 'contributors'));

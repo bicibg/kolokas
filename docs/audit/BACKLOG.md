@@ -26,26 +26,26 @@ Prioritized by impact and effort. Work top-to-bottom.
 - [x] **SEC-020**: Add throttle to /contact, /subscribe POST routes
 - [x] **PERF-002**: Add loading="lazy" to recipe card images
 - [x] **SEO-007**: Removed dead UA analytics (UA-86539141-2 — stopped collecting July 2024)
-- [ ] **INFRA-011**: Add Category model observer to clear cache on change
+- [x] **INFRA-011**: Add Category + Recipe cache invalidation in AppServiceProvider
 - [x] **CQ-010**: Remove unused imports (ContactFormMessage from ContactController, Response from RecipeController)
 - [x] **CQ-011/012**: Remove empty destroy() and dead route for update()
-- [ ] **CQ-015**: Fix Category::recipes() to belongsToMany, delete CategoryRecipe model
+- [x] **CQ-015**: Fix Category::recipes() to belongsToMany, delete CategoryRecipe model
 
 ## P2 — Important Improvements (1-3 hours each)
 
 - [x] **SEO-002**: Add JSON-LD Recipe structured data to show page (+ Organization, WebSite, Breadcrumb schemas)
-- [ ] **ARCH-004**: Add migration for indexes on slug, published, featured, recipe_id, user_id
-- [ ] **ARCH-002**: Remove appends from Recipe, use withCount() in controllers
-- [ ] **ARCH-003**: Remove global $with from Recipe, eager-load explicitly
-- [ ] **ARCH-014**: Add caching to home page queries
-- [ ] **ARCH-008**: Optimize RecipeSearchBox to single aggregate query
+- [x] **ARCH-004**: Add migration for indexes on slug, published, featured, favourited_id, visited_id, category_recipe
+- [x] **ARCH-002**: Remove $appends from Recipe (kept 'url'), use withCount('favourites', 'visits') in controllers
+- [x] **ARCH-003**: Remove global $with from Recipe, add explicit with(['author', 'images']) where needed
+- [x] **ARCH-014**: Cache search box cook time stats with invalidation
+- [x] **ARCH-008**: Optimize RecipeSearchBox from 8 queries to 1 aggregate query (cached)
 - [x] **CQ-019**: Replace detach()+loop attach() with sync()
-- [ ] **ARCH-005**: Create RecipePolicy for authorization
-- [ ] **ARCH-007**: Add try/catch + fallback to translate() helper
-- [ ] **SEC-018**: Configure TrustProxies with specific proxy IPs
-- [ ] **CQ-022**: Fix ProfileController search orWhere scoping
-- [ ] **DX-007**: Update .env.example for SQLite + required vars
-- [ ] **INFRA-005**: Integrate Sentry error tracking
+- [x] **ARCH-005**: Create RecipePolicy for authorization, replace inline auth checks
+- [x] **ARCH-007**: Add try/catch + fallback to translate() helper
+- [x] **SEC-018**: Configure TrustProxies to trust only 127.0.0.1
+- [x] **CQ-022**: Fix ProfileController search orWhere scoping (wrap in closure)
+- [x] **DX-007**: Update .env.example for SQLite + GOOGLE_TRANSLATE_API_KEY + SENTRY
+- [ ] **INFRA-005**: Integrate Sentry error tracking (package install pending)
 - [x] **FE-016**: Remove duplicate Google Fonts loading (removed <link> tag, kept SCSS @import)
 
 ## P3 — Medium-term Projects (multi-hour / multi-session)

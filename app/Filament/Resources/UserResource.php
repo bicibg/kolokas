@@ -6,6 +6,8 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Actions;
@@ -23,7 +25,7 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Account')
+                Section::make('Account')
                     ->schema([
                         Forms\Components\TextInput::make('email')
                             ->email()
@@ -35,7 +37,7 @@ class UserResource extends Resource
                             ->dehydrated(fn ($state) => filled($state))
                             ->required(fn (string $operation): bool => $operation === 'create'),
                     ]),
-                Forms\Components\Section::make('Profile')
+                Section::make('Profile')
                     ->relationship('profile')
                     ->schema([
                         Forms\Components\TextInput::make('name')
@@ -48,14 +50,14 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('telephone')
                             ->tel(),
                         Forms\Components\TextInput::make('city'),
-                        Forms\Components\Fieldset::make('Social Media')
+                        Fieldset::make('Social Media')
                             ->schema([
                                 Forms\Components\TextInput::make('facebook'),
                                 Forms\Components\TextInput::make('instagram'),
                                 Forms\Components\TextInput::make('twitter'),
                                 Forms\Components\TextInput::make('pinterest'),
                             ])->columns(2),
-                        Forms\Components\Fieldset::make('Flags')
+                        Fieldset::make('Flags')
                             ->schema([
                                 Forms\Components\Toggle::make('is_pro')
                                     ->label('Pro'),

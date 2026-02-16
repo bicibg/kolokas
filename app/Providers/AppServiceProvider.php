@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Recipe;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
@@ -48,5 +49,11 @@ class AppServiceProvider extends ServiceProvider
             }
             $view->with('categories', $categories);
         });
+
+        Category::saved(fn () => Cache::forget('categories'));
+        Category::deleted(fn () => Cache::forget('categories'));
+
+        Recipe::saved(fn () => Cache::forget('search.cook_time_stats'));
+        Recipe::deleted(fn () => Cache::forget('search.cook_time_stats'));
     }
 }

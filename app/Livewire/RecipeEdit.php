@@ -135,7 +135,7 @@ class RecipeEdit extends Component
 
     public function submit()
     {
-        if (!$this->recipe->author->is(auth()->user())) {
+        if (auth()->user()->cannot('update', $this->recipe)) {
             session(['flash-error' => __('trx.recipe_edit_not_authorized')]);
             return redirect(route('home'));
         }

@@ -7,6 +7,7 @@ use App\Filament\Resources\RecipeResource\RelationManagers;
 use App\Models\Recipe;
 use Filament\Forms;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Actions;
@@ -28,7 +29,7 @@ class RecipeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Content')
+                Section::make('Content')
                     ->schema([
                         Forms\Components\FileUpload::make('main_image')
                             ->image()
@@ -68,7 +69,7 @@ class RecipeResource extends Resource
                             ->numeric()
                             ->suffix('minutes'),
                     ]),
-                Forms\Components\Section::make('Settings')
+                Section::make('Settings')
                     ->schema([
                         Forms\Components\Toggle::make('published')
                             ->default(false),

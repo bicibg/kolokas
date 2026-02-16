@@ -21,8 +21,8 @@
         @endif
     </div>
     <div class="recipe-meta text-center">
-        <span><i class="fa fa-heart"></i> {{ $recipe->favourites->count() }} {{ trans_choice('trx.likes', $recipe->favourites->count() ) }}</span>
-        <span><i class="fa fa-eye"></i> {{ $recipe->visitsCount }}  {{ trans_choice('trx.views', $recipe->visitsCount ) }}</span>
+        <span><i class="fa fa-heart"></i> {{ $recipe->favourites_count ?? $recipe->favourites->count() }} {{ trans_choice('trx.likes', $recipe->favourites_count ?? $recipe->favourites->count()) }}</span>
+        <span><i class="fa fa-eye"></i> {{ $recipe->visits_count ?? $recipe->visits->count() }}  {{ trans_choice('trx.views', $recipe->visits_count ?? $recipe->visits->count()) }}</span>
     </div>
     <div class="recipe-content">
         <h3>

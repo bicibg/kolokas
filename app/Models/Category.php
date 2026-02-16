@@ -13,6 +13,6 @@ class Category extends Model
 
     public function recipes()
     {
-        return $this->hasManyThrough('App\Models\Recipe', 'App\Models\CategoryRecipe');
+        return $this->belongsToMany(Recipe::class)->withTimestamps();
     }
 }

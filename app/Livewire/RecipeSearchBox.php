@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Category;
 use App\Models\Profile;
 use App\Models\Recipe;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 /**
@@ -64,44 +65,23 @@ class RecipeSearchBox extends Component
         $this->categories = Category::all();
         $this->authors = Profile::with('user.recipes')->has('user.recipes')->orderBy('name', 'ASC')->get();
 
+        $stats = Cache::remember('search.cook_time_stats', 3600, function () {
+            return Recipe::wherePublished(true)
+                ->selectRaw('
+                    MIN(prep_time) as min_prep,
+                    MAX(prep_time) as max_prep,
+                    MIN(cook_time) as min_cook,
+                    MAX(cook_time) as max_cook
+                ')
+                ->first();
+        });
+
         $this->cookTimes = [
-            'minPrep' => 0,
-            'maxPrep' => 0,
-            'minCook' => 0,
-            'maxCook' => 0,
+            'minPrep' => $stats->min_prep ? max(0, $stats->min_prep - 20) : 0,
+            'maxPrep' => $stats->max_prep ? $stats->max_prep + 20 : 0,
+            'minCook' => $stats->min_cook ? max(0, $stats->min_cook - 20) : 0,
+            'maxCook' => $stats->max_cook ? $stats->max_cook + 20 : 0,
         ];
-
-        $minPrep = Recipe::wherePublished(true)
-            ->whereNotNull('prep_time')
-            ->orderBy('prep_time', 'asc');
-
-        if ($minPrep->count() > 0) {
-            $this->cookTimes['minPrep'] = $minPrep->first()->prep_time >= 20 ? $minPrep->first()->prep_time - 20 : 0;
-        }
-
-        $minCook = Recipe::wherePublished(true)
-            ->whereNotNull('cook_time')
-            ->orderBy('cook_time', 'asc');
-
-        if ($minCook->count() > 0) {
-            $this->cookTimes['minCook'] = $minCook->first()->cook_time >= 20 ? $minCook->first()->cook_time - 20 : 0;
-        }
-
-        $maxPrep = Recipe::wherePublished(true)
-            ->whereNotNull('prep_time')
-            ->orderBy('prep_time', 'desc');
-
-        if ($maxPrep->count() > 0) {
-            $this->cookTimes['maxPrep'] = $maxPrep->first()->prep_time + 20;
-        }
-
-        $maxCook = Recipe::wherePublished(true)
-            ->whereNotNull('cook_time')
-            ->orderBy('cook_time', 'desc');
-
-        if ($maxCook->count() > 0) {
-            $this->cookTimes['maxCook'] = $maxCook->first()->cook_time + 20;
-        }
 
         $this->maxPrepTime = request()->get('mp', $this->cookTimes['maxPrep']);
         $this->maxCookTime = request()->get('mc', $this->cookTimes['maxCook']);

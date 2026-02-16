@@ -20,8 +20,10 @@ class ProfileController extends Controller
 
         if (!empty($request->get('sp'))) {
             $searchTerm = Str::lower($request->get('sp'));
-            $profiles->where('name', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('email', 'LIKE', "%{$searchTerm}%");
+            $profiles->where(function ($query) use ($searchTerm) {
+                $query->where('name', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('email', 'LIKE', "%{$searchTerm}%");
+            });
         }
 
         $authorsCount = $profiles->count();
@@ -31,7 +33,8 @@ class ProfileController extends Controller
 
     public function show(Profile $profile)
     {
-        $recipes = $profile->user->recipes()->wherePublished(true)->latest()->get();
+        $recipes = $profile->user->recipes()->with(['author', 'images'])->withCount('favourites', 'visits')
+            ->wherePublished(true)->latest()->get();
         return view('profile.show', compact('profile', 'recipes'));
     }
 

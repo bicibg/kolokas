@@ -33,7 +33,8 @@ class RecipeController extends Controller
 
     public function index()
     {
-        $recipes = Recipe::wherePublished(true);
+        $recipes = Recipe::with(['author', 'images'])->withCount('favourites', 'visits')
+            ->wherePublished(true);
         $recipes = $this->addFilterToRecipes($recipes);
 
         $recipesCount = $recipes->count();
@@ -83,7 +84,7 @@ class RecipeController extends Controller
 
     public function favourites(Request $request)
     {
-        $recipes = auth()->user()->favourites();
+        $recipes = auth()->user()->favourites()->with(['author', 'images'])->withCount('favourites', 'visits');
         $recipes = $this->addFilterToRecipes($recipes);
 
         $recipesCount = $recipes->count();
@@ -102,17 +103,21 @@ class RecipeController extends Controller
         if (!$recipe->published) {
             return redirect()->back()->with('flash-error', __('trx.recipe_cannot_be_displayed'));
         }
-        $youMayAlsoLike = Recipe::with('categories')->where('id', '!=',  $recipe->id)->whereHas('categories', function ($query) use ($recipe) {
-            $query->whereIn('category_recipe.category_id',
-                $recipe->categories()->pluck('category_recipe.category_id')); // use whereIn
-        })->limit(4)->get();
+        $recipe->load(['author.profile', 'images', 'categories']);
+        $youMayAlsoLike = Recipe::with(['author', 'images', 'categories'])->withCount('favourites', 'visits')
+            ->where('id', '!=', $recipe->id)->whereHas('categories', function ($query) use ($recipe) {
+                $query->whereIn('category_recipe.category_id',
+                    $recipe->categories()->pluck('category_recipe.category_id'));
+            })->limit(4)->get();
         return view('recipe.show', compact('recipe', 'youMayAlsoLike'));
     }
 
     public function myRecipes()
     {
-        $published = auth()->user()->recipes()->wherePublished(true)->get();
-        $pending = auth()->user()->recipes()->where('published', false)->get();
+        $published = auth()->user()->recipes()->with(['author', 'images'])->withCount('favourites', 'visits')
+            ->wherePublished(true)->get();
+        $pending = auth()->user()->recipes()->with(['author', 'images'])->withCount('favourites', 'visits')
+            ->where('published', false)->get();
         return view('recipe.my-index', compact('published', 'pending'));
     }
 
@@ -124,9 +129,10 @@ class RecipeController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        if (!$recipe->author->is(auth()->user())) {
+        if (auth()->user()->cannot('update', $recipe)) {
             return redirect()->back()->with(['flash-error' => __('trx.recipe_edit_not_authorized')]);
         }
+        $recipe->load('author');
         return view('recipe.edit', compact('recipe'));
     }
 

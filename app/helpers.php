@@ -58,13 +58,21 @@ function imageUrl($width = 640, $height = 480)
 
 function translate($text, $to)
 {
-    $translate = new \Google\Cloud\Translate\V2\TranslateClient([
-        'key' => config('services.google_translate.api_key')
-    ]);
-    return $translate->translate($text, [
-        'target' => $to,
-        'format' => 'text'
-    ]);
+    try {
+        $translate = new \Google\Cloud\Translate\V2\TranslateClient([
+            'key' => config('services.google_translate.api_key')
+        ]);
+        return $translate->translate($text, [
+            'target' => $to,
+            'format' => 'text'
+        ]);
+    } catch (\Throwable $e) {
+        Log::warning('Translation failed', [
+            'target' => $to,
+            'error' => $e->getMessage(),
+        ]);
+        return ['text' => $text];
+    }
 }
 
 function translateMissing($array, $lang, $locale = null)
