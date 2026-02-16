@@ -34,13 +34,13 @@
                     <span>MSc Robotics</span>
                     <ul class="social mb-0 list-inline mt-3">
                         <li class="list-inline-item"><a href="https://www.facebook.com/Bici89/" class="social-link"><i
-                                    class="fa fa-facebook-f"></i></a></li>
+                                    class="fab fa-facebook-f"></i></a></li>
                         <li class="list-inline-item"><a href="https://twitter.com/BugraBgErgin" class="social-link"><i
-                                    class="fa fa-twitter"></i></a></li>
+                                    class="fab fa-twitter"></i></a></li>
                         <li class="list-inline-item"><a href="https://www.instagram.com/bicibg/" class="social-link"><i
-                                    class="fa fa-instagram"></i></a></li>
+                                    class="fab fa-instagram"></i></a></li>
                         <li class="list-inline-item"><a href="https://www.linkedin.com/in/bugraergin/"
-                                                        class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                                                        class="social-link"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -56,13 +56,13 @@
                     <span>MSc Applied Acoustics</span>
                     <ul class="social mb-0 list-inline mt-3">
                         <li class="list-inline-item"><a href="https://www.facebook.com/burak.ergin4"
-                                                        class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+                                                        class="social-link"><i class="fab fa-facebook-f"></i></a></li>
                         <li class="list-inline-item"><a href="https://twitter.com/burakk_ergin" class="social-link"><i
-                                    class="fa fa-twitter"></i></a></li>
+                                    class="fab fa-twitter"></i></a></li>
                         <li class="list-inline-item"><a href="https://www.instagram.com/burakergin/"
-                                                        class="social-link"><i class="fa fa-instagram"></i></a></li>
+                                                        class="social-link"><i class="fab fa-instagram"></i></a></li>
                         <li class="list-inline-item"><a href="https://www.linkedin.com/in/burakerginuk/"
-                                                        class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                                                        class="social-link"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>

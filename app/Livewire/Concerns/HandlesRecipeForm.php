@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Concerns;
 
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 trait HandlesRecipeForm
@@ -84,17 +84,14 @@ trait HandlesRecipeForm
         ];
     }
 
+    protected function imageService(): ImageService
+    {
+        return app(ImageService::class);
+    }
+
     protected function storeRecipeImages($recipe): void
     {
-        foreach ($this->images as $file) {
-            $filename = uniqid() . '_' . $file->getClientOriginalName();
-            $filename = Str::slug($filename);
-            if ($file->storeAs('public/images/recipes/', $filename)) {
-                $recipe->images()->create([
-                    'url' => 'images/recipes/' . $filename,
-                ]);
-            }
-        }
+        $this->imageService()->storeRecipeImages($recipe, $this->images);
     }
 
     protected function storeMainImage(): ?string
@@ -103,14 +100,7 @@ trait HandlesRecipeForm
             return null;
         }
 
-        $filename = uniqid() . '_' . $this->main_image->getClientOriginalName();
-        $filename = Str::slug($filename);
-
-        if ($this->main_image->storeAs('public/images/recipes/', $filename)) {
-            return 'images/recipes/' . $filename;
-        }
-
-        return null;
+        return $this->imageService()->storeUploadedImage($this->main_image);
     }
 
     public function render()

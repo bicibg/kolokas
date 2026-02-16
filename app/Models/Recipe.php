@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Casts\LocalUrl;
+use App\Jobs\TranslateRecipeFields;
 use App\Traits\Favouritable;
 use App\Traits\HasTranslations;
 use App\Traits\Visitable;
@@ -12,12 +13,9 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Laravel\Facades\Image;
 
 class Recipe extends Model
 {
@@ -53,100 +51,41 @@ class Recipe extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            Recipe::fillTranslations($model);
+            Recipe::generateSlug($model);
         });
 
-        static::updating(function ($model) {
-            Recipe::fillTranslations($model);
+        static::created(function ($model) {
+            TranslateRecipeFields::dispatch($model, request()->get('locale') ?: App::getLocale());
+        });
+
+        static::updated(function ($model) {
+            TranslateRecipeFields::dispatch($model, request()->get('locale') ?: App::getLocale());
         });
     }
 
-    static function fillTranslations($model)
+    private static function generateSlug($model): void
     {
-        $title = $model->getTranslations('title');
-        $description = $model->getTranslations('description');
-        $instructions = $model->getTranslations('instructions');
-        $ingredients = $model->getTranslations('ingredients');
-        $notes = $model->getTranslations('notes');
-        $servings = $model->getTranslations('servings');
+        if ($model->slug) {
+            return;
+        }
+
         $locale = request()->get('locale') ?: App::getLocale();
-        if (!$model->slug) {
-            $existingTitle = $title[$locale];
+        $title = $model->getTranslations('title');
+        $existingTitle = $title[$locale] ?? null;
+
+        if (!$existingTitle) {
             $otherLocales = config('app.languages');
             unset($otherLocales[$locale]);
-
-            if (!$existingTitle) {
-                foreach ($otherLocales as $l) {
-                    if ($title[$l]) {
-                        $existingTitle = $title[$l];
-                        break;
-                    }
+            foreach ($otherLocales as $l => $name) {
+                if (!empty($title[$l])) {
+                    $existingTitle = $title[$l];
+                    break;
                 }
             }
-            if ($existingTitle) {
-                $model->slug = SlugService::createSlug($model, 'slug',$existingTitle);
-            }
-        }
-        foreach (array_keys(Config::get('app.languages')) as $lang) {
-            if ($lang === $locale) continue;
-
-            $model->title = translateMissing($title, $lang, $locale);
-            $model->description = translateMissing($description, $lang, $locale);
-            $model->instructions = translateMissing($instructions, $lang, $locale);
-            $model->ingredients = translateMissing($ingredients, $lang, $locale);
-            $model->notes = translateMissing($notes, $lang, $locale);
-            $model->servings = translateMissing($servings, $lang, $locale);
-        }
-        return $model;
-    }
-
-    public function setMainImageAttribute($value)
-    {
-        if (Str::startsWith($value, 'data:image')) {
-            $image = Image::read($value)->encodeByMediaType('image/jpeg', progressive: true, quality: 90);
-
-            $filename = md5($value . time()) . '.jpg';
-            Storage::put('public/images/recipes/' . $filename, (string) $image);
-
-            Storage::delete($this->main_image);
-
-            $this->attributes['main_image'] = 'images/recipes/' . $filename;
-        } elseif (Str::startsWith($value, 'images/recipes/') && Storage::exists('public/' . $value)) {
-            $this->attributes['main_image'] = $value;
-        }
-    }
-
-    public function setImagesAttribute($values)
-    {
-        $newImages = [];
-        try {
-            foreach ($values as $value) {
-                if (Str::startsWith($value, 'data:image')) {
-                    $image = Image::read($value)->encodeByMediaType('image/jpeg', progressive: true, quality: 90);
-
-                    $filename = md5($value . time()) . '.jpg';
-                    $filename = Str::slug($filename);
-                    Storage::put('public/images/recipes/' . $filename, (string) $image);
-
-                    $newImages[] = 'images/recipes/' . $filename;
-                }
-            }
-        } catch (\Throwable $exception) {
-            report($exception);
-            return false;
         }
 
-        if (count($newImages) === count($values)) {
-            foreach($this->images as $image) {
-                Storage::delete($image->url);
-                $image->delete();
-            }
-
-            foreach($newImages as $newImage) {
-                $this->images()->create([
-                    'url' => $newImage,
-                ]);
-            }
+        if ($existingTitle) {
+            $model->slug = SlugService::createSlug($model, 'slug', $existingTitle);
         }
     }
 
@@ -161,9 +100,9 @@ class Recipe extends Model
     public function getUrlWithLink(): string
     {
         if($this->published) {
-            return '<a class="btn btn-sm btn-link" target="_blank" href="' . $this->url . '" data-toggle="tooltip" title="' . $this->title . '"><i class="fa fa-globe">&nbsp;</i>Public page</a>';
+            return '<a class="btn btn-sm btn-link" target="_blank" href="' . $this->url . '" data-toggle="tooltip" title="' . $this->title . '"><i class="fas fa-globe">&nbsp;</i>Public page</a>';
         }
-        return '<a class="btn btn-sm btn-link disabled" href="#" data-toggle="tooltip"><i class="fa fa-globe">&nbsp;</i>Public page</a>';
+        return '<a class="btn btn-sm btn-link disabled" href="#" data-toggle="tooltip"><i class="fas fa-globe">&nbsp;</i>Public page</a>';
 
     }
 

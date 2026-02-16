@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -71,11 +71,6 @@
         'resources/sass/app.scss',
         'resources/sass/styles.scss',
         'resources/sass/styles-print.scss',
-        'resources/sass/styles-480px.scss',
-        'resources/sass/styles-768px.scss',
-        'resources/sass/styles-992px.scss',
-        'resources/sass/styles-1200px.scss',
-        'resources/sass/fontawesome.scss',
     ])
 
     @livewireStyles

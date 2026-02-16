@@ -16,21 +16,21 @@
                             <a class="email"
                                href="mailto:?subject={{ urlencode($recipe->title) }}&amp;body={{ urlencode($recipe->description . ': ' . $recipe->url) }}"
                                target="_blank" rel="noopener" aria-label="{{ __('trx.share') }} Email">
-                                <i class="fa fa-envelope"></i>
+                                <i class="fas fa-envelope"></i>
                             </a>
                         </li>
                         <li>
                             <a class="twitter"
                                href="https://twitter.com/intent/tweet?text={{ urlencode($recipe->title) }}&amp;url={{ $recipe->url }}"
                                target="_blank" rel="noopener" aria-label="{{ __('trx.share') }} Twitter">
-                                <i class="fa fa-twitter"></i>
+                                <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li>
                             <a class="facebook"
                                href="https://www.facebook.com/sharer/sharer.php?u={{ $recipe->url }}"
                                target="_blank" rel="noopener" aria-label="{{ __('trx.share') }} Facebook">
-                                <i class="fa fa-facebook"></i>
+                                <i class="fab fa-facebook"></i>
                             </a>
                         </li>
                         <li>
@@ -38,16 +38,16 @@
                                href="https://api.whatsapp.com/send?text={{ urlencode($recipe->description . ': ' . $recipe->url) }}"
                                data-action="share/whatsapp/share"
                                target="_blank" rel="noopener" aria-label="{{ __('trx.share') }} WhatsApp">
-                                <i class="fa fa-whatsapp"></i>
+                                <i class="fab fa-whatsapp"></i>
                             </a>
                         </li>
                         <li><a class="linkedin"
                                href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ $recipe->url }}&amp;title={{ $recipe->title }}"
-                               target="_blank" rel="noopener" aria-label="{{ __('trx.share') }} LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                               target="_blank" rel="noopener" aria-label="{{ __('trx.share') }} LinkedIn"><i class="fab fa-linkedin"></i></a></li>
                         <li><a class="pinterest"
                                href="https://pinterest.com/pin/create/button/?url={{ $recipe->url }}&amp;media={{ $recipe->main_image }}&amp;description={{ $recipe->title }}"
                                target="_blank" rel="noopener" aria-label="{{ __('trx.share') }} Pinterest">
-                                <i class="fa fa-pinterest"></i>
+                                <i class="fab fa-pinterest"></i>
                             </a>
                         </li>
                     </ul>

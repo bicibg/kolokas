@@ -5,6 +5,7 @@
  */
 
 import './bootstrap';
+import './icons';
 import 'bootstrap-select';
 import Vue from 'vue';
 

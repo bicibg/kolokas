@@ -2,20 +2,20 @@
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav m-0 p-0">
             <li class="nav-item"><a href="https://www.facebook.com/kolokasrecipes" target="_blank" rel="noopener" aria-label="Facebook"><i
-                        class="fa fa-facebook"></i></a></li>
+                        class="fab fa-facebook"></i></a></li>
             <li class="nav-item"><a href="https://www.twitter.com/kolokasrecipes" target="_blank" rel="noopener" aria-label="Twitter"><i
-                        class="fa fa-twitter"></i></a></li>
+                        class="fab fa-twitter"></i></a></li>
             <li class="nav-item"><a href="https://www.pinterest.com/kolokasrecipes" target="_blank" rel="noopener" aria-label="Pinterest"><i
-                        class="fa fa-pinterest"></i></a></li>
+                        class="fab fa-pinterest"></i></a></li>
             <li class="nav-item"><a href="https://www.instagram.com/kolokasrecipes" target="_blank" rel="noopener" aria-label="Instagram"><i
-                        class="fa fa-instagram"></i></a></li>
+                        class="fab fa-instagram"></i></a></li>
         </ul>
         <ul class="nav navbar-nav m-0 p-0 ml-auto">
             <li class="nav-item">
                 <a class="login_button font-weight-bold"
                    id="show_login"
                    href="{{ route('recipe.create') }}">
-                    <i class="fa fa-plus-square"></i> {{ __('trx.submit_recipe') }}
+                    <i class="fas fa-plus-square"></i> {{ __('trx.submit_recipe') }}
                 </a>
             </li>
             <li class="nav-item dropdown">
@@ -43,13 +43,13 @@
             @guest
                 <li class="nav-item">
                     <a class="login_button" id="show_login" href="{{ route('login') }}">
-                        <i class="fa fa-key"></i>
+                        <i class="fas fa-key"></i>
                         {{ __('trx.login') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="login_button" id="show_signup" href="{{ route('register') }}">
-                        <i class="fa fa-lock"></i>
+                        <i class="fas fa-lock"></i>
                         {{ __('trx.create_account') }}
                     </a>
                 </li>

@@ -17,7 +17,7 @@
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="action-buttons w-100 text-center">
                             <base-button role="submit">
-                                <i class="fa fa-search"></i>
+                                <i class="fas fa-search"></i>
                                 {{ __('trx.search') }}
                             </base-button>
                         </div>

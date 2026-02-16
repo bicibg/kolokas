@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Livewire\Concerns\HandlesRecipeForm;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -82,19 +81,13 @@ class RecipeEdit extends Component
 
             $mainImagePath = $this->storeMainImage();
             if ($mainImagePath) {
-                if (Storage::disk('public')->exists($this->existing_main_image)) {
-                    Storage::delete('public/' . $this->existing_main_image);
-                }
+                $this->imageService()->deleteImage($this->existing_main_image);
                 $data['main_image'] = $mainImagePath;
             }
 
             $toBeDeleted = $this->recipe->images()->pluck('id')->diff(collect($this->existing_images));
             if ($toBeDeleted->count()) {
-                $deletes = $this->recipe->images()->whereIn('id', $toBeDeleted->toArray())->get();
-                foreach ($deletes as $delete) {
-                    Storage::delete('public/' . $delete->getAttributes()['url']);
-                    $delete->delete();
-                }
+                $this->imageService()->deleteRecipeImagesByIds($this->recipe, $toBeDeleted->toArray());
             }
 
             $this->storeRecipeImages($this->recipe);

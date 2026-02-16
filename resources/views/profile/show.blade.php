@@ -31,31 +31,31 @@
                 @endif
                 @if($profile->website)
                     <p>
-                        <i class="fa fa-globe"></i>
+                        <i class="fas fa-globe"></i>
                         <a href="{{ $profile->website }}" class="btn-link">{{ $profile->website }}</a>
                     </p>
                 @endif
                 @if($profile->facebook)
                     <p>
-                        <i class="fa fa-facebook"></i>
+                        <i class="fab fa-facebook"></i>
                         <a href="{{ $profile->facebook }}" class="btn-link">{{ $profile->facebook }}</a>
                     </p>
                 @endif
                 @if($profile->instagram)
                     <p>
-                        <i class="fa fa-instagram"></i>
+                        <i class="fab fa-instagram"></i>
                         <a href="{{ $profile->instagram }}" class="btn-link">{{ $profile->instagram }}</a>
                     </p>
                 @endif
                 @if($profile->twitter)
                     <p>
-                        <i class="fa fa-twitter"></i>
+                        <i class="fab fa-twitter"></i>
                         <a href="{{ $profile->twitter }}" class="btn-link">{{ $profile->twitter }}</a>
                     </p>
                 @endif
                 @if($profile->pinterest)
                     <p>
-                        <i class="fa fa-pinterest"></i>
+                        <i class="fab fa-pinterest"></i>
                         <a href="{{ $profile->pinterest }}" class="btn-link">{{ $profile->pinterest }}</a>
                     </p>
                 @endif
@@ -66,7 +66,7 @@
         <div class="col-md-12">
             @if ($recipes->count())
                 <h5 class="text-center">
-                    <i class="fa fa-cutlery" aria-hidden="true"></i>
+                    <i class="fas fa-utensils" aria-hidden="true"></i>
                     {{ __(trans_choice('trx.recipes_found', $recipes->count(), ['number' => $recipes->count()])) }}
                 </h5>
             @else

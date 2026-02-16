@@ -21,7 +21,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-12">
                         <h5 class="text-center">
-                            <i class="fa fa-cutlery" aria-hidden="true"></i>
+                            <i class="fas fa-utensils" aria-hidden="true"></i>
                             {{ __(trans_choice('trx.published_recipes', $published->count(), ['number' => $published->count()])) }}
                         </h5>
                     </div>
@@ -41,7 +41,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-12">
                         <h5 class="text-center">
-                            <i class="fa fa-clock" aria-hidden="true"></i>
+                            <i class="fas fa-clock" aria-hidden="true"></i>
                             {{ __(trans_choice('trx.pending_recipes', $pending->count(), ['number' => $pending->count()])) }}
                         </h5>
                     </div>

@@ -46,7 +46,7 @@
                                    rel="nofollow"
                                    onclick="window.print(); return false;"
                                    title="Printer Friendly, PDF &amp; Email">
-                                    <i class="fa fa-print"></i>
+                                    <i class="fas fa-print"></i>
                                     <span class="d-inline-block">
                                         {{ __('trx.print') }}
                                     </span>
@@ -55,7 +55,7 @@
                                    href="javascript:void(0);"
                                    data-target="#popup-social-{{ $recipe->slug }}"
                                    title="{{ __('trx.share') }}">
-                                    <i class="fa fa-share"></i>
+                                    <i class="fas fa-share"></i>
                                     <span class="d-inline-block">
                                         {{ __('trx.share') }}
                                     </span>
@@ -65,7 +65,7 @@
                                 @if ($recipe->prep_time)
                                     <li>{{ __('trx.prep_time') }}
                                         <strong>
-                                            <i class="fa fa-clock-o"></i>
+                                            <i class="far fa-clock"></i>
                                             {{ \Carbon\CarbonInterval::minutes($recipe->prep_time)->cascade() }}
                                         </strong>
                                     </li>
@@ -73,7 +73,7 @@
                                 @if ($recipe->cook_time)
                                     <li>{{ __('trx.cook_time') }}
                                         <strong>
-                                            <i class="fa fa-clock-o"></i>
+                                            <i class="far fa-clock"></i>
                                             {{ \Carbon\CarbonInterval::minutes($recipe->cook_time)->cascade() }}
                                         </strong>
                                     </li>

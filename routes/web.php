@@ -28,9 +28,9 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'rememberLocale']
     ], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Auth::routes();
-    Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipe.create');
-    Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
+    Auth::routes(['verify' => true]);
+    Route::get('/recipes/create', [RecipeController::class, 'create'])->middleware('verified')->name('recipe.create');
+    Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->middleware('verified')->name('recipe.edit');
     Route::get('/recipes', [RecipeController::class, 'index'])->name('recipe.index');
     Route::get('/recipes/favourites', [RecipeController::class, 'favourites'])->name('recipe.favourites');
     Route::get('/manage/recipes', [RecipeController::class, 'myRecipes'])->name('recipe.my-index');

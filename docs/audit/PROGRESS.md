@@ -286,3 +286,87 @@
 - PERF-005: Consolidate breakpoint CSS
 - FE-001/002/003: Vue 2→3, Bootstrap 4→5, drop jQuery
 - DX-008: README
+
+---
+
+## Session 6 — 2026-02-17
+
+### Completed — Remaining P3 + P4 Quick Wins
+
+#### Phase 1: Extract Image Processing (ARCH-010)
+- Created `app/Services/ImageService.php` with `storeUploadedImage()`, `storeRecipeImages()`, `deleteImage()`, `deleteRecipeImagesByIds()`
+- Updated `HandlesRecipeForm` trait to delegate to ImageService
+- Updated `RecipeEdit` to use ImageService for image deletion
+- Removed dead base64 image mutators (`setMainImageAttribute`, `setImagesAttribute`) from Recipe model
+- Removed unused imports (Storage, Image, File) from Recipe model
+
+#### Phase 2: Async Translation Queue (INFRA-012)
+- Created `TranslateRecipeFields` job with retry logic (3 tries, 30s backoff)
+- Moved translation from synchronous model boot events to async queue dispatch
+- Extracted slug generation to separate `generateSlug()` method
+- Created `jobs` table migration for database queue driver
+- Updated `.env.example`: `QUEUE_CONNECTION=database`
+
+#### Phase 3: FontAwesome Subsetting (PERF-004)
+- Replaced full FontAwesome CSS/webfonts with SVG core + tree-shaken imports
+- Created `resources/js/icons.js` — imports only 36 used icons (23 solid, 4 regular, 8 brands)
+- Updated all FA4 class names to FA5 across 19 files (fas/far/fab prefixes, renamed icons)
+- Removed `@fortawesome/fontawesome-free` package, added SVG core packages
+- Removed duplicate FontAwesome loading (was in both `app.scss` and `fontawesome.scss`)
+- Updated CSS selectors for SVG compatibility (.fa → .svg-inline--fa)
+- Replaced FontAwesome unicode checkmark with CSS unicode (\\2714)
+
+#### Phase 4: CSS Consolidation (PERF-005)
+- Merged 4 breakpoint files into `styles.scss` (480px, 768px, 992px empty, 1200px)
+- Deleted `styles-480px.scss`, `styles-768px.scss`, `styles-992px.scss`, `styles-1200px.scss`, `fontawesome.scss`
+- Reduced Vite entry points from 9 to 4 (app.js, app.scss, styles.scss, styles-print.scss)
+- Reduced HTTP requests from 9 to 4
+
+#### Phase 5: Accessibility Fixes (A11Y-008, A11Y-010, A11Y-011)
+- **A11Y-008**: Replaced `display: none` with visually-hidden technique for checkboxes (image-checkbox + ingredient-check)
+- **A11Y-010**: Added global `:focus-visible` outline styles, replaced `outline: none` with `:focus:not(:focus-visible)` pattern
+- **A11Y-011**: Fixed body text contrast (#888 → #595959), fixed secondary text colors (#999/#aaa/#ccc → #767676)
+
+#### Phase 6: DX & Config Fixes
+- **DX-008**: Replaced default Laravel README with project-specific documentation
+- **SEC-004**: Added `MustVerifyEmail` to User model, created backfill migration for existing users
+- **ARCH-011**: Already implemented (RememberLocale already checks locale !== App::getLocale())
+- Added `MAIL_FROM_ADDRESS` and `MAIL_FROM_NAME` to phpunit.xml for verification email tests
+- Added `verified` middleware to recipe create/edit routes
+
+### Files Created
+- `app/Services/ImageService.php`
+- `app/Jobs/TranslateRecipeFields.php`
+- `resources/js/icons.js`
+- `database/migrations/2026_02_16_233719_create_jobs_table.php`
+- `database/migrations/2026_02_16_234550_backfill_email_verified_at_for_existing_users.php`
+
+### Files Modified
+- `app/Models/Recipe.php` — removed image mutators, async translation dispatch, slug extraction
+- `app/Models/User.php` — added MustVerifyEmail, removed unused Hash import
+- `app/Livewire/Concerns/HandlesRecipeForm.php` — delegates to ImageService
+- `app/Livewire/RecipeEdit.php` — uses ImageService for deletion
+- `app/Livewire/Favourite.php` — FA5 class names
+- `resources/js/app.js` — imports icons.js
+- `resources/sass/app.scss` — removed FontAwesome imports
+- `resources/sass/styles.scss` — merged breakpoints, a11y fixes, FA5 selectors
+- `resources/views/layouts/app.blade.php` — 4 Vite entry points (was 9)
+- `vite.config.js` — 4 entry points (was 9)
+- 16 Blade templates — FA4 → FA5 class names
+- `routes/web.php` — verified middleware, Auth::routes(['verify' => true])
+- `.env.example` — QUEUE_CONNECTION=database
+- `phpunit.xml` — MAIL_FROM_ADDRESS/NAME for test env
+- `package.json` — swapped fontawesome-free for SVG core packages
+- `README.md` — project-specific docs
+- `docs/audit/BACKLOG.md` — checked off all completed items
+- `docs/audit/PROGRESS.md` — session 6 entry
+
+### Files Deleted
+- `resources/sass/styles-480px.scss`
+- `resources/sass/styles-768px.scss`
+- `resources/sass/styles-992px.scss`
+- `resources/sass/styles-1200px.scss`
+- `resources/sass/fontawesome.scss`
+
+### Remaining
+- **FE-001/002/003**: Vue 2→3, Bootstrap 4→5, drop jQuery (separate project)

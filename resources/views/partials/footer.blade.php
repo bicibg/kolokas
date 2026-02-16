@@ -37,7 +37,7 @@
                         <input type="email" class="form-control" name="subscriber_email">
                     </div>
                     <base-button role="submit">
-                        <i class="fa fa-search"></i>
+                        <i class="fas fa-search"></i>
                         {{ __('trx.subscribe') }}
                     </base-button>
                     <p>

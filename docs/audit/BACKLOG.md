@@ -56,16 +56,16 @@ Prioritized by impact and effort. Work top-to-bottom.
 - [x] **SEC-010**: Fixed unescaped cache output XSS — `{!! cache('translations') !!}` → `Js::from()`, error pages escaped
 - [x] **PERF-001**: Removed lodash, axios, jQuery UI — JS bundle 449KB → 337KB (-25%), replaced with native alternatives
 - [x] **DEP-001/002/003** (partial): Removed lodash and axios dependencies, replaced with native JS
-- [ ] **ARCH-010**: Extract image processing from Recipe model to service
-- [ ] **INFRA-012**: Make Google Translate async (queue jobs)
-- [ ] **PERF-004**: Subset FontAwesome to only used icons (36 icons identified)
-- [ ] **PERF-005**: Consolidate breakpoint CSS files
+- [x] **ARCH-010**: Extracted image processing to ImageService, removed dead base64 mutators from Recipe model
+- [x] **INFRA-012**: Created TranslateRecipeFields queue job, async translation via database queue
+- [x] **PERF-004**: Switched to FontAwesome SVG core with tree-shaken imports (36 icons), removed full FA CSS/webfonts
+- [x] **PERF-005**: Consolidated 6 breakpoint CSS files into styles.scss, reduced Vite entry points from 9 to 4
 
 ## P4 — Long-term / Migration Projects
 
 - [ ] **FE-001/002/003**: Migrate Vue 2 -> 3, Bootstrap 4 -> 5, drop jQuery
-- [ ] **DX-008**: Write proper README
-- [ ] **ARCH-011**: Only persist locale on explicit language switch
-- [ ] **SEC-004**: Implement MustVerifyEmail
-- [ ] **A11Y-008**: Fix hidden checkboxes accessibility
-- [ ] **A11Y-010/011**: Fix focus styles and color contrast
+- [x] **DX-008**: Replaced default Laravel README with project-specific documentation
+- [x] **ARCH-011**: Already implemented — RememberLocale middleware already checks locale change before saving
+- [x] **SEC-004**: Implemented MustVerifyEmail with existing user backfill migration
+- [x] **A11Y-008**: Replaced display:none with visually-hidden for checkboxes (image + ingredient)
+- [x] **A11Y-010/011**: Added :focus-visible styles, fixed color contrast (#888→#595959, #999/#aaa/#ccc→#767676)

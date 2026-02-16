@@ -59,7 +59,7 @@
                                        autocomplete="off"
                                        value="{{ $image->id }}">
                                 {{$image->id}}
-                                <i class="fa fa-check hidden"></i>
+                                <i class="fas fa-check hidden"></i>
                             </div>
                         @endforeach
                         {{--                        </div>--}}

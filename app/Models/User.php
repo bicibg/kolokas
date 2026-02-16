@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -80,6 +80,6 @@ class User extends Authenticatable implements FilamentUser
 
     public function getUrlWithLink(): string
     {
-        return '<a class="btn btn-sm btn-link" target="_blank" href="' . $this->profile->url . '" data-toggle="tooltip" title="' . $this->profile->name . '"><i class="fa fa-globe">&nbsp;</i>Public page</a>';
+        return '<a class="btn btn-sm btn-link" target="_blank" href="' . $this->profile->url . '" data-toggle="tooltip" title="' . $this->profile->name . '"><i class="fas fa-globe">&nbsp;</i>Public page</a>';
     }
 }

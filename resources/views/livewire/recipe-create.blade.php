@@ -29,12 +29,12 @@
                    role="tab"
                    aria-controls="w-description"
                    aria-selected="true">
-                    <i class="fa fa-pen mr-2"></i>
+                    <i class="fas fa-pen mr-2"></i>
                     <span class="font-weight-bold small text-uppercase">{{ __('trx.recipe_description') }}</span>
                     @if($tab1Check)
-                        <i class="fa fa-check-circle-o float-right check"></i>
+                        <i class="far fa-check-circle float-right check"></i>
                     @else
-                        <i class="fa fa-check-circle-o float-right"></i>
+                        <i class="far fa-check-circle float-right"></i>
                     @endif
                 </a>
                 <a class="nav-link mb-3 p-3 shadow {{ $tab == 'media' ? 'active' : '' }}"
@@ -45,12 +45,12 @@
                    role="tab"
                    aria-controls="w-media"
                    aria-selected="false">
-                    <i class="fa fa-photo mr-2"></i>
+                    <i class="fas fa-image mr-2"></i>
                     <span class="font-weight-bold small text-uppercase">{{ __('trx.media') }}</span>
                     @if($tab2Check)
-                        <i class="fa fa-check-circle-o float-right check"></i>
+                        <i class="far fa-check-circle float-right check"></i>
                     @else
-                        <i class="fa fa-check-circle-o float-right"></i>
+                        <i class="far fa-check-circle float-right"></i>
                     @endif
                 </a>
 
@@ -62,12 +62,12 @@
                    role="tab"
                    aria-controls="w-meta"
                    aria-selected="false">
-                    <i class="fa fa-info mr-2"></i>
+                    <i class="fas fa-info mr-2"></i>
                     <span class="font-weight-bold small text-uppercase">{{ __('trx.meta') }}</span>
                     @if($tab3Check)
-                        <i class="fa fa-check-circle-o float-right check"></i>
+                        <i class="far fa-check-circle float-right check"></i>
                     @else
-                        <i class="fa fa-check-circle-o float-right"></i>
+                        <i class="far fa-check-circle float-right"></i>
                     @endif
                 </a>
 
@@ -79,12 +79,12 @@
                    role="tab"
                    aria-controls="w-recipe"
                    aria-selected="false">
-                    <i class="fa fa-cutlery mr-2"></i>
+                    <i class="fas fa-utensils mr-2"></i>
                     <span class="font-weight-bold small text-uppercase">{{ trans_choice('trx.recipe', 1) }}</span>
                     @if($tab4Check)
-                        <i class="fa fa-check-circle-o float-right check"></i>
+                        <i class="far fa-check-circle float-right check"></i>
                     @else
-                        <i class="fa fa-check-circle-o float-right"></i>
+                        <i class="far fa-check-circle float-right"></i>
                     @endif
                 </a>
             </div>

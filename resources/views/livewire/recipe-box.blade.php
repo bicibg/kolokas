@@ -21,8 +21,8 @@
         @endif
     </div>
     <div class="recipe-meta text-center">
-        <span><i class="fa fa-heart"></i> {{ $recipe->favourites_count ?? $recipe->favourites->count() }} {{ trans_choice('trx.likes', $recipe->favourites_count ?? $recipe->favourites->count()) }}</span>
-        <span><i class="fa fa-eye"></i> {{ $recipe->visits_count ?? $recipe->visits->count() }}  {{ trans_choice('trx.views', $recipe->visits_count ?? $recipe->visits->count()) }}</span>
+        <span><i class="fas fa-heart"></i> {{ $recipe->favourites_count ?? $recipe->favourites->count() }} {{ trans_choice('trx.likes', $recipe->favourites_count ?? $recipe->favourites->count()) }}</span>
+        <span><i class="fas fa-eye"></i> {{ $recipe->visits_count ?? $recipe->visits->count() }}  {{ trans_choice('trx.views', $recipe->visits_count ?? $recipe->visits->count()) }}</span>
     </div>
     <div class="recipe-content">
         <h3>
@@ -64,9 +64,9 @@
         <a href="javascript:void(0);"
            title="{{ __('trx.add_to_favourites') }}"
            wire:key="favourite_{{time()}}"
-           wire:click="favourite"><i class="fa @if($recipe->isFavourited()) fa-heart red @else fa-heart-o @endif"></i></a>
+           wire:click="favourite"><i class="@if($recipe->isFavourited()) fas fa-heart red @else far fa-heart @endif"></i></a>
         <a data-toggle="modal" href="javascript:void(0);" data-target="#popup-social-{{ $recipe->slug }}" title="{{ __('trx.share') }}">
-            <i class="fa fa-share"></i>
+            <i class="fas fa-share"></i>
         </a>
     </div>
     @include('partials.share-modal')

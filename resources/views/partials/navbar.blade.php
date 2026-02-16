@@ -79,7 +79,7 @@
                 <a class="nav-link login_button font-weight-bold"
                    id="show_login"
                    href="{{ route('recipe.create') }}">
-                    <i class="fa fa-plus-square"></i> {{ __('trx.submit_recipe') }}
+                    <i class="fas fa-plus-square"></i> {{ __('trx.submit_recipe') }}
                 </a>
             </li>
             <li class="nav-item d-md-none">
@@ -107,13 +107,13 @@
             @guest
                 <li class="nav-item d-md-none">
                     <a class="nav-link login_button" id="show_login" href="{{ route('login') }}">
-                        <i class="fa fa-key"></i>
+                        <i class="fas fa-key"></i>
                         {{ __('trx.login') }}
                     </a>
                 </li>
                 <li class="nav-item d-md-none">
                     <a class="nav-link login_button" id="show_signup" href="{{ route('register') }}">
-                        <i class="fa fa-lock"></i>
+                        <i class="fas fa-lock"></i>
                         {{ __('trx.create_account') }}
                     </a>
                 </li>
@@ -125,19 +125,19 @@
                 </li>
                 <li class="nav-item d-md-none">
                     <a class="nav-link" href="{{ route('profile.edit') }}">
-                        <i class="fa fa-user"></i>
+                        <i class="fas fa-user"></i>
                         {{ __('trx.my_profile') }}
                     </a>
                 </li>
                 <li class="nav-item d-md-none">
                     <a class="nav-link" href="{{ route('recipe.my-index') }}">
-                        <i class="fa fa-cutlery"></i>
+                        <i class="fas fa-utensils"></i>
                         {{ __('trx.my_recipes') }}
                     </a>
                 </li>
                 <li class="nav-item d-md-none">
                     <a class="nav-link" href="{{ route('recipe.favourites') }}">
-                        <i class="fa fa-heart-o"></i>
+                        <i class="far fa-heart"></i>
                         {{ __('trx.my_favourites') }}
                     </a>
                 </li>
@@ -147,7 +147,7 @@
                         href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     >
-                        <i class="fa fa-sign-out"></i>
+                        <i class="fas fa-sign-out-alt"></i>
                         {{ __('trx.logout') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
