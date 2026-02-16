@@ -106,7 +106,7 @@
 </div>
 <script>
     window._locale = '{{ app()->getLocale() }}';
-    window._translations = {!! cache('translations') !!};
+    window._translations = {{ Js::from(cache('translations')) }};
 </script>
 @stack('scripts')
 

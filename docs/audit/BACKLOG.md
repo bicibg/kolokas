@@ -44,26 +44,26 @@ Prioritized by impact and effort. Work top-to-bottom.
 - [x] **ARCH-007**: Add try/catch + fallback to translate() helper
 - [x] **SEC-018**: Configure TrustProxies to trust only 127.0.0.1
 - [x] **CQ-022**: Fix ProfileController search orWhere scoping (wrap in closure)
-- [x] **DX-007**: Update .env.example for SQLite + GOOGLE_TRANSLATE_API_KEY + SENTRY
-- [ ] **INFRA-005**: Integrate Sentry error tracking (package install pending)
+- [x] **DX-007**: Update .env.example for SQLite + GOOGLE_TRANSLATE_API_KEY
 - [x] **FE-016**: Remove duplicate Google Fonts loading (removed <link> tag, kept SCSS @import)
 
 ## P3 — Medium-term Projects (multi-hour / multi-session)
 
-- [ ] **TEST-001**: Write feature tests for auth, recipe CRUD, translate
-- [ ] **CICD-001**: Set up GitHub Actions CI pipeline
-- [ ] **CQ-008**: Extract shared RecipeCreate/Edit logic into trait
+- [x] **INFRA-005**: Replaced Sentry with opcodesio/log-viewer (admin-only access)
+- [x] **TEST-001**: 39 feature tests covering auth, recipes, authorization, SEO, security headers, rate limiting, translation
+- [x] **CICD-001**: GitHub Actions CI pipeline (.github/workflows/ci.yml)
+- [x] **CQ-008**: Extracted shared RecipeCreate/Edit logic into HandlesRecipeForm trait
+- [x] **SEC-010**: Fixed unescaped cache output XSS — `{!! cache('translations') !!}` → `Js::from()`, error pages escaped
+- [x] **PERF-001**: Removed lodash, axios, jQuery UI — JS bundle 449KB → 337KB (-25%), replaced with native alternatives
+- [x] **DEP-001/002/003** (partial): Removed lodash and axios dependencies, replaced with native JS
 - [ ] **ARCH-010**: Extract image processing from Recipe model to service
 - [ ] **INFRA-012**: Make Google Translate async (queue jobs)
-- [ ] **PERF-001**: Reduce JS bundle (drop lodash, jQuery-UI)
-- [ ] **PERF-004**: Subset FontAwesome to only used icons
+- [ ] **PERF-004**: Subset FontAwesome to only used icons (36 icons identified)
 - [ ] **PERF-005**: Consolidate breakpoint CSS files
-- [ ] **SEC-010**: Fix unescaped cache output XSS risk
 
 ## P4 — Long-term / Migration Projects
 
 - [ ] **FE-001/002/003**: Migrate Vue 2 -> 3, Bootstrap 4 -> 5, drop jQuery
-- [ ] **DEP-001/002/003**: Update axios, lodash (or replace with native)
 - [ ] **DX-008**: Write proper README
 - [ ] **ARCH-011**: Only persist locale on explicit language switch
 - [ ] **SEC-004**: Implement MustVerifyEmail

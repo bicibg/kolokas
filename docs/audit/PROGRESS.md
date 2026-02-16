@@ -201,3 +201,88 @@
 ### Next Session
 - P3 items: tests, CI pipeline, bundle optimization
 - INFRA-005: Sentry integration (composer require)
+
+---
+
+## Session 5 — 2026-02-17
+
+### Completed — P3: Testing, CI/CD, Refactoring & Performance
+
+#### Phase 1: Log Viewer Integration (INFRA-005)
+- Replaced Sentry with `opcodesio/log-viewer` (user preference)
+- Configured admin-only access via `LogViewer::auth()` in AppServiceProvider
+- Available at `/log-viewer` for admin users
+
+#### Phase 2: Feature Tests (TEST-001)
+- **39 tests, 87 assertions** — from zero coverage to comprehensive test suite
+- Configured PHPUnit for SQLite in-memory, disabled locale redirect middleware in tests
+- **Auth tests** (11): Registration (valid, duplicate, missing fields, short password), Login (correct, wrong password, nonexistent email), Logout, Guest redirect
+- **Recipe tests** (7): Show (published/unpublished), Listing (published/unpublished/auth), My Recipes (auth required, own recipes)
+- **Authorization tests** (4): Owner access, non-owner denied, admin override, guest redirect
+- **SEO tests** (8): Meta description, canonical, hreflang (en/tr/el/x-default), OpenGraph, Twitter Card, JSON-LD, sitemap
+- **Security tests** (7): X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy, rate limiting (contact, subscribe, translate)
+- **Translation tests** (3): Unauthenticated denied, authenticated access, empty input handling
+
+#### Phase 3: GitHub Actions CI/CD (CICD-001)
+- Created `.github/workflows/ci.yml` with two jobs:
+  - `test`: PHP 8.3, Composer, Node 20, SQLite, migrations, `php artisan test`
+  - `build`: Node 20, `npm run build` verification
+- Runs on push/PR to master
+
+#### Phase 4: Refactoring (CQ-008)
+- Extracted `HandlesRecipeForm` trait from RecipeCreate/RecipeEdit
+- Shared: properties, locale init, tab switching, tab checks, validation rules, image storage, render
+- RecipeCreate: 186 → 68 lines, RecipeEdit: 244 → 131 lines
+- Both components still use the same Blade view (`livewire.recipe-create`)
+
+#### Phase 5: XSS Fixes (SEC-010)
+- `{!! cache('translations') !!}` → `{{ Js::from(cache('translations')) }}` in layout
+- 9 error pages: escaped `$exception->getMessage()` with `{{ }}`, kept `{!! !!}` only for trusted default HTML
+
+#### Phase 6: Frontend Bundle Optimization (PERF-001)
+- **Removed lodash** (~72KB): replaced `_.forEach` with `Object.entries().forEach()`
+- **Removed axios** (~14KB): replaced with native `fetch()` + CSRF token header
+- **Removed jQuery UI** (~26KB + CSS): was imported but never used (sliders use native `<input type="range">`)
+- **JS bundle**: 449KB → 337KB (gzipped: 152KB → 112KB) — **25% reduction**
+- **CSS bundle**: 270KB → 236KB (gzipped: 48KB → 41KB) — **13% reduction** (removed jquery-ui CSS)
+
+### Files Created
+- `app/Livewire/Concerns/HandlesRecipeForm.php`
+- `.github/workflows/ci.yml`
+- `config/log-viewer.php`
+- `tests/Feature/Auth/RegistrationTest.php`
+- `tests/Feature/Auth/LoginTest.php`
+- `tests/Feature/Recipe/RecipeShowTest.php`
+- `tests/Feature/Recipe/RecipeListingTest.php`
+- `tests/Feature/Recipe/RecipeAuthorizationTest.php`
+- `tests/Feature/Translation/TranslateEndpointTest.php`
+- `tests/Feature/Seo/MetaTagsTest.php`
+- `tests/Feature/Security/SecurityHeadersTest.php`
+- `tests/Feature/Security/RateLimitingTest.php`
+
+### Files Modified
+- `app/Livewire/RecipeCreate.php` — refactored to use HandlesRecipeForm trait (186 → 68 lines)
+- `app/Livewire/RecipeEdit.php` — refactored to use HandlesRecipeForm trait (244 → 131 lines)
+- `app/Providers/AppServiceProvider.php` — LogViewer auth gate
+- `resources/js/bootstrap.js` — removed lodash and axios imports
+- `resources/js/app.js` — removed jQuery UI imports
+- `resources/js/trans.js` — replaced _.forEach with native, axios.post with fetch
+- `resources/sass/app.scss` — removed jquery-ui CSS import
+- `resources/views/layouts/app.blade.php` — `Js::from()` for translations
+- `resources/views/errors/*.blade.php` (9 files) — escaped exception messages
+- `tests/TestCase.php` — disabled locale redirect middleware
+- `tests/Feature/ExampleTest.php` — added RefreshDatabase
+- `phpunit.xml` — SQLite in-memory, output buffer config
+- `.env.example` — replaced Sentry vars with LOG_VIEWER_ENABLED
+- `package.json` — removed lodash, axios, jquery-ui
+- `composer.json` — added opcodesio/log-viewer, removed sentry/sentry-laravel
+- `docs/audit/BACKLOG.md` — checked off P3 items
+- `docs/audit/PROGRESS.md` — session 5 entry
+
+### Remaining (P3/P4)
+- ARCH-010: Extract image processing to service
+- INFRA-012: Async translation via queue
+- PERF-004: FontAwesome subsetting (36 icons identified)
+- PERF-005: Consolidate breakpoint CSS
+- FE-001/002/003: Vue 2→3, Bootstrap 4→5, drop jQuery
+- DX-008: README

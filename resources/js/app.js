@@ -7,11 +7,6 @@
 import './bootstrap';
 import 'bootstrap-select';
 import Vue from 'vue';
-import 'jquery-ui/ui/version.js';
-import 'jquery-ui/ui/keycode.js';
-import 'jquery-ui/ui/widget.js';
-import 'jquery-ui/ui/widgets/mouse.js';
-import 'jquery-ui/ui/widgets/slider.js';
 
 /**
  * The following block of code may be used to automatically register your

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Opcodes\LogViewer\Facades\LogViewer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -48,6 +49,13 @@ class AppServiceProvider extends ServiceProvider
                 $categories = collect();
             }
             $view->with('categories', $categories);
+        });
+
+        LogViewer::auth(function ($request) {
+            return $request->user() && in_array($request->user()->email, [
+                'bugraergin@gmail.com',
+                'burakergin95@gmail.com',
+            ]);
         });
 
         Category::saved(fn () => Cache::forget('categories'));

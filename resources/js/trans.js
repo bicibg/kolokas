@@ -16,9 +16,11 @@ window.__ = function __(key, replace) {
             ? window._translations[window._locale]['json'][key]
             : key
     }
-    _.forEach(replace, (value, key) => {
-        translation = translation.replace(':' + key, value)
-    })
+    if (replace) {
+        Object.entries(replace).forEach(([key, value]) => {
+            translation = translation.replace(':' + key, value)
+        })
+    }
 
     return translation
 }
@@ -64,10 +66,17 @@ window.gtranslate = function gtranslate(from, to, context, self) {
         return;
     }
     if (fromEl.value.length && !toEl.value.length && translationsDone < maxTranslations) {
-        axios.post('/translate', {
-            text: fromEl.value,
-            to: to
-        }).then(({data}) => {
+        fetch('/translate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: JSON.stringify({ text: fromEl.value, to: to })
+        })
+        .then(response => response.json())
+        .then(data => {
             translationsDone++;
             toEl.value = data.text;
             toEl.dispatchEvent(new Event('input'));
