@@ -123,6 +123,6 @@
 </script>
 @stack('scripts')
 
-@livewireScriptConfig
+@livewireScripts
 </body>
 </html>

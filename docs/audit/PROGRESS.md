@@ -370,3 +370,71 @@
 
 ### Remaining
 - **FE-001/002/003**: Vue 2→3, Bootstrap 4→5, drop jQuery (separate project)
+
+---
+
+## Session 7 — 2026-02-17
+
+### Completed — Frontend Modernization (FE-001/002/003) — AUDIT COMPLETE
+
+#### Phase 1: Remove Vue.js (FE-001)
+- Removed Vue 2 entirely — replaced with Alpine.js (ships with Livewire 4)
+- Replaced `Flash.vue` component with Alpine.js `flashMessage` data component
+- Replaced `<base-button>` Vue component with plain HTML `<button>`/`<a>` in 10 templates (15 instances)
+- Replaced Vue event bus (`window.events = new Vue()`) with native `CustomEvent` dispatch
+- Removed `v-pre` attributes from navbar/topbar (no longer needed without Vue)
+- Removed Vue mixin export from trans.js (kept window.__ and window.gtranslate)
+- Removed `@vitejs/plugin-vue2` from Vite config
+- JS bundle: 424KB → 264KB (-38%)
+
+#### Phase 2: Bootstrap 4 → 5 + Remove jQuery (FE-002/003)
+- Upgraded `bootstrap` 4.x → 5.x, replaced `popper.js` with `@popperjs/core`
+- Removed jQuery (no longer needed by BS5)
+- Removed `bootstrap-select` jQuery plugin, replaced with native `<select class="form-select">`
+- Rewrote `bootstrap.js`: BS5 ESM imports (no jQuery)
+- Rewrote `custom.js`: vanilla JS (lockScroll toggle)
+- Migrated all `data-*` attributes to `data-bs-*` across 15 templates (~47 occurrences)
+- Migrated all deprecated BS4 class names to BS5 equivalents across ~30 templates:
+  - Spacing: `ml-*`→`ms-*`, `mr-*`→`me-*`, `pl-*`→`ps-*`, `pr-*`→`pe-*`
+  - Text: `text-left`→`text-start`, `text-right`→`text-end`, `text-md-right`→`text-md-end`
+  - Floats: `float-right`→`float-end`
+  - Typography: `font-weight-bold`→`fw-bold`, `font-weight-light`→`fw-light`, `font-italic`→`fst-italic`
+  - Accessibility: `sr-only`→`visually-hidden`, `sr-only-focusable`→`visually-hidden-focusable`
+  - Forms: `form-group`→`mb-3`, `form-row`→`row g-3`, `form-inline`→`d-flex align-items-center`
+  - Custom controls: `custom-control custom-checkbox`→`form-check`, etc.
+  - Badges: `badge-pill`→`rounded-pill`, `badge-primary`→`text-bg-primary`
+  - Layout: `dropdown-menu-right`→`dropdown-menu-end`, `close`→`btn-close`
+- Converted carousel controls from `<a>` to `<button>` elements
+- Updated share modal close button to BS5 format
+- Removed dead BS3 CSS selectors from styles.scss
+- JS bundle: 264KB → 171KB (-35%)
+
+### Bundle Size Summary (Session 1 → Session 7)
+| Asset | Before Audit | After Session 7 | Savings |
+|-------|-------------|-----------------|---------|
+| JS | 449KB (152KB gz) | 171KB (53KB gz) | **-62%** |
+| CSS (app) | 270KB (48KB gz) | 227KB (31KB gz) | **-16%** |
+| CSS (styles) | — | 21KB (5KB gz) | consolidated |
+| CSS (FA) | — | 12KB (2KB gz) | SVG core |
+| Total | ~719KB | ~431KB | **-40%** |
+
+### Files Created
+- None
+
+### Files Modified
+- `resources/js/app.js` — removed Vue, added Alpine.js flash component
+- `resources/js/bootstrap.js` — BS5 ESM imports, no jQuery
+- `resources/js/custom.js` — vanilla JS lockScroll
+- `resources/js/trans.js` — removed Vue mixin export
+- `resources/sass/app.scss` — BS5 import, removed bootstrap-select
+- `resources/sass/styles.scss` — updated .custom-control-label → .form-check-label, removed dead BS3 CSS
+- `vite.config.js` — removed vue2 plugin and jQuery/Vue aliases
+- ~30 Blade templates — BS4→BS5 data attributes, class names, component replacements
+- `package.json` — removed vue, jquery, popper.js, bootstrap-select, @vitejs/plugin-vue2; added bootstrap@5, @popperjs/core
+
+### Files Deleted
+- `resources/js/components/Flash.vue`
+- `resources/js/components/BaseButtonComponent.vue`
+
+### AUDIT STATUS: COMPLETE
+All 56/56 findings addressed across 7 sessions.

@@ -63,7 +63,7 @@ Prioritized by impact and effort. Work top-to-bottom.
 
 ## P4 — Long-term / Migration Projects
 
-- [ ] **FE-001/002/003**: Migrate Vue 2 -> 3, Bootstrap 4 -> 5, drop jQuery
+- [x] **FE-001/002/003**: Removed Vue 2 entirely (replaced with Alpine.js), migrated Bootstrap 4 -> 5, dropped jQuery
 - [x] **DX-008**: Replaced default Laravel README with project-specific documentation
 - [x] **ARCH-011**: Already implemented — RememberLocale middleware already checks locale change before saving
 - [x] **SEC-004**: Implemented MustVerifyEmail with existing user backfill migration
