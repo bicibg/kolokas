@@ -33,7 +33,7 @@
                 <h5>{{ __('trx.newsletter') }}</h5>
                 <form method="POST" action="{{ route('subscribe') }}">
                     @csrf
-                    <div class="form-group">
+                    <div class="mb-3">
                         <input type="email" class="form-control" name="subscriber_email">
                     </div>
                     <button type="submit" class="btn btn-lg btn-primary btn-base">

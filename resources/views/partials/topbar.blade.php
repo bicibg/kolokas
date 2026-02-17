@@ -10,9 +10,9 @@
             <li class="nav-item"><a href="https://www.instagram.com/kolokasrecipes" target="_blank" rel="noopener" aria-label="Instagram"><i
                         class="fab fa-instagram"></i></a></li>
         </ul>
-        <ul class="nav navbar-nav m-0 p-0 ml-auto">
+        <ul class="nav navbar-nav m-0 p-0 ms-auto">
             <li class="nav-item">
-                <a class="login_button font-weight-bold"
+                <a class="login_button fw-bold"
                    id="show_login"
                    href="{{ route('recipe.create') }}">
                     <i class="fas fa-plus-square"></i> {{ __('trx.submit_recipe') }}
@@ -23,7 +23,7 @@
                    href="#"
                    id="navbarDropdown"
                    role="button"
-                   data-toggle="dropdown"
+                   data-bs-toggle="dropdown"
                    aria-haspopup="true"
                    aria-expanded="false">
                     <i class="fas fa-globe"></i>
@@ -56,11 +56,11 @@
             @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('trx.logged_in_as', ['name' => Auth::user()->name]) }} <span class="caret"></span>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('trx.my_profile') }}</a>
                         <a class="dropdown-item" href="{{ route('recipe.my-index') }}">{{ __('trx.my_recipes') }}</a>
                         <a class="dropdown-item"

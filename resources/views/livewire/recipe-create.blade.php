@@ -24,67 +24,67 @@
                 <a class="nav-link mb-3 p-3 shadow {{ $tab == 'description' ? 'active' : '' }}"
                    wire:click="switchTab('description')"
                    id="w-description-tab"
-                   data-toggle="pill"
+                   data-bs-toggle="pill"
                    href="#w-description"
                    role="tab"
                    aria-controls="w-description"
                    aria-selected="true">
-                    <i class="fas fa-pen mr-2"></i>
-                    <span class="font-weight-bold small text-uppercase">{{ __('trx.recipe_description') }}</span>
+                    <i class="fas fa-pen me-2"></i>
+                    <span class="fw-bold small text-uppercase">{{ __('trx.recipe_description') }}</span>
                     @if($tab1Check)
-                        <i class="far fa-check-circle float-right check"></i>
+                        <i class="far fa-check-circle float-end check"></i>
                     @else
-                        <i class="far fa-check-circle float-right"></i>
+                        <i class="far fa-check-circle float-end"></i>
                     @endif
                 </a>
                 <a class="nav-link mb-3 p-3 shadow {{ $tab == 'media' ? 'active' : '' }}"
                    wire:click="switchTab('media')"
                    id="w-media-tab"
-                   data-toggle="pill"
+                   data-bs-toggle="pill"
                    href="#w-media"
                    role="tab"
                    aria-controls="w-media"
                    aria-selected="false">
-                    <i class="fas fa-image mr-2"></i>
-                    <span class="font-weight-bold small text-uppercase">{{ __('trx.media') }}</span>
+                    <i class="fas fa-image me-2"></i>
+                    <span class="fw-bold small text-uppercase">{{ __('trx.media') }}</span>
                     @if($tab2Check)
-                        <i class="far fa-check-circle float-right check"></i>
+                        <i class="far fa-check-circle float-end check"></i>
                     @else
-                        <i class="far fa-check-circle float-right"></i>
+                        <i class="far fa-check-circle float-end"></i>
                     @endif
                 </a>
 
                 <a class="nav-link mb-3 p-3 shadow {{ $tab == 'meta' ? 'active' : '' }}"
                    wire:click="switchTab('meta')"
                    id="w-meta-tab"
-                   data-toggle="pill"
+                   data-bs-toggle="pill"
                    href="#w-meta"
                    role="tab"
                    aria-controls="w-meta"
                    aria-selected="false">
-                    <i class="fas fa-info mr-2"></i>
-                    <span class="font-weight-bold small text-uppercase">{{ __('trx.meta') }}</span>
+                    <i class="fas fa-info me-2"></i>
+                    <span class="fw-bold small text-uppercase">{{ __('trx.meta') }}</span>
                     @if($tab3Check)
-                        <i class="far fa-check-circle float-right check"></i>
+                        <i class="far fa-check-circle float-end check"></i>
                     @else
-                        <i class="far fa-check-circle float-right"></i>
+                        <i class="far fa-check-circle float-end"></i>
                     @endif
                 </a>
 
                 <a class="nav-link mb-3 p-3 shadow {{ $tab == 'recipe' ? 'active' : '' }}"
                    wire:click="switchTab('recipe')"
                    id="w-recipe-tab"
-                   data-toggle="pill"
+                   data-bs-toggle="pill"
                    href="#w-recipe"
                    role="tab"
                    aria-controls="w-recipe"
                    aria-selected="false">
-                    <i class="fas fa-utensils mr-2"></i>
-                    <span class="font-weight-bold small text-uppercase">{{ trans_choice('trx.recipe', 1) }}</span>
+                    <i class="fas fa-utensils me-2"></i>
+                    <span class="fw-bold small text-uppercase">{{ trans_choice('trx.recipe', 1) }}</span>
                     @if($tab4Check)
-                        <i class="far fa-check-circle float-right check"></i>
+                        <i class="far fa-check-circle float-end check"></i>
                     @else
-                        <i class="far fa-check-circle float-right"></i>
+                        <i class="far fa-check-circle float-end"></i>
                     @endif
                 </a>
             </div>
@@ -129,9 +129,9 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="form-row">
+                <div class="row g-3">
                     <div class="col-md-12 justify-content-end">
-                        <div class="form-row mb-2 mt-5">
+                        <div class="row g-3 mb-2 mt-5">
                             <div class="offset-md-2 col-md-10 border-top">
                                 <div class="muted">
                                     <p>{{ __('trx.agreement') }}

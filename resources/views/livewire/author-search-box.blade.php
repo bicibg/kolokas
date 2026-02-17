@@ -20,7 +20,7 @@
                                placeholder="{{ __('trx.search_term') }}...">
                     </div>
                     <div class="col-md-2 text-center">
-                        <div class="result-count mr-3">
+                        <div class="result-count me-3">
                             <span>{{ $resultCount }} </span>{{ trans_choice('trx.author', $resultCount) }}
                         </div>
                         <button type="submit" class="btn btn-lg btn-primary btn-base">

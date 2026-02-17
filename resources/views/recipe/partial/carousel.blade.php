@@ -1,11 +1,11 @@
 <div id="recipeCarousel" class="carousel slide">
     @if ($recipe->images->count() > 0)
         <ol class="carousel-indicators">
-            <li data-target="#recipeCarousel"
-                data-slide-to="0"></li>
+            <li data-bs-target="#recipeCarousel"
+                data-bs-slide-to="0"></li>
             @foreach($recipe->images as $image)
-                <li data-target="#recipeCarousel"
-                    data-slide-to="{{ $loop->index + 1 }}"></li>
+                <li data-bs-target="#recipeCarousel"
+                    data-bs-slide-to="{{ $loop->index + 1 }}"></li>
             @endforeach
         </ol>
     @endif
@@ -20,13 +20,13 @@
         @endforeach
     </div>
     @if ($recipe->images->count() > 0)
-        <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">{{ __('trx.previous') }}</span>
-        </a>
-        <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+            <span class="visually-hidden">{{ __('trx.previous') }}</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#recipeCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">{{ __('trx.next') }}</span>
-        </a>
+            <span class="visually-hidden">{{ __('trx.next') }}</span>
+        </button>
     @endif
 </div>

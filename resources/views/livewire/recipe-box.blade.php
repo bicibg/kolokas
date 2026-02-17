@@ -1,6 +1,6 @@
 <div class="recipe-container d-flex flex-column w-100">
     @if($recipe->traditional)
-        <span class="badge badge-pill badge-primary position-absolute traditional-badge text-light">{{ __('trx.traditional') }}</span>
+        <span class="badge rounded-pill text-bg-primary position-absolute traditional-badge text-light">{{ __('trx.traditional') }}</span>
     @endif
     <div class="recipe-img">
         <img alt="{{ $recipe->title }}" src="{{ $recipe->main_image }}"
@@ -45,7 +45,7 @@
 {{--                             src="{{Avatar::create($recipe->author->name)->toBase64()}}"--}}
 {{--                             width="25">--}}
                         <a href="{{ $recipe->author->profile->url }}" rel="author">{{ $recipe->author->name }}</a>
-                        <p class="font-italic small">{{ $recipe->author->profile->city }}</p>
+                        <p class="fst-italic small">{{ $recipe->author->profile->city }}</p>
                     </div>
                 </div>
                 {{--                <div class="col-md-4">--}}
@@ -65,7 +65,7 @@
            title="{{ __('trx.add_to_favourites') }}"
            wire:key="favourite_{{time()}}"
            wire:click="favourite"><i class="@if($recipe->isFavourited()) fas fa-heart red @else far fa-heart @endif"></i></a>
-        <a data-toggle="modal" href="javascript:void(0);" data-target="#popup-social-{{ $recipe->slug }}" title="{{ __('trx.share') }}">
+        <a data-bs-toggle="modal" href="javascript:void(0);" data-bs-target="#popup-social-{{ $recipe->slug }}" title="{{ __('trx.share') }}">
             <i class="fas fa-share"></i>
         </a>
     </div>

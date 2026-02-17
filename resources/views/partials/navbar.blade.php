@@ -2,18 +2,18 @@
     <a class="navbar-brand d-block h-100 position-absolute mx-5" href="{{ route('home') }}">
         @include('partials.svg.logo_' . app()->getLocale())
     </a>
-    <button class="navbar-toggler ml-auto"
+    <button class="navbar-toggler ms-auto"
             type="button"
             onclick="lockScroll();"
-            data-toggle="collapse"
-            data-target="#navbarResponsive"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarResponsive"
             aria-controls="navbarResponsive"
             aria-expanded="false"
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse" id="navbarResponsive">
-        <ul class="navbar-nav mr-auto ml-auto">
+        <ul class="navbar-nav me-auto ms-auto">
             <li class="nav-item d-md-none mt-2">
                 <a
                     class="nav-link"
@@ -25,21 +25,21 @@
             <li class="nav-item dropdown menu-large d-none d-md-block">
                 <a class="nav-link dropdown-toggle"
                    href="{{ route('recipe.index') }}"
-                   data-toggle="dropdown"
+                   data-bs-toggle="dropdown"
                    aria-haspopup="true"
                    aria-expanded="false">
                     {{ __('trx.recipes') }}
                 </a>
 
                 <div class="dropdown-menu megamenu text-center">
-                    <div class="row text-left m-row justify-content-between">
+                    <div class="row text-start m-row justify-content-between">
                         <div class="col-md-2">
                             <a class="d-inline d-flex dropdown-item"
                                href="{{ route('recipe.index') }}">{{ __('trx.all_recipes') }}</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </div>
-                    <div class="row text-left m-row justify-content-between">
+                    <div class="row text-start m-row justify-content-between">
                         @foreach($categories->chunk(5) as $group)
                             <div class="col-md-2">
                                 @foreach($group as $category)
@@ -76,7 +76,7 @@
                 <div class="dropdown-divider"></div>
             </li>
             <li class="nav-item d-md-none">
-                <a class="nav-link login_button font-weight-bold"
+                <a class="nav-link login_button fw-bold"
                    id="show_login"
                    href="{{ route('recipe.create') }}">
                     <i class="fas fa-plus-square"></i> {{ __('trx.submit_recipe') }}
@@ -84,13 +84,13 @@
             </li>
             <li class="nav-item d-md-none">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-globe"></i>
                     {{ config()->get('app.languages')[app()->getLocale()] }}
                     <span class="caret"></span>
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     @foreach(config()->get('app.languages') as $key => $lang)
                         @if ($key !== app()->getLocale())
                             <a class="dropdown-item"

@@ -3,8 +3,8 @@
         <h2 class="mb-0">
             <button class="btn btn-link @if($lang === $langTab) collapsed @endif"
                     type="button"
-                    data-toggle="collapse"
-                    data-target="#collapse_{{$lang}}"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse_{{$lang}}"
                     aria-expanded="@if($lang === $langTab) true @else false @endif"
                     aria-controls="collapse_{{$lang}}"
                     wire:click="switchLangTab('{{$lang}}')">
@@ -19,10 +19,10 @@
     <div id="collapse_{{$lang}}"
          class="collapse @if($lang === $langTab) show @endif"
          aria-labelledby="heading_{{ $lang }}"
-         data-parent="#{{$parent}}">
+         data-bs-parent="#{{$parent}}">
         <div class="card-body">
             <fieldset>
-                <div class="form-row mb-2">
+                <div class="row g-3 mb-2">
                     <div class="col-md-2">
                         <label class="col-form-label {{$lang === $locale ? 'required' : ''}}" for="servings_{{ $lang }}">{{ __('trx.servings') }}:</label>
                     </div>
@@ -33,7 +33,7 @@
                                name="servings.{{ $lang }}"
                                id="servings_{{ $lang }}"
                                placeholder="{{ __('trx.no_of_servings', [], $lang) }}">
-                        <small id="descriptionHelp" class="footnote form-text text-muted font-italic">
+                        <small id="descriptionHelp" class="footnote form-text text-muted fst-italic">
                             {{ __('trx.servings_helper') }}
                         </small>
                     </div>
@@ -44,7 +44,7 @@
                                onclick="gtranslate('{{ app()->getLocale() }}', '{{ $lang }}', 'servings', this)">
                                 {!! __('trx.translate', ['from' => __('trx.languages.' . app()->getLocale()), 'to' => __('trx.languages.' . $lang)]) !!}
                                 <div class="spinner spinner-border text-primary hidden" role="status">
-                                    <span class="sr-only">{{__('trx.translating')}}</span>
+                                    <span class="visually-hidden">{{__('trx.translating')}}</span>
                                 </div>
                             </a>
                         @endif

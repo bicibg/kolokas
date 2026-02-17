@@ -5,7 +5,7 @@
 
         <div class="row justify-content-center kolokas-form">
             <div class="col-sm-12 col-md-8">
-                <div class="header text-left">
+                <div class="header text-start">
                     <h2>{{ __('trx.account') }}</h2>
                     <hr>
                 </div>
@@ -13,18 +13,18 @@
             <div class="col-md-12">
                 <form method="POST" action="{{ route('password.new') }}">
                     @csrf
-                    <div class="justify-content-center form-row">
+                    <div class="justify-content-center row g-3">
                         <div class="col-xs-12 col-md-8">
                             <fieldset>
                                 <div class="row">
-                                    <div class="form-group col-md-12 col-sm-12">
+                                    <div class="mb-3 col-md-12 col-sm-12">
                                         <label for="email">{{ __('trx.email') }}</label>
                                         <input class="form-control-plaintext"
                                                readonly
                                                id="email"
                                                value="{{ auth()->user()->email }}">
                                     </div>
-                                    <div class="form-group col-md-4 col-sm-12">
+                                    <div class="mb-3 col-md-4 col-sm-12">
                                         <label for="current_password">{{ __('passwords.current_password') }}
                                             * </label>
                                         <input class="form-control input-lg"
@@ -32,14 +32,14 @@
                                                type="password"
                                                id="current_password">
                                     </div>
-                                    <div class="form-group col-md-4 col-sm-12">
+                                    <div class="mb-3 col-md-4 col-sm-12">
                                         <label for="new_password">{{ __('passwords.new_password') }} *</label>
                                         <input class="form-control input-lg"
                                                name="new_password"
                                                type="password"
                                                id="new_password">
                                     </div>
-                                    <div class="form-group col-md-4 col-sm-12">
+                                    <div class="mb-3 col-md-4 col-sm-12">
                                         <label
                                             for="new_password_confirmation">{{ __('passwords.confirm_password') }}
                                             *</label>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="col-sm-12 col-md-8 mt-5">
-                <div class="header text-left">
+                <div class="header text-start">
                     <h2>{{ __('trx.my_profile') }}</h2>
                     <hr>
                 </div>
@@ -70,11 +70,11 @@
                 <form method="post" action="{{ route('profile.update') }}">
                     @csrf
                     @method('PATCH')
-                    <div class="justify-content-center form-row">
+                    <div class="justify-content-center row g-3">
                         <div class="col-xs-12 col-md-8">
                             <fieldset>
                                 <div class="row">
-                                    <div class="form-group col-md-6 col-sm-12">
+                                    <div class="mb-3 col-md-6 col-sm-12">
                                         <label for="name">{{ __('trx.name') }}</label>
                                         @include('partials.has-errors', ['field' => 'name'])
                                         <input class="form-control input-lg"
@@ -83,8 +83,8 @@
                                                id="name"
                                                value="{{ old('name', $profile->name) }}">
                                     </div>
-                                    <div class="form-group col-md-6 col-sm-12">&nbsp;</div>
-                                    <div class="form-group col-md-6 col-sm-12">
+                                    <div class="mb-3 col-md-6 col-sm-12">&nbsp;</div>
+                                    <div class="mb-3 col-md-6 col-sm-12">
                                         <label for="city">{{ __('trx.city') }}</label>
                                         @include('partials.has-errors', ['field' => 'city'])
                                         <input class="form-control input-lg"
@@ -93,7 +93,7 @@
                                                id="city"
                                                value="{{ old('city', $profile->city) }}">
                                     </div>
-                                    <div class="form-group col-md-6 col-sm-12">
+                                    <div class="mb-3 col-md-6 col-sm-12">
                                         <label for="telephone">{{ __('trx.telephone') }}</label>
                                         @include('partials.has-errors', ['field' => 'telephone'])
                                         <input class="form-control input-lg"
@@ -102,7 +102,7 @@
                                                id="telephone"
                                                value="{{ old('telephone', $profile->telephone) }}">
                                     </div>
-                                    <div class="form-group col-md-12 col-sm-12">
+                                    <div class="mb-3 col-md-12 col-sm-12">
                                         <label for="info">{{ __('trx.personal_info') }}</label>
                                         @include('partials.has-errors', ['field' => 'info'])
                                         <textarea class="form-control input-lg"
@@ -110,11 +110,11 @@
                                                   id="info"
                                                   rows="10"
                                                   cols="30">{{ old('info', $profile->info) }}</textarea>
-                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                        <small id="titleHelp" class="footnote form-text text-muted fst-italic">
                                             {{ __('trx.personal_info_helper') }}
                                         </small>
                                     </div>
-                                    <div class="form-group col-md-12 col-sm-12">
+                                    <div class="mb-3 col-md-12 col-sm-12">
                                         <label for="website" class="social">{{ __('trx.website') }}</label>
                                         @include('partials.has-errors', ['field' => 'website'])
                                         <input class="form-control input-lg"
@@ -122,11 +122,11 @@
                                                type="text"
                                                id="website"
                                                value="{{ old('website', $profile->website) }}">
-                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                        <small id="titleHelp" class="footnote form-text text-muted fst-italic">
                                             {{ __('trx.website_helper') }}
                                         </small>
                                     </div>
-                                    <div class="form-group col-md-12 col-sm-12">
+                                    <div class="mb-3 col-md-12 col-sm-12">
                                         <label for="facebook" class="social">Facebook</label>
                                         @include('partials.has-errors', ['field' => 'facebook'])
                                         <input class="form-control input-lg"
@@ -134,11 +134,11 @@
                                                type="text"
                                                id="facebook"
                                                value="{{ old('facebook') ?? $profile->facebook }}">
-                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                        <small id="titleHelp" class="footnote form-text text-muted fst-italic">
                                             {{ __('trx.example_placeholder', ['value' => 'https://facebook.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
-                                    <div class="form-group col-md-12 col-sm-12">
+                                    <div class="mb-3 col-md-12 col-sm-12">
                                         <label for="twitter" class="social">Twitter</label>
                                         @include('partials.has-errors', ['field' => 'twitter'])
                                         <input class="form-control input-lg"
@@ -146,11 +146,11 @@
                                                type="text"
                                                id="twitter"
                                                value="{{ old('twitter', $profile->twitter) }}">
-                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                        <small id="titleHelp" class="footnote form-text text-muted fst-italic">
                                             {{ __('trx.example_placeholder', ['value' => 'https://twitter.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
-                                    <div class="form-group col-md-12 col-sm-12">
+                                    <div class="mb-3 col-md-12 col-sm-12">
                                         <label for="pinterest" class="social">Pinterest</label>
                                         @include('partials.has-errors', ['field' => 'pinterest'])
                                         <input class="form-control input-lg"
@@ -158,11 +158,11 @@
                                                type="text"
                                                id="pinterest"
                                                value="{{ old('pinterest', $profile->pinterest) }}">
-                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                        <small id="titleHelp" class="footnote form-text text-muted fst-italic">
                                             {{ __('trx.example_placeholder', ['value' => 'https://pinterest.com/kolokasrecipes']) }}
                                         </small>
                                     </div>
-                                    <div class="form-group col-md-12 col-sm-12">
+                                    <div class="mb-3 col-md-12 col-sm-12">
                                         <label for="instagram" class="social">Instagram</label>
                                         @include('partials.has-errors', ['field' => 'instagram'])
                                         <input class="form-control input-lg"
@@ -170,7 +170,7 @@
                                                type="text"
                                                id="instagram"
                                                value="{{ old('instagram', $profile->instagram) }}">
-                                        <small id="titleHelp" class="footnote form-text text-muted font-italic">
+                                        <small id="titleHelp" class="footnote form-text text-muted fst-italic">
                                             {{ __('trx.example_placeholder', ['value' => 'https://instagram.com/kolokasrecipes']) }}
                                         </small>
                                     </div>

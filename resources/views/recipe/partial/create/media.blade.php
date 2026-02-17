@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <fieldset>
-            <div class="form-row mb-2">
+            <div class="row g-3 mb-2">
                 <div class="col-md-12">
                     <label class="col-form-label" for="main_image">{{ __('trx.main_photo') }}:</label>
                     <div wire:loading.remove>
@@ -21,7 +21,7 @@
                         </div>
                     @endif
 
-                    <small id="imageHelp" class="footnote form-text text-muted font-italic">
+                    <small id="imageHelp" class="footnote form-text text-muted fst-italic">
                         {{ __('trx.main_photo_helper') }}
                     </small>
                 </div>

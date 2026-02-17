@@ -23,7 +23,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="carousel slide" data-ride="carousel">
+                            <div class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="recipe active">
                                         @include('recipe.partial.carousel')
@@ -50,9 +50,9 @@
                                         {{ __('trx.print') }}
                                     </span>
                                 </a>
-                                <a data-toggle="modal"
+                                <a data-bs-toggle="modal"
                                    href="javascript:void(0);"
-                                   data-target="#popup-social-{{ $recipe->slug }}"
+                                   data-bs-target="#popup-social-{{ $recipe->slug }}"
                                    title="{{ __('trx.share') }}">
                                     <i class="fas fa-share"></i>
                                     <span class="d-inline-block">
@@ -99,11 +99,11 @@
                                     <ul class="ingredient-check">
                                         @foreach($recipe->getIngredientsArray() as $key => $ingredient)
                                             <li>
-                                                <div class="custom-control custom-checkbox">
+                                                <div class="form-check">
                                                     <input type="checkbox"
-                                                           class="custom-control-input no-print"
+                                                           class="form-check-input no-print"
                                                            id="ingredient_{{ $key }}">
-                                                    <label class="custom-control-label" for="ingredient_{{ $key }}">
+                                                    <label class="form-check-label" for="ingredient_{{ $key }}">
                                                         {{ $ingredient }}
                                                     </label>
                                                 </div>
@@ -132,8 +132,8 @@
                             </div>
                         </div>
                         @if ($recipe->author->locale !== app()->getLocale())
-                            <div class="col-md-12 col-sm-12 col-12 text-left pl-0 no-print">
-                                <a href="{{ route('contact.create', [$recipe]) }}" class="btn btn-link pl-0">
+                            <div class="col-md-12 col-sm-12 col-12 text-start ps-0 no-print">
+                                <a href="{{ route('contact.create', [$recipe]) }}" class="btn btn-link ps-0">
                                     {{ __('trx.translated_recipe') }}
                                 </a>
                             </div>

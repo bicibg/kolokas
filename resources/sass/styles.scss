@@ -796,7 +796,7 @@ ul.validation-errors {
         }
     }
 
-    .custom-control-label {
+    .form-check-label {
         line-height: 23px;
     }
 
@@ -1061,11 +1061,7 @@ ul.validation-errors {
     }
 }
 
-.form-horizontal .form-group-lg .form-control {
-    font-family: 'Lora', 'PT Serif', serif;
-}
-
-.kolokas-form .content .input-lg, .form-horizontal .form-group-lg .form-control {
+.kolokas-form .content .input-lg {
     font-size: 16px;
 }
 

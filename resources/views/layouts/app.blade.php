@@ -81,7 +81,7 @@
 <div id="print-wrapper">
 </div>
 <div id="app">
-    <a href="#main-content" class="sr-only sr-only-focusable">{{ __('trx.skip_to_content') ?? 'Skip to content' }}</a>
+    <a href="#main-content" class="visually-hidden visually-hidden-focusable">{{ __('trx.skip_to_content') ?? 'Skip to content' }}</a>
     <div class="sticky-top kolokas-nav">
         @include('partials.topbar')
         @include('partials.navbar')

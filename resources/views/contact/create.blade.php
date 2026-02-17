@@ -9,22 +9,22 @@
             <div class="col-lg-8 content">
                 <form method="POST" action="{{ route('contact.store') }}">
                     @csrf
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label for="name">{{ __('trx.name') }}</label>
                         @include('partials.has-errors', ['field' => 'name'])
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name', auth()->check() ? auth()->user()->name: '') }}">
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label for="email">{{ __('trx.email') }}</label>
                         @include('partials.has-errors', ['field' => 'email'])
                         <input type="email" class="form-control" id="email" name="email" value="{{ old('email', auth()->check() ? auth()->user()->email: '') }}">
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label for="subject">{{ __('trx.subject') }}</label>
                         @include('partials.has-errors', ['field' => 'subject'])
                         <input type="text" class="form-control" id="subject" name="subject" value="{{ old('subject', $subject ?: '') }}">
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label for="user_message">{{ __('trx.message') }}</label>
                         @include('partials.has-errors', ['field' => 'user_message'])
                         <textarea class="form-control" rows="4" required="required" id="user_message" name="user_message">{{ old('user_message') }}</textarea>

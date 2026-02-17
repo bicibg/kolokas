@@ -1,12 +1,6 @@
 /**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs.
+ * Bootstrap 5 — no jQuery dependency.
  */
+import * as bootstrap from 'bootstrap';
 
-import Popper from 'popper.js';
-import $ from 'jquery';
-
-window.Popper = Popper;
-window.$ = window.jQuery = $;
-
-import 'bootstrap';
+window.bootstrap = bootstrap;

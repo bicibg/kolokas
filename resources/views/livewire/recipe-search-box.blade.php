@@ -22,15 +22,13 @@
                                placeholder="{{ __('trx.search_term') }}...">
                     </div>
                     <div class="col-md-3">
-                        <div class="form-group" wire:ignore id="categories_container">
+                        <div class="mb-3" wire:ignore id="categories_container">
                             <label for="category">{{ __('trx.categories') }}</label>
                             <select name="c"
-                                    data-container="#categories_container"
                                     id="category"
-                                    class="selectpicker form-control show-tick"
-                                    data-live-search="true">
+                                    class="form-select">
                                 <option value
-                                        class="font-weight-bold"
+                                        class="fw-bold"
                                         @if(empty(request()->get('s'))) selected="selected" @endif>
                                     {{ __('trx.all_categories') }}
                                 </option>
@@ -44,15 +42,13 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="form-group" wire:ignore id="author_container">
+                        <div class="mb-3" wire:ignore id="author_container">
                             <label for="author">{{ trans_choice('trx.author_capital',1) }}</label>
                             <select name="a"
-                                    data-container="#author_container"
                                     id="author"
-                                    class="selectpicker form-control show-tick"
-                                    data-live-search="true">
+                                    class="form-select">
                                 <option value
-                                        class="font-weight-bold"
+                                        class="fw-bold"
                                         @if(empty(request()->get('a'))) selected="selected" @endif>
                                     {{ __('trx.all_authors') }}
                                 </option>
@@ -69,7 +65,7 @@
                         <div class="col-md-2"></div>
                     @else
                         <div class="col-md-2 text-center">
-                            <div class="result-count mr-3">
+                            <div class="result-count me-3">
                                 <span>{{ $resultCount }} </span>{{ trans_choice('trx.recipe', $resultCount) }}
                             </div>
                             <button type="submit" class="btn btn-lg btn-primary btn-base">
@@ -84,7 +80,7 @@
             <div class="advance-search">
                 <div class="row flex align-items-center bg-white py-2 m-0">
                     <div class="col-md-5 justify-content-center">
-                        <div class="form-group form-inline w-75 mr-auto ml-auto mb-0">
+                        <div class="mb-3 d-flex align-items-center w-75 me-auto ms-auto mb-0">
                             <label for="max_prep_time">{{ __('trx.max_prep_time') }}:&nbsp;
                                 <input id="max_prep_time"
                                        type="text"
@@ -93,7 +89,7 @@
                                        value="{{ trans_choice('trx.minutes', $maxPrepTime, ['minute' => $maxPrepTime]) }}">
                             </label>
                         </div>
-                        <div class="slidecontainer w-75 mr-auto ml-auto">
+                        <div class="slidecontainer w-75 me-auto ms-auto">
                             <input id="prep_time"
                                    type="range"
                                    wire:model.live="maxPrepTime"
@@ -106,7 +102,7 @@
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <div class="form-group form-inline w-75 mr-auto ml-auto mb-0">
+                        <div class="mb-3 d-flex align-items-center w-75 me-auto ms-auto mb-0">
                             <label for="max_cook_time">{{ __('trx.max_cook_time') }}:&nbsp;
                                 <input id="max_cook_time"
                                        type="text"
@@ -115,7 +111,7 @@
                                        value="{{ trans_choice('trx.minutes', $maxCookTime, ['minute' => $maxCookTime]) }}">
                             </label>
                         </div>
-                        <div class="slidecontainer w-75 mr-auto ml-auto">
+                        <div class="slidecontainer w-75 me-auto ms-auto">
                             <input id="cook_time"
                                    type="range"
                                    wire:model.live="maxCookTime"
@@ -129,7 +125,7 @@
                     </div>
                     @if($extended)
                         <div class="col-md-2 text-center pt-4">
-                            <div class="result-count mr-3">
+                            <div class="result-count me-3">
                                 <span>{{ $resultCount }} </span>{{ trans_choice('trx.recipe', $resultCount) }}
                             </div>
                             <button type="submit" class="btn btn-lg btn-primary btn-base">

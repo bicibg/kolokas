@@ -5,10 +5,10 @@
         <div class="row h-100 align-items-center py-5">
             <div class="col-lg-6">
                 <h1 class="display-4">Kolokas.com</h1>
-                <p class="lead text-muted font-italic">{{__('aboutus.par1')}}</p>
+                <p class="lead text-muted fst-italic">{{__('aboutus.par1')}}</p>
                 <p class="lead text-muted">{!! __('aboutus.par2') !!}</p>
                 <p class="lead text-muted">{!! __('aboutus.par3') !!}</p>
-                <p class="lead text-muted font-italic">{!! __('aboutus.par4') !!}</p>
+                <p class="lead text-muted fst-italic">{!! __('aboutus.par4') !!}</p>
             </div>
             <div class="col-lg-6 d-none d-lg-block"><img src="{{ asset('images/about_us_1.jpg') }}" alt="Kolokas team"
                                                          class="img-fluid"></div>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="container p-5">
-        <h2 class="display-4 font-weight-light text-center fit-width">{{__('aboutus.thisisus')}}</h2>
+        <h2 class="display-4 fw-light text-center fit-width">{{__('aboutus.thisisus')}}</h2>
 
         <div class="row text-center">
             <!-- Team item-->

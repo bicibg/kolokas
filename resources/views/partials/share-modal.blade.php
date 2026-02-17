@@ -4,9 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title">{{ __('recipe.share') }}</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
                 <p>{{ $recipe->title }}</p>

@@ -1,7 +1,7 @@
 <div class="card" id="{{$parent}}" wire:key="meta_{{$lang}}">
     <div class="card-body">
         <fieldset>
-            <div class="form-row mb-2">
+            <div class="row g-3 mb-2">
                 <div class="col-md-12" wire:ignore>
                     <label class="required col-form-label" for="categories">{{ __('trx.categories') }}:</label>
                     <select class="categories-picker form-control"
@@ -18,12 +18,12 @@
                                 {{ $category->name }}</option>
                         @endforeach
                     </select>
-                    <small class="footnote form-text text-muted font-italic">
+                    <small class="footnote form-text text-muted fst-italic">
                         {{ __('trx.categories_help') }}
                     </small>
                 </div>
             </div>
-            <div class="form-row mb-2">
+            <div class="row g-3 mb-2">
                 <div class="col-md-6">
                     <label class="col-form-label" for="prep_time">{{ __('trx.prep_time') }}:</label>
                     <input type="number"

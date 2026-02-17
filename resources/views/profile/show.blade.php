@@ -12,7 +12,7 @@
     {{ $profile->name }} -
 @endsection
 @section('content')
-    <div class="container ml-auto mr-auto px-5 mb-5">
+    <div class="container ms-auto me-auto px-5 mb-5">
         <div class="row mt-5">
             <div class="col-xs-12 col-sm-6 text-center">
                 <h2>{{ $profile->name }}</h2>
