@@ -1,6 +1,6 @@
 <div id="recipeCarousel" class="carousel slide">
     @if ($recipe->images->count() > 0)
-        <ol class="carousel-indicators">
+        <ol class="carousel-indicators list-unstyled">
             <li data-bs-target="#recipeCarousel"
                 data-bs-slide-to="0"></li>
             @foreach($recipe->images as $image)

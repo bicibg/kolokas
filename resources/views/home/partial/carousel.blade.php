@@ -1,7 +1,7 @@
 @if ($carousel->count())
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         @if ($carousel->count())
-            <ol class="carousel-indicators">
+            <ol class="carousel-indicators list-unstyled">
                 @php
                     $active = true
                 @endphp
