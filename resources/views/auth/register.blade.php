@@ -73,9 +73,9 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <base-button :role="'submit'">
+                                    <button type="submit" class="btn btn-lg btn-primary btn-base">
                                         {{ __('auth.register') }}
-                                    </base-button>
+                                    </button>
                                 </div>
                             </div>
                         </form>

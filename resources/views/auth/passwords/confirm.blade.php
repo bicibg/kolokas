@@ -32,14 +32,14 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <base-button :role="'submit'">
+                                    <button type="submit" class="btn btn-lg btn-primary btn-base">
                                         {{ __('passwords.confirm_password') }}
-                                    </base-button>
+                                    </button>
 
                                     @if (Route::has('password.request'))
-                                        <base-button :href="'{{ route('password.request') }}'" :className="'btn-link">
+                                        <a href="{{ route('password.request') }}" class="btn btn-lg btn-primary btn-base btn-link">
                                             {{ __('passwords.forgot_password') }}
-                                        </base-button>
+                                        </a>
                                     @endif
                                 </div>
                             </div>

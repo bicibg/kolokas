@@ -23,9 +23,9 @@
                         <div class="result-count mr-3">
                             <span>{{ $resultCount }} </span>{{ trans_choice('trx.author', $resultCount) }}
                         </div>
-                        <base-button :role="'submit'">
+                        <button type="submit" class="btn btn-lg btn-primary btn-base">
                             {{ __('trx.search') }}
-                        </base-button>
+                        </button>
                     </div>
                 </div>
             </div>

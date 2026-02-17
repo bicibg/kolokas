@@ -29,9 +29,9 @@
                         @include('partials.has-errors', ['field' => 'user_message'])
                         <textarea class="form-control" rows="4" required="required" id="user_message" name="user_message">{{ old('user_message') }}</textarea>
                     </div>
-                    <base-button :role="'submit'" :className="'btn-link p-0 m-0 align-baseline'">
+                    <button type="submit" class="btn btn-lg btn-primary btn-base btn-link p-0 m-0 align-baseline">
                         {{ __('trx.send') }}
-                    </base-button>
+                    </button>
                 </form>
             </div>
         </div>

@@ -73,6 +73,7 @@
         'resources/sass/styles-print.scss',
     ])
 
+    <style>[x-cloak] { display: none !important; }</style>
     @livewireStyles
     @stack('schema')
 </head>
@@ -86,8 +87,25 @@
         @include('partials.navbar')
     </div>
     <main id="main-content" class="pt-2 mt-xs-5 pt-xs-2">
-        <flash message="{{ session('flash') ?? (session('flash-warning') ?? session('flash-error')) }}"
-               type="{{ session('flash-warning') ? 'warning' : (session('flash-error') ? 'error' : '')  }}"></flash>
+        <div x-data="flashMessage"
+             x-on:flash.window="flash($event.detail)"
+             x-show="show"
+             x-transition
+             x-cloak
+             :class="'alert alert-flash fade show ' + alertClass"
+             role="alert"
+             data-initial-message="{{ session('flash') ?? (session('flash-warning') ?? session('flash-error') ?? '') }}"
+             data-initial-type="{{ session('flash-warning') ? 'warning' : (session('flash-error') ? 'error' : 'success') }}">
+            <div class="row">
+                <div class="col-10">
+                    <strong x-text="prefix"></strong>
+                    <span x-text="body"></span>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-inline" @click="hide()">X</button>
+                </div>
+            </div>
+        </div>
         @if(count($errors)>0)
             <ul class="validation-errors">
                 @foreach($errors->all() as $error)

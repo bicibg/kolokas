@@ -84,7 +84,7 @@
             </li>
             <li class="nav-item d-md-none">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-globe"></i>
                     {{ config()->get('app.languages')[app()->getLocale()] }}
                     <span class="caret"></span>

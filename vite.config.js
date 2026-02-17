@@ -1,7 +1,5 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import vue2 from '@vitejs/plugin-vue2';
-import path from 'path';
 
 export default defineConfig({
     plugins: [
@@ -14,12 +12,5 @@ export default defineConfig({
             ],
             refresh: true,
         }),
-        vue2(),
     ],
-    resolve: {
-        alias: {
-            jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.js'),
-            vue: path.resolve(__dirname, 'node_modules/vue/dist/vue.esm.js'),
-        },
-    },
 });

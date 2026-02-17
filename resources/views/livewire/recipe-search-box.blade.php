@@ -72,9 +72,9 @@
                             <div class="result-count mr-3">
                                 <span>{{ $resultCount }} </span>{{ trans_choice('trx.recipe', $resultCount) }}
                             </div>
-                            <base-button :role="'submit'">
+                            <button type="submit" class="btn btn-lg btn-primary btn-base">
                                 {{ __('trx.search') }}
-                            </base-button>
+                            </button>
                         </div>
                     @endif
                 </div>
@@ -132,9 +132,9 @@
                             <div class="result-count mr-3">
                                 <span>{{ $resultCount }} </span>{{ trans_choice('trx.recipe', $resultCount) }}
                             </div>
-                            <base-button :role="'submit'">
+                            <button type="submit" class="btn btn-lg btn-primary btn-base">
                                 {{ __('trx.search') }}
-                            </base-button>
+                            </button>
                         </div>
                     @else
                         <div class="col-md-2"></div>

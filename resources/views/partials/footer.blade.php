@@ -36,10 +36,10 @@
                     <div class="form-group">
                         <input type="email" class="form-control" name="subscriber_email">
                     </div>
-                    <base-button role="submit">
+                    <button type="submit" class="btn btn-lg btn-primary btn-base">
                         <i class="fas fa-search"></i>
                         {{ __('trx.subscribe') }}
-                    </base-button>
+                    </button>
                     <p>
                         {{ __('trx.subscribe_helper') }}
                     </p>

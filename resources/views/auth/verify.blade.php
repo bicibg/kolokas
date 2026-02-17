@@ -18,9 +18,9 @@
                         {{ __('trx.if_you_did_not_receive_email') }},
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
-                            <base-button :role="'submit'" :className="'btn-link p-0 m-0 align-baseline'">
-                                {{ __('trx.request_another_email') }} }}
-                            </base-button>
+                            <button type="submit" class="btn btn-lg btn-primary btn-base btn-link p-0 m-0 align-baseline">
+                                {{ __('trx.request_another_email') }}
+                            </button>
                         </form>
                     </div>
                 </div>

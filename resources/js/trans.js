@@ -88,16 +88,3 @@ window.gtranslate = function gtranslate(from, to, context, self) {
     }
 }
 
-export default {
-    methods: {
-        /**
-         * Translate the given key.
-         */
-        __(key, replace) {
-            return __(key, replace);
-        },
-        gtranslate(from, to) {
-            return gtranslate(from, to);
-        }
-    },
-}

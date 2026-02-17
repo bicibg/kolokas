@@ -16,10 +16,10 @@
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="action-buttons w-100 text-center">
-                            <base-button role="submit">
+                            <button type="submit" class="btn btn-lg btn-primary btn-base">
                                 <i class="fas fa-search"></i>
                                 {{ __('trx.search') }}
-                            </base-button>
+                            </button>
                         </div>
                     </div>
                 </div>

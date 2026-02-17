@@ -49,9 +49,9 @@
                                                id="new_password_confirmation">
                                     </div>
                                     <div class="col-md-6 col-sm-12">
-                                        <base-button :role="'submit'">
+                                        <button type="submit" class="btn btn-lg btn-primary btn-base">
                                             {{ __('passwords.update_password') }}
-                                        </base-button>
+                                        </button>
                                     </div>
                                 </div>
                             </fieldset>
@@ -176,9 +176,9 @@
                                     </div>
                                     <!-- / column -->
                                     <div class="col-md-12 col-sm-12">
-                                        <base-button :role="'submit'">
+                                        <button type="submit" class="btn btn-lg btn-primary btn-base">
                                             {{ __('trx.update_profile') }}
-                                        </base-button>
+                                        </button>
                                     </div>
                                 </div>
                             </fieldset>
