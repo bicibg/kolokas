@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="266" viewBox="0 0 400 266">
+  <rect width="400" height="266" fill="#f5f5f5"/>
+  <g transform="translate(200, 110)" text-anchor="middle">
+    <text font-family="sans-serif" font-size="60" fill="#ccc">&#127858;</text>
+  </g>
+  <text x="200" y="180" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#aaa">Photo coming soon</text>
+</svg>
