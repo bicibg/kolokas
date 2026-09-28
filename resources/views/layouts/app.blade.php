@@ -61,6 +61,17 @@
                        src="https://www.facebook.com/tr?id=492864908563456&ev=PageView&noscript=1"
             /></noscript>
         <!-- End Facebook Pixel Code -->
+
+        @if (config('services.google_analytics.measurement_id'))
+            <!-- Google tag (gtag.js) - GA4 -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google_analytics.measurement_id') }}"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', @json(config('services.google_analytics.measurement_id')));
+            </script>
+        @endif
     @endif
 
     <!-- Fonts -->
