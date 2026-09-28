@@ -34,4 +34,8 @@ return [
         'api_key' => env('GOOGLE_TRANSLATE_API_KEY'),
     ],
 
+    'google_analytics' => [
+        'measurement_id' => env('GA4_MEASUREMENT_ID', 'G-TY523J7MWB'),
+    ],
+
 ];
